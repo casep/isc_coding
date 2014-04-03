@@ -26,6 +26,7 @@
 # Cambia la configuracion de Apache para utilizar archivos locales
 # en vez de HDD.
 # En estado normal /etc/httpd/conf.d/trak.conf -> trak_NFS.conf
+# Alguna tontera de cambio para git
 
 RSYNC=/usr/bin/rsync
 ECHO=/bin/echo

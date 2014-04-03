@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="24" zv="Cache for UNIX (IBM AIX for System P5-64) 2010.1.6 (Build 952U)" ts="2012-07-11 17:53:13">
+<Routine name="UEstadoFOP" type="MAC" languagemode="0" timestamp="62588,34600"><![CDATA[
+ //Rutina de verificacion estado FOP
+ //Devuelve 1 en caso de OK
+ //Devuelve "0 5   ‰ ' Open failure on Ping of HotJVM server" en caso de fallo
+ //Casep, Version inicial, 20120511
+ 
+ zn "smoc"
+ s status= ##class(%ZEN.Report.Ping).ping(1234,0.5)
+ w status
+ q
+ 
+]]></Routine>
+</Export>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2012-06-28 09:34:02">
+<Routine name="UDeshabilitaUsuarios" type="MAC" languagemode="0" timestamp="62636,34329"><![CDATA[
+ /*
+ Deshabilita usuarios ensemble en instancia
+ Casep, 20120622, Primer release.
+ Casep, 20120627, Se agrega metodo para recuperar desde query.
+ Casep. 20120628, Se agrega usuarios a NO deshabilitar, si o si.
+ */
+ 
+deshabilitaDesdeArchivo
+ //Esta version recupera usuarios a desactivar desde archivo
+ zn "%SYS"
+ 
+ //Este es el archivo desde donde recupero los usuarios, uno por linea
+ s archivoUsuariosParaDeshabilitar=##class(%FileCharacterStream).%New()
+ s archivoUsuariosParaDeshabilitar.Filename= "/routines/UsuarioParaDeshabilitar"
+ 
+ //Arreglo con las propiedades a setear
+ s propiedades("Enabled")=0
+ 
+ //proceso el archivo, por cada entrada deshabilito el valor
+ while 'archivoUsuariosParaDeshabilitar.AtEnd {
+	 s lineUsuariosParaDeshabilitar=archivoUsuariosParaDeshabilitar.ReadLine()
+	 I (lineUsuariosParaDeshabilitar'="") {
+		 s lineUsuariosParaDeshabilitar = $ZSTRIP(lineUsuariosParaDeshabilitar,"<>C")
+		 d ##Class(Security.Users).Modify(lineUsuariosParaDeshabilitar,.propiedades)
+		 w !, "Deshabilitado [",lineUsuariosParaDeshabilitar,"]"
+	 }
+ }
+ 
+deshabilitaDesdeQuery 
+ //Esta version recupera los usuarios a NO desactivar desde archivo 
+ zn "%SYS"
+ 
+ //Este es el archivo desde donde recupero los usuarios, uno por linea
+ s archivoUsuariosActivos=##class(%FileCharacterStream).%New()
+ s archivoUsuariosActivos.Filename= "/routines/UsuariosActivos"
+ 
+ //Arreglo con las propiedades a setear
+ s propiedades("Enabled")=0
+ 
+ //Me aseguro de que algunos si o si queden activos
+ s usuariosActivos("Admin")="Admin"
+ s usuariosActivos("CSPSystem")="CSPSystem"
+ s usuariosActivos("SuperUser")="SuperUser"
+ s usuariosActivos("UnknownUser")="UnknownUser"
+ s usuariosActivos("_SYSTEM")="_SYSTEM"
+ s usuariosActivos("root")="root"
+ 
+ //populo un arreglo con el contenido del archivo
+ while 'archivoUsuariosActivos.AtEnd {
+	 s lineUsuariosActivos=archivoUsuariosActivos.ReadLine()
+	 i (lineUsuariosActivos'="") {
+		s lineUsuariosActivos = $ZSTRIP(lineUsuariosActivos,"<>C")
+        s usuariosActivos(lineUsuariosActivos)=lineUsuariosActivos
+	 }
+ }
+ 
+ //recupero todos los usuarios, si estan habilitados, los busco en el arrreglo
+ s usuarios=##class(%ResultSet).%New("Security.Users:List")
+ s sc=usuarios.Execute()
+ while usuarios.Next(.sc) {
+	 i usuarios.Data("Enabled")="Yes" {
+		 i $d(usuariosActivos(usuarios.Data("Name"))) = 0 {
+			d ##Class(Security.Users).Modify(usuarios.Data("Name"),.propiedades)
+			w !, "Deshabilitado [",usuarios.Data("Name"),"]"
+		 }
+	 }
+ }
+ 
+]]></Routine>
+</Export>

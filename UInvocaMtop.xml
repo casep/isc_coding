@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2012-06-28 11:38:56">
+<Routine name="UInvocaMtop" type="MAC" languagemode="0" timestamp="62627,38484"><![CDATA[
+ //Rutina para retornar procesos con mayor uso de CPU
+ //Casep, 20120619, version inicial
+ 
+ zn "%SYS"
+ D Commands^mtop(5,10)
+]]></Routine>
+</Export>

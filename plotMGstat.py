@@ -52,7 +52,10 @@ def main():
 			sys.exit()
 
 	mgstatFile = args.mgstatFile
-	mgstatFileName = mgstatFile[mgstatFile.rindex(csl.returnPathCharacter()):]
+	mgstatFileName = mgstatFile[mgstatFile.rindex(csl.returnPathCharacter())+1:]
+	# dots are evil for LaTeX
+	mgstatFileName = mgstatFileName[:mgstatFileName.rindex('.')]
+
 	data = np.genfromtxt(mgstatFile,dtype=None,names=True,delimiter=',')
 	lenArray = len(data['Time'])
 	ticks = np.arange(0,lenArray,lenArray/10,dtype=int)

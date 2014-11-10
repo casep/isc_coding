@@ -53,6 +53,9 @@ def main():
 
 	vmstatFile = args.vmstatFile
 	vmstatFileName = vmstatFile[vmstatFile.rindex(csl.returnPathCharacter()):]
+	# dots are evil for LaTeX
+	vmstatFileName = vmstatFileName[:vmstatFileName.rindex('.')]
+
 	data = np.genfromtxt(vmstatFile,dtype=None,names=True,delimiter=',')
 	lenArray = len(data['us'])
 

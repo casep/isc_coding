@@ -52,12 +52,12 @@ def main():
 			sys.exit()
 
 	pButtonsFile = args.pButtonsFile
-	pButtonsFileName = pButtonsFile[pButtonsFile.rindex(csl.returnPathCharacter())+1:]
+	pButtonsFileName = pButtonsFile[pButtonsFile.rindex(csl.returnPathCharacter())+1:].replace('.','_')
 	inFile = open(pButtonsFile)
-
-	outFile = open(outputFolder+pButtonsFileName+'_mgstat.csv', "w")
-	keepGoing = False
 	
+	# MGstats
+	outFile = open(outputFolder+pButtonsFileName+'_mgstat.csv', "w")
+	keepGoing = False	
 	for line in inFile:
 		# If we reach the end exit
 		if 'end_mgstat' in line:

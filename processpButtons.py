@@ -22,7 +22,7 @@
 #  
 #  Process a pButtons file extracting VMStats and MGstats data
 #  20141108, casep, Initil Release
-#  20141110, casep, Compressed pButtons
+#  20141110, casep, Tested on pButtonsv1.15c
 
 import sys, os 						# OS thingies
 import argparse as ap				# Prety arguments
@@ -88,15 +88,15 @@ def main():
 			# get rid of extra white spaces
 			buffer = ' '.join(line.split()).replace(' ',',')
 			# Cleaning the first line
-			if 'beg_vmstat' in buffer:				
+			if 'beg_vmstat' in buffer:	
 				buffer = buffer[buffer.index('<pre>')+5:]
 				# Unix or Linux
 				# Unix, 20 ,
 				if buffer.count(',') == 20:
 					buffer = buffer[1:len(buffer)-8]+'time'
 				# Linux, 19 ,
-				else:
-					buffer = 'date,time'+buffer[buffer.index(',',10):]
+				else:									
+					buffer = 'date,time,'+buffer[19:]
 			keepGoing = True
 			# Cleaning the first ,
 			outFile.write(buffer+'\n')
@@ -109,4 +109,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-

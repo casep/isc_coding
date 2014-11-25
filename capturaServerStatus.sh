@@ -25,8 +25,8 @@
 # Captura contenido de /server-status para futura investigacion
 
 LINKS=/usr/bin/links
-LINKS_FLAGS="-source -retries 5"
-URL=http://172.18.68.41/server-status
+LINKS_FLAGS="-source "
+URL=http://127.0.0.1/server-status
 OUTPUTFOLDER=/tmp
 DATE=$(date +%Y%m%d_%H%M%S)
 

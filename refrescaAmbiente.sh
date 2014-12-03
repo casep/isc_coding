@@ -44,6 +44,7 @@
 #Casep, 20131111, Nuevas path support
 #Casep, 20141202, Cambio en mecanismo de borrado de BDs
 #Casep, 20141203, Train tiene nombre de instancia distinto
+#Casep, 20141203, Deployed via git
 
 # Valido recibir 2 los parametros
 if [ $# -lt 2 ]; then

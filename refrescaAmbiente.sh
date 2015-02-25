@@ -44,14 +44,17 @@
 #Casep, 20131111, Nuevas path support
 #Casep, 20141202, Cambio en mecanismo de borrado de BDs
 #Casep, 20141203, Train tiene nombre de instancia distinto
+#Casep, 20141203, Deployed via git
+#Casep, 20140403, Ya no es necesario esto, pero lo seguimos haciendo, ja ja, cuarto parametro de fecha
 #Casep, 20150225, 775 en vez de 770 para los permisos
 
 # Valido recibir 2 los parametros
 if [ $# -lt 2 ]; then
  echo "uso /usr/bin/refrescaAmbiente.sh proyecto ambiente borraCredenciales"
  echo "proyecto = sdar,sdcl,sdcq,sdor,sdsr,sdtl,sdvn,sdvp,smoc"
- echo "ambiente = scratch,base,trn,uat" 
- echo "borraCredenciales = yes, no"
+ echo "ambiente = scratch,base,train,uat" 
+ echo "borraCredenciales = yes, no (Borra credenciales o no)"
+ echo "TSMTODAY = 2014-12-04 (Fecha a utilizar para el respaldo)"
  exit
 fi
 
@@ -62,6 +65,10 @@ if [ ! -z $3 ]; then
 fi
 
 TSMTODAY=$(date +%Y-%m-%d)
+if [ ! -z $4 ]; then
+ TSMTODAY=$4
+fi
+
 proyecto=$1
 ambiente=$2
 userCache="casep"

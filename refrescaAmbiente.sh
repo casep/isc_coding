@@ -44,6 +44,7 @@
 #Casep, 20131111, Nuevas path support
 #Casep, 20141202, Cambio en mecanismo de borrado de BDs
 #Casep, 20141203, Train tiene nombre de instancia distinto
+#Casep, 20150225, 775 en vez de 770 para los permisos
 
 # Valido recibir 2 los parametros
 if [ $# -lt 2 ]; then
@@ -112,7 +113,7 @@ echo "Copiando versiones actualizadas"
 echo " "
 echo "Cambiando permisos"
 cat /etc/tsm/$proyecto\_$ambiente/RESTORE.fs | grep -v '^;' | while read source target  ; do chown -R cacheusr.cacheusr $target; done
-cat /etc/tsm/$proyecto\_$ambiente/RESTORE.fs | grep -v '^;' | while read source target  ; do chmod -R 770 $target; done
+cat /etc/tsm/$proyecto\_$ambiente/RESTORE.fs | grep -v '^;' | while read source target  ; do chmod -R 775 $target; done
 
 echo "Elimiando locks"
 cat /etc/tsm/$proyecto\_$ambiente/RESTORE.fs | grep -v '^;' | while read source target  ; do rm -rf $target/cache.lck ; done 

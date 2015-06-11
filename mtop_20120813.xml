@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2012-08-13 13:22:36">
+<Routine name="mtop" type="MAC" languagemode="0" generated="1" timestamp="62682,48133"><![CDATA[
+mtop	;
+	w "mtop - list top process ordered by commands or global refereces",!
+	w "To run:",!
+	w "Commands^mtop(cycle,jobs) -> ordered by commands per cycle",!
+	w "Globals^mtop(cycle,jobs) -> ordered by global references per cycle",!
+	w "Where:",!
+	w "  cycle: is time for monitoring [default 5 seconds]",!
+	w "  jobs: number of jobs to report [default 20]",!!
+	q
+Commands(cycle, tops)	;
+	s commands=1, globals=0
+	goto Start
+Globals(cycle, tops)	;
+	s globals=1, commands=0	
+Start	;
+	new (cycle,tops, globals, commands)
+	s cycle=$g(cycle,5)
+	if cycle<3 s cycle=3
+	s tops=$g(tops,20)
+  	; Loop on current number of processes
+	for jobid=0:1 {
+		s pid=$ZU(61,jobid) 
+		q:pid=""   ; null string means job > largest job #
+    	if pid'=0 {  ;pid is zero if slot is empty
+			s ljobs(pid,"cpu")=$zu(67,8,pid)
+			s ljobs(pid,"glob")=$zu(67,9,pid)
+		}
+	}
+    h cycle
+	;do calculation for 5 seconds
+	s cpujobs=""
+	s globjobs=""
+	set pid=""
+	for n=1:1 {
+		s pid = $o(ljobs(pid))
+		q:pid=""
+		s cjob(pid)=$zu(67,8,pid)-ljobs(pid,"cpu")
+		s cpujobs(cjob(pid),pid)=pid
+		s gjob(pid)=$zu(67,9,pid)-ljobs(pid,"glob")
+		s globjobs(gjob(pid),pid)=pid
+	 }
+	;  Ordered by commands
+	if commands=1 {
+	w "List of ",tops," TOP jobs by number of commands executed: ",!     //apc 093011
+	w "  Job    Commands  Globals",?27,"Username",?47,"Namespace Routine",!
+	set count=0
+	set num=""
+	for n=1:1 {
+		s num = $o(cpujobs(num),-1)
+		q:num=""
+		s mpid=""
+		for m=1:1 {
+			s mpid = $o(cpujobs(num,mpid))
+			s ns=$ZU(67,6,mpid)
+			s $e(ns,10)=" "
+			q:mpid=""
+			w $j(cpujobs(num,mpid),5),$j(num,9)
+			w $j(gjob(mpid),9)
+			w ?27,$ZU(67,11,mpid) 
+			w ?47,ns
+			w $ZU(67,5,mpid),!
+			s count=count+1
+			q:count>=tops
+		}
+		q:count>=tops    //apc 093011
+	}  ;for 
+	}  ; by commands
+	;Ordered by Globals
+	if globals=1 {
+	w "List of ",tops," TOP jobs by number of global references: ",!
+	w "  Job    Globals  Commands",?27,"Username",?47,"Namespace Routine",!     //apc 093011
+	set count=0
+	set num=""
+	for n=1:1 {
+		s num = $o(globjobs(num),-1)
+		q:num=""
+		s mpid=""
+		for m=1:1 {
+			s mpid = $o(globjobs(num,mpid))
+			s ns=$ZU(67,6,mpid)
+			s $e(ns,10)=" "			
+			q:mpid=""
+			w $j(globjobs(num,mpid),5)
+			w $j(num,9),$j(cjob(mpid),9)    //apc 093011
+			w ?27,$ZU(67,11,mpid) 
+			w ?47,ns
+			w $ZU(67,5,mpid),!
+			s count=count+1
+			q:count>=tops
+		}
+		q:count>=tops    //apc 093011
+	} ; for
+	} ; by globals
+	q
+]]></Routine>
+</Export>

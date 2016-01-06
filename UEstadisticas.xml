@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="24" zv="Cache for UNIX (IBM AIX for System P5-64) 2010.1.6 (Build 952U)" ts="2012-06-04 09:34:52">
+<Routine name="UEstadisticas" type="MAC" languagemode="0" timestamp="62612,34476"><![CDATA[
+ /* 
+ Rutina para maximos por dia en uso de licencias 
+ Casep, 20120604, primera version
+ */
+ 
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-01')
+ w "2012/05/01 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-02')
+ w "2012/05/02 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-03')
+ w "2012/05/03 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-04')
+ w "2012/05/04 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-05')
+ w "2012/05/05 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-06')
+ w "2012/05/06 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-07')
+ w "2012/05/07 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-08')
+ w "2012/05/08 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-09')
+ w "2012/05/09 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-10')
+ w "2012/05/10 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-11')
+ w "2012/05/11 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-12')
+ w "2012/05/12 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-13')
+ w "2012/05/13 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-14')
+ w "2012/05/14 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-15')
+ w "2012/05/15 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-16')
+ w "2012/05/16 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-17')
+ w "2012/05/17 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-018')
+ w "2012/05/18 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-19')
+ w "2012/05/19 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-20')
+ w "2012/05/20 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-21')
+ w "2012/05/21 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-22')
+ w "2012/05/22 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-23')
+ w "2012/05/23 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-24')
+ w "2012/05/24 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-25')
+ w "2012/05/25 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-26')
+ w "2012/05/26 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-27')
+ w "2012/05/27 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-28')
+ w "2012/05/28 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-29')
+ w "2012/05/29 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-30')
+ w "2012/05/30 " _ result,!
+
+ s result = 0
+ &sql(select %nolock max(Trakcare) into :result
+   from websys.MonitorLicense
+        where substring(datetimestamp,1,10) = '2012-05-31')
+ w "2012/05/31 " _ result,!
+
+]]></Routine>
+</Export>

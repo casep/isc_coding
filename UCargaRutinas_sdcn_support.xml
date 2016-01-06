@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2012-02-08 12:05:06">
+<Routine name="UCargaRutinas" type="MAC" languagemode="0" timestamp="62441,55650"><![CDATA[
+ /* 
+ Esta rutina tiene como objeto realizar la carga y ejecución de las rutinas 
+ que setean los parametros especificos de cada ambiente
+ 
+ Casep, 20111216, version inicial
+ */
+ zn "trak" 
+ d $system.OBJ.Load("/routines/UActualizaAmbiente_sdcn_support.xml","fck")
+ d ^UActualizaAmbiente
+]]></Routine>
+</Export>

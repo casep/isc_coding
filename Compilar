@@ -1,0 +1,5 @@
+borrar
+d $system.OBJ.DeletePackage("csp","dr")
+
+compilar
+d $system.CSP.LoadPageDir("path","ck")

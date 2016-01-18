@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (Red Hat Enterprise Linux for x86-64) 2015.2 (Build 664_3_15813U)" ts="2016-01-13 13:33:03">
+<Routine name="ZEPISSTATS" type="MAC" languagemode="0" timestamp="63930,48623.468688"><![CDATA[
+ZEPISSTATS 	
+ #; PURPOSE:	Export Episode statistics summary to csv
+ #; 
+ #; MODIFICATION HISTORY:	
+ #; 2009-07-31 Tp: Created
+ #; 2009-08-25 TP: Added support for Cache 5.0 version
+ #; 2009-09-15 TP: Fixed problem if ^PAAAM record is null
+ #; 2009-09-16 TP: Standardised input validation
+ 
+ 
+ 
+Help
+	Write !,"EPISODE STATISTICS HELP"
+	Write !,"--------------------------------"
+	Write !,""
+	Write !,"Exports episode statistic to a csv file:"
+	Write !,"- Do Export^ZEPISSTATS(DateFrom,DateTo,Directory)"
+	
+	//d Export^ZEPISSTATS("01/06/2009","31/07/2009","c:\temp")
+ 
+	Quit
+	
+Export(DateFrom,DateTo,Directory)
+ 	New (Directory,DateFrom,DateTo)
+ 	Set today=##class(websys.Conversions).DateLogicalToHtml(+$h)
+ 	Set now=##class(websys.Conversions).TimeLogicalToHtml($p($h,",",2))
+	
+	Set (DateFormat,TimeFormat,pause)=""
+	
+	Set DateFormat=$lg($g(^websys.ConfigurationD(1)),10)
+	Set TimeFormat=$lg($g(^websys.ConfigurationD(1)),11)
+	
+	if $g(DateFrom) = "" {
+		w !,"Export Page Performance Statistics Summary to CSV"
+		w !,"--------------------------------------------------"
+		w !,"Please enter dates in "_DateFormat_" format, e.g. "_today
+		Read !,"Date From? Today => ",DateFrom
+		Read !,"Date To?   Today => ",DateTo
+		Set pause=1
+	}
+	//if dates blank then for today only
+	If $g(DateFrom)="" Set DateFrom=today
+	If $g(DateTo)="" Set DateTo=today
+	Set intDateFrom=##class(websys.Conversions).DateHtmlToLogical(DateFrom)
+	Set intDateTo=##class(websys.Conversions).DateHtmlToLogical(DateTo)
+ 
+ 	//prompt for directory if blank
+	If $g(Directory)="" Read !,"Output Directory? c:\temp => ",Directory
+	If $g(Directory)="" set Directory="c:\temp"
+	
+	//Quit export if invalid dates or directory entered
+	If intDateTo<intDateFrom w !,"Error - Date To must be after Date From" Quit
+	If (intDateFrom="ERROR!")!(intDateTo="ERROR!") w !,"Invalid date entered" Quit
+	
+	//if not trailing slash then add one
+	Set Directory=$$SetDirSlash(Directory)
+	
+	//check if directory exists
+	if $ASCII($ZB)=13!'pause {
+		Set PathExists=##class(%Library.File).DirectoryExists($g(Directory))
+		If PathExists=0 write !,"Error - Directory not found"	
+	}
+	
+	If PathExists {
+ 		//set filename
+ 		Set csvFilename=$$GetFilename(DateFrom,DateTo)
+ 		Write !,"Export data between "_$g(DateFrom)_" and "_$g(DateTo)
+		Write " to file: "_$g(Directory)_csvFilename
+		If pause Write !,"Press <ENTER> to continue..." Read key
+		Write !,"Exporting... "
+ 		Set starttime=$p($h,",",2)
+		Write !,"Start Time: "_$zt(starttime)
+		do WriteDataFile(intDateFrom,intDateTo,Directory,csvFilename)
+		Set endtime=$p($h,",",2)
+		Set Duration=endtime-starttime
+		Write !,"End Time: "_$zt(endtime)
+		Write !,"Duration "_Duration_" seconds"
+		Write !,"Done!"
+	}
+ 
+	Quit
+	
+WriteDataFile(dfrom,dto,Directory,csvFilename)
+	
+	Do BuildCreateArray(dfrom,dto)
+	Do LabEpisodesArray(dfrom,dto)
+	Do LabEpisodesPerMinute(Directory_"LABEPD-"_csvFilename)
+	Do EpisodesPerMinute(Directory_"EPD-"_csvFilename)
+	Do OrdersPerMinute(Directory_"ORD-"_csvFilename)
+	Do WriteStats(Directory_csvFilename)
+ 
+	
+	Quit	
+ 
+BuildCreateArray(dfrom,dto)
+	k ^zAryCreated
+	s date=dfrom-1,ind=0
+ 
+	s ep=^PAADM(0)
+ 
+	s epdetails=^PAADM(ep)
+	f {
+		s datecreated=$p(epdetails,"^",41)
+		//w !,datecreated_"^"_ep
+		i $g(datecreated)'="" {
+			i (datecreated<=date)!(ep="") q
+		}
+		i (ep="") q
+		s ind=1
+		s ep=$o(^PAADM(ep),-1,epdetails)
+	}
+	q:ind=0
+	s ep=$o(^PAADM(ep),1,epdetails)
+	//w !,$zd(dfrom,4)_"^"_$zd(dto,4)
+	f {
+		s createdate=$p(epdetails,"^",41)
+		i createdate>dto q
+		s createtime=$p(epdetails,"^",42)
+		i createdate'="" {
+			s eptype=$p(epdetails,"^",2)
+			s ^zAryCreated(createdate,createtime,ep,eptype)=""
+		}
+		s ep=$o(^PAADM(ep),1,epdetails)
+		//w !,createdate_"^"_ep
+		q:ep=""
+	} 
+ 
+	//orders array
+	s (orddate,ordid,ordtime)=""
+	f orddate=dfrom:1:dto {	
+		f  s ordid=$o(^OEORD(0,"Date",orddate,ordid)) q:ordid=""  d
+		.s ordtime=$p(^OEORD(ordid),"^",3)
+		.s ^zAryOrdCreated("ORD",orddate,ordtime,ordid)=""
+	}
+	q
+	
+WriteStats(Filename)
+	i '$d(^zAryCreated) q
+	s file=##class(%File).%New(Filename)
+	d file.Open("WSN")
+	
+	s (date,time,PeakHour)=""
+	s (TotLabEp,PeakLabEpPerMinute,peaklabepmin,EpisodesPerDay,EpisodesPerMinute,PeakEpisodesPerMinute,peakmin,EpisodesPerHour,InpatientEpisodes,OutpatientEpisodes,EmergencyEpisodes,TotalOrders,PeakOrdersPerMinute,peakordmin,LabOrders,DrugOrders,RadOrders,ConsOrders,IVOrders,NormalOrders,DentalOrders,RehabOrders,PriceOrders,DietOrders,otherorders,Receipts,Bills,Prescriptions,Results,Appointments)=0
+	s del=","
+	s str="Date,TotalEpisodes,MaxEpisodesPerHour,PeakHour,MaxEpisodesPerMin,PeakMin,TotalInpatient,TotalOutPatient,TotalEmergency,TotalOrders,PeakOrdersPerMinute,PeakMin,Labs,Drug,Radiology,Consults,Diet,IV,Dental,Rehab,Price,Other,Receipts,Bills,Prescriptions,Results,Appointments,TotLabEp,PeakLabEpPerMinute,PeakMin"
+	;w !,str
+	d file.WriteLine(str)
+	s date=$o(^zAryCreated(""))
+	f {
+		s time=$o(^zAryCreated(date,""))
+		s EpisodesPerHour=0
+		f {
+				q:time=""
+				s countdets=$$EpisodeCount(date,time)
+				s EpisodesPerDay=EpisodesPerDay+$p(countdets,",")
+				S InpatientEpisodes=InpatientEpisodes+$p(countdets,",",2)
+				S OutpatientEpisodes=OutpatientEpisodes+$p(countdets,",",3)
+				S EmergencyEpisodes=EmergencyEpisodes+$p(countdets,",",4)
+				s hour=time+3600,temptime=time,EpisodesPerMinute=0
+				// get count of episodes for an hour
+				f {
+					s EpisodesPerMinute=EpisodesPerMinute+$$EpisodeCount(date,temptime)
+					s temptime=$o(^zAryCreated(date,temptime))
+					q:(temptime>hour)!(temptime="")
+				}
+				i EpisodesPerHour<EpisodesPerMinute{
+					s EpisodesPerHour=EpisodesPerMinute
+					s PeakHour=time
+				}
+			s time=$o(^zAryCreated(date,time))
+			q:time=""
+		}
+		s tfrom=PeakHour
+		s tto=PeakHour+3600
+		d GetOrderCount(date)	
+ 
+		s TotLabEp=$$GetLabEpisodesCount(date)
+		
+		i $g(^zAryOrdCount(date))="" s ^zAryOrdCount(date)="0,0,0,0,0,0,0,0,0,0,0"
+		
+		d receipt(date)
+		d bill(date)
+		d presc(date)
+		d result(date)
+		d appointment(date)
+ 
+ 
+		i $d(^zAryOrdCount(date)) {
+			s TotalOrders=$p(^zAryOrdCount(date),",")
+			s LabOrders=$p(^zAryOrdCount(date),",",2)
+			s DrugOrders=$p(^zAryOrdCount(date),",",3)
+			s RadOrders=$p(^zAryOrdCount(date),",",4)
+			s ConsOrders=$p(^zAryOrdCount(date),",",5)
+			s DietOrders=$p(^zAryOrdCount(date),",",6)
+			s IVOrders=$p(^zAryOrdCount(date),",",7)
+			s PriceOrders=$p(^zAryOrdCount(date),",",8)
+			s DentalOrders=$p(^zAryOrdCount(date),",",9)
+			s RehabOrders=$p(^zAryOrdCount(date),",",10)
+			s otherorders=$p(^zAryOrdCount(date),",",11)
+			s Receipts=$p(^zAryOrdCount(date),",",12)
+			s Bills=$p(^zAryOrdCount(date),",",13)
+			s Prescriptions=$p(^zAryOrdCount(date),",",14)
+			s Results=$p(^zAryOrdCount(date),",",15)
+			s Appointments=$p(^zAryOrdCount(date),",",16)
+ 
+			s PeakEpisodesPerMinute=$p(^zAryOrdCount(date,"EPD"),",",2)
+			s peakmin=$p(^zAryOrdCount(date,"EPD"),",",1)
+			
+			i $g(^zAryOrdCount(date,"ORD")) {
+				s PeakOrdersPerMinute=$p(^zAryOrdCount(date,"ORD"),",",2)
+				s peakordmin=$p(^zAryOrdCount(date,"ORD"),",",1)
+			}
+			i $g(^zAryLabCount(date,"LAB")) {
+				s PeakLabEpPerMinute=$p(^zAryLabCount(date,"LAB"),",",2)
+				s peaklabepmin=$p(^zAryLabCount(date,"LAB"),",",1)
+			}
+		}
+		s str=##class(websys.Conversions).DateLogicalToHtml(date)_del_EpisodesPerDay
+		_del_EpisodesPerHour
+		_del_##class(websys.Conversions).TimeLogicalToHtml(tfrom)_"-"_##class(websys.Conversions).TimeLogicalToHtml(tto)
+		_del_PeakEpisodesPerMinute
+		_del_##class(websys.Conversions).TimeLogicalToHtml(peakmin)
+		_del_InpatientEpisodes
+		_del_OutpatientEpisodes
+		_del_EmergencyEpisodes
+		_del_TotalOrders
+		_del_PeakOrdersPerMinute
+		_del_##class(websys.Conversions).TimeLogicalToHtml(peakordmin)
+		_del_LabOrders
+		_del_DrugOrders
+		_del_RadOrders
+		_del_ConsOrders
+		_del_DietOrders
+		_del_IVOrders
+		_del_PriceOrders
+		_del_DentalOrders
+		_del_RehabOrders
+		_del_otherorders
+		_del_Receipts
+		_del_Bills
+		_del_Prescriptions
+		_del_Results
+		_del_Appointments
+		_del_TotLabEp
+		_del_PeakLabEpPerMinute
+		_del_##class(websys.Conversions).TimeLogicalToHtml(peaklabepmin)
+		;w !,str
+		d file.WriteLine(str)
+		s date=$o(^zAryCreated(date))
+		s (PeakEpisodesPerMinute,peakmin,PeakOrdersPerMinute,peakordmin,EpisodesPerDay,InpatientEpisodes,OutpatientEpisodes,EmergencyEpisodes,TotalOrders,LabOrders,DrugOrders,RadOrders,ConsOrders,IVOrders,NormalOrders,DentalOrders,RehabOrders,PriceOrders,DietOrders,otherorders,Receipts,Bills,Prescriptions,Results,Appointments,TotLabEp,PeakLabEpPerMinute,peaklabepmin)=0
+		q:date=""
+	}
+	d file.Close()
+	q
+	
+EpisodesPerMinute(Filename)
+	i '$d(^zAryCreated) q
+	s file=##class(%File).%New(Filename)
+	d file.Open("WSN")
+	
+	s del=",",str="Date,Time,Episodes"
+	s (peakmin,peakepd)=0
+	;w !,str
+	d file.WriteLine(str)
+	s date=$o(^zAryCreated(""))
+	f {
+		q:date=""
+		f min=0:60:86340 {
+			s maxmin=min+60
+			s time=$o(^zAryCreated(date,min))
+			s EpisodesPerHour=0
+			s hour=time+60,temptime=time,EpisodesPerMinute=0
+			f {
+				i (time="")!(time>maxmin) q
+				s EpisodesPerMinute=EpisodesPerMinute+$$EpisodeCount(date,time)
+				s time=$o(^zAryCreated(date,time))
+			}
+			s str=$zd(date)_del_$zt(min)_del_EpisodesPerMinute
+			i EpisodesPerMinute>peakepd s peakepd=EpisodesPerMinute,peakmin=min
+			;w !,str
+			d file.WriteLine(str)
+		}
+		s ^zAryOrdCount(date,"EPD")=peakmin_del_peakepd
+		s (peakmin,peakepd)=0
+		s date=$o(^zAryCreated(date))
+	}
+	d file.Close()
+	q
+	
+EpisodeCount(epDate,epTime)
+	s ep=$o(^zAryCreated(epDate,epTime,""))
+	s (count,inep,outep,emerep,totord,totlab,totdrug,totrad,totcons)=0
+	for {
+		s count=count+1
+		s eptype=$o(^zAryCreated(epDate,epTime,ep,""))
+		i eptype="I" s inep=inep+1
+		i eptype="O" s outep=outep+1
+		i eptype="E" s emerep=emerep+1
+		s ep=$o(^zAryCreated(epDate,epTime,ep))
+		q:ep="" 
+	}
+	q count_","_inep_","_outep_","_emerep
+	
+GetOrderCount(date)
+	q:date=""
+	s ord=$o(^OEORD(0,"Date",date,""))
+	q:ord=""
+ 
+	s (ordcount,LabOrders,DrugOrders,RadOrders,ConsOrders,IVOrders,NormalOrders,DentalOrders,RehabOrders,PriceOrders,DietOrders)=0
+	f {
+		s item=$o(^OEORD(ord,"I",0))
+		f {
+			q:item=""
+			s (ordertype,itemmast,mastd,itemcat,ordcat)=""
+			s ordcount=ordcount+1
+			s ordertype=$p($g(^OEORD(ord,"I",item,3)),"^",8)
+			s itemmast=$p($g(^OEORD(ord,"I",item,1)),"^",2)
+			i $g(itemmast) {
+				s mastd=$g(^ARCIM(+itemmast,$p(itemmast,"||",2),1))
+				i mastd'="" s itemcat=$p(mastd,"^",10)
+				i itemcat,ordertype="" s ordertype=$p($g(^ARC("IC",itemcat)),"^",7)
+				i ordertype="L" S LabOrders=LabOrders+1
+				i ordertype="R" S DrugOrders=DrugOrders+1
+				i ordertype="N" S RadOrders=RadOrders+1
+				i ordertype="C" S ConsOrders=ConsOrders+1
+				i ordertype="D" S DietOrders=DietOrders+1
+				i ordertype="I" S IVOrders=IVOrders+1
+				i ordertype="P" S PriceOrders=PriceOrders+1
+				i ordertype="T" S DentalOrders=DentalOrders+1
+				i ordertype="X" S RehabOrders=RehabOrders+1
+			}
+			i ordertype="" s ordertype=1
+			i ordcat="" s ordcat=1
+			s item=$o(^OEORD(ord,"I",item))
+		}
+		s ord=$o(^OEORD(0,"Date",date,ord))
+		q:ord=""
+	}
+	s othercount=ordcount-LabOrders-DrugOrders-RadOrders-ConsOrders-DietOrders-IVOrders-PriceOrders-DentalOrders-RehabOrders 
+	s ^zAryOrdCount(date)=ordcount_","_LabOrders_","_DrugOrders_","_RadOrders_","_ConsOrders_","_DietOrders_","_IVOrders_","_PriceOrders_","_DentalOrders_","_RehabOrders_","_othercount
+	q
+ 
+receipt(day)
+	 q:day=""
+	 s date=day
+	 s (total,amt)=0
+	 s arrcp="" f  s arrcp=$o(^ARRCP(0,"Date",day,arrcp)) q:arrcp=""  d
+	 .s amt=amt+$p(^ARRCP(arrcp),"^",58)
+	 .s total=total+1
+	 k ^zandy
+	 s ^zandy("date")=date
+	 s ^zAryOrdCount(date)=^zAryOrdCount(date)_","_total
+	 ;w !,"Date : "_$zd(day,4),!
+	 ;w "Total Receipt : "_total,!
+	 ;w "Total Amt : "_amt,!
+	 q
+  
+  
+bill(day)
+	 q:day=""
+	 s date=day
+	 s (total,amt)=0
+	 s bill="" f  s bill=$o(^ARPBL(0,"DatePrint",day,bill)) q:bill=""  d
+	 .s amt=amt+($p(^ARPBL(bill),"^",11)+$p(^ARPBL(bill),"^",12))
+	 .s total=total+1
+	 s ^zAryOrdCount(date)=^zAryOrdCount(date)_","_total
+	 ;w !,"Date : "_$zd(day,4),!
+	 ;w "Total Invoice : "_total,!
+	 ;w "Total Amt : "_amt,!
+	 q
+ 
+presc(day)
+	 q:day=""
+	 s date=day
+	 s (total,amt)=0
+	 s dep="" f  s dep=$o(^PAQUE1(0,"DepPhStatDatePresc",dep)) q:dep=""  d
+	 .s stat="" f  s stat=$o(^PAQUE1(0,"DepPhStatDatePresc",dep,stat)) q:stat=""  d
+	 ..s paque="" f  s paque=$o(^PAQUE1(0,"DepPhStatDatePresc",dep,stat,day,paque)) q:paque=""  d
+	 ...s total=total+1
+	 s ^zAryOrdCount(date)=^zAryOrdCount(date)_","_total
+	 ;w !,"Date : "_$zd(day,4),!
+	 ;w "Total Prescription : "_total,!
+ 	q
+  
+result(day)
+	 q:day=""
+	 s date=day
+	 s (total,amt)=0
+	 s ord="" f  s ord=$o(^OEORDi(0,"ResDate",day,ord)) q:ord=""  d
+	 .s itm="" f  s itm=$o(^OEORDi(0,"ResDate",day,ord,itm)) q:itm=""  d
+	 ..s res="" f  s res=$o(^OEORDi(0,"ResDate",day,ord,itm,res)) q:res=""  d
+	 ...s total=total+1
+	 s ^zAryOrdCount(date)=^zAryOrdCount(date)_","_total
+	 ;w !,"Date : "_$zd(day,4),!
+	 ;w "Total Word Results : "_total,!
+	 q
+ 
+appointment(date)
+	 q:date=""
+	 s total=0
+	 &sql(select count(*) into :total from sqluser.rb_appointment
+	 where appt_datecomp = :date
+	 and appt_timecomp>0)
+	 i SQLCODE s total=0
+	 s ^zAryOrdCount(date)=^zAryOrdCount(date)_","_total
+	 q
+ 
+OrdersPerMinute(Filename)
+	i '$d(^zAryCreated) q
+	s file=##class(%File).%New(Filename)
+	d file.Open("WSN")
+	
+	s del=",",str="Date,Time,Orders"
+	s (peakmin,peakord)=0
+	;w !,str
+	d file.WriteLine(str)
+	s date=$o(^zAryOrdCreated("ORD",""))
+	f {
+		q:date=""
+		f min=0:60:86340 {
+			s maxmin=min+60
+			s time=$o(^zAryOrdCreated("ORD",date,min))
+			s OrdersPerHour=0
+			s hour=time+60,temptime=time,OrdersPerMinute=0
+			f {
+				i (time="")!(time>maxmin) q
+				s OrdersPerMinute=OrdersPerMinute+$$OrderCount(date,time)
+				s time=$o(^zAryOrdCreated("ORD",date,time))
+			}
+			s str=$zd(date)_del_$zt(min)_del_OrdersPerMinute
+			i OrdersPerMinute>peakord s peakord=OrdersPerMinute,peakmin=min
+			;w !,str
+			d file.WriteLine(str)
+		}
+		s ^zAryOrdCount(date,"ORD")=peakmin_del_peakord
+		s (peakmin,peakord)=0
+		s date=$o(^zAryOrdCreated("ORD",date))
+	}
+	d file.Close()
+	q
+ 
+OrderCount(ordDate,ordTime)
+	s ord=$o(^zAryOrdCreated("ORD",ordDate,ordTime,""))
+	s (count,item)=0
+	for {
+		for { 
+			s item=$o(^OEORD(ord,"I",item))
+			i $g(item) '="" s count=count+1
+			q:item=""
+		}
+		s ord=$o(^zAryOrdCreated("ORD",ordDate,ordTime,ord))
+		q:ord="" 
+	}
+	q count
+ 
+LabEpisodesArray(dfrom,dto)
+	//lab episode array
+	s (labstat,labepdate,labeptime,labepid)=""
+	f labepdate=dfrom:1:dto {	
+		f  s labstat=$o(^TDAY(4,labepdate,labstat)) q:labstat=""  d
+		. f  s labepid=$o(^TDAY(4,labepdate,labstat,labepid)) q:labepid=""  d
+		.. s labeptime=$p(^TEPI(labepid),"\",9)
+		.. s ^zAryLabCreated(labepdate,labeptime,labepid)=""
+	}
+	q
+ 
+ 
+LabEpisodesPerMinute(Filename)
+	i '$d(^zAryCreated) q
+	s file=##class(%File).%New(Filename)
+	d file.Open("WSN")
+	
+	s del=",",str="Date,Time,Orders"
+	s (peakmin,peaklabep)=0
+	;w !,str
+	d file.WriteLine(str)
+	s date=$o(^zAryLabCreated(""))
+	f {
+		q:date=""
+		f min=0:60:86340 {
+			s maxmin=min+60
+			s time=$o(^zAryLabCreated(date,min))
+			s LabEpsiodesPerHour=0
+			s hour=time+60,temptime=time,LabEpsiodesPerMinute=0
+			f {
+				i (time="")!(time>maxmin) q
+				s LabEpsiodesPerMinute=LabEpsiodesPerMinute+$$LabEpisodesCount(date,time)
+				s time=$o(^zAryLabCreated(date,time))
+			}
+			s str=$zd(date)_del_$zt(min)_del_LabEpsiodesPerMinute
+			i LabEpsiodesPerMinute>peaklabep s peaklabep=LabEpsiodesPerMinute,peakmin=min
+			;w !,str
+			d file.WriteLine(str)
+		}
+		s ^zAryLabCount(date,"LAB")=peakmin_del_peaklabep
+		s (peakmin,peaklabep)=0
+		s date=$o(^zAryLabCreated(date))
+	}
+	d file.Close()
+	q
+ 
+LabEpisodesCount(labepDate,labepTime)
+	s labep=$o(^zAryLabCreated(labepDate,labepTime,""))
+	s (count)=0
+	for {
+		s labep=$o(^zAryLabCreated(labepDate,labepTime,labep))
+		q:labep="" 
+		s count=count+1
+		
+	}
+	q count
+ 
+GetLabEpisodesCount(labepDate)
+	s (labepTime,labep)=""
+	s (count)=0
+	for {
+		s labepTime=$o(^zAryLabCreated(labepDate,labepTime))
+		q:labepTime=""
+		for {
+			s labep=$o(^zAryLabCreated(labepDate,labepTime,labep))
+			q:labep="" 
+			s count=count+1
+		}
+	}
+	q count
+ 
+	/// Set trailing directory slash depending on operating system
+SetDirSlash(dir)
+	
+	Set ver=$system.Version.GetMajor()_"."_$system.Version.GetMinor()
+	If ver="5.0" {
+		If $system.Version.GetCompBuildOS()="NT" {
+			Set slash="\"
+		}else{	
+			Set slash="/"
+		} 
+	} else {
+		//determine slash based on operating system
+		if $system.Version.GetBuildOS() = "Windows"	{ 
+			Set slash="\"
+		}else{	
+			Set slash="/"
+		} 
+	}
+	//if no trailing slash then add one
+	if $e(dir,$l(dir))'=slash set dir=dir_slash
+	
+	quit dir
+	
+GetFilename(DateFrom,DateTo)
+	
+	Set fromdate=##class(websys.Conversions).DateHtmlToLogical(DateFrom)
+	Set fromdate=$zd(fromdate,3)
+	Set fromdate=$tr(fromdate,"-","")
+	
+	Set todate=##class(websys.Conversions).DateHtmlToLogical(DateTo)
+	Set todate=$zd(todate,3)
+	Set todate=$tr(todate,"-","")
+	
+	Set Suffix="_EpisodeStats.csv"
+ 
+	Set filename=fromdate_"-"_todate_Suffix
+	
+	quit filename	
+	
+ 
+ 
+]]></Routine>
+</Export>

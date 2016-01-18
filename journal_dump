@@ -1,0 +1,9 @@
+SELECT^JRNDUMP(%jfile,%pid,%dir,%glo,%gloall,%command,%remsysid)
+Argument  Description
+%jfile  Journal file name. Default is the current journal file.
+%pid  Process ID in the journal record. Default is any process.
+%dir  Directory in the journal record. Default is any directory.
+%glo  Global reference in the journal record. Default is any global.
+%gloall  Global indicator whether to list entries related to all global nodes containing the name represented by glo: 0 — Exact match of global reference with the name specified in glo, 1 — Partial match; all records with a global reference that contains the name specified in glo. Default is 0.
+%command  Type of command. Default is any command. Use either the letter or the numeric codes described in the Journal File Command Type Codes table in the previous section.
+%remsysid  Remote system ID of journal record. Default is any system.1

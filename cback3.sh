@@ -45,7 +45,6 @@ RESOLVFILE="/etc/resolv.conf"
 
 #Everybody loves alerts
 function alertEmails {
-     /bin/echo ${startT}
      totalT="$(($(date +%s)-startT))"    
      if [ $ERROR -ne 0 ] ; then
           /bin/echo "BACKUP FAILURE on ${HOSTNAME}. ${ERRMSG}" | /bin/mailx -s "${HOSTNAME} Backup Problem" ${ALERTEMAIL}
@@ -224,7 +223,7 @@ fi
 /bin/echo
 /bin/echo "Instances Not-Backed-up: "
 /bin/ccontrol qlist | /bin/grep -v running | /bin/awk -F\^ '{ print $1 }' | while read NOTRUNNING; do
-/bin/echo "0,${NOTRUNNING},${HOSTNAME},NOT RUNNING,`date +%s`,0" >> ${STATUSFILE}
+	/bin/echo "0,${NOTRUNNING},${HOSTNAME},NOT RUNNING,`date +%s`,0" >> ${STATUSFILE}
 done
 /bin/echo
 /bin/echo

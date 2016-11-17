@@ -1,0 +1,113 @@
+
+# disable Tasks SyncBuild
+d ##class(%SYS.TaskSuper).Suspend(1002,1)
+d ##class(%SYS.TaskSuper).Suspend(1003,1)
+d ##class(%SYS.TaskSuper).Suspend(1004,1)
+d ##class(%SYS.TaskSuper).Suspend(1005,1)
+d ##class(%SYS.TaskSuper).Suspend(1006,1)
+d ##class(%SYS.TaskSuper).Suspend(1007,1)
+d ##class(%SYS.TaskSuper).Suspend(1008,1)
+
+# disable CSP applications
+s properties("Enabled")=0
+d ##class(Security.Applications).Modify("/trakcare",.properties)
+d ##class(Security.Applications).Modify("/trakcare/ENGL-TRAIN-2016",.properties)
+d ##class(Security.Applications).Modify("/trakcareanalytics/ENGL-TRAIN-2016",.properties)
+
+# dismount databases
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/analytics/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/anlappsys/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/anllocalsys/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/audit0/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/audit2/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/audit4/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/ct/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/document/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentwav0/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentwav1/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentwav2/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentwav3/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentwav4/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/dstime/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/hl7/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/labdata/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/anllocal/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/appsys/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/audit1/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/audit3/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/data/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/documentpdf/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/iknow/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/localens/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/log0/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/log2/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/log4/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/sysconfig/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/log1/")
+d ##Class(SYS.Database).DismountDatabase("/trak/englTRN/tc2016/db/log3/")
+
+# delete databases
+s zDeleteDB=$zf(-1,"rm -rf /path/to/DBs/{DBs_list}")
+
+# copy backup databases
+s zCopyDB=$zf(-1,"rsync -avzr /path/to/backup/db /patch/to/DBs")
+
+# delete web folder contents
+s zDeleteWEB=$zf(-1,"rm -rf /path/to/web/*")
+
+# copy backup web folder
+s zCopyDB=$zf(-1,"rsync -avzr /path/to/backup/web /path/to/web/")
+
+# mount databases
+/trak/englTRN/tc2016/db/analytics/
+/trak/englTRN/tc2016/db/anlappsys/
+/trak/englTRN/tc2016/db/anllocalsys/
+/trak/englTRN/tc2016/db/audit0/
+/trak/englTRN/tc2016/db/audit2/
+/trak/englTRN/tc2016/db/audit4/
+/trak/englTRN/tc2016/db/ct/
+/trak/englTRN/tc2016/db/document/
+/trak/englTRN/tc2016/db/documentwav0/
+/trak/englTRN/tc2016/db/documentwav1/
+/trak/englTRN/tc2016/db/documentwav2/
+/trak/englTRN/tc2016/db/documentwav3/
+/trak/englTRN/tc2016/db/documentwav4/
+/trak/englTRN/tc2016/db/dstime/
+/trak/englTRN/tc2016/db/hl7/
+/trak/englTRN/tc2016/db/labdata/
+/trak/englTRN/tc2016/db/anllocal/
+/trak/englTRN/tc2016/db/appsys/
+/trak/englTRN/tc2016/db/audit1/
+/trak/englTRN/tc2016/db/audit3/
+/trak/englTRN/tc2016/db/data/
+/trak/englTRN/tc2016/db/documentpdf/
+/trak/englTRN/tc2016/db/iknow/
+/trak/englTRN/tc2016/db/localens/
+/trak/englTRN/tc2016/db/log0/
+/trak/englTRN/tc2016/db/log2/
+/trak/englTRN/tc2016/db/log4/
+/trak/englTRN/tc2016/db/sysconfig/
+/trak/englTRN/tc2016/db/log1/
+/trak/englTRN/tc2016/db/log3/
+
+d ##Class(SYS.Database).MountDatabase("/path/to/DBs/DB1",0)
+d ##Class(SYS.Database).MountDatabase("/path/to/DBs/DB2",0)
+d ##Class(SYS.Database).MountDatabase("/path/to/DBs/DB3",0)
+
+# run Ken's scripts
+do ##class(Tools.Demo.Utils).DateConv4Schedule(5)
+
+# enable CSP applications
+s properties("Enabled")=1
+d ##class(Security.Applications).Modify("/trakcare",.properties)
+d ##class(Security.Applications).Modify("/trakcare/ENGL-TRAIN-2016",.properties)
+d ##class(Security.Applications).Modify("/trakcareanalytics/ENGL-TRAIN-2016",.properties)
+
+# Resume tasks
+d ##class(%SYS.TaskSuper).Resume(1002,1)
+d ##class(%SYS.TaskSuper).Resume(1003,1)
+d ##class(%SYS.TaskSuper).Resume(1004,1)
+d ##class(%SYS.TaskSuper).Resume(1005,1)
+d ##class(%SYS.TaskSuper).Resume(1006,1)
+d ##class(%SYS.TaskSuper).Resume(1007,1)
+d ##class(%SYS.TaskSuper).Resume(1008,1)

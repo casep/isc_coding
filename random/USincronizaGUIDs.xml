@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for UNIX (IBM AIX for System Power System-64) 2012.2.4 (Build 954U)" ts="2013-07-17 12:39:51">
+<Routine name="USincronizaGUIDs" type="MAC" languagemode="0" timestamp="63020,45403.729027"><![CDATA[
+ //Simple routines to sync-ups CCR's GUIDs
+ //Casep, casep@intersystems.com
+ //Initial release 2013/07/17
+ 
+ do ##class(XML.Element).CheckGUIDs(1)
+ do ##class(XML.Element).AssignGUIDs()
+ 
+]]></Routine>
+</Export>

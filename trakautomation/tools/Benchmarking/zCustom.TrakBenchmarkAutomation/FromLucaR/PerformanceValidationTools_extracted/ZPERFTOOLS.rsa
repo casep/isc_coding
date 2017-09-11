@@ -1,0 +1,85 @@
+Cache for Windows^INT^Database IO stress Tools^~Format=Cache.S~
+%RO on 30 Sep 2009  11:46 AM
+Perftools.JRNSYNC^INT^1^61395,53952^0^1
+	; Purpose: JRNSYNC Stress tool to be run on ECP client.
+	;          Assumes current namespace default database is a remote database
+	;
+	; Author:  Mark Bolinsky
+	;
+	; Date:    2009-02-03
+	;
+BEGIN	
+	n
+	s ^%ZPERFTOOL("JRNSYNC")=1
+ 	s jobcnt="",cnt=""
+ 	w !!,"How many processes to start? " r jobcnt
+ 	i +jobcnt=0 g FINISH
+ 	w !!,"How many iterations? " r cnt
+ 	i +cnt=0 s cnt=1000
+ 	s batch=$I(^%ZPERFTOOLS("JRNSYNC","BATCH"))
+ 	w !!,"Starting "_jobcnt_" jobs in the background."
+ 	W !,"Set global node ^%ZPERFTOOLS(""JRNSYNC"")=0 to terminate jobs."
+ 	f i=1:1:jobcnt j LOOP^Perftools.JRNSYNC(cnt,i,batch)
+ 	g FINISH
+ 	q
+ 	;
+LOOP(cnt,job,batch)
+	s $zt="^%ETN"
+	s start=$ztimestamp
+	f z=1:1:cnt s gbl="^ABC"_$R(10000) L +@gbl s @gbl="jrnsync" l -@gbl k @gbl Q:$G(^%ZPERFTOOL("JRNSYNC"))=0
+	s end=$ztimestamp
+	s elapse=$p(end,",",2)-$p(start,",",2)
+	s ^%ZPERFTOOLS("JRNSYNC","BATCH",batch,job,"Response Time")=(elapse/cnt)*1000_" (ms)"
+	q
+ 	;
+FINISH	
+ 	k
+ 	q
+
+Perftools.RANREAD^INT^1^61395,55075^0^1
+	; Random read exercise to stress disk storage from COS
+	; 
+	; Author: Mark Bolinsky
+	;
+	; Date: 2009-02-02
+	; 
+BEGIN	
+	n
+	s Value=""
+	s Flag=8+8192+512
+	s ^%ZPERFTOOL("RANREAD")=1
+ 	s Status=##class(SYS.Database).GetDirectory("Database directory?",.Value,.Obj,,,,Flag)
+ 	i (+Status=0)||(Status=2)||(Value="") G FINISH
+ 	s db="^^"_Value
+ 	i Obj.Mounted=0 w !!,"Database is not mounted, please re-enter",! G BEGIN
+ 	s maxblock=(Obj.Size*1024*1024)/Obj.BlockSize
+ 	i maxblock=0 s maxblock=1
+ 	s jobcnt="",cnt=""
+ 	w !!,"How many processes to start? " r jobcnt
+ 	i +jobcnt=0 g FINISH
+ 	w !!,"How many iterations? " r cnt
+ 	i +cnt=0 s cnt=1000
+ 	s batch=$I(^%ZPERFTOOLS("RANREAD","BATCH"))
+ 	w !!,"Starting "_jobcnt_" jobs in the background."
+ 	W !,"Set global node ^%ZPERFTOOLS(""RANDREAD"")=0 to terminate jobs."
+ 	f i=1:1:jobcnt j LOOP^Perftools.RANREAD(maxblock,db,cnt,i,batch)
+ 	g FINISH
+ 	q
+ 	;
+LOOP(max,db,cnt,job,batch)
+	s $zt="^%ETN"
+	s start=$ztimestamp
+	f z=1:1:cnt o 63:db view $r(max) c 63 Q:^%ZPERFTOOL("RANREAD")=0
+	s end=$ztimestamp
+	s elapse=$p(end,",",2)-$p(start,",",2)
+	S ^%ZPERFTOOLS("RANREAD","BATCH",db,batch,job,"Start")=start
+	S ^%ZPERFTOOLS("RANREAD","BATCH",db,batch,job,"End")=end
+	s ^%ZPERFTOOLS("RANREAD","BATCH",db,batch,job,"Response Time")=(elapse/cnt)*1000_" (ms)"
+	q
+ 	;
+FINISH	
+ 	k
+ 	q
+
+
+

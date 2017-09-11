@@ -1,0 +1,37 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+# get logged in and into the right namespace
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"%SYS\"\r" }
+	}
+	-re ".*>" { send "zn \"%SYS\"\r" }
+}
+# Create new FOP Render server
+expect "%SYS>" { send "set render=##class(%ZEN.Report.RenderServer).%New()\r" }
+expect "%SYS>" { send "set render.Name=\"FOP-HotJVM\"\r" }
+expect "%SYS>" { send "set render.Port=54321\r" }
+expect "%SYS>" { send "set render.PingPort=12345\r" }
+expect "%SYS>" { send "set render.ConfigFile=##class(%File).GetDirectory(##class(%SYS.System).GetCPFFileName())_\"fop/conf/fop.xconf\"\r" }
+expect "%SYS>" { send "set render.LogFile=##class(%File).GetDirectory(##class(%SYS.System).GetCPFFileName())_\"fop/conf/fop.log\"\r" }
+#expect "%SYS>" { send "set render.Renderer=\"FOP\"\r" }	# should default
+# remaining defaults should be OK
+expect "%SYS>" { send "write render.%Save()\r" }
+# start
+expect "%SYS>" { send "write ##class(%ZEN.Report.RenderServer).Start(\"FOP-HotJVM\")\r" }
+
+
+
+# all done
+expect "%SYS>" { send "\r" }
+expect "%SYS>" { send "h\r" }
+send_user "\n"
+
+
+
+
+

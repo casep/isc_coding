@@ -1,0 +1,447 @@
+UK\dode+  8739  2628  0 11:40 pts/1    00:00:00 grep --color=auto cachesys
+cachesys 30825     1  0 Apr06 pts/8    00:00:16 /trak/enspBASE/tc2016/hs/bin/cache -s. -cc -B -C/trak/enspBASE/tc2016/hs/cache.cpf*ENSPBASE2016DB
+cachesys 30826 30825  0 Apr06 pts/8    00:00:17 /trak/enspBASE/tc2016/hs/bin/cache WD                                                            
+cachesys 30827 30825  0 Apr06 pts/8    00:00:00 /trak/enspBASE/tc2016/hs/bin/cache GC                                                            
+cachesys 30828 30825  0 Apr06 pts/8    00:00:49 /trak/enspBASE/tc2016/hs/bin/cache JD                                                            
+cachesys 30829 30825  0 Apr06 pts/8    00:00:04 /trak/enspBASE/tc2016/hs/bin/cache SWD 2                                                         
+cachesys 30830 30825  0 Apr06 pts/8    00:00:03 /trak/enspBASE/tc2016/hs/bin/cache SWD 1                                                         
+cachesys 30831 30825  0 Apr06 pts/8    00:00:03 /trak/enspBASE/tc2016/hs/bin/cache SWD 4                                                         
+cachesys 30832 30825  0 Apr06 pts/8    00:00:03 /trak/enspBASE/tc2016/hs/bin/cache SWD 3                                                         
+cachesys 30833 30825  0 Apr06 pts/8    00:00:02 /trak/enspBASE/tc2016/hs/bin/cache SWD 5                                                         
+cachesys 30834 30825  0 Apr06 pts/8    00:00:04 /trak/enspBASE/tc2016/hs/bin/cache SWD 7                                                         
+cachesys 30835 30825  0 Apr06 pts/8    00:00:02 /trak/enspBASE/tc2016/hs/bin/cache SWD 6                                                         
+cachesys 30836 30825  0 Apr06 pts/8    00:00:00 /trak/enspBASE/tc2016/hs/bin/cache DBXD                                                          
+cachesys 30988     1  0 Apr06 ?        00:00:10 /trak/enspBASE/integration2016/hs/bin/cache -s. -cc -B -C/trak/enspBASE/integration2016/hs/cache.cpf*ENSPBASE2016INTEGRATION
+cachesys 30993 30988  0 Apr06 ?        00:01:09 /trak/enspBASE/integration2016/hs/bin/cache WD                                                                              
+cachesys 30994 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache GC                                                                              
+cachesys 30995 30988  0 Apr06 ?        00:00:11 /trak/enspBASE/integration2016/hs/bin/cache JD                                                                              
+cachesys 30996 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 1                                                                           
+cachesys 30997 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 3                                                                           
+cachesys 30998 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 6                                                                           
+cachesys 30999 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 5                                                                           
+cachesys 31000 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 4                                                                           
+cachesys 31001 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache SWD 7                                                                           
+cachesys 31002 30988  0 Apr06 ?        00:00:01 /trak/enspBASE/integration2016/hs/bin/cache SWD 2                                                                           
+cachesys 31003 30988  0 Apr06 ?        00:00:00 /trak/enspBASE/integration2016/hs/bin/cache DBXD                                                                            
+cacheusr   780 30843  0 09:43 pts/8    00:00:02 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  5382 30843  0 10:49 pts/8    00:00:01 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  5613 30843  0 10:50 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  5629 30843  0 10:52 pts/8    00:00:01 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  5875 30843  0 10:55 pts/8    00:00:01 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  6334 30843  0 11:00 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  6601 30843  0 11:07 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  6602 30843  0 11:07 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr  7308 31202  0 11:19 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p190 ClassMethod^%apiOBJ
+cacheusr  7538 31202  0 11:20 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p190 ClassMethod^%apiOBJ
+cacheusr  7784 31202  0 11:27 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p190 ClassMethod^%apiOBJ
+cacheusr  8239 31202  0 11:32 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p190 ClassMethod^%apiOBJ
+cacheusr  8247     1  0 11:34 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p101 Start^HL7
+cacheusr  8249     1  0 11:34 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p24 Start^HL7
+cacheusr  8473     1  0 11:35 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p75 Start^HL7
+cacheusr  8474     1  0 11:35 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p102 Start^HL7
+cacheusr  8476     1  0 11:35 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p111 Start^HL7
+cacheusr  8477     1  0 11:35 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p80 Start^HL7
+cacheusr  8499     1  0 11:38 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p103 Start^HL7
+cacheusr  8502     1  0 11:38 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p70 Start^HL7
+cacheusr  8504 31202  0 11:39 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p190 ClassMethod^%apiOBJ
+cacheusr  8742     1  0 11:40 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p80 Start^HL7
+cacheusr  8743     1  0 11:40 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p102 Start^HL7
+cacheusr  8744     1  0 11:40 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p83 Start^HL7
+UK\dode+  8746  2628  0 11:40 pts/1    00:00:00 grep --color=auto cacheusr
+cacheusr 30838     1  0 Apr06 pts/8    00:00:03 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 START^MONITOR
+cacheusr 30839     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 START^CLNDMN
+cacheusr 30841     1  0 Apr06 pts/8    00:00:02 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 ^RECEIVE
+cacheusr 30842     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 Run^ECPWork
+cacheusr 30843     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 ServerMaster^%SYS.SERVER
+cacheusr 30845     1  0 Apr06 pts/8    00:00:06 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p13 START^LMFMON
+cacheusr 30847     1  0 Apr06 pts/8    00:02:47 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p19 Begin^%CSP.Daemon.1
+cacheusr 30851     1  0 Apr06 ?        00:00:07 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30852 30851  0 Apr06 ?        00:00:37 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30853 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30854 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30855 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30856 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30867     1  0 Apr06 pts/8    00:00:14 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p21 JOB^SNMP
+cacheusr 30869     1  0 Apr06 pts/8    00:16:55 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p21 Start^%SYS.Monitor.Control
+cacheusr 30870     1  0 Apr06 pts/8    00:00:04 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p28 RunManager^%SYS.Task
+cacheusr 30883     1  0 Apr06 pts/8    00:00:00 sh -c /trak/enspBASE/tc2016/hs/lib/RenderServer/runwithfop -port 54321 -numthreads 5 -fop-config-file /trak/enspBASE/tc2016/hs/fop/conf/fop.xconf -loglevel 3 -logfile /tmp/fop_log -maxlogfilesize 32000 -logrotationcount 100 -numpingthreads 5 -pingport 12345 2>&1
+cacheusr 30884 30883  0 Apr06 pts/8    00:02:21 /usr/lib/jvm/jre/bin/java -Xmx512m -Xrs -classpath /trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/xmlgraphics-commons-1_5.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/xml-apis-ext-1_3_04.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/xml-apis-1_3_04.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/xercesImpl-2_7_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/xalan-2_7_0.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/servlet-2_2.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/serializer-2_7_0.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/saxon9he.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/pdfbox-app-1_7_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/pdfbox-1_7_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/jempbox-1_7_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/javase-2.0.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/fop-zxing-0.1.2-jar-with-dependencies.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/fontbox-1_7_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/commons-logging-1_0_4.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/commons-io-1_3_1.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/batik-all-1_7.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/barcode4j-fop-ext-complete.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/lib/avalon-framework-4_2_0.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/build/fop.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/build/fop-sandbox.jar:/trak/enspBASE/tc2016/hs/lib/RenderServer/../../fop/build/fop-hyph.jar::/trak/enspBASE/tc2016/hs/lib/RenderServer/../../lib/RenderServer/RenderServer.jar -Djava.awt.headless=true -Xmx512m -Xms128m -Xss2m -XX:NewRatio=20 -XX:+UseLargePages -XX:LargePageSizeInBytes=2m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:SurvivorRatio=8 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=15 -XX:+UseCompressedOops -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl com.intersys.zenreports.RenderServer -render FOP -port 54321 -numthreads 5 -fop-config-file /trak/enspBASE/tc2016/hs/fop/conf/fop.xconf -loglevel 3 -logfile /tmp/fop_log -maxlogfilesize 32000 -logrotationcount 100 -numpingthreads 5 -pingport 12345
+cacheusr 30904 30845  0 Apr06 pts/8    00:00:07 /trak/enspBASE/tc2016/hs/bin/clmanager 4001
+cacheusr 30905 30851  0 Apr06 ?        00:00:37 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30913 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30914 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30923 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30924 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30925 30851  0 Apr06 ?        00:00:36 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30926 30851  0 Apr06 ?        00:00:37 /trak/enspBASE/tc2016/hs/httpd/bin/httpd -d /trak/enspBASE/tc2016/hs/httpd -c Listen 57772
+cacheusr 30938 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30941 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30942 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30943 30843  0 Apr06 pts/8    00:00:21 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30944 30843  0 Apr06 pts/8    00:00:02 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30945 30843  0 Apr06 pts/8    00:00:21 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30950 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30951 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30952 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30953 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30954 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30955 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30956 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30957 30843  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30958 30843  0 Apr06 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30959 30843  0 Apr06 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30960 30843  0 Apr06 pts/8    00:00:24 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30961 30843  0 Apr06 pts/8    00:00:23 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30967 30843  0 Apr06 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30968 30843  0 Apr06 pts/8    00:00:20 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30970 30843  0 Apr06 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30971 30843  0 Apr06 pts/8    00:00:21 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 30990 30843  0 Apr06 pts/8    00:00:21 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31005     1  0 Apr06 ?        00:00:02 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 START^MONITOR
+cacheusr 31006     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 START^CLNDMN
+cacheusr 31008     1  0 Apr06 ?        00:00:02 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 ^RECEIVE
+cacheusr 31009     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 Run^ECPWork
+cacheusr 31010     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 ServerMaster^%SYS.SERVER
+cacheusr 31012     1  0 Apr06 ?        00:00:07 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 START^LMFMON
+cacheusr 31013     1  0 Apr06 ?        00:00:03 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 Begin^%CSP.Daemon.1
+cacheusr 31018     1  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31019 31018  0 Apr06 ?        00:00:19 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31020 31018  0 Apr06 ?        00:00:19 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31021 31018  0 Apr06 ?        00:00:20 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31022 31018  0 Apr06 ?        00:00:19 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31023 31018  0 Apr06 ?        00:00:19 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31030     1  0 Apr06 ?        00:00:14 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p22 JOB^SNMP
+cacheusr 31032     1  0 Apr06 ?        00:01:36 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p22 Start^%SYS.Monitor.Control
+cacheusr 31033     1  0 Apr06 ?        00:00:02 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p24 RunManager^%SYS.Task
+cacheusr 31034 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31035 30843  0 Apr06 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31037     1  0 Apr06 ?        00:01:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31038     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31039     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31040     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31041     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31042     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31043     1  0 Apr06 ?        00:00:56 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31044     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31045     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31046     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31047     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31048     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31049     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31050     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31051     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31052     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31053     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31055     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31056     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31057     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31058     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31059     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31060     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31061     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31062     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31063     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31064     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31065     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31066     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31067     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31068     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31069     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31070     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31071     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31072     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31073     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31074     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31075     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31077     1  0 Apr06 ?        00:01:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31078     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31079     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31080     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31081     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31082     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31083     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31084     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31085     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31086     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31087     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31088     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31089     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31090     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31091     1  0 Apr06 ?        00:00:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31092     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31093     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31094     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31095     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31096     1  0 Apr06 ?        00:00:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31097     1  0 Apr06 ?        00:01:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31098     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31100     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31101     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31102     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31103     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31104     1  0 Apr06 ?        00:00:59 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31105     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31106     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31107     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31108     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31109     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31110     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31111     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31112     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31113     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31114     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31115     1  0 Apr06 ?        00:00:10 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31116     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31117     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31118     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31119     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31120     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31121     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31122     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31123     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31124     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31125     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31126     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31127     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31128     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31129     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31130     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31131     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31132     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31133     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31134     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31135     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31136     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31137     1  0 Apr06 ?        00:00:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31138     1  0 Apr06 ?        00:01:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31139     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31140     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31141     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31142     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31143     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31144     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31146     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31147     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31148     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31149     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31150     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31151     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31152     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31153     1  0 Apr06 ?        00:00:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31154     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31155     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31156     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31157     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31158     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31159     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31160     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31161     1  0 Apr06 ?        00:00:42 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31162     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31163     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31164     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31165     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31166     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31167     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31168     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31169     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31171     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31172     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31173     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31174     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31175     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31177     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31178     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31179     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31180     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31181     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31182     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31183     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31184     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31185     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31186     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31187     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31188     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31190     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31191     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31192     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31193     1  0 Apr06 ?        00:00:44 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31194     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31195     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31196     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31197     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31198     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31199     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31200     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31201     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31202     1  0 Apr06 ?        00:00:10 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31203     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31204     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31205     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31206     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31207     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31208     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31209     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31210     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31211     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31212     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31213     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31214     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31215     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31216     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31217     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31218     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31219     1  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31220     1  0 Apr06 ?        00:00:09 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p13 StartEnsembleJob^STU
+cacheusr 31223 31137  0 Apr06 ?        00:00:10 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p126 ClassMethod^%apiOBJ
+cacheusr 31226 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31228 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31230 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31232 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31233 31010  0 Apr06 ?        00:00:29 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31234 31010  0 Apr06 ?        00:00:28 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31235 31010  0 Apr06 ?        00:00:28 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31236 31010  0 Apr06 ?        00:00:28 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31237 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31250 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31251 31010  0 Apr06 ?        00:00:29 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31252 31018  0 Apr06 ?        00:00:09 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31257 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31259 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31260 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31261 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31264 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31265 31018  0 Apr06 ?        00:00:17 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31267 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31268 31018  0 Apr06 ?        00:00:19 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31271 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31272 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31273 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31274 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31280 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31282 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31284 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31285 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31288 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31292 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31293 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31294 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31296 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31297 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31299 31018  0 Apr06 ?        00:00:09 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31300 31018  0 Apr06 ?        00:00:08 /trak/enspBASE/integration2016/hs/httpd/bin/httpd -d /trak/enspBASE/integration2016/hs/httpd -c Listen 57773
+cacheusr 31304 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31306 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31308 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31318 31010  0 Apr06 ?        00:00:03 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31319 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31558 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31559 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31565 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31568 31010  0 Apr06 ?        00:00:02 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31569 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31806 31010  0 Apr06 ?        00:00:27 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 31807 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 35898 31010  0 Apr06 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 36332 31010  0 Apr06 ?        00:00:13 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 36557 31010  0 Apr06 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 38780 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38781 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38782 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38783 31260  0 Apr07 ?        00:00:33 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38784 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38785 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38786 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38787 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38788 31260  0 Apr07 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38789 31260  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38790 31260  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38791 31260  0 Apr07 ?        00:00:07 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38792 31260  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38793 31260  0 Apr07 ?        00:00:55 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38794 31260  0 Apr07 ?        00:00:54 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38795 31260  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 38796 31260  0 Apr07 ?        00:00:52 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p215 StartEnsembleJob^STU
+cacheusr 39036 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39037 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39038 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39039 31318  0 Apr07 ?        00:00:32 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39040 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39041 31318  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39042 31318  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39043 31318  0 Apr07 ?        00:01:14 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39044 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39045 31318  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39046 31318  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p228 StartEnsembleJob^STU
+cacheusr 39048 31236  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39049 31236  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39050 31236  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39051 31236  0 Apr07 ?        00:00:29 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39052 31236  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39053 31236  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39054 31236  0 Apr07 ?        00:00:01 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39055 31236  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39056 31236  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39057 31236  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39058 38791  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p254 ClassMethod^%apiOBJ
+cacheusr 39059 31236  0 Apr07 ?        00:00:54 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39060 31236  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p19 StartEnsembleJob^STU
+cacheusr 39061 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39062 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39063 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39064 31251  0 Apr07 ?        00:00:30 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39065 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39066 31251  0 Apr07 ?        00:00:07 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39067 31251  0 Apr07 ?        00:00:07 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39068 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39069 31251  0 Apr07 ?        00:00:00 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39070 31251  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39071 31251  0 Apr07 ?        00:00:53 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39072 31251  0 Apr07 ?        00:00:52 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p158 StartEnsembleJob^STU
+cacheusr 39073 39066  0 Apr07 ?        00:00:08 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p289 ClassMethod^%apiOBJ
+cacheusr 40653     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40654     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40655     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40656     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40657     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40658     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40659     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40660     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40661     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40662     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40663     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40664     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40665     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40666     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40667     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 40668     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 StartDeepSeeAgent^STU
+cacheusr 46714     1  0 Apr06 pts/8    00:00:30 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 Start^HL7
+cacheusr 46716     1  0 Apr06 pts/8    00:00:30 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p26 Start^HL7
+cacheusr 46725     1  0 Apr06 pts/8    00:02:10 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p70 Start^HL7
+cacheusr 48396     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48397     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48398     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48399     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48400     1 99 Apr06 pts/8    3-14:35:02 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48401     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48402     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48403     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48404     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48405     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48406     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48407     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48408     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48409     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48410     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 48411     1  0 Apr06 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p77 StartDeepSeeAgent^STU
+cacheusr 51215 31010  0 Apr07 ?        00:00:06 cache -s/trak/enspBASE/integration2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55436 30843  0 07:03 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55444 30843  0 07:03 pts/8    00:00:00 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55448 30843  0 07:03 pts/8    00:00:20 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55449 30843  0 07:03 pts/8    00:00:26 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55451 30843  0 07:04 pts/8    00:00:23 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55452 30843  0 07:04 pts/8    00:00:24 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55453 30843  0 07:04 pts/8    00:00:24 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55454 30843  0 07:04 pts/8    00:00:26 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55455 30843  0 07:04 pts/8    00:00:22 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55685 30843  0 07:05 pts/8    00:00:19 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER
+cacheusr 55686 30843  0 07:05 pts/8    00:00:21 cache -s/trak/enspBASE/tc2016/hs/mgr -cj -p18 SuperServer^%SYS.SERVER

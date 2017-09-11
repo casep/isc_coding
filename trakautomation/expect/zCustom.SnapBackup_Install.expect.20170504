@@ -1,0 +1,131 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <path to zCustom.SnapBackup.....xml>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+# get logged in and into the right namespace
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"%SYS\"\r" }
+	}
+	-re ".*>" { send "zn \"%SYS\"\r" }
+}
+# now figure out if we need to add this user and if so get on with it
+expect "%SYS>" { send "write ##class(Security.Users).Exists(\"cachebackup\")\r" }
+expect {
+	"1" {}
+	"0" {
+		expect "%SYS>" { send "do ^SECURITY\r" }
+		expect -re "(\[0-9\]*)\\) User setup" {
+			expect "Option?" { send "$expect_out(1,string)\r" }
+		}
+		expect -re "(\[0-9\]*)\\) Create user" {
+			expect "Option?" { send "$expect_out(1,string)\r" }
+		}
+		expect "Username to create?" { send "cachebackup\r" }
+		expect "Full name?" { send "User to call-in for backups\r" }
+		expect "Comment?" { send "\r" }
+		expect "Cache password?" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect "Please enter the password again?" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect "Enable user?" { send "\r" }
+		expect "Change password on next login?" { send "\r" }
+		expect {
+			# T2014
+			"Password never expires?" {
+				send "\r"
+				expect "Expiration date (yyyy-mm-dd)?" { send "\r" }
+				expect "Account never expires?" { send "Yes\r" }
+			}
+			# T2013
+			"Expiration date (yyyy-mm-dd)?" { send "\r" }
+		}
+		expect "Role to add?" { send "%All\r" }
+		expect "Role to add?" { send "\r" }
+		expect {
+			#T2016
+			"Startup namespace (Space for none)?"  { 
+			send "\r"
+			expect "Email Address (Space for none)?"  { send "\r" }
+			expect "Mobile phone number (Space for none)?"  { send "\r" }
+			}
+			# T2014
+			"Confirm creation of username cachebackup?" { send "\r" }
+			# T2013
+			"Default namespace (Space for none)?" {
+				send "\r"
+				expect "Mobile phone number for two-factor authentication (Space for none)?" { send "\r" }
+				expect "Confirm creation of username cachebackup?" { send "\r" }
+			}
+		}
+		expect {
+			"ERROR #845: Password does not match length or pattern requirements" { exit 1 }
+			"Username to create?" { send "\r" }
+		}
+		expect "Option?" { send "\r" }
+		expect "Option?" { send "\r" }
+	}
+}
+# enable Operating System Security
+expect "%SYS>" { send "do ^SECURITY\r" }
+expect -re "(\[0-9\]*)\\) System parameter setup" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect -re "(\[0-9\]*)\\) Edit authentication options" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+set done 0
+set origtimeout $timeout
+set timeout 2
+while { $done == 0 } {
+	expect {
+		"Allow Operating System authentication?" { send "Yes\r" }
+		"Confirm changes to authentication options?" {
+			send "\r"
+			set done 1
+		}
+		default { send "\r" }
+	}
+}
+set timeout $origtimeout
+expect "Option?" { send "\r" }
+# enable Operating System Security for %Terminal
+expect -re "(\[0-9\]*)\\) Service setup" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect -re "(\[0-9\]*)\\) Edit service" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect "Service to edit?" { send "%Service_Terminal\r" }
+expect "Enabled?" { send "\r" }
+set done 0
+set timeout 2
+while { $done == 0 } {
+	expect {
+		"Allow Operating System authentication?" { send "Yes\r" }
+		"Confirm changes to service" {
+			send "\r"
+			set done 1
+		}
+		default { send "\r" }
+	}
+}
+set timeout $origtimeout
+expect "Service to edit?" { send "\r" }
+set done 0
+while { $done == 0 } {
+	expect {
+		"Option?" { send "\r" }
+		"%SYS>" { set done 1 }
+	}
+}
+# load in the backup class
+send "do \$system.OBJ.Load(\"[lindex $argv 1]\",\"ck\")\r"
+# all done
+expect "%SYS>" { send "h\r" }
+send_user "\n"
+
+
+
+
+

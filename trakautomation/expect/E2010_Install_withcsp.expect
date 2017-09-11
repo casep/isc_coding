@@ -1,0 +1,35 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <Directory>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn ./cinstall
+expect "Enter instance name" { send "[lindex $argv 0]\r" }
+expect "Do you want to create Ensemble instance" { send "\r" }
+expect "Enter a destination directory for the new instance" { send "[lindex $argv 1]\r" }
+expect "Setup type" { send "3\r" }
+expect "Initial Security settings" { send "2\r" }
+expect "What user should be the owner of this instance?" { send "$env(CACHEUSR)\r" }
+expect "Please enter the common password for these accounts:" { sleep 2; send "$env(CACHEPASS)\r" }
+expect "Re-enter the password to confirm it:" { sleep 2; send "$env(CACHEPASS)\r" }
+expect "What group should be allowed to start and stop" { send "$env(CACHEMGR)\r" }
+expect "Do you want to configure additional security options" { send "y\r" }
+expect "What is the effective group for Ensemble processes" { send "$env(CACHEGRP)\r" }
+expect "What is the effective user for the Cache SuperServer" { send "$env(CACHEUSR)\r" }
+expect "Do you want to load the Manager utility source code" { send "n\r" }
+expect "Enter the SuperServer port number" { send "\r" }
+expect "Enter the WebServer port number" { send "\r" }
+expect "Do you want to configure the CSP Gateway to use an existing web server" { send "y\r" }
+expect "WebServer type" { send "1\r" }
+expect "Please enter location of Apache configuration file" { send "[lindex $argv 2]\r" }
+# TODO find if already configured - else will time out TODO
+expect "Enter user name used by Apache server to run it's worker processes" { send "\r" }
+expect "Please enter location of Apache executable file" { send "\r" }
+expect "Please enter destination directory for CSP Gateway files" { send "\r" }
+expect "Do you want to create directory" { send "\r" }
+expect "Do you want to enter a license key" { send "\r" }
+expect "Enter a blank line to continue" { send "\r" }
+# let user confirm the setup, allow return to avoid stall on E2010 installs
+send_user "\n\n\n**** Entering Interactive Mode - E2010 will stall at the end of the install: type Control-D to unstick it\n";
+interact \004 return
+wait
+# TODO it seems that wait hides STDOUT which is annoying
+

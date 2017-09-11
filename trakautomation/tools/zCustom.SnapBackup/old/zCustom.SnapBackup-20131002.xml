@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="zCustom.SnapBackup">
+<Super>%RegisteredObject</Super>
+<TimeCreated>63088,57341.371786</TimeCreated>
+
+<Method name="WriteStatus">
+<Description>
+Writes the status file with the specified contents</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>StatusFile:%String,Contents:%String</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	//write Contents,!
+	set fs=##class(%File).%New(StatusFile)
+	do fs.Open("WN")
+	do fs.WriteLine(Contents)
+	do fs.Close()
+]]></Implementation>
+</Method>
+
+<Method name="Freeze">
+<Description>
+Freezes the Write Daemon, verifying and flagging success with a file</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>StatusFile:%String,TimeOut:%Integer</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	if ##class(Backup.General).IsWDSuspended()
+	{
+		// we're running a freeze on an already-suspended instance
+		do ..WriteStatus(StatusFile, "WARNING - Attempting to freeze an already suspended instance")
+		quit $$$OK
+	}
+	else
+	{
+		// TODO
+		if $DATA(timeout) && (timeout'="")
+		{
+			set status=##class(Backup.General).ExternalFreeze(,,,,,,+TimeOut)
+		}
+		else
+		{
+			set status=##class(Backup.General).ExternalFreeze()
+		}
+		if ##class(Backup.General).IsWDSuspended()
+		{
+			if status
+			{
+				// all is happy
+				do ..WriteStatus(StatusFile, "OK")
+				quit $$$OK
+			}
+			else
+			{
+				// we're frozen, but not entirely happy
+				do $system.Status.DecomposeStatus(status,statusmessage)
+				do ..WriteStatus(StatusFile, "WARNING - "_statusmessage)
+				quit $$$OK
+			}
+		}
+		else
+		{
+			if stauts
+			{
+				// not suspended but we got good status
+				do ..WriteStatus(StatusFile, "ERROR - successful return but not frozen")
+				quit $$$ERROR($$$GeneralError,"successful return but not frozen")
+			}
+			else
+			{
+				// failed
+				do $system.Status.DecomposeStatus(status,statusmessage)
+				do ..WriteStatus(StatusFile, "ERROR - "_statusmessage)
+				quit $$$ERROR($$$GeneralError,statusmessage)
+			}
+		}
+	}
+]]></Implementation>
+</Method>
+
+<Method name="Thaw">
+<Description>
+Thaws the Write Daemon, verifying and flagging success with a file</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>StatusFile:%String</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	if ##class(Backup.General).IsWDSuspended()
+	{
+		// we are suspended - attempt thaw
+		set status=##class(Backup.General).ExternalThaw()
+		if status
+		{
+			// all is happy
+			do ..WriteStatus(StatusFile, "OK")
+			quit $$$OK
+		}
+		else
+		{
+			// something broke
+			do $system.Status.DecomposeStatus(status,statusmessage)
+			do ..WriteStatus(StatusFile, "ERROR - "_statusmessage)
+			quit $$$ERROR($$$GeneralError,statusmessage)
+		}
+	}
+	else
+	{
+		// we're running a thaw on a not-suspended instance
+		do ..WriteStatus(StatusFile, "WARNING - Attempting to thaw not suspended instance")
+		quit $$$OK
+	}
+]]></Implementation>
+</Method>
+</Class>
+</Export>

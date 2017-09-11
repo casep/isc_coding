@@ -1,0 +1,23 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <Namespace> <path to xml>
+# Loads the .xml into the instance / namespace given
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+# get logged in and into the right namespace
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
+	}
+	-re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
+}
+# now load the .xml
+expect "[lindex $argv 1]>" { send "do \$system.OBJ.Load(\"[lindex $argv 2]\",\"ck\")\r" }
+# all done
+expect "[lindex $argv 1]>" { send "h\r" }
+send_user "\n"
+
+
+
+
+

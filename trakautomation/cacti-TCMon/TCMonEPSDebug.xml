@@ -1,0 +1,26 @@
+<interface>
+	<name>TrakCare Monitoring : EPS Debug</name>
+	<!--index_order>tcmonDeviceIndex</index_order-->
+	<index_order_type>numeric</index_order_type>
+	<oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonEPSDebugI"</oid_index>
+
+	<fields>
+
+		<tcmonEPSDebugI>
+			<name>Index</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonEPSDebugI"</oid>
+		</tcmonEPSDebugI>
+
+		<tcmon_EPSDebugStat>
+			<name>Debug</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonEPSDebugS"</oid>
+		</tcmon_EPSDebugStat>
+
+	</fields>
+</interface>

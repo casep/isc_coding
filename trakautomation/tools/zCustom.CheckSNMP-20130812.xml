@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="zCustom.CheckSNMP">
+<Description>
+Check that the SNMP service is running - it flakes out every time snmpd gets restarted (plus a lot of other times)
+Glen Pitt-Pladdy (InterSystems)</Description>
+<Super>%SYS.Task.Definition</Super>
+<TimeCreated>63046,50501.820815</TimeCreated>
+
+<Parameter name="TaskName">
+<Type>STRING</Type>
+<Default><![CDATA[Caché SNMP Service Check & Restart]]></Default>
+</Parameter>
+
+<Method name="Setup">
+<Description>
+Setup everything needed for reliabls SNMP monitoring</Description>
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	// enable %Service_Monitor
+	set serv=##class(Security.Services).%OpenId("%service_monitor")
+	set serv.Enabled=1        ;; enable
+	do serv.%Save()
+	// clear any old tasks
+	set rs=##class(%ResultSet).%New()
+	do rs.Prepare("SELECT ID FROM %SYS.Task WHERE TaskClass = 'zCustom.CheckSNMP'")
+	do rs.Execute()
+	while rs.Next()
+	{
+		set id = rs.Data("ID")
+		if id'="" {
+			w "Remove Existing ID="_id,!
+			do ##class(%SYS.Task).%DeleteId(id)
+		}
+	}
+	// setup the task
+	set task=##class(%SYS.Task).%New()
+	set task.Name="Check SNMP"
+	set task.Description="Check and re-starts SNMP service to ensure always running"
+	set task.TimePeriod=0			// daily
+	set task.DailyFrequency = 1		// several times a day
+	set task.DailyFrequencyTime = 0
+	set task.DailyIncrement = 15	// every 15 minutes
+	set task.RunAsUser = "SuperUser"
+	set task.TaskClass = "zCustom.CheckSNMP"
+	set taskdef=##class(zCustom.CheckSNMP).%New()
+	do task.AssignSettings(taskdef)
+	do task.%Save()
+	// kick off task
+	do ##class(%SYS.Task).RunNow(##class(%SYS.Task).GUIDToID(task.JobGUID))
+	quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="OnTask">
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set rs=##class(%ResultSet).%New()
+	do rs.Prepare("SELECT COUNT(*) AS running FROM %SYS.ProcessQuery WHERE Routine = 'SNMP'")
+	do rs.Execute()
+	do rs.Next()
+	set status = rs.Data("running")
+	//w "status = "_status,!
+	if status = 0 do start^SNMP
+	//w running,!
+	quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+</Export>

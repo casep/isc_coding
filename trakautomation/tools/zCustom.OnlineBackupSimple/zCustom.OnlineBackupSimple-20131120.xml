@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="zCustom.OnlineBackupSimple">
+<Super>%SYS.Task.Definition</Super>
+<TimeCreated>63146,36708.921502</TimeCreated>
+
+<Parameter name="TaskName">
+<Type>STRING</Type>
+<Default>Caché Online Backup (Simple)</Default>
+</Parameter>
+
+<Property name="BackupDirectory">
+<Description>
+Directory where to put the backups</Description>
+<Type>%String</Type>
+</Property>
+
+<Property name="BackupName">
+<Description>
+File name (has timestamp and type added) to use for backups</Description>
+<Type>%String</Type>
+</Property>
+
+<Property name="BackupDescription">
+<Type>%String</Type>
+</Property>
+
+<Property name="ExcludeDatabases">
+<Description>
+Comma separated list of databases to exclude
+Typically system and low-value databases:
+CACHELIB,CACHETEMP,DOCBOOK,ENSDEMO,ENSEMBLE,ENSLIB,SAMPLES</Description>
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="200"/>
+</Property>
+
+<Property name="KeepPreviousBackups">
+<Description>
+How many previous generations of Backup Files to keep</Description>
+<Type>%Integer</Type>
+</Property>
+
+<Property name="KeepPreviousLogs">
+<Description>
+How many previous generations of Log Files to keep</Description>
+<Type>%Integer</Type>
+</Property>
+
+<Method name="PurgeFiles">
+<FormalSpec>Pattern:%String,KeepGenerations:%Integer</FormalSpec>
+<Private>1</Private>
+<Implementation><![CDATA[
+	set result = ##class(%Library.ResultSet).%New("%Library.File:FileSet")
+	do result.Execute(..BackupDirectory,Pattern,"DateModified")
+	set count = 0
+	while(result.Next()) { set count=count+1 }
+	set count=count-KeepGenerations	// count is now the number we must delete
+	do result.Execute(..BackupDirectory,Pattern,"DateModified")
+	while(count > 0 && result.Next())
+	{
+		set name = result.Data("Name")
+		do ##class(%Library.File).Delete(name)
+		set count=count-1
+	}
+]]></Implementation>
+</Method>
+
+<Method name="OnTask">
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	// Backup options for DBACK --- DO NOT EDIT!
+    set TYPE="F" 				// 'C'umlative incremental, 'F'ull, 'E'xternal full backup
+ 	set DESCR=..BackupDescription	// Free form text string, may be NULL This is stored in the backup label and in the history global and describes the backup
+ 	set MODE="QUIET" 			// "NOISY" - Default, print all text on terminal. "QUIET" - Only display text related to abnormal conditions
+	set KILJRN="Y"				// "Y" Switch the journal file after backup "N" ignored
+    set CLRJRN="Y"				// "Y" - Switch the journal file. "N" - ignored
+	set SWJRN="Y" 				// "Y" - Switch the journal file after backup "N" - Do not switch the journal file. Note that this is overridden if clrjrn or kiljrn is "Y"
+	set MailErr=""
+	
+	// figure out a timestamp
+	set now = $HOROLOG	// capture "now" so it can't change between computations
+	set TimeStamp = $ZDATE($PIECE(now,",",1),8)_"-"_$REPLACE($ZTIME($PIECE(now,",",2),1),":","")
+	
+	// generate our file paths
+	set cbkFile=..BackupDirectory_"/"_TimeStamp_"-"_..BackupName_"-Backup.cbk"
+	set SecFile=..BackupDirectory_"/"_TimeStamp_"-"_..BackupName_"-SecurityExport.xml"
+	set LogFile=..BackupDirectory_"/"_TimeStamp_"-"_..BackupName_"-Backup.log"
+	
+	// Switch to %SYS namespace TODO use new
+	s ns=$zu(5)
+	d $zu(5,"%SYS")
+ 	
+	// clear and rebuild (add all) database list
+	do ##class(Backup.General).ClearDatabaseList()
+	set dbrs=##class(%ResultSet).%New("Config.Databases.List")
+	do dbrs.Execute("*")
+	set dbcount=0
+	while dbrs.Next()
+	{
+		w "add "_dbrs.Data("Name"),!
+		do ##class(Backup.General).AddDatabaseToList(dbrs.Data("Name"))
+	}
+	// remove each of the excluded databases
+	set count=1
+	for i=1:1:$LENGTH(..ExcludeDatabases,",")
+	{
+		w "exclude "_$PIECE(..ExcludeDatabases,",",i),!
+		do ##class(Backup.General).RemoveDatabaseFromList($PIECE(..ExcludeDatabases,",",i))
+	}
+	// perform backup
+	set status=$$BACKUP^DBACK("",TYPE,DESCR,cbkFile,KILJRN,LogFile,MODE,CLRJRN,SWJRN,"")
+	if 'status
+	{
+		quit $$$ERROR($$$GeneralError,"Backing up Databases Failed with status: "_status)
+	}
+	// export security
+	set status=##class(Security.System).ExportAll(SecFile)
+	if 'status
+	{
+		quit $$$ERROR($$$GeneralError,"Exporting Security Failed with status: "_status)
+	}
+	
+	// TODO purge old Backups / Security Exports
+	do ..PurgeFiles("*-Backup.cbk",..KeepPreviousBackups)
+	do ..PurgeFiles("*-SecurityExport.xml",..KeepPreviousBackups)
+	do ..PurgeFiles("*-Backup.log",..KeepPreviousLogs)
+	
+	quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+</Export>

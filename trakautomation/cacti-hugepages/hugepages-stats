@@ -1,0 +1,20 @@
+#!/bin/sh
+# outputs:
+#	* HugePage size
+#	* HugePages as per /proc/meminfo, alternating with the byte calculated values
+
+# get the size down
+hugepagesize=`grep ^Hugepagesize: /proc/meminfo | awk '{print $2,$3}'`
+if [ `echo $hugepagesize | cut -d' ' -f2` = 'kB' ]; then
+	hugepagesize=$((`echo $hugepagesize | cut -d' ' -f1`*1024))
+else
+	hugepagesize=`echo $hugepagesize | cut -d' ' -f1`
+fi
+echo $hugepagesize
+
+# stats - should be Total, Free, Rsvd, Surp
+for stat in `grep ^HugePages_ /proc/meminfo | awk '{print $2}'`; do
+	echo $stat
+	echo $(($stat*$hugepagesize))
+done
+

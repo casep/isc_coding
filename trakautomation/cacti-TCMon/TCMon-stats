@@ -1,0 +1,132 @@
+#!/bin/sh
+# Takes args: <Mode> <index|Mode specific options>
+
+MONDIR=/var/TCMon
+
+
+# TODO EnsembleUptime & ProductionUptimes
+
+if [ $# -ne 2 ]; then
+	echo "Usage: $0 <Mode> <index|Mode specific options>" >&2
+	exit 1
+elif [ ! -d $MONDIR ]; then
+	echo "Monitoring Directory \"$MONDIR\" doesn't exist" >&2
+	exit 1
+elif [ `ls $MONDIR/*_$1.mon 2>/dev/null | wc -l` -eq 0 ]; then
+	echo "Mode \"$1\" files doesn't exist ($MONDIR/*_$1.mon)" >&2
+	exit 1
+fi
+case $1 in
+	Print)
+		# Mode specific: <index|stats>
+		for file in $MONDIR/*_$1.mon; do
+			case $2 in
+				index)
+					# take Namespace on first line
+					head -n 1 $file | cut -d^ -f2
+				;;
+				ErrCurDay)
+					# take line 2
+					tail -n +2 $file | head -n 1
+				;;
+				ProcsPrtLstHr)
+					# take line 3
+					tail -n +3 $file | head -n 1
+				;;
+				ProcsInProg)
+					# take line 4
+					tail -n +4 $file | head -n 1
+				;;
+				ProcsPrtLstMin)
+					# take line 5
+					tail -n +5 $file | head -n 1
+				;;
+				ProcsInWait)
+					# take line 6
+					tail -n +6 $file | head -n 1
+				;;
+				*)
+					echo "$0: Unhandled Specifc option \"$2\" in Mode \"$1\""
+					exit 1
+				;;
+			esac
+		done
+	;;
+	Int)
+		# Mode specific: <index|status|up|down|queue>
+		for file in $MONDIR/*_$1.mon; do
+			case $2 in
+				index)
+					# take Namespace on first line and combine it with interface names
+					namespace=`head -n 1 $file | cut -d^ -f2`
+					for int in `tail -n +2 $file | cut -d^ -f1`; do
+						echo $namespace:$int
+					done
+					echo Total
+				;;
+				status)
+					# take second field from line 2 on
+					tail -n +2 $file | cut -d^ -f2
+					echo NONE
+				;;
+				up)
+					# take second field from line 2 on
+					total=0
+					for val in `tail -n +2 $file | cut -d^ -f2 | sed 's/D/0/i' | sed 's/U/1/'`; do
+						echo $val
+						total=$(($total+$val))
+					done
+					echo $total
+				;;
+				down)
+					# take second field from line 2 on
+					total=0
+					for val in `tail -n +2 $file | cut -d^ -f2 | sed 's/D/1/i' | sed 's/U/0/'`; do
+						echo $val
+						total=$(($total+$val))
+					done
+					echo $total
+				;;
+				queue)
+					# take third field from line 2 on
+					total=0
+					for val in `tail -n +2 $file | cut -d^ -f3 | sed 's/^$/0/'`; do
+						echo $val
+						total=$(($total+$val))
+					done
+					echo $total
+				;;
+				*)
+					echo "$0: Unhandled Specifc option \"$2\" in Mode \"$1\""
+					exit 1
+				;;
+			esac
+		done
+	;;
+	Lic|DayAppError|Perf|CSPSessionCount|EPSStatus|EPSEnsMsg|EPSDebug)
+		# single metrics
+		# Mode specific: <index|stats>
+		for file in $MONDIR/*_$1.mon; do
+			case $2 in
+				index)
+					# take Namespace on first line
+					head -n 1 $file | cut -d^ -f2
+				;;
+				stats)
+					# take line 2
+					tail -n +2 $file
+				;;
+				*)
+					echo "$0: Unhandled Specifc option \"$2\" in Mode \"$1\""
+					exit 1
+				;;
+			esac
+		done
+	;;
+	*)
+		echo "$0: Unhandled Mode \"$1\""
+		exit 1
+	;;
+esac
+
+

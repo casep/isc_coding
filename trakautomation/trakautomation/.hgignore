@@ -1,0 +1,17 @@
+# use glob syntax.
+syntax: glob
+
+# vim swp files
+.*.swp
+
+# generic logcheck rules (OSS)
+logcheck/logcheck/Linux-rules.d/*.OSSlogcheck/*
+
+# nagios packages
+nagios-nrpe-RHEL*
+
+# archives we don't want to source control
+archives/PMSFonts.tar.bz2
+
+# obselete stuff
+old/

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><Export>
+  <epr.CTIconProfile GUID="94C12E19-9EBF-47A9-881A-3DE8634ED1F0">
+    <Code>ENXXPB</Code>
+    <CodeTableIcons>false</CodeTableIcons>
+    <Description>ENXX Patient Banner</Description>
+    <MultiEpisodes>false</MultiEpisodes>
+    <FixedIconPositions>false</FixedIconPositions>
+    <Owner>REGION</Owner>
+    <Items>
+      <CTIconProfileItem GUID="D2FFD26C-F9C5-4781-99CA-03856E8FAAA4">
+        <IconDR>F08B3762-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="037A5A4A-3D16-4793-A31D-3DA4383D16E0">
+        <IconDR>F08B3EE2-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="7FCA1284-2878-4E2F-939D-659F443A11AA">
+        <IconDR>F08B63FE-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="8ABA9D87-47D8-4806-94D4-3EECD0287BBE">
+        <IconDR>F08B65C0-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <LinkComponent>PAAllergy.ListEMR</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_$g(ARY("PatientID"))_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>websys.default.csp</LinkUrl>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="4DA8CC35-0E22-4F11-AC5F-B0079E272246">
+        <IconDR>F08B6B9C-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="1953ABDF-4C78-4C42-A7C6-B64EEE1391D1">
+        <IconDR>F08B6D4A-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <LinkComponent>PAAlertMsg.List</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_%request.Get("PatientID")_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>websys.default.csp</LinkUrl>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="14CDD83A-D601-4A5E-A26B-0EC3F74D6A55">
+        <IconDR>F08CFA0C-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="6F374471-46F2-4968-A4D3-3206D6E2B86A">
+        <IconDR>F08CC6C2-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="F89C313E-854D-40A8-8C77-74D1E16DDB4A">
+        <IconDR>F08C2F8C-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <LinkComponent>PAPerson.Edit</LinkComponent>
+        <LinkExpression>"&amp;ID="_PatientID_"&amp;PatientID="_PatientID</LinkExpression>
+        <LinkUrl>websys.default.csp</LinkUrl>
+        <DateTo>2015-09-23</DateTo>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="B6C7FA23-E446-4FCF-A295-A7F03B2DABE2">
+        <IconDR>F08B3564-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="ADCD834A-07B3-4842-90BB-5DDAF04FD4C6">
+        <IconDR>F08AF04A-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <LinkExpression>"&amp;PatientID="_$g(ARY("PatientID"))_"&amp;ID="_$g(ARY("PatientID"))_"&amp;PatientID="_$g(ARY("PatientID"))_"&amp;ChartID=51&amp;PatientID="_PatientID_"&amp;EpisodeID="_EpisodeID_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>epr.chartbook.csp</LinkUrl>
+        <LinkChartBookDR>826F0954-955E-11E3-9A53-5056B41D4B00</LinkChartBookDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="D3C04D51-C209-42FB-AC85-41C00708582A">
+        <IconDR>F08CF552-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <LinkExpression>"&amp;ID="_$g(PatientID)_"&amp;PatientID="_$g(PatientID)_"&amp;EpisodeID="_$g(EpisodeID)_"&amp;CONTEXT="_%request.Get("CONTEXT")</LinkExpression>
+        <LinkUrl>epr.chartbook.csp</LinkUrl>
+        <LinkChartBookDR>04DBFA0D-8F5B-416F-A623-D28FFB5FFBF5</LinkChartBookDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="C3C919DE-FEB2-450E-9BE1-CC38C8BD1CA2">
+        <IconDR>0AD617B4-C126-11E2-ADA8-5056A8351900</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="09C8E664-98CE-11E3-86F5-5056B41D4600">
+        <IconDR>6E495684-8904-11E3-AC0F-5056803C2400</IconDR>
+        <LinkComponent>questionniare.QGXXXGCS.edit</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_$g(PatientID)_"&amp;EpisodeID="_$g(EpisodeID)_"&amp;ID="_##Class(web.SSUserDefWindow).GetLastQuestAnswered(##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS"),$g(EpisodeID))_"&amp;QuestionnaireID="_##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS")_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>ssuserdefwindowcontrols.questionnaire.csp</LinkUrl>
+        <ShowInfoPane>60|N|N</ShowInfoPane>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="0D62BF66-98CE-11E3-AFBF-5056B41D4600">
+        <IconDR>CB223510-8904-11E3-812D-5056803C2400</IconDR>
+        <LinkComponent>questionniare.QGXXXGCS.edit</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_$g(PatientID)_"&amp;EpisodeID="_$g(EpisodeID)_"&amp;ID="_##Class(web.SSUserDefWindow).GetLastQuestAnswered(##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS"),$g(EpisodeID))_"&amp;QuestionnaireID="_##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS")_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>ssuserdefwindowcontrols.questionnaire.csp</LinkUrl>
+        <ShowInfoPane>60|N|N</ShowInfoPane>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="1A6A60C4-98CE-11E3-8903-5056B41D4600">
+        <IconDR>F9553AC2-8904-11E3-9B8A-5056803C2400</IconDR>
+        <LinkComponent>questionniare.QGXXXGCS.edit</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_$g(PatientID)_"&amp;EpisodeID="_$g(EpisodeID)_"&amp;ID="_##Class(web.SSUserDefWindow).GetLastQuestAnswered(##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS"),$g(EpisodeID))_"&amp;QuestionnaireID="_##Class(web.SSUserDefWindow).GetIdFromCodeOrDescription("GXXXGCS")_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>ssuserdefwindowcontrols.questionnaire.csp</LinkUrl>
+        <ShowInfoPane>60|N|N</ShowInfoPane>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="BA9FDB46-9AF9-11E3-840A-5056B41D4600">
+        <IconDR>6DABA2B6-9AF9-11E3-820B-5056B41D4600</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="59C27CA2-9D79-11E3-852A-5056B41D4600">
+        <IconDR>4D76D7B8-9D65-11E3-916D-5056B41D4600</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="5E3D1A58-9D79-11E3-96DD-5056B41D4600">
+        <IconDR>D50AE812-9D66-11E3-B65F-5056B41D4600</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="61A8B29C-9D79-11E3-A533-5056B41D4600">
+        <IconDR>47E448A6-9D67-11E3-8D85-5056B41D4600</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="64AF4992-9D79-11E3-9A7C-5056B41D4600">
+        <IconDR>576F24D0-9D67-11E3-B65F-5056B41D4600</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="FA0880DC-D9AE-11E3-A98C-5056B441F800">
+        <IconDR>CC299E6C-D9AE-11E3-B19B-5056B441F800</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="759E75AA-C98A-11E4-8EB9-5056B441F800">
+        <IconDR>F08BE770-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="050CA464-C98B-11E4-9475-5056B441F800">
+        <IconDR>F08B3910-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="12608EF0-C98B-11E4-A686-5056B441F800">
+        <IconDR>F08BEC5C-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="2A12748C-C98B-11E4-B329-5056B441F800">
+        <IconDR>F08D04CA-4CEF-11E3-AF51-5056803C2400</IconDR>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="2F737752-5A56-11E6-AF28-5056B441F800">
+        <IconDR>F449F336-5A55-11E6-A229-5056B441F800</IconDR>
+        <DateFrom>2016-08-04</DateFrom>
+        <DateTo>2016-08-04</DateTo>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+      <CTIconProfileItem GUID="B9F1549E-F786-11E6-A0D3-5056B441F800">
+        <IconDR>5FD79220-F786-11E6-A0D3-5056B441F800</IconDR>
+        <LinkComponent>RTMaster.MRTypeList</LinkComponent>
+        <LinkExpression>"&amp;PatientID="_%request.Get("PatientID")_"&amp;PatientBanner=1"</LinkExpression>
+        <LinkUrl>websys.default.csp</LinkUrl>
+        <Owner>REGION</Owner>
+      </CTIconProfileItem>
+    </Items>
+  </epr.CTIconProfile>
+  <Information GUID="94C12E19-9EBF-47A9-881A-3DE8634ED1F0">
+    <Id>44</Id>
+    <ClassName>epr.CTIconProfile</ClassName>
+    <Description>ENXXPatientBanner</Description>
+    <Content>
+      <Class Version="//trak/main/releases/T2016.2/5/SYS/cls/epr/CTIconProfile.xml#2">epr.CTIconProfile</Class>
+      <Class Version="//trak/main/releases/T2016.2/5/SYS/cls/epr/CTIconProfileItem.xml#2">epr.CTIconProfileItem</Class>
+    </Content>
+  </Information>
+</Export>

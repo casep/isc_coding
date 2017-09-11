@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="zCustom.TrakUpgradeTools">
+<Description>
+Automation for TrakCare 2012 upgrades by Glen Pitt-Pladdy (InterSystems)
+IDEA - put "ticker" on CRCs....
+IDEA - put spinner on Merges -\|/
+BUG - get CRC=0 in Guernsey logs for some moves</Description>
+<Super>%RegisteredObject</Super>
+<TimeCreated>63046,49065.392209</TimeCreated>
+
+<Method name="confirmation">
+<Description>
+Generic confirmation dialogue used by other methods</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>positive:%String,negative:%String</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	set answer=""
+	while answer=""
+	{
+		write "Continue: "_positive_"/"_negative_" (type them exactly)?",!
+		read answer
+		write !
+		if (answer'=positive)&&(answer'=negative)
+		{
+			set answer=""
+		}
+	}
+	if answer=positive quit 1
+	quit 0
+]]></Implementation>
+</Method>
+
+<Method name="databaseCheck">
+<Description>
+Check the database exists and find the path - used by other methods as a santiy check</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec><![CDATA[FromDB:%String,ToDB:%String,&FromDBinfo:%String,&ToDBinfo:%String]]></FormalSpec>
+<Private>1</Private>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	// validate and the database paths in question
+	if ##class(Config.Databases).Get(FromDB,.FromDBinfo)'=1
+	{
+		write "FATAL - can't find FromDB """_FromDB_"""",!
+		quit 0
+	}
+	if ##class(Config.Databases).Get(ToDB,.ToDBinfo)'=1
+	{
+		write "FATAL - can't find ToDB """_ToDB_"""",!
+		quit 0
+	}
+	if FromDBinfo("Directory")=ToDBinfo("Directory")
+	{
+		write "FATAL - FromDB and ToDB are the same",!
+		quit 0
+	}
+	quit 1
+]]></Implementation>
+</Method>
+
+<Method name="csvDigest">
+<Description>
+Digests a .csv line, field, by field on each call (removes and returns the first field)</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec><![CDATA[&line:%String]]></FormalSpec>
+<Private>1</Private>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	set value=""
+	if $EXTRACT(line)'=""""
+	{
+		// this field doesn't have quotes
+		set ret=$PIECE(line,",",1)
+		set line=$PIECE(line,",",2,1000)
+		quit ret
+	}
+	else
+	{
+		// we need to work through the quotes
+		set ret=""
+		set state="start"
+		set err=0
+		set finished=0
+		set origline=line
+		while (line'="")&&(finished=0)&&(err=0)
+		{
+			set c=$EXTRACT(line)
+			set $EXTRACT(line)=""
+			if state="start"
+			{
+				if c=""""
+				{
+					set state="inquotes"
+				}
+				else
+				{
+					set err=1
+				}
+			}
+			elseif state="inquotes"
+			{
+				if c=""""
+				{
+					set state="quote1"
+				}
+				else
+				{
+					set ret=ret_c
+				}
+			}
+			elseif state="quote1"
+			{
+				// we don't know if this is a double or closing a field
+				if c=""""
+				{
+					// ok - it's a quote
+					set ret=ret_c
+					set state="inquotes"
+				}
+				elseif c=","
+				{
+					// we are closing a section
+					set finished=1
+				}
+				else
+				{
+					set err=1
+				}
+			}
+			else
+			{
+				set err=1
+			}
+		}
+		// we are done - figure out why
+		if err=1
+		{
+			write "FATAL - error in .csv line: """_origline_"""",!
+			set line=origline
+			quit ""
+		}
+		else
+		{
+			// all good
+			quit ret
+		}
+	}
+]]></Implementation>
+</Method>
+
+<Method name="globalCRC">
+<Description>
+Checksum global - used for safety checks</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Global:%String,WalkDir:%String,CheckDir:%String,crc:%Integer=0</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Integer</ReturnType>
+<Implementation><![CDATA[
+	set query="^|""^^"_WalkDir_"""|"_Global
+ //w ">>"_query,!
+ 	// for subscripts, get it without end ")" for matching
+	if $EXTRACT(query,$LENGTH(query))=")"
+	{
+		set match=$EXTRACT(query,1,$LENGTH(query)-1)
+	}
+	else
+	{
+		set match=query
+	}
+	// run through all nodes
+ 	while query'=""
+	{
+		// if we did a are putting data into a database already containing the starting node and the source (walk) doesn't then we would get different results
+		// only process this node if we actually have data in the walk database
+		if $DATA(@query)#10=1
+		{
+			// there is data on this walk node - sum it
+			
+ 			set datapoint=$PIECE(query,"|",3,1000000)
+ 
+ 			// process the start of the query atches the pattern (eg subscript) or is not subscripted
+			if ($FIND(query,match_",")>0)||($FIND(query,match_")")>0)||($FIND(query,"(")=0)
+			{
+				if $DATA(@("^|""^^"_CheckDir_"""|"_datapoint))#10=1
+				{
+					set crc=$ZCRC(datapoint_@("^|""^^"_CheckDir_"""|"_datapoint),7,crc)
+				}
+				else
+				{
+					set crc=$ZCRC(datapoint,7,crc)
+				}
+			}
+			else
+			{
+				quit
+			}
+		}
+		set query=$QUERY(@query)
+ 	}
+	quit crc
+]]></Implementation>
+</Method>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Move whole globals. This will find and move globals according to the (wildcard) pattern supplied.
+
+]]></Content>
+</UDLText>
+
+<Method name="MoveGlobalWildcard">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Global:%String,FromDB:%String,ToDB:%String,forreal:%Boolean,mergesubs:%Boolean=0</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	// validate and the database paths in question
+	quit:..databaseCheck(FromDB,ToDB,.FromDBinfo,.ToDBinfo)=0 0
+	// if we are not merging, check for this global in the destination TODO subscripting TODO
+	if mergesubs
+	{
+		// we are operating in a risky mode and data can get overwritten so get confirmation
+		write "Global """_Global_""" will be merged from source """_FromDB_""" to """_ToDB_""", potentially overwriting data.",!
+		if '..confirmation("YeS","nO")
+		{
+			// we chickened out
+			write "Not going ahead with merge!",!,!
+			quit 1	// we assume this is a non-error condidtion
+		}
+	}
+	else
+	{
+		// play safe and check for existing globals
+		set rs=##class(%ResultSet).%New("%SYS.GlobalQuery:DirectoryList")
+		do rs.Execute(FromDBinfo("Directory"),"",Global,0,0,0)
+		set err=0
+		while rs.Next()
+		{
+	//w "> "_"^|""^^"_ToDBinfo("Directory")_"""|"_rs.Data("Name"),!
+			if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_rs.Data("Name")))>0
+			{
+				write "Global exists in """_ToDB_""": ^"_rs.Data("Name"),!
+				set err=1
+			}
+		}
+		if err
+		{
+			write "FATAL - refuse to move globals if they exist in destination",!
+			quit 0
+		}
+	}
+	// check for this global in the source
+	set rs=##class(%ResultSet).%New("%SYS.GlobalQuery:DirectoryList")
+	do rs.Execute(FromDBinfo("Directory"),"",Global,0,0,0)
+	set err=0
+	set count=0
+	while rs.Next()
+	{
+		set count=count+1
+	}
+	if count=0
+	{
+		write "FATAL - no global """_Global_""" exist in source",!
+		quit:forreal 0	// only if we are running for real
+	}
+	// bail if we are not forreal
+	if 'forreal quit 1
+	// find matching globals in source and move them one-by-one
+	set rs=##class(%ResultSet).%New("%SYS.GlobalQuery:DirectoryList")
+	do rs.Execute(FromDBinfo("Directory"),"",Global,0,0,0)
+	set srccrc=0
+	set dstcrc=0
+	set i=1
+	while rs.Next()
+	{
+		// generate checksum for verification
+		set srccrc=..globalCRC(rs.Data("Name"),FromDBinfo("Directory"),FromDBinfo("Directory"),srccrc)
+		// merge data
+		write "Merging ^|""^^"_FromDBinfo("Directory")_"""|"_rs.Data("Name")_" to ^|""^^"_ToDBinfo("Directory")_"""|"_rs.Data("Name"),!
+		MERGE @("^|""^^"_ToDBinfo("Directory")_"""|"_rs.Data("Name"))=@("^|""^^"_FromDBinfo("Directory")_"""|"_rs.Data("Name"))
+		set moved(i)="^|""^^"_FromDBinfo("Directory")_"""|"_rs.Data("Name")
+		set i=i+1
+		// generate checksum for verification
+		if mergesubs
+		{
+			// we can end up with extra (existing) destination data - walk source structure only
+			set dstcrc=..globalCRC(rs.Data("Name"),FromDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+		}
+		else
+		{
+			// data should be identical at both sides
+			set dstcrc=..globalCRC(rs.Data("Name"),ToDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+		}
+	}
+	// verify CRCs match - ie. data is the same
+	write FromDB_", Global "_Global_" CRC="_srccrc,!
+	write ToDB_", Global "_Global_" CRC="_dstcrc,!
+	if dstcrc=srccrc
+	{
+		write "Good Merge - CRCs match",!
+	}
+	elseif mergesubs
+	{
+		write "WARNING - CRCs don't match",!
+		write "Press Return to continue or Control-C to abort",!
+		read null
+	}
+	else
+	{
+		write "ERROR - CRCs don't match",!
+		quit 0
+	}
+	// confirm remove
+	write "Remove merged globals from source """_FromDB_"""?",!
+	if ..confirmation("yEs","nO")
+	{
+		write "Removing globals",!
+		set i=1
+		while $DATA(moved(i))>0
+		{
+			write "Remove "_(moved(i)),!
+			kill @(moved(i))
+			set i=i+1
+		}
+	}
+	quit 1
+]]></Implementation>
+</Method>
+
+<Method name="MoveGlobalSub">
+<Description>
+Move specific subscripts of a global. This doesn't accept any patterns / wildcards.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Global:%String,FromDB:%String,ToDB:%String,forreal:%Boolean,mergesubs:%Boolean=0</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	// validate and the database paths in question
+	quit:..databaseCheck(FromDB,ToDB,.FromDBinfo,.ToDBinfo)=0 0
+	// if we are not merging, check for this global in the destination
+	if mergesubs
+	{
+		// we are operating in a risky mode and data can get overwritten so get confirmation
+		write "Global """_Global_""" will be merged from source """_FromDB_""" to """_ToDB_""", potentially overwriting data.",!
+		if '..confirmation("YeS","nO")
+		{
+			// we chickened out
+			write "Not going ahead with merge!",!,!
+			quit 1	// we assume this is a non-error condidtion
+		}
+	}
+	else
+	{
+		// play safe and check for existing globals
+		if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global))>0
+		{
+			write "Global exists in """_ToDB_""": ^"_Global,!
+			write "FATAL - refuse to move globals if they exist in destination",!
+			quit 0
+		}
+		// check for this global in the source
+		if $DATA(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global))=0
+		{
+			write "Global doesn't exist in """_FromDB_""": ^"_Global,!
+			write "FATAL - can't move non-existant globals",!
+			quit:forreal 0	// only if we are running for real
+		}
+	}
+	// bail if we are not forreal
+	if 'forreal quit 1
+	// generate checksum for verification
+	set srccrc=..globalCRC(Global,FromDBinfo("Directory"),FromDBinfo("Directory"))
+	// merge data
+	write "Merging ^|""^^"_FromDBinfo("Directory")_"""|"_Global_" to ^|""^^"_ToDBinfo("Directory")_"""|"_Global,!
+	MERGE @("^|""^^"_ToDBinfo("Directory")_"""|"_Global)=@("^|""^^"_FromDBinfo("Directory")_"""|"_Global)
+	// generate checksum for verification
+	set dstcrc=0
+	set query="^|""^^"_ToDBinfo("Directory")_"""|"_Global
+	if $EXTRACT(query,$LENGTH(query))=")"
+	{
+		set match=$EXTRACT(query,1,$LENGTH(query)-1)
+	}
+	else
+	{
+		set match=query
+	}
+	if mergesubs
+	{
+		// we can end up with extra (existing) destination data
+		set dstcrc=..globalCRC(Global,FromDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+	}
+	else
+	{
+		// data should be identical at both sides
+		set dstcrc=..globalCRC(Global,ToDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+	}
+	// verify CRCs match - ie. data is the same
+	write FromDB_", Global "_Global_" CRC="_srccrc,!
+	write ToDB_", Global "_Global_" CRC="_dstcrc,!
+	if dstcrc=srccrc
+	{
+		write "Good Merge - CRCs match",!
+	}
+	elseif mergesubs
+	{
+		write "WARNING - CRCs don't match",!
+		write "Press Return to continue or Control-C to abort",!
+		read null
+	}
+	else
+	{
+		write "ERROR - CRCs don't match",!
+		quit 0
+	}
+	// confirm remove
+	write "Remove merged globals from source """_FromDB_"""?",!
+	if ..confirmation("yeS","NO")
+	{
+		write "Removing global",!
+		write "Remove "_Global,!
+		kill @("^|""^^"_FromDBinfo("Directory")_"""|"_Global)
+		// check parent node for empty
+		set len=$LENGTH(Global,",")
+		if len=1
+		{
+			// parent is the global - strip brackets
+			set parent=$PIECE(Global,"(",1)
+		}
+		else
+		{
+			set parent=$PIECE(Global,",",1,len-1)_")"
+		}
+		if $DATA(@("^|""^^"_FromDBinfo("Directory")_"""|"_parent))=0
+		{
+			write "Parent node """_parent_""" also empty so clearing that also",!
+			kill @("^|""^^"_FromDBinfo("Directory")_"""|"_parent)
+		}
+	}
+	quit 1
+]]></Implementation>
+</Method>
+
+<Method name="MoveGlobalSubRange">
+<Description>
+This moves ranges of subscripted globals (no wildcards). Useful for Trak globals like AUD, websys.Log etc. that need to be distributed between databases.</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>GlobalRange:%String,FromDB:%String,ToDB:%String,forreal:%Boolean,mergesubs:%Boolean=0</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	// find global, plus subscritp min and max
+	set Global=$PIECE(GlobalRange,"(",1)
+	set GlobalMin=$PIECE($PIECE(GlobalRange,"(",2),")",1)
+	set GlobalMax=$PIECE($PIECE(GlobalRange,"(",3),")",1)
+ //	w Global_" :: "_GlobalMin_" : "_GlobalMax,!
+ 
+ 
+	// validate and the database paths in question
+	quit:..databaseCheck(FromDB,ToDB,.FromDBinfo,.ToDBinfo)=0 0
+	// if we are not merging, check for this global in the destination
+	if mergesubs
+	{
+		// we are operating in a risky mode and data can get overwritten so get confirmation
+		write "Global """_Global_""" will be merged from source """_FromDB_""" to """_ToDB_""", potentially overwriting data.",!
+		if '..confirmation("YeS","nO")
+		{
+			// we chickened out
+			write "Not going ahead with merge!",!,!
+			quit 1	// we assume this is a non-error condidtion
+		}
+	}
+	else
+	{
+		// play safe and check for existing globals
+		set err=0
+		set FoundMin=$ORDER(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_GlobalMin_")"))
+		set FoundMax=$ORDER(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_GlobalMax_")"),-1)
+		if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_GlobalMin_")"))>0 set FoundMin=GlobalMin
+		if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_GlobalMax_")"))>0 set FoundMax=GlobalMax
+		if (FoundMin'="")&&(((FoundMin>=GlobalMin)&&(FoundMin<=GlobalMax))||((FoundMax<=GlobalMin)&&(FoundMax>=GlobalMax)))
+		{
+			// range overlap
+			write "Global range overlaps existing in """_ToDB_""": ^"_Global_"("_FoundMin_"):("_FoundMax_")",!
+			write "FATAL - refuse to move globals if they exist in destination",!
+			quit 0
+		}
+		// check for this global in the source TODO get smarter about this and check the range exists		TODO check the range?
+		if $DATA(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global))=0
+		{
+			write "Global doesn't exist in """_FromDB_""": ^"_Global,!
+			write "FATAL - can't move non-existant globals",!
+			quit:forreal 0	// only if we are running for real
+		}
+	}
+	// bail if we are not forreal
+	if 'forreal quit 1
+	// itterate through the source merging and checksumming as we go
+	write "Merging ^|""^^"_FromDBinfo("Directory")_"""|"_GlobalRange_" to ^|""^^"_ToDBinfo("Directory")_"""|"_GlobalRange,!
+	set srccrc=0
+	set i=GlobalMin
+	while (i'="")&&(i<=GlobalMax)
+	{
+		if $DATA(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")"))>0
+		{
+	//w "merge: "_i,!
+	// TODO crc slows things down massively - 
+			set srccrc=..globalCRC(Global_"("_i_")",FromDBinfo("Directory"),FromDBinfo("Directory"),srccrc)	
+			MERGE @("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_i_")")=@("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")")
+		}
+		set i=$ORDER(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")"))
+	}
+	// generate checksum for verification
+ w "checksum ....",!
+	set dstcrc=0
+	set i=GlobalMin
+	if mergesubs
+	{
+		// we can end up with extra (existing) destination data - has to be done against source subscripts incase interleaving occurs with existing
+		while (i'="")&&(i<=GlobalMax)
+		{
+			if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_i_")"))>0
+			{
+	//w "crc1: "_i,!
+				set dstcrc=..globalCRC(Global_"("_i_")",FromDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+			}
+			set i=$ORDER(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")"))
+		}
+	}
+	else
+	{
+		// data should be identical at both sides - walk only destination
+		while (i'="")&&(i<=GlobalMax)
+		{
+			if $DATA(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_i_")"))>0
+			{
+	//w "crc2: "_i,!	// 34sec
+				set dstcrc=..globalCRC(Global_"("_i_")",ToDBinfo("Directory"),ToDBinfo("Directory"),dstcrc)
+			}
+			set i=$ORDER(@("^|""^^"_ToDBinfo("Directory")_"""|"_Global_"("_i_")"))
+		}
+	}
+	// verify CRCs match - ie. data is the same
+	write FromDB_", Global "_Global_" CRC="_srccrc,!
+	write ToDB_", Global "_Global_" CRC="_dstcrc,!
+	if dstcrc=srccrc
+	{
+		write "Good Merge - CRCs match",!
+	}
+	elseif mergesubs
+	{
+		write "WARNING - CRCs don't match - possibly due to merge",!
+		write "Press Return to continue or Control-C to abort",!
+		read null
+	}
+	elseif mergesubs
+	{
+		write "WARNING - CRCs don't match - possibly due to merge",!
+		write "Press Return to continue or Control-C to abort",!
+		read null
+	}
+	else
+	{
+		write "ERROR - CRCs don't match",!
+		quit 0
+	}
+	// confirm remove
+	write "Remove merged globals from source """_FromDB_"""?",!
+	if ..confirmation("yeS","NO")
+	{
+		write "Removing global",!
+		write "Remove "_GlobalRange,!	
+ //TODO - kill individual nodes off
+		set i=GlobalMin
+		while (i'="")&&(i<=GlobalMax)
+		{
+			kill @("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")")
+			set i=$ORDER(@("^|""^^"_FromDBinfo("Directory")_"""|"_Global_"("_i_")"))
+		}
+		// check parent node for empty
+		set len=$LENGTH(Global,",")
+		if len=1
+		{
+			// parent is the global - strip brackets
+			set parent=$PIECE(Global,"(",1)
+		}
+		else
+		{
+			set parent=$PIECE(Global,",",1,len-1)_")"
+		}
+		if $DATA(@("^|""^^"_FromDBinfo("Directory")_"""|"_parent))=0
+		{
+			write "Parent node """_parent_""" also empty so clearing that also",!
+			kill @("^|""^^"_FromDBinfo("Directory")_"""|"_parent)
+		}
+	}
+	quit 1
+	// TODO
+	quit 1
+]]></Implementation>
+</Method>
+
+<Method name="MoveFromCSV">
+<Description>
+Take a list of moves in a .csv and execute them.
+Input file is in the format global,fromDB,toDB,mergesubs(bool),optional notes</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Path:%String,forreal:%Boolean,journal:%Boolean=0</FormalSpec>
+<Implementation><![CDATA[
+	if 'journal
+	{
+		do DISABLE^%NOJRN
+	}
+	if 'forreal
+	{
+		write !,"IMPORTANT - Running in NOT ""forreal"" (dry run) Mode",!,!
+	}
+	set fh=##class(%File).%New(Path)
+	set fh.LineTerminator=$CHAR(10)
+	do fh.Open("RU")
+	while 'fh.AtEnd
+	{
+		set line=fh.ReadLine()
+		set $EXTRACT(line,$FIND(line,$CHAR(13))-1)=""	// tidy up DOS text
+		if line="" quit
+		write "----------",!
+		write "processing: "_line,!
+		set global=..csvDigest(.line)
+		set from=..csvDigest(.line)
+		set to=..csvDigest(.line)
+		set mergesubs=..csvDigest(.line)
+		// figure out which way to process
+		if $FIND(global,"):(")>0
+		{
+			// not supported right now but in progress - would need to itterate with $ORDER TODO
+			quit:..MoveGlobalSubRange(global,from,to,forreal,mergesubs)=0
+		}
+		elseif $FIND(global,"(")>0
+		{
+			// this is a subscripted global
+			quit:..MoveGlobalSub(global,from,to,forreal,mergesubs)=0
+		}
+		else
+		{
+			// complete or wildcarded global
+			quit:..MoveGlobalWildcard(global,from,to,forreal,mergesubs)=0
+		}
+		write "OK",!
+	}
+	do fh.Close()
+	if 'forreal
+	{
+		write !,"IMPORTANT - Running in NOT ""forreal"" (dry run) Mode",!,!
+	}
+	if 'journal
+	{
+		do ENABLE^%NOJRN
+	}
+]]></Implementation>
+</Method>
+
+<Method name="LocateGlobalWildcard">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Global:%String,DatabasePrefix:%String=""</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	set dbrs=##class(%ResultSet).%New("Config.Databases.List")
+	do dbrs.Execute("*")
+	set dbcount=0
+	while dbrs.Next()
+	{
+		// skip databases that don't match
+		if (DatabasePrefix'="")&&($FIND(dbrs.Data("Name"),DatabasePrefix)'=($LENGTH(DatabasePrefix)+1)) continue
+ //		w "Searching: "_dbrs.Data("Name")_" - "_dbrs.Data("Directory"),!,!
+		// check for this global in the source
+		set rs=##class(%ResultSet).%New("%SYS.GlobalQuery:DirectoryList")
+		do rs.Execute(dbrs.Data("Directory"),"",Global,0,0,0)
+		set count=0
+		while rs.Next()
+		{
+			set count=count+1
+		}
+		if count>0
+		{
+			write "FOUND - global """_Global_""" in "_dbrs.Data("Name"),!
+			set dbcount=dbcount+1
+		}
+	}
+	if dbcount=0
+	{
+		write "WARNING - global """_Global_""" not found",!
+	}
+	quit dbcount
+]]></Implementation>
+</Method>
+
+<Method name="LocateGlobalSub">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Global:%String,DatabasePrefix:%String=""</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	set dbrs=##class(%ResultSet).%New("Config.Databases.List")
+	do dbrs.Execute("*")
+	set dbcount=0
+	while dbrs.Next()
+	{
+		// skip databases that don't match
+		if (DatabasePrefix'="")&&($FIND(dbrs.Data("Name"),DatabasePrefix)'=($LENGTH(DatabasePrefix)+1)) continue
+ //		w "Searching: "_dbrs.Data("Name")_" - "_dbrs.Data("Directory"),!,!
+		// check for this global in the source
+		if $DATA(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global))>0
+		{
+			write "FOUND - global """_Global_""" in "_dbrs.Data("Name"),!
+			set dbcount=dbcount+1
+		}
+	}
+	if dbcount=0
+	{
+		write "WARNING - global """_Global_""" not found",!
+	}
+	quit dbcount
+]]></Implementation>
+</Method>
+
+<Method name="LocateGlobalSubRange">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>GlobalRange:%String,DatabasePrefix:%String=""</FormalSpec>
+<ReturnType>%Boolean</ReturnType>
+<Implementation><![CDATA[
+	// find global, plus subscritp min and max
+	set Global=$PIECE(GlobalRange,"(",1)
+	set GlobalMin=$PIECE($PIECE(GlobalRange,"(",2),")",1)
+	set GlobalMax=$PIECE($PIECE(GlobalRange,"(",3),")",1)
+ //	w Global_" :: "_GlobalMin_" : "_GlobalMax,!
+	// on with searching databases
+	set dbrs=##class(%ResultSet).%New("Config.Databases.List")
+	do dbrs.Execute("*")
+	set dbcount=0
+	while dbrs.Next()
+	{
+		// skip databases that don't match
+		if (DatabasePrefix'="")&&($FIND(dbrs.Data("Name"),DatabasePrefix)'=($LENGTH(DatabasePrefix)+1)) continue
+ //		w "Searching: "_dbrs.Data("Name")_" - "_dbrs.Data("Directory"),!,!
+		// check for this global in the source
+		if $DATA(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global))>0
+		{
+ //			write "FOUND - global """_Global_""" in "_dbrs.Data("Name"),!
+	 		set FoundMin=$ORDER(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global_"("_GlobalMin_")"))
+			set FoundMax=$ORDER(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global_"("_GlobalMax_")"),-1)
+			if $DATA(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global_"("_GlobalMin_")"))>0 set FoundMin=GlobalMin
+			if $DATA(@("^|""^^"_dbrs.Data("Directory")_"""|"_Global_"("_GlobalMax_")"))>0 set FoundMax=GlobalMax				
+			if ((FoundMin>=GlobalMin)&&(FoundMin<=GlobalMax))||((FoundMax<=GlobalMin)&&(FoundMax>=GlobalMax))
+			{
+				// found in range
+				set dbcount=dbcount+1
+				write "FOUND - global """_Global_"("_FoundMin_"):("_FoundMax_")"" in "_dbrs.Data("Name"),!
+			}
+		}
+	}
+	if dbcount=0
+	{
+		write "WARNING - global """_GlobalRange_""" not found",!
+	}
+	quit dbcount
+]]></Implementation>
+</Method>
+
+<Method name="LocateFromCSV">
+<Description>
+Take a list of Global patterns (first column) in a .csv and locate those Globals in all databases</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Path:%String,DatabasePrefix:%String=""</FormalSpec>
+<Implementation><![CDATA[
+	set fh=##class(%File).%New(Path)
+	set fh.LineTerminator=$CHAR(10)
+	do fh.Open("RU")
+	while 'fh.AtEnd
+	{
+		set line=fh.ReadLine()
+		set $EXTRACT(line,$FIND(line,$CHAR(13))-1)=""	// tidy up DOS text
+		if line="" quit
+		set global=..csvDigest(.line)
+		write "----------",!
+		if global="*"
+		{
+			write "NOTE - skipping wildcard ""*""",!
+			continue
+		}
+		// figure out which way to process
+		if $FIND(global,"):(")>0
+		{
+			// not supported right now but in progress - would need to itterate with $ORDER TODO
+			quit:..LocateGlobalSubRange(global,DatabasePrefix)=0
+		}
+		elseif $FIND(global,"(")>0
+		{
+			// this is a subscripted global
+			quit:..LocateGlobalSub(global,DatabasePrefix)=0
+		}
+		else
+		{
+			// complete or wildcarded global
+			quit:..LocateGlobalWildcard(global,DatabasePrefix)=0
+		}
+	}
+	do fh.Close()
+]]></Implementation>
+</Method>
+</Class>
+</Export>

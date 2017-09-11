@@ -1,0 +1,30 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <path to zCustom.TrakOnlinebackup.....xml>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+# get logged in and into the right namespace
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"%SYS\"\r" }
+	}
+	-re ".*>" { send "zn \"%SYS\"\r" }
+}
+# load in the backup class
+send "do \$system.OBJ.Load(\"[lindex $argv 1]\",\"ck\")\r"
+# activate it
+expect "%SYS>" { send "do ##class(zCustom.CheckSNMP).Setup()\r" }
+# set [Monitor]SNMPEnabled=1
+expect "%SYS>" { send "set mon=##Class(Config.Monitor).Open()\r" }
+expect "%SYS>" { send "set mon.SNMPEnabled=1\r" }
+expect "%SYS>" { send "write mon.%Save()\r" }
+# all done
+expect "%SYS>" { send "\r" }
+expect "%SYS>" { send "h\r" }
+send_user "\n"
+
+
+
+
+

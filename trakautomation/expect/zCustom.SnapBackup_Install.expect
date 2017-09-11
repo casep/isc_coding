@@ -1,0 +1,84 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <path to zCustom.SnapBackup.....xml>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+# get logged in and into the right namespace
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"%SYS\"\r" }
+	}
+	-re ".*>" { send "zn \"%SYS\"\r" }
+}
+# now figure out if we need to add this user and if so get on with it
+expect "%SYS>" { send "write ##class(Security.Users).Exists(\"cachebackup\")\r" }
+expect {
+	"1" {}
+	"0" {
+		expect "%SYS>" { send "d ##Class(Security.Users).Create(\"$env(CACHEBACKUP)\",\"%ALL\",\"$env(CACHEPASS)\",\"Cache Backup user\",\"\",\"\",\"\",0,1,\"\",1,\"\",\"\",\"\",1,1)\r" }
+	}
+}
+# enable Operating System Security
+expect "%SYS>" { send "do ^SECURITY\r" }
+expect -re "(\[0-9\]*)\\) System parameter setup" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect -re "(\[0-9\]*)\\) Edit authentication options" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+set done 0
+set origtimeout $timeout
+set timeout 2
+while { $done == 0 } {
+	expect {
+		"Allow Operating System authentication?" { send "Yes\r" }
+		"Confirm changes to authentication options?" {
+			send "\r"
+			set done 1
+		}
+		default { send "\r" }
+	}
+}
+set timeout $origtimeout
+expect "Option?" { send "\r" }
+# enable Operating System Security for %Terminal
+expect -re "(\[0-9\]*)\\) Service setup" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect -re "(\[0-9\]*)\\) Edit service" {
+	expect "Option?" { send "$expect_out(1,string)\r" }
+}
+expect "Service to edit?" { send "%Service_Terminal\r" }
+expect "Enabled?" { send "\r" }
+set done 0
+set timeout 2
+while { $done == 0 } {
+	expect {
+		"Allow Operating System authentication?" { send "Yes\r" }
+		"Confirm changes to service" {
+			send "\r"
+			set done 1
+		}
+		default { send "\r" }
+	}
+}
+set timeout $origtimeout
+expect "Service to edit?" { send "\r" }
+set done 0
+while { $done == 0 } {
+	expect {
+		"Option?" { send "\r" }
+		"%SYS>" { set done 1 }
+	}
+}
+# load in the backup class
+send "do \$system.OBJ.Load(\"[lindex $argv 1]\",\"ck\")\r"
+# all done
+expect "%SYS>" { send "h\r" }
+send_user "\n"
+
+
+
+
+

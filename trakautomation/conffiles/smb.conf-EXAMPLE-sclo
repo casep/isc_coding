@@ -1,0 +1,135 @@
+[traktemp$]
+ comment = traktemp
+ path = PATHTRAKTEMP
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+ force user = cacheusr ; added to trouble shoot rad transcriptions
+
+[reports$]
+ comment = report
+ path = PATHREPORTS
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[loadfiles$]
+ comment = loadfiles
+ path = PATHLOADFILES
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[appdata$]
+ comment = appdata
+ path = PATHAPPDATA
+ browseable = yes
+ guest ok = yes
+ writeable = no
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[extracts$]
+ comment = extracts
+ path = PATHEXTRACTS
+ browseable = yes
+ read only = no
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[templates$]
+ comment = Templates
+ path = PATHTEMPLATES
+ browseable = yes
+ guest ok = yes
+ writeable = no
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[newwaysext$]
+ comment = newwaysext
+ path = PATHNEWWAYSEXT
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[sciattachements$]
+ comment = basesciattachaments
+ path = PATHSCIATTACHMENTS
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[upload$]
+ comment = upload
+ path = PATHUPLOADS
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[icnet$]
+ comment = ICNET Extracts
+ path = PATHICNET
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[appdataxfer$]
+ comment = Temp appdata tranfer
+ path = PATHAPPDATAXFERS
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[xmlimex$]
+ comment = XML im export folder
+ path = PATHXMLIMEX
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[web$]
+ comment = Production Web Folder (Read Only)
+ path = PATHWEB
+ guest ok = yes
+ writeable = no
+ printable = no
+
+[printout$]
+ comment = Dummy queue printout folder
+ path = PATHPRINTOUTS
+ guest ok = yes
+ writeable = yes
+ printable = no
+

@@ -1,0 +1,34 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130722
+# Checks overall CUPS queue age (oldest job)
+# $0 <warning threshold seconds> <critical threshold seconds>
+
+
+# work out the oldest
+cupsoldest() {
+	now=`date +%s`
+	oldest=$now
+	while read line; do
+		jobtime=`date -d "$line" +%s`
+		if [ $jobtime -lt $oldest ]; then oldest=$jobtime; fi
+	done
+	echo $(($now-$oldest))
+}
+queueage=`lpstat -W not-completed -o  | sed 's/^[^ ]\+ \+[^ ]\+ \+[^ ]\+ \+//' | cupsoldest`
+
+msg='CUPS Queue Age'
+if [ -z "$queueage" ]; then
+	echo "UNKNOWN: $msg: Failed to get queue stats"
+	exit 3
+elif [ $queueage -ge $2 ]; then
+	echo "CRITICAL: $msg: $queueage sec (>= $2)"
+	exit 2
+elif [ $queueage -ge $1 ]; then
+	echo "WARNING: $msg: $queueage sec (>= $1)"
+	exit 1
+else
+	echo "OK: $msg: $queueage sec (< $1)"
+	exit 0
+fi
+
+

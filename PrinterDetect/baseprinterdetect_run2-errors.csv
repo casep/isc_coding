@@ -1,0 +1,33 @@
+IP address,Model,Name,Location,Description,Detect Error
+192.168.10.146,ZEBRA,WBTEC,Eye Centre,Wristband,No Ping
+192.168.10.24 ,HP3015,PPR8,Orthotics,OCM and Reports,No Ping
+192.168.14.110,Brother HL6180DW,MAT1,Maternity 1st Floor Dely Suite,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.15.1,HP3500n,KES8,Kes Coding Dedicated Printer,OCM and Reports,No Ping
+192.168.18.183,HP3015,PPR12,BMU (Behind Reception),Letter,No Ping
+192.168.33.19,ZEBRA,WBTHC,Tree House,Wristband,No Ping
+192.168.45.82,Brother HL6180DW,DB2,B2,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.58.3,HP3015,PPR10,"Pain Secretaries(Rm 9, Cedar House",Letter,No SNMP:No HTTP Connect:Unmatched Driver
+192.168.59.4,HP3015,PPR9,Call Centre (Main Office),Letter,No SNMP:No HTTP Connect:Unmatched Driver
+192.168.65.104,Brother HL6180DW,AE6,AE - Main Base for OCM,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.112,HP3005n,EC1,Eye Centre,OCM and Reports,No Ping
+192.168.65.117,HP3005n,TD1,Treehouse Dolphin,OCM and Reports,No Ping
+192.168.65.120,Brother HL6180DW,OPB3,OPB CPS,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.121,Brother HL6180DW,ECG1,ECG Rm 031,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.132,Brother HL6180DW,XAR,X Ray A Reception,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.140,HP3500n,ECT,Theatres - Eye Centre,OCM and Reports,No Ping
+192.168.65.143,Brother HL6180DW,THE8,Theatres 8 and 9,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.144,Brother HL6180DW,THE10,Theatres 10 and 11,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.15,FS-4100DN(Kyocera),MAT10,Maternity Medical Records,A5 barcode label,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.150,Brother HL6180DW,MAF3,Maternity 3rd Floor,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.176,Brother HL6180DW,MRD2,Call Centre,Letter,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.194,HP3005n,MATR,Maternity Theatre Recovery,OCM and Reports,No Ping
+192.168.65.195,Brother HL6180DW,DDCT,Devonshire Centre,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.21,HP3015 now HP laserjet M506,PR8,Call Centre,Letter,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.22,,CHE2,Chest Clinic,Letter,No Ping
+192.168.65.23,FS-4100DN(Kyocera),CNT1,Chest Clinic,A5 barcode label,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.24,HP3500n,DTR1,Pathology Dept.,OCM and Reports,No Ping
+192.168.65.51,FS-4100DN(Kyocera),JS1,Jasmine Suite Labels Printer,A5 barcode label,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.7,Brother HL6300DW,JS2,Jasmine Suite Letters Printer,OCM and Reports,No Ping
+192.168.65.77,HP3005n,DD2,D2,OCM and Reports,No Ping
+192.168.65.8,FS-4100DN(Kyocera),CNT8,DMOP,A5 barcode label,No Match from SNMP:No Match from HTTP:Unmatched Driver
+192.168.65.99,Brother HL6180DW,LIS1,Lilac Suite,OCM and Reports,No Match from SNMP:No Match from HTTP:Unmatched Driver

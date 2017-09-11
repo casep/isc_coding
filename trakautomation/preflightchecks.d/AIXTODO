@@ -1,0 +1,22 @@
+
+
+./preflightchecks.d/NagiosGroup.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSDefaultRoute.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSDiskUsage.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSDNSLookup.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSDNS.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSeth0.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OShosts.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSHugePages2.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSMail2root.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSMailServer.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSServices.sh: FATAL - can't find version specific function "checkservices_AIX_6_1_0_0" or any less specific functions down to "checkservices_Unix"
+./preflightchecks.d/OSSubscriptions.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSswappiness2.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSSwapUsage.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+./preflightchecks.d/OSZombies.sh: FATAL - can't find version specific function "check_AIX_6_1_0_0" or any less specific functions down to "check_Unix"
+
+wget not found.
+w3m not found.
+
+

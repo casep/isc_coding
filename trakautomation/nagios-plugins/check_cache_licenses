@@ -1,0 +1,74 @@
+#!/bin/sh
+# Usage: $0 [ignore instance] .....
+
+
+checkinstances() {
+	while read line; do
+		instance=`echo $line | cut -d^ -f1`
+		for exclude in $@; do
+			if [ $instance = $exclude ]; then continue 2; fi
+		done
+		path=`echo $line | cut -d^ -f2`
+		if [ -f $path/mgr/cache.key ]; then
+			expires=`grep ^ExpirationDate= $path/mgr/cache.key | cut -d= -f2`
+			expiressec=`date --date=$expires +%s`
+			if [ -z "$expires" -o -z "$expiressec" ]; then
+				instunknown="$instunknown, $instance can't determine expiry"
+			else
+				rel=$((($expiressec-`date +%s`)/86400))
+				if [ $rel -le 30 ]; then
+					instwarn="$instwarn, $instance expires in $rel days"
+				elif [ $rel -le 7 ]; then
+					instcritical="$instcritical, $instance expires in $rel days"
+				else
+					instok="$instok, $instance expires in $rel days"
+				fi
+			fi
+		else
+			instcritical="$instwarn, $instance no license"
+		fi
+
+	done
+	status=0
+	txtstatus=OK
+	if [ ! -z "$instcritical" ]; then
+		if [ $status -eq 0 ]; then
+			status=2
+			txtstatus=CRITICAL
+		fi
+		message="$message$instcritical"
+	fi
+	if [ ! -z "$instwarn" ]; then
+		if [ $status -eq 0 ]; then
+			status=1
+			txtstatus=WARNING
+		fi
+		message="$message$instwarn"
+	fi
+	if [ ! -z "$instunknown" ]; then
+		if [ $status -eq 0 ]; then
+			status=3
+			txtstatus=UNKNOWN
+		fi
+		message="$message$instunknown"
+	fi
+	if [ ! -z "$instok" ]; then
+		if [ $status -eq 0 ]; then
+			message="$instok"
+		fi
+	else
+		if [ $status -eq 0 ]; then
+			message="No Instances Found"
+			status=3
+			txtstatus=UNKNOWN
+		fi
+	fi
+	message=`echo "$message" | sed 's/^, //'`
+	echo "$txtstatus: Cache License Status: $message"
+	return $status
+}
+
+
+# check all instances
+ccontrol qlist | checkinstances $@
+exit $?

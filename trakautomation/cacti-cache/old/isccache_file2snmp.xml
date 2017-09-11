@@ -1,0 +1,377 @@
+<interface>
+        <name>Get Caché stats : Instances (file2snmp)</name>
+        <index_order_type>numeric</index_order_type>
+        <oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFinstances"</oid_index>
+
+        <fields>
+                <ISCCacheFIndex>
+                        <name>Index</name>
+                        <method>walk</method>
+                        <source>value</source>
+                        <direction>input</direction>
+        		<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFinstances"</oid>
+                </ISCCacheFIndex>
+<!--
+                <ISCCacheDescr>
+                        <name>Description</name>
+                        <method>walk</method>
+                        <source>value</source>
+                        <direction>input</direction>
+                        <oid>.1.3.6.1.4.1.16563.1.1.1.1.5</oid>
+                </ISCCacheFCacheDescr>
+-->
+
+		<ISCCacheFApplicationErrors>
+			<name>Instance : ApplicationErrors</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFApplicationErrors"</oid>
+		</ISCCacheFApplicationErrors>
+		<ISCCacheFCSPSessions>
+			<name>Instance : CSPSessions</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFCSPSessions"</oid>
+		</ISCCacheFCSPSessions>
+		<ISCCacheFCacheEfficiency>
+			<name>Instance : CacheEfficiency</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFCacheEfficiency"</oid>
+		</ISCCacheFCacheEfficiency>
+		<ISCCacheFDatabaseSpace>
+			<name>Instance : DatabaseSpace</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFDatabaseSpace"</oid>
+		</ISCCacheFDatabaseSpace>
+		<ISCCacheFDiskReads>
+			<name>Instance : DiskReads</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFDiskReads"</oid>
+		</ISCCacheFDiskReads>
+		<ISCCacheFDiskWrites>
+			<name>Instance : DiskWrites</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFDiskWrites"</oid>
+		</ISCCacheFDiskWrites>
+		<ISCCacheFECPAppServer>
+			<name>Instance : ECPAppServer</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFECPAppServer"</oid>
+		</ISCCacheFECPAppServer>
+		<ISCCacheFECPAppSrvRate>
+			<name>Instance : ECPAppSrvRate</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFECPAppSrvRate"</oid>
+		</ISCCacheFECPAppSrvRate>
+		<ISCCacheFECPDataServer>
+			<name>Instance : ECPDataServer</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFECPDataServer"</oid>
+		</ISCCacheFECPDataServer>
+		<ISCCacheFECPDataSrvRate>
+			<name>Instance : ECPDataSrvRate</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFECPDataSrvRate"</oid>
+		</ISCCacheFECPDataSrvRate>
+		<ISCCacheFGloRefs>
+			<name>Instance : GloRefs</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFGloRefs"</oid>
+		</ISCCacheFGloRefs>
+		<ISCCacheFJournalEntries>
+			<name>Instance : JournalEntries</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFJournalEntries"</oid>
+		</ISCCacheFJournalEntries>
+		<ISCCacheFJournalSpace>
+			<name>Instance : JournalSpace</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFJournalSpace"</oid>
+		</ISCCacheFJournalSpace>
+		<ISCCacheFJournalStatus>
+			<name>Instance : JournalStatus</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFJournalStatus"</oid>
+		</ISCCacheFJournalStatus>
+		<ISCCacheFJrnBlocks>
+			<name>Instance : JrnBlocks</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFJrnBlocks"</oid>
+		</ISCCacheFJrnBlocks>
+		<ISCCacheFJrnEntries>
+			<name>Instance : JrnEntries</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFJrnEntries"</oid>
+		</ISCCacheFJrnEntries>
+		<ISCCacheFLastBackup>
+			<name>Instance : LastBackup</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLastBackup"</oid>
+		</ISCCacheFLastBackup>
+		<ISCCacheFLicenseCurrent>
+			<name>Instance : LicenseCurrent</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseCurrent"</oid>
+		</ISCCacheFLicenseCurrent>
+		<ISCCacheFLicenseCurrentPct>
+			<name>Instance : LicenseCurrentPct</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseCurrentPct"</oid>
+		</ISCCacheFLicenseCurrentPct>
+		<ISCCacheFLicenseHigh>
+			<name>Instance : LicenseHigh</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseHigh"</oid>
+		</ISCCacheFLicenseHigh>
+		<ISCCacheFLicenseHighPct>
+			<name>Instance : LicenseHighPct</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseHighPct"</oid>
+		</ISCCacheFLicenseHighPct>
+		<ISCCacheFLicenseLimit>
+			<name>Instance : LicenseLimit</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseLimit"</oid>
+		</ISCCacheFLicenseLimit>
+		<ISCCacheFLicenseType>
+			<name>Instance : LicenseType</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLicenseType"</oid>
+		</ISCCacheFLicenseType>
+		<ISCCacheFLockTable>
+			<name>Instance : LockTable</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLockTable"</oid>
+		</ISCCacheFLockTable>
+		<ISCCacheFLogBdata>
+			<name>Instance : LogBdata</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLogBdata"</oid>
+		</ISCCacheFLogBdata>
+		<ISCCacheFLogicalBlocks>
+			<name>Instance : LogicalBlocks</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLogicalBlocks"</oid>
+		</ISCCacheFLogicalBlocks>
+		<ISCCacheFLogicalReads>
+			<name>Instance : LogicalReads</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFLogicalReads"</oid>
+		</ISCCacheFLogicalReads>
+		<ISCCacheFPhysBlockReads>
+			<name>Instance : PhysBlockReads</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFPhysBlockReads"</oid>
+		</ISCCacheFPhysBlockReads>
+		<ISCCacheFPhysBlockWrites>
+			<name>Instance : PhysBlockWrites</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFPhysBlockWrites"</oid>
+		</ISCCacheFPhysBlockWrites>
+		<ISCCacheFProcesses>
+			<name>Instance : Processes</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFProcesses"</oid>
+		</ISCCacheFProcesses>
+		<ISCCacheFRefLocal>
+			<name>Instance : RefLocal</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRefLocal"</oid>
+		</ISCCacheFRefLocal>
+		<ISCCacheFRefRemote>
+			<name>Instance : RefRemote</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRefRemote"</oid>
+		</ISCCacheFRefRemote>
+		<ISCCacheFRefUpdateLocal>
+			<name>Instance : RefUpdateLocal</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRefUpdateLocal"</oid>
+		</ISCCacheFRefUpdateLocal>
+		<ISCCacheFRefUpdateRemove>
+			<name>Instance : RefUpdateRemove</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRefUpdateRemove"</oid>
+		</ISCCacheFRefUpdateRemove>
+		<ISCCacheFRouRefs>
+			<name>Instance : RouRefs</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRouRefs"</oid>
+		</ISCCacheFRouRefs>
+		<ISCCacheFRtnCallsLocal>
+			<name>Instance : RtnCallsLocal</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRtnCallsLocal"</oid>
+		</ISCCacheFRtnCallsLocal>
+		<ISCCacheFRtnCallsRemote>
+			<name>Instance : RtnCallsRemote</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRtnCallsRemote"</oid>
+		</ISCCacheFRtnCallsRemote>
+		<ISCCacheFRtnCommands>
+			<name>Instance : RtnCommands</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRtnCommands"</oid>
+		</ISCCacheFRtnCommands>
+		<ISCCacheFRtnFetchLocal>
+			<name>Instance : RtnFetchLocal</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRtnFetchLocal"</oid>
+		</ISCCacheFRtnFetchLocal>
+		<ISCCacheFRtnFetchRemote>
+			<name>Instance : RtnFetchRemote</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFRtnFetchRemote"</oid>
+		</ISCCacheFRtnFetchRemote>
+		<ISCCacheFSeriousAlerts>
+			<name>Instance : SeriousAlerts</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFSeriousAlerts"</oid>
+		</ISCCacheFSeriousAlerts>
+		<ISCCacheFShadowServer>
+			<name>Instance : ShadowServer</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFShadowServer"</oid>
+		</ISCCacheFShadowServer>
+		<ISCCacheFShadowSource>
+			<name>Instance : ShadowSource</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFShadowSource"</oid>
+		</ISCCacheFShadowSource>
+		<ISCCacheFSystemUpTime>
+			<name>Instance : SystemUpTime</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFSystemUpTime"</oid>
+		</ISCCacheFSystemUpTime>
+		<ISCCacheFThrottleCnt>
+			<name>Instance : ThrottleCnt</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFThrottleCnt"</oid>
+		</ISCCacheFThrottleCnt>
+		<ISCCacheFThrottleCur>
+			<name>Instance : ThrottleCur</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFThrottleCur"</oid>
+		</ISCCacheFThrottleCur>
+		<ISCCacheFThrottleMax>
+			<name>Instance : ThrottleMax</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFThrottleMax"</oid>
+		</ISCCacheFThrottleMax>
+		<ISCCacheFUpdateCnt>
+			<name>Instance : UpdateCnt</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFUpdateCnt"</oid>
+		</ISCCacheFUpdateCnt>
+		<ISCCacheFUpdateLock>
+			<name>Instance : UpdateLock</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFUpdateLock"</oid>
+		</ISCCacheFUpdateLock>
+		<ISCCacheFWriteDaemon>
+			<name>Instance : WriteDaemon</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFWriteDaemon"</oid>
+		</ISCCacheFWriteDaemon>
+
+
+        </fields>
+</interface>

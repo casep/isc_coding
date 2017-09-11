@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks><Task>
+  <Name>Collect Daily pButtons</Name>
+  <RunAsUser>SuperUser</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>false</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>%SYS.Task.RunLegacyTask</TaskClass>
+  <Settings>DQFFeGVjdXRlQ29kZWABVyA2MCBJICRkKF56bWdzdGF0KCskaC0xLDEpKSBTZXQgXnptZ3N0YXQoKyRoLTEsMik9JCRDb2xsZWN0XnBCdXR0b25zKCRnZXQoXnptZ3N0YXQoKyRoLTEsMSkpKQ==</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>%SYS</NameSpace>
+  <TimePeriod>4</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>0</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>1DB6F31A-5405-11E6-B0C0-50568A144500</JobGUID>
+  <RunAfterGUID>C6D5F14C-5402-11E6-A3C5-50568A144500</RunAfterGUID>
+  <StartDate>2016-07-28</StartDate>
+  <LastSchedule>64140,11</LastSchedule>
+  <LastStarted>64140,60</LastStarted>
+  <LastFinished>64140,60</LastFinished>
+  <Error>Success</Error>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Proceed to collect previous days pButtons.</Description>
+  <DisplayRun>After task pButtons (%SYS-ID:1006) completes</DisplayRun>
+  <DisplayInterval>After Task </DisplayInterval>
+  <DisplayStarted>2016-08-10 00:01</DisplayStarted>
+  <DisplayStartDate>2016-07-28</DisplayStartDate>
+  <DisplayEndDate>None</DisplayEndDate>
+  <DisplayDayNextScheduled>1840-12-31</DisplayDayNextScheduled>
+  <DisplayFinished>2016-08-10 00:01</DisplayFinished>
+  <DisplayStatus>1</DisplayStatus>
+  <DisplayNextScheduled>Runs After pButtons (%SYS-ID:1006)</DisplayNextScheduled>
+  <DisplayNextScheduledBrief>Runs After #1006</DisplayNextScheduledBrief>
+  <DisplayRunAfter>pButtons (%SYS-ID:1006)</DisplayRunAfter>
+</Task>
+
+</Tasks>

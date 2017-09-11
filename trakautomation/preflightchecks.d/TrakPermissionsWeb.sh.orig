@@ -1,0 +1,58 @@
+#!/bin/sh -e
+# Checks web/ diretory for the given environment
+
+. ./functions.sh
+
+check_Unix() {
+	# find the relevant cache.cpf in the standard path
+	webdir=`trakpath $SITE $ENV DB$VER`/web/
+	if [ ! -d "$webdir" ]; then
+		echo "=CRITICAL - can't find \"$webdir\""
+		return 0
+	fi
+	errors=0
+	# check all ownership
+	badownership=`find "$webdir" ! -user $CACHEUSR | wc -l | sed 's/ //g'`
+	if [ $badownership -gt 0 ]; then
+		errors=$(($errors+$badownership))
+		echo "=ALERT - $badownership nodes found in \"$webdir\" not owned by \"$CACHEUSR\" (run: find \"$webdir\" ! -user $CACHEUSR)"
+	fi
+	# check all groups (more important)
+	badgroup=`find "$webdir" ! -group $CACHEGRP | wc -l | sed 's/ //g'`
+	if [ $badgroup -gt 0 ]; then
+		errors=$(($errors+$badgroup))
+		echo "=ALERT - $badgroup nodes found in \"$webdir\" not owned by group \"$CACHEGRP\" (run: find \"$webdir\" ! -group $CACHEGRP)"
+	fi
+	# check bad directory permissions
+	baddirperms=`find "$webdir" -type d ! -perm -2770 | wc -l | sed 's/ //g'`
+	if [ $baddirperms -gt 0 ]; then
+		errors=$(($errors+$baddirperms))
+		echo "=ALERT - $baddirperms directories found in \"$webdir\" not with at last 2770 bits set (run: find \"$webdir\" -type d ! -perm -2770)"
+	fi
+	# check bad file permissions
+	badfileperms=`find "$webdir" -type f ! -perm -440 | wc -l | sed 's/ //g'`
+	if [ $badfileperms -gt 0 ]; then
+		errors=$(($errors+$badfileperms))
+		echo "=ALERT - $badfileperms files found in \"$webdir\" not with at last 640 bits set (run: find \"$webdir\" -type f ! -perm -440)"
+	fi
+	# ok if no errors
+	if [ $errors -eq 0 ]; then
+		echo "=OK - permissions in \"$webdir\" are not obviously wrong"
+	fi
+}
+
+
+
+# sanity check
+preflightargs $@
+# get on with the job
+echo "*CHECK - TrakCare web/ Filesystem Permissions"
+checkfieldquit PreUpgrade,TrakBuild,GoLive $STAGE
+checkfieldquit database $FUNCTIONS
+# override user/group based on ownership of mgr/
+export CACHEUSR=`ls -ld \`trakpath $SITE $ENV DB$VER\`/*/mgr/ | awk '{print $3}'`
+export CACHEGRP=`ls -ld \`trakpath $SITE $ENV DB$VER\`/*/mgr/ | awk '{print $4}'`
+
+# would have bailed above if no match
+osspecific check
+

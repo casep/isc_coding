@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Routine name="ZSTU" type="MAC" languagemode="0"><![CDATA[
+ZSTU	; User startup
+	;
+	; ** TrakCare 2009 and later
+	; Atomatically installed template - needs to be customised
+	;
+	; 1. Increase number of per process routine and object buffers
+	;set statusIncreasePerProcRouObjBuffers=$zutil(96,29,"1026,1026,1026")
+	;
+	; 2. Set /Journal=1 qualifier to allow shadow of class compiles
+	;set statusShadowClassCompiles=$SYSTEM.OBJ.SetQualifiers("/journal=1",1,"Compiler")
+	;
+	;
+	; ** All TrakCare versions
+	;
+	; 3. Kill temporary and lock globals
+	;zn "TRAKNAMESPACE"
+	;kill ^websys.Temp,^websys.LockD,^websys.LockI
+	;
+	;
+	; ** Other site specific startup
+	;
+	; 4. HL7 Start - Start all interfaces defined in the Interface Workbench
+	;zn "TRAKNAMESPACE"
+	;set statusStartInterfaces=##class(web.SSHL7).StartAllHL7Interfaces($NAMESPACE)
+	;
+	;
+	; 5. Zen reports - start HotJVM (HSF 2012.2 and later)
+	; This will only ever start one instance, so we don't need to verify if it's already running
+	;set statusRenderServer=##class(%ZEN.Report.RenderServer).Start("FOP-HotJVM")
+	;
+	; Quit
+]]></Routine>
+</Export>

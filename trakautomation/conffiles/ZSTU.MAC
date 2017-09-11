@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Routine name="ZSTU" type="MAC" languagemode="0"><![CDATA[
+ZSTU	; User startup
+	;
+	; ** TrakCare 2009 and later
+	; Atomatically installed template - needs to be customised
+	;
+	; 1. Increase number of per process routine and object buffers
+	set statusIncreasePerProcRouObjBuffers=$zutil(96,29,"1026,1026,1026")
+	;
+	; 2. Set /Journal=1 qualifier to allow shadow of class compiles
+	set statusShadowClassCompiles=$SYSTEM.OBJ.SetQualifiers("/journal=1",1,"Compiler")
+	;
+	;
+	; ** All TrakCare versions
+	;
+	; 3. Kill temporary and lock globals
+	;zn "TRAKNAMESPACE"
+	;kill ^websys.Temp,^websys.LockD,^websys.LockI
+	;
+	;
+	; ** Other site specific startup
+	;
+	; 4. HL7 Start - Start all interfaces defined in the Interface Workbench
+	; -- Does not work use line below --zn "SCGJ-BASE"
+	; -- Does not work use line below --set statusStartInterfaces=##class(web.SSHL7).StartAllHL7Interfaces($NAMESPACE)
+	set statusStartInterfaces=$$StartAllHL7Interfaces("ENND-SCRATCH")	;
+	;
+	; 5. Zen reports - start HotJVM (HSF 2012.2 and later)
+	; This will only ever start one instance, so we don't need to verify if it's already running
+	set statusRenderServer=##class(%ZEN.Report.RenderServer).Start("FOP-HotJVM")
+	;
+	; Quit
+	
+StartAllHL7Interfaces(namespace)
+	new (namespace)
+	s nm=$zu(5)
+	d $zu(5,namespace)
+	; loop through SSHL7 global
+	s c="" f  s c=$o(^SSHL7(c))  q:c=""  d
+	.s code=##Class(%Collation).AlphaUp(c) q:code=""
+	.; extract interface workbench rowid for HL7 interface
+	.s rowid=$o(^SST("INT",0,"Code",code,"")) q:rowid=""
+
+	.s obj=##Class(User.SSInterfaceMonitor).%OpenId(rowid)
+	.i obj d
+	..d obj.INTMONInterfaceDRSetObjectId(rowid)
+	..; set interface workbench active flag for the interface.
+	..; concerned. This must be set to 'Y' for the interface to run
+	..s obj.INTMONActive="Y"
+	..s save=obj.%Save(0)
+	..d obj.%Close()
+
+	.. ; job HL7 interface into background
+	.. ; use the index from the SSHL7 global as it is in the original case  
+	..j Start^HL7(c)
+	d $zu(5,nm)
+	q 1
+
+]]></Routine>
+</Export>

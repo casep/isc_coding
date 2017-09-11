@@ -1,0 +1,75 @@
+<interface>
+        <name>Get Caché stats : WriteDaemon (file2snmp)</name>
+        <index_order_type>numeric</index_order_type>
+        <oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFwritedaemon"</oid_index>
+
+        <fields>
+                <ISCCacheFIndex>
+                        <name>Index</name>
+                        <method>walk</method>
+                        <source>value</source>
+                        <direction>input</direction>
+        		<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFwritedaemon"</oid>
+                </ISCCacheFIndex>
+<!--
+                <ISCCacheDescr>
+                        <name>Description</name>
+                        <method>walk</method>
+                        <source>value</source>
+                        <direction>input</direction>
+                        <oid>.1.3.6.1.4.1.16563.1.1.1.1.5</oid>
+                </ISCCacheFCacheDescr>
+-->
+
+		<ISCCacheFWDCycleStart>
+			<name>WriteDaemon : CycleStart</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFCycleStart"</oid>
+		</ISCCacheFWDCycleStart>
+		<ISCCacheFWDCycleStartSeconds>
+			<name>WriteDaemon : CycleStartSeconds</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFCycleStartSeconds"</oid>
+		</ISCCacheFWDCycleStartSeconds>
+		<ISCCacheFWDCycles>
+			<name>WriteDaemon : Cycles</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFCycles"</oid>
+		</ISCCacheFWDCycles>
+		<ISCCacheFWDIndex>
+			<name>WriteDaemon : Index</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFIndex"</oid>
+		</ISCCacheFWDIndex>
+		<ISCCacheFWDTotBlk>
+			<name>WriteDaemon : TotBlk</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFTotBlk"</oid>
+		</ISCCacheFWDTotBlk>
+		<ISCCacheFWDTotTime>
+			<name>WriteDaemon : TotTime</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFTotTime"</oid>
+		</ISCCacheFWDTotTime>
+		<ISCCacheFWDTotTimeX100>
+			<name>WriteDaemon : TotTime X100</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."ISCCacheFTotTimeX100"</oid>
+		</ISCCacheFWDTotTimeX100>
+
+        </fields>
+</interface>

@@ -1,0 +1,82 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130719
+# Usage: $0 <queue limit> [ignore interface] .....
+
+# File to look at:
+FILE="/var/TCMon/TCMon_Int.mon"
+
+
+checkinterfaces() {
+	threshold=$1
+	shift
+	while read line; do
+		interface=`echo $line | cut -d^ -f1`
+		for exclude in $@; do
+			if [ $interface = $exclude ]; then continue 2; fi
+		done
+		status=`echo $line | cut -d^ -f2`
+		queue=`echo $line | cut -d^ -f3`
+		if [ -z "$queue" ]; then queue=0; fi
+		if [ $queue -ge $threshold ]; then
+			intqueue="$intqueue $interface($queue)"
+		fi
+		if [ -z "$status" ]; then
+			intunknown="$intunknown $interface"
+		elif [ $status = 'D' ]; then
+			intdown="$intdown $interface"
+		elif [ $status = 'U' ]; then
+			intrunning="$intrunning $interface"
+		else
+			intwarn="$intwarn $interface"
+		fi
+	done
+	status=0
+	txtstatus=OK
+	if [ ! -z "$intdown" ]; then
+		if [ $status -eq 0 ]; then
+			status=2
+			txtstatus=CRITICAL
+		fi
+		message="$message, Down:$intdown"
+	fi
+	if [ ! -z "$intwarn" ]; then
+		if [ $status -eq 0 ]; then
+			status=1
+			txtstatus=WARNING
+		fi
+		message="$message, Unexpected:$intwarn"
+	fi
+	if [ ! -z "$intqueue" ]; then
+		if [ $status -eq 0 ]; then
+			status=1
+			txtstatus=WARNING
+		fi
+		message="$message, Queue:$intqueue"
+	fi
+	if [ ! -z "$intunknown" ]; then
+		if [ $status -eq 0 ]; then
+			status=3
+			txtstatus=UNKNOWN
+		fi
+		message="$message, Unknown:$intunknown"
+	fi
+	if [ ! -z "$intrunning" ]; then
+	if [ $status -eq 0 ]; then
+			message="Up:$intrunning"
+		fi
+	else
+		if [ $status -eq 0 ]; then
+			message="No Interfaces Found"
+			status=3
+			txtstatus=UNKNOWN
+		fi
+	fi
+	message=`echo "$message" | sed 's/^, //'`
+	echo "$txtstatus: TrakCare Interface Status: $message"
+	return $status
+}
+
+
+# check all intefaces
+tail -n +2 $FILE | checkinterfaces $@
+exit $?

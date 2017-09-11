@@ -1,0 +1,21 @@
+#!/usr/bin/expect -f
+# takes args: <ApacheConf>
+spawn ./CSPinstall
+expect "enter platform name" { send "lnxrhx64\r" }
+expect "WebServer type" { send "1\r" }
+expect "Please enter location of Apache configuration file" { send "[lindex $argv 0]\r" }
+expect "Enter user name used by Apache server to run it's worker processes" { send "\r" }
+expect "Please enter location of Apache executable file" { send "\r" }
+expect "Please enter destination directory for CSP Gateway files" { send "\r" }
+expect "Do you want to create directory" { send "\r" }
+# this is ugly - we let ie create the local dummy config no matter what
+expect "Please enter hostname of your Cache server" { send "\r" }
+expect "Please enter superserver port number for your Cache server" { send "\r" }
+expect "Please enter Cache configuration name" { send "LOCALHOST\r" }
+expect "Please enter directory for static CSP content" { send "\r" }
+expect "Do you want to create directory" { send "\r" }
+expect "Do you want to continue and perform the installation" { send "\r" }
+# make sure we don't - this seems to break apache on RH, maybe others
+expect "Do you want to restart Apache server" { send "n\r"; interact }
+
+

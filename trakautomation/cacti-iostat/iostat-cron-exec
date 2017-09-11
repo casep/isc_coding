@@ -1,0 +1,1 @@
+/etc/snmp/iostat-cron /var/local/snmp/iostat &

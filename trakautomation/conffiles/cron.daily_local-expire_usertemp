@@ -1,0 +1,4 @@
+#!/bin/sh
+# Expire usertemp/ contents after 14 days
+find /trak/scxx/BASE/store/usertemp/* -uid 2001 -gid 2000 -mtime +14 -delete 2>/dev/null
+exit 0

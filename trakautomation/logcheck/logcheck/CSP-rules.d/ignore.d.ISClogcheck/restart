@@ -1,0 +1,4 @@
+^    Initialization: Apache Parent Process\s?$
+^    Global Configuration Block Initialized: PID=.+; Size=.+;\s?$
+^    Initialization\s?$
+^    The CSP Gateway module '/opt/cspgateway/bin/CSPa22\.so' is loaded \(.+; SHM=Apache\)\s?$

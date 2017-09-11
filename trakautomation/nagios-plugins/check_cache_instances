@@ -1,0 +1,67 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130722
+# Usage: $0 [ignore instance] .....
+
+
+checkinstances() {
+	while read line; do
+		instance=`echo $line | cut -d^ -f1`
+		for exclude in $@; do
+			if [ $instance = $exclude ]; then continue 2; fi
+		done
+		status=`echo $line | cut -d^ -f4 | cut -d, -f1`
+		if [ -z "$status" ]; then
+			instunknown="$instunknown $instance"
+		elif [ $status = 'down' ]; then
+			instdown="$instdown $instance"
+		elif [ $status = 'sign-on inhibited' ]; then
+			instdown="$instdown $instance"
+		elif [ $status = 'running' ]; then
+			instrunning="$instrunning $instance"
+		else
+			instwarn="$instwarn $instance"
+		fi
+	done
+	status=0
+	txtstatus=OK
+	if [ ! -z "$instdown" ]; then
+		if [ $status -eq 0 ]; then
+			status=2
+			txtstatus=CRITICAL
+		fi
+		message="$message, Down:$instdown"
+	fi
+	if [ ! -z "$instwarn" ]; then
+		if [ $status -eq 0 ]; then
+			status=1
+			txtstatus=WARNING
+		fi
+		message="$message, Unexpected:$instwarn"
+	fi
+	if [ ! -z "$instunknown" ]; then
+		if [ $status -eq 0 ]; then
+			status=3
+			txtstatus=UNKNOWN
+		fi
+		message="$message, Unknown:$instunknown"
+	fi
+	if [ ! -z "$instrunning" ]; then
+		if [ $status -eq 0 ]; then
+			message="Running:$instrunning"
+		fi
+	else
+		if [ $status -eq 0 ]; then
+			message="No Instances Found"
+			status=3
+			txtstatus=UNKNOWN
+		fi
+	fi
+	message=`echo "$message" | sed 's/^, //'`
+	echo "$txtstatus: Cache Instance Status: $message"
+	return $status
+}
+
+
+# check all instances
+ccontrol qlist | checkinstances $@
+exit $?

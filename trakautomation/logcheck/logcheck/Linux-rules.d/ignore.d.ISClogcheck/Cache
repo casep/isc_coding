@@ -1,0 +1,14 @@
+ Cache\(\w+\)\[\d+\]: Shutting down Cache 
+ Cache\(\w+\)\[\d+\]: Notifying Clients 
+ Cache\(\w+\)\[\d+\]: No user shutdown routines to execute 
+ Cache\(\w+\)\[\d+\]: Stopping User Jobs 
+ Cache\(\w+\)\[\d+\]: Stopping Network Servers 
+ Cache\(\w+\)\[\d+\]: Withdrawing from License Domain 
+ Cache\(\w+\)\[\d+\]: Waiting for users to stop 
+ Cache\(\w+\)\[\d+\]: Stopping Client Networking 
+ Cache\(\w+\)\[\d+\]: Removing database locks 
+ Cache\(\w+\)\[\d+\]: Updating Journal File 
+ Cache\(\w+\)\[\d+\]: Waiting for database updates to complete 
+ Cache\(\w+\)\[\d+\]: Database updates complete 
+ Cache\(\w+\)\[\d+\]: Stopping System Jobs 
+ Cache\(\w+\)\[\d+\]: Shutdown complete 

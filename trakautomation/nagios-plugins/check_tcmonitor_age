@@ -1,0 +1,65 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130722
+# Checks TCMon files are fresh
+# $0 <warning threshold in sec> <critical threshold in sec>
+
+# The list of files to check
+FILES=`ls /var/TCMon/TCMon_*.mon`
+
+
+
+now=`date +%s`
+for file in $FILES; do
+	mtime=`stat -c %Y $file`
+	age=$(($now-$mtime))
+	if [ -z "$mtime" -o -z "$now" -o -z "$age" ]; then
+		fileunknonw="$fileunknown `basename $file`"
+	elif [ $age -ge $2 ]; then
+		filecritical="$filecritical `basename $file`"
+	elif [ $age -ge $1 ]; then
+		filewarn="$filewarn `basename $file`"
+	else
+		fileok="$fileok `basename $file`"
+	fi
+done
+status=0
+txtstatus=OK
+if [ ! -z "$filecritical" ]; then
+	if [ $status -eq 0 ]; then
+	status=2
+		txtstatus=CRITICAL
+	fi
+	message="$message, Old:$filecritical"
+fi
+if [ ! -z "$filewarn" ]; then
+	if [ $status -eq 0 ]; then
+		status=1
+		txtstatus=WARNING
+	fi
+	message="$message, Stale:$filewarn"
+fi
+if [ ! -z "$fileunknown" ]; then
+	if [ $status -eq 0 ]; then
+		status=3
+		txtstatus=UNKNOWN
+	fi
+	message="$message, Unknown:$fileunknown"
+fi
+if [ ! -z "$fileok" ]; then
+	if [ $status -eq 0 ]; then
+		message="Fresh:$fileok"
+	fi
+else
+	if [ $status -eq 0 ]; then
+		message="No Files Found"
+		status=3
+		txtstatus=UNKNOWN
+	fi
+fi
+
+
+
+message=`echo "$message" | sed 's/^, //'`
+echo "$txtstatus: TCMon File Status: $message"
+exit $status
+

@@ -1,0 +1,58 @@
+<interface>
+	<name>TrakCare Monitoring : Print</name>
+	<!--index_order>tcmonDeviceIndex</index_order-->
+	<index_order_type>numeric</index_order_type>
+	<oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintI"</oid_index>
+
+	<fields>
+
+		<tcmonPrintI>
+			<name>Index</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintI"</oid>
+		</tcmonPrintI>
+
+		<tcmon_PrintErrCurDay>
+			<name>ErrCurDay</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintErrCurDay"</oid>
+		</tcmon_PrintErrCurDay>
+
+		<tcmon_PrintProcsPrtLstHr>
+			<name>ProcsPrtLstHr</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintProcsPrtLstHr"</oid>
+		</tcmon_PrintProcsPrtLstHr>
+
+		<tcmon_PrintProcsInProg>
+			<name>ProcsInProg</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintProcsInProg"</oid>
+		</tcmon_PrintProcsInProg>
+
+		<tcmon_PrintProcsPrtLstMin>
+			<name>ProcsPrtLstMin</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintProcsPrtLstMin"</oid>
+		</tcmon_PrintProcsPrtLstMin>
+
+		<tcmon_PrintProcsInWait>
+			<name>ProcsInWait</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonPrintProcsInWait"</oid>
+		</tcmon_PrintProcsInWait>
+
+	</fields>
+</interface>

@@ -1,0 +1,70 @@
+IP address,Model,CUPS name,CUPS location,CUPS description
+192.168.10.146,ZEBRA,WBTEC,Eye Centre,Wristband
+192.168.10.24 ,HP3015,PPR8,Orthotics,OCM and Reports
+192.168.12.41,ZEBRA,WBEDP,ED Paediatrics,Wristband
+192.168.129.185,HP3015,PPR6,Medical records main library ,Letter
+192.168.132.1,Brother HL6180DW,DC5,C5 (SSOP),OCM and Reports
+192.168.14.103,ZEBRA,WBJW,Jasmine Ward,Wristband
+192.168.14.110,Brother HL6180DW,MAT1,Maternity 1st Floor Dely Suite,OCM and Reports
+192.168.14.122,ZEBRA,WBNNU,Neonatal Unit,Wristband
+192.168.14.71,ZEBRA,WBCOT1,Maternity 1st Floor,Wristband
+192.168.14.79,ZEBRA,WBM1,Maternity 1st Floor,Wristband
+192.168.14.82,ZEBRA,WBBC,Birth Centre,Wristband
+192.168.14.96,ZEBRA,WBM3,Maternity 3rd Floor - MAT Triage,Wristband
+192.168.15.1,HP3500n,KES8,Kes Coding Dedicated Printer,OCM and Reports
+192.168.15.44,HP3015n,MAF4,Maternity 4th Floor,OCM and Reports
+192.168.16.11,ZEBRA,WBEDR,ED Reception,Wristband
+192.168.16.197,HP3015n,AE14,AE - Paediatric Unit,OCM and Reports
+192.168.18.183,HP3015,PPR12,BMU (Behind Reception),Letter
+192.168.19.15,ZEBRA,WBXRA,X-ray A,Wristband
+192.168.28.31,ZEBRA,WBDMOP,DMOP,Wristband
+192.168.33.19,ZEBRA,WBTHC,Tree House,Wristband
+192.168.44.221,ZEBRA,WBMS,Maple Suite,Wristband
+192.168.45.82,Brother HL6180DW,DB2,B2,OCM and Reports
+192.168.5.61,ZEBRA,WBOPT,Out-Patient Theatre,Wristband
+192.168.53.10,ZEBRA,WBEDM,ED Main Base,Wristband
+192.168.56.139,ZEBRA,WBTHA,Tree House,Wristband
+192.168.57.16,HP3015,PPR11,"Treehouse (2nd Floor, Rm 218)Secs",Letter
+192.168.58.3,HP3015,PPR10,"Pain Secretaries(Rm 9, Cedar House",Letter
+192.168.59.155,HP3015,PPR1,Outpatients Booking rm 73 cedar,Letter
+192.168.59.4,HP3015,PPR9,Call Centre (Main Office),Letter
+192.168.65.104,Brother HL6180DW,AE6,AE - Main Base for OCM,OCM and Reports
+192.168.65.110,HP3015n,GOP1,Gynae Outpatients,OCM and Reports
+192.168.65.112,HP3005n,EC1,Eye Centre,OCM and Reports
+192.168.65.117,HP3005n,TD1,Treehouse Dolphin,OCM and Reports
+192.168.65.118,HP3015n,OPB1,OPB IHS,OCM and Reports
+192.168.65.120,Brother HL6180DW,OPB3,OPB CPS,OCM and Reports
+192.168.65.121,Brother HL6180DW,ECG1,ECG Rm 031,OCM and Reports
+192.168.65.128,HP3015n,XBMO,X Ray B Main Office,OCM and Reports
+192.168.65.129,HP3015n,XBV2,X Ray B Viewing Area 2,OCM and Reports
+192.168.65.131,HP3015n,XACT,X Ray A CT Viewing Rm,OCM and Reports
+192.168.65.132,Brother HL6180DW,XAR,X Ray A Reception,OCM and Reports
+192.168.65.133,HP3005n,XMU,Maternity Ultrasound,OCM and Reports
+192.168.65.138,HP3500n,FER1,Fertility Clinic,OCM and Reports
+192.168.65.140,HP3500n,ECT,Theatres - Eye Centre,OCM and Reports
+192.168.65.143,Brother HL6180DW,THE8,Theatres 8 and 9,OCM and Reports
+192.168.65.144,Brother HL6180DW,THE10,Theatres 10 and 11,OCM and Reports
+192.168.65.147,HP3500n,NEO,Neonatal main office,OCM and Reports
+192.168.65.15,FS-4100DN(Kyocera),MAT10,Maternity Medical Records,A5 barcode label
+192.168.65.150,Brother HL6180DW,MAF3,Maternity 3rd Floor,OCM and Reports
+192.168.65.151,HP3015n,EPU,Maternity - EPU - Mat3 - Mat Triage,OCM and Reports
+192.168.65.16,,MAT11,Maternity Medical Records,Letter
+192.168.65.17,HP3015n,MAT12,Maternity Office,OCM and Reports
+192.168.65.176,Brother HL6180DW,MRD2,Call Centre,Letter
+192.168.65.194,HP3005n,MATR,Maternity Theatre Recovery,OCM and Reports
+192.168.65.195,Brother HL6180DW,DDCT,Devonshire Centre,OCM and Reports
+192.168.65.196,HP3015n,DCCL,Cardiac Cath Lab,OCM and Reports
+192.168.65.20,HP3015,PR6,Appointments call centre,Letter
+192.168.65.21,HP3015 now HP laserjet M506,PR8,Call Centre,Letter
+192.168.65.22,,CHE2,Chest Clinic,Letter
+192.168.65.23,FS-4100DN(Kyocera),CNT1,Chest Clinic,A5 barcode label
+192.168.65.24,HP3500n,DTR1,Pathology Dept.,OCM and Reports
+192.168.65.40,HP3015n,DJAS,Jasmine,OCM and Reports
+192.168.65.51,FS-4100DN(Kyocera),JS1,Jasmine Suite Labels Printer,A5 barcode label
+192.168.65.53,HP3015n,DMAU,MAU,OCM and Reports
+192.168.65.7,Brother HL6300DW,JS2,Jasmine Suite Letters Printer,OCM and Reports
+192.168.65.77,HP3005n,DD2,D2,OCM and Reports
+192.168.65.8,FS-4100DN(Kyocera),CNT8,DMOP,A5 barcode label
+192.168.65.97,HP3015n,JAU,Jasmine Asses Unit,OCM and Reports
+192.168.65.99,Brother HL6180DW,LIS1,Lilac Suite,OCM and Reports
+192.168.7.25,HP3525 colour printer,CHC2,"Lung Function,Chest Clinic",OCM and Reports

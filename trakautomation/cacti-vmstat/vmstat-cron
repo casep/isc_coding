@@ -1,0 +1,36 @@
+#!/bin/sh
+# Copyright (C) 2012  Glen Pitt-Pladdy
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+#
+# See: http://www.pitt-pladdy.com/blog/_20121016-192335_0100_vmstat_on_Cacti_via_SNMP/
+#
+# Version 20130405
+
+
+/usr/bin/vmstat -S K 300 2 \
+	| /usr/bin/tail -n1 \
+	| /bin/sed 's/^  *//' \
+	| /bin/sed 's/  */\n/g' \
+	>$1.tmp$$
+if [ `/usr/bin/wc -l <$1.tmp$$` -lt 17 ]; then
+	echo 0 >>$1.tmp$$
+fi
+/bin/grep '^MemTotal:' /proc/meminfo \
+	| /bin/sed 's/^.* \([0-9]\{1,\}\) .*$/\1/' \
+	>>$1.tmp$$
+mv $1.tmp$$ $1
+

@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+# takes args: <instance>
+# expects environment variable $CACHEPASS to be the password to use for starting the instance
+spawn ccontrol start [lindex $argv 0]
+expect "Username:" { send "SuperUser\r" }
+expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+interact
+
+

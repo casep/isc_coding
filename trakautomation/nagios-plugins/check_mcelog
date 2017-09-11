@@ -1,0 +1,23 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20131111
+# Checks for non-zero size /var/log/mcelog that has been written in the past 48hours
+
+LOGFILE=/var/log/mcelog
+
+
+msg='Machine Check Exception (Hardware error)'
+if [ ! -f "$LOGFILE" ]; then
+	echo "UNKNOWN: $msg: No log file $LOGFILE"
+	exit 3
+elif [ -s $LOGFILE -a $((`date +%s`-`stat -c %Y $LOGFILE`)) < 172800 ]; then
+	echo "CRITICAL: $msg: $LOGFILE has contents and is less than 48h old - hardware errors"
+	exit 2
+elif [ -s $LOGFILE ]; then
+	echo "WARNING: $msg: $LOGFILE has contents - past hardware errors"
+	exit 1
+else
+	echo "OK: $msg: $LOGFILE is clear"
+	exit 0
+fi
+
+

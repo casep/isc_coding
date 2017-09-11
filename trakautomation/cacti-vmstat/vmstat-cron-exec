@@ -1,0 +1,1 @@
+/etc/snmp/vmstat-cron /var/local/snmp/vmstat &

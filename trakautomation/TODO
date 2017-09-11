@@ -1,0 +1,153 @@
+SLES doesn't like ntp.conf being edited outside YaST, but YaST doesn't seem to be able to remove/disable the local clock
+
+
+
+
+
+
+Max process size bbsiz? 16MiB originally - maybe bring it down again 16384
+lothian 36M locksiz
+lothian gmheap - 128M - lock table included within that size (ie lockziz < gmheap)
+^MONMGR - set emailing of events
+
+
+
+
+
+
+
+.....................................
+
+Prepend uc site code to instance names <site code><env if not PRD><instance type>
+	env = [none] = prd, dr, test, base, train\d*, dto\d+
+	type = app\d+, prt\d+, db, analytics, integration, integrity\d*, shadow???, reporting, csp
+
+
+
+============
+Trak - auto update
+
+* given set of databases (tarball) - first run a test to determine what is in the tarball
+	* stop cache
+	* wipe existing databses, except sysconfig
+	* extract databases, move to standard places
+OR
+* given a .cbk - first check what is in it (automatic?)
+	* wipe existing databases except sysconfig
+	* restore to standard places
+	
+* create remaining standard databases
+* replace all non-Ensemble global mapping from source .cpf
+============
+
+Trak Auto- upgrade
+
+Save/restore Caché users (eg. for LayoutManager)
+
+Setting Trak config automatically
+
+
+
+
+
+* Nagios Checks via SNMP instead of nagios-nrpe
+	* Review Cacti-TCMon scripts to be suitable
+	* Create monitoring side SNMP config for RH
+	* Create monitoring side SNMP config for TCMon
+- check_nrpe!check_ntp_time*
+	- this can be done with glenpp's Cacti NTP template
+- check_nrpe!check_disks
+	- this can be done with standard snmp
+- check_nrpe!check_swap
+	- likewise
+- check_nrpe!check_load
+	- likewise
+- check_nrpe!check_zombie_procs
+	- this can be done with glenpp's Cacti Processes+
+- check_nrpe!check_total_procs
+	- this can be done with glenpp's Cacti Processes+ or standard snmp (better)
+- #check_nrpe!check_smb
+	- will likely need extension
+- check_nrpe!check_cups_queue
+	- possibly with IsC Cups templates
+- check_nrpe!check_cups_queueage
+	- possibly with IsC Cups templates - may need extending
+- check_nrpe!check_cups_disabled
+	- possibly with IsC Cups templates - may need extending
+
+> check_nrpe!check_cache_instances
+	- probably needs new check
+> check_nrpe!check_cache_licenses
+	- probably needs new check
+
+Likely all these will be possible with TCMon Cacti template:
+> check_nrpe!check_tcmonitor_age
+> check_nrpe!check_tcmonitor_interfaces
+> check_nrpe!check_tcmonitor_licenses_used
+> check_nrpe!check_tcmonitor_dayapperror
+> check_nrpe!check_tcmonitor_perf
+> check_nrpe!check_tcmonitor_print_errors
+> #check_nrpe!check_tcmonitor_print_hour
+> #check_nrpe!check_tcmonitor_print_min
+> #check_nrpe!check_tcmonitor_print_progress
+> check_nrpe!check_tcmonitor_print_waiting
+
+=======================================================================
+
+Auto-build of printserver (ECP)
+
+
+
+ECP in cache.cpf:
+
+[ECPServers]
+SCGRBASE2013DB=scgrtstdb2,56779
+
+[Databases]
+ECP-APPSYS=/trak/scgr/BASE2013/db/appsys/,SCGRBASE2013DB
+
+
+=======================================================================
+
+probably don't need ini_listsections.pl
+
+=======================================================================
+
+! Caché terminal lock - stop launching sh from sudo
+
+
+=======================================================================
+
+Add a refresh of all indexes to the Cacti add script
+Make the script above more intelligent so as not to show options for existing graphs
+
+=======================================================================
+
+TCMon fixes
+* message queue age
+* Cacti fixes
+
+=======================================================================
+
+Nagios:
+Add (slow) nagios checks for web/ permissions
+CCR ping nagios / Cacti checks?
+CCR DNS nagios checks?
+
+=======================================================================
+
+do_SELINUXdisable.sh TODOs
+
+
+
+
+
+CSP logging
+- set rotation?
+
+CSP / SuperServer SSL
+- how much overhead?
+
+
+
+

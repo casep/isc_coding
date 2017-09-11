@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+# takes list of datafiles as args
+
+my %fields;
+my %dbfields;
+my %wdfields;
+my %filebyfield;
+foreach my $file (@ARGV) {
+	my $filetype = $file;
+	$filetype =~ s/^.*\+//;
+	open my $fd, $file or die "FATAL - can't open \"$file\": $!\n";
+	while ( defined ( my $line = <$fd> ) ) {
+		chomp $line;
+		if ( $line =~ /^DB:(\w+):\d+=/ ) {
+			$dbfields{$1} = 1;
+		} elsif ( $line =~ /^DB:[^\:]+:(\w+)=/ ) {
+			$dbfields{$1} = 1;
+		} elsif ( $line =~ /^WD:(\w+):\d+=/ ) {
+			$wdfields{$1} = 1;
+		} elsif ( $line =~ /^(\w+)=/ ) {
+			# standard fields
+			$fields{$1} = 1;
+			$filebyfield{$1} = $filetype;
+		}
+	}
+	close $fd;
+}
+
+# output
+foreach my $field (sort keys %fields) {
+	print "\t\t<ISCCacheF$field>\n";
+	print "\t\t\t<name>Instance : $field</name>\n";
+	print "\t\t\t<method>walk</method>\n";
+	print "\t\t\t<source>value</source>\n";
+	print "\t\t\t<direction>output</direction>\n";
+	print "\t\t\t<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine.\"ISCCacheF$field\"</oid>\n";
+	print "\t\t</ISC$field>\n";
+}
+print "\n\n\n";
+foreach my $field (sort keys %dbfields) {
+	print "\t\t<ISCCacheF$field>\n";
+	print "\t\t\t<name>Database : $field</name>\n";
+	print "\t\t\t<method>walk</method>\n";
+	print "\t\t\t<source>value</source>\n";
+	print "\t\t\t<direction>output</direction>\n";
+	print "\t\t\t<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine.\"ISCCacheF$field\"</oid>\n";
+	print "\t\t</ISC$field>\n";
+}
+print "\n\n\n";
+foreach my $field (sort keys %wdfields) {
+	print "\t\t<ISCCacheFWD$field>\n";
+	print "\t\t\t<name>WriteDaemon : $field</name>\n";
+	print "\t\t\t<method>walk</method>\n";
+	print "\t\t\t<source>value</source>\n";
+	print "\t\t\t<direction>output</direction>\n";
+	print "\t\t\t<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine.\"ISCCacheF$field\"</oid>\n";
+	print "\t\t</ISCCacheFWD$field>\n";
+}
+print "\n\n\n";
+print "snmpd.conf\n";
+print "\n\n\n";
+print "extend ISCCacheFinstances /etc/snmp/cache_stats instances\n";
+foreach my $field (sort keys %fields) {
+	print "extend ISCCacheF$field /etc/snmp/cache_stats $filebyfield{$field} $field\n";
+}
+print "\n";
+print "extend ISCCacheFdatabases /etc/snmp/cache_stats databases\n";
+foreach my $field (sort keys %dbfields) {
+	print "extend ISCCacheF$field /etc/snmp/cache_stats databases $field\n";
+}
+print "\n";
+print "extend ISCCacheFwritedaemon /etc/snmp/cache_stats writedaemon\n";
+foreach my $field (sort keys %wdfields) {
+	print "extend ISCCacheF$field /etc/snmp/cache_stats writedaemon $field\n";
+}
+
+
+
+
+
+
+

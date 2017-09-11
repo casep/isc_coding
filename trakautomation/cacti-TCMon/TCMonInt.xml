@@ -1,0 +1,50 @@
+<interface>
+	<name>TrakCare Monitoring : Interfaces</name>
+	<!--index_order>tcmonDeviceIndex</index_order-->
+	<index_order_type>numeric</index_order_type>
+	<oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntI"</oid_index>
+
+	<fields>
+
+		<tcmonIntI>
+			<name>Index</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntI"</oid>
+		</tcmonIntI>
+
+		<tcmon_IntStatus>
+			<name>Status</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntS"</oid>
+		</tcmon_IntStatus>
+
+		<tcmon_IntUp>
+			<name>Up</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntU"</oid>
+		</tcmon_IntUp>
+
+		<tcmon_IntDown>
+			<name>Down</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntD"</oid>
+		</tcmon_IntDown>
+
+		<tcmon_IntQueue>
+			<name>Queue</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."tcmonIntQ"</oid>
+		</tcmon_IntQueue>
+
+	</fields>
+</interface>

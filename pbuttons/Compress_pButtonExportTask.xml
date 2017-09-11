@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks><Task>
+  <Name>Compress pButtons</Name>
+  <RunAsUser>SuperUser</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>false</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>%SYS.Task.RunLegacyTask</TaskClass>
+  <Settings>DQFFeGVjdXRlQ29kZW0BcyB6UHJlc3M9JHpmKC0xLCJmaW5kICAvdHJhay9lbm50UFJEL3RjMjAxNi9ocy9wYnV0dG9ucy9FTk5UREJfKi5odG1sIC1tdGltZSArNyAtZXhlYyAvdXNyL2Jpbi9nemlwIHt9IFw7Iik=</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>%SYS</NameSpace>
+  <TimePeriod>4</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>0</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>3FE3BB80-5405-11E6-97CB-50568A144500</JobGUID>
+  <RunAfterGUID>1DB6F31A-5405-11E6-B0C0-50568A144500</RunAfterGUID>
+  <StartDate>2016-07-28</StartDate>
+  <LastSchedule>64140,60</LastSchedule>
+  <LastStarted>64140,120</LastStarted>
+  <LastFinished>64140,120</LastFinished>
+  <Error>Success</Error>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Compress pButtons over 7 days to keep file store down</Description>
+  <DisplayRun>After task Collect Daily pButtons (%SYS-ID:1009) completes</DisplayRun>
+  <DisplayInterval>After Task </DisplayInterval>
+  <DisplayStarted>2016-08-10 00:02</DisplayStarted>
+  <DisplayStartDate>2016-07-28</DisplayStartDate>
+  <DisplayEndDate>None</DisplayEndDate>
+  <DisplayDayNextScheduled>1840-12-31</DisplayDayNextScheduled>
+  <DisplayFinished>2016-08-10 00:02</DisplayFinished>
+  <DisplayStatus>1</DisplayStatus>
+  <DisplayNextScheduled>Runs After Collect Daily pButtons (%SYS-ID:1009)</DisplayNextScheduled>
+  <DisplayNextScheduledBrief>Runs After #1009</DisplayNextScheduledBrief>
+  <DisplayRunAfter>Collect Daily pButtons (%SYS-ID:1009)</DisplayRunAfter>
+</Task>
+
+</Tasks>

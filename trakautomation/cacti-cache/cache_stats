@@ -1,0 +1,64 @@
+#!/bin/sh
+# Generic snmpd pickup script for User.Monitor2Files.cls
+
+STATSDIR=/var/local/snmp/isc
+
+case $1 in
+	'instances')
+		# list databases
+		for f in $STATSDIR/ISCC+*+*; do
+			basename $f | sed 's/^.*+\([^+]\+\)+.*$/\1/'
+		done | uniq
+	;;
+	'databases')
+		for f in $STATSDIR/ISCC+*+GlobalStats; do
+			instance=`basename $f | sed 's/^.*+\([^+]\+\)+.*$/\1/'`
+			if [ x$2 = x ]; then
+				# no specific data requested - list databases
+				for db in `grep '^DB:Name:.\+=' $f|sed 's/^[^=]\+=//'`; do
+					dbshort=`echo $db | sed 's/\(.\{5,10\}\)$/...\1/' | sed 's/^.*\.\.\./.../'`
+					echo $instance:$dbshort
+				done
+			else
+				# get data for the specific metric
+				for metric in `grep "^DB:.\\+:$2=" $f|sed 's/^[^=]\+=//'`; do
+					printf '%d\n' $metric
+				done
+			fi
+		done
+	;;
+	'writedaemon')
+		if [ x$2 = x ]; then
+			# no specific data requested - list daemons
+			for f in $STATSDIR/ISCC+*+WDStats; do
+				instance=`basename $f | sed 's/^.*+\([^+]\+\)+.*$/\1/'`
+				for wd in `grep '^WD:Index:.\+=' $f|sed 's/^[^=]\+=//'`; do
+					echo $instance:$wd
+				done
+			done
+			
+		else
+			# get data for specific metric
+			for f in $STATSDIR/ISCC+*+WDStats; do
+				for metric in `grep "WD:$2:.\+=" $f | sed 's/^[^=]\+=//'`; do
+					printf '%d\n' `echo $metric | sed 's/\..*$//'`
+				done
+			done
+		fi
+	;;
+	*)
+		# generic stuff
+		if [ x$1 = x ]; then
+			# no request - give help
+			echo "Usage: $0 <type> [metric]" >&2
+			echo >&2
+			echo "<type> can be: instances (no metric), databases (metric: PhysBlockReads/Writes), writedaemon (metric: TotBlk/TotTime/Cycles/CycleStartSeconds), DashboardStats, DiskStats, GlobalStats, RoutineStats, WDStats" >&2
+			exit 1
+		else
+			# we assume $1 matches the file, and $2 the metric
+			for metric in `grep ^$2= $STATSDIR/ISCC+*+$1 | sed 's/^[^=]\+=//'`; do
+				printf '%d\n' $metric
+			done
+		fi
+	;;
+esac

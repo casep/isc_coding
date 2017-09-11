@@ -1,0 +1,89 @@
+#!/bin/sh
+# Usage: $0 [ignore instance] .....
+# checks errors in cconsole.log in last 48 hours (only last 100 lines)
+# if found will exclude patterns in $0.exclude
+LASTLINES=100
+RECENT=$((86400*2))
+TIMETHRESHOLD=$((`date +%s`-$RECENT))
+
+
+
+checklog() {
+	maxerror=0
+	lasterror=0
+	errormessage=
+	lastinstance=
+	while read logline; do
+		datestr=`echo $logline | cut -d' ' -f2`
+		epoc=`date -d \`echo $datestr | cut -d- -f1\` +%s`
+		if [ $epoc -lt $TIMETHRESHOLD ]; then continue; fi
+		# work out the error level and if neccessary act on it
+		errorlevel=`echo $logline | cut -d' ' -f 4`
+		if [ $errorlevel -ge $maxerror ]; then
+			maxerror=$errorlevel
+			if [ $epoc -ge $lasterror ]; then
+				lasterror=$epoc
+				errormessage=`echo $logline | cut -d' ' -f2-`
+				lastinstance=`echo $logline | cut -d' ' -f1`
+			fi
+		fi
+	done
+
+	exitstatus=3
+	txtstatus=UNKNOWN
+	case $maxerror in
+		0)	# informational
+
+			exitstatus=0
+			txtstatus=OK
+		;;
+		1)	# warning
+			exitstatus=1
+			txtstatus=WARNING
+		;;
+		2)	# error
+			exitstatus=2
+			txtstatus=CRITICAL
+		;;
+		3)	# error
+			exitstatus=2
+			txtstatus=CRITICAL
+		;;
+	esac
+	echo "$txtstatus: Cache Log Status: $lastinstance - $errormessage"
+	return $exitstatus
+}
+
+
+# check all instances
+#ccontrol qlist | checkinstances $@
+ccontrol qlist | while read line; do
+	instance=`echo $line | cut -d^ -f1`
+	for exclude in $@; do
+		if [ $instance = $exclude ]; then continue 2; fi
+	done
+	# check for cconsole.log
+	path=`echo $line | cut -d^ -f2`
+	if [ ! -f $path/mgr/cconsole.log ]; then
+		# TODO fail
+		echo "$txtstatus: Cache Log Status: No cconsole.log for $instance"
+		exit 2
+	fi
+	if [ -f $0.exclude ]; then
+		# apply an exclude file to ignore benign errors
+		tail -n $LASTLINES $path/mgr/cconsole.log \
+			| grep '^[^ ]\+ ([^ ]\+) [0123] ' \
+			| grep -v -f $0.exclude \
+			| while read instline; do
+				echo "$instance $instline"
+			done
+
+	else
+		tail -n $LASTLINES $path/mgr/cconsole.log \
+			| grep '^[^ ]\+ ([^ ]\+) [0123] ' \
+			| while read instline; do
+				echo "$instance $instline"
+			done
+	fi
+done | checklog
+exit $?

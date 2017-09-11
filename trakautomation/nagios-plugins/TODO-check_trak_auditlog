@@ -1,0 +1,89 @@
+#!/bin/sh
+# Usage: $0 [ignore instance] .....
+# checks the cache.cpf for databases matching .*AUDIT[0-9]+ and *LOG[0-9]+, then...
+# checks if the last two been written to recently - that would mean action needs
+# to be taken to extend the number of AUDIT or LOG databases
+# TODO
+# TODO
+# TODO
+# TODO
+# TODO
+# TODO
+# TODO
+# TODO
+RECENT=86400
+
+
+checkaudit() {
+	maxerror=0
+	errormessage=
+	lastinstance=
+	while read instinfo; do
+		instance=`echo $instinfo | cut -d^ -f1`
+		for exclude in $@; do
+			if [ $instance = $exclude ]; then continue 2; fi
+		done
+		# check for Caché directory and .cpf
+		path=`echo $instinfo | cut -d^ -f2`
+		if [ ! -f $path/cache.cpf ]; then
+			# can't be sure if we are missing files from registered instances
+			echo "UNKNOWN: Cache LOG/AUDIT Status: Missing cache.cpf for $instance"
+			return 3
+		fi
+		# check the .cpf for AUDIT / LOG
+		grep '^[^=]*\(AUDIT\|LOG\)[0-9]\+=' $path/cache.cpf | cut -d= -f1
+
+continue
+
+
+
+
+
+
+
+
+		datestr=`echo $logline | cut -d' ' -f2`
+		epoc=`date -d \`echo $datestr | cut -d- -f1\` +%s`
+		if [ $epoc -lt $TIMETHRESHOLD ]; then continue; fi
+		# work out the error level and if neccessary act on it
+		errorlevel=`echo $logline | cut -d' ' -f 4`
+		if [ $errorlevel -ge $maxerror ]; then
+			maxerror=$errorlevel
+			if [ $epoc -ge $lasterror ]; then
+				lasterror=$epoc
+				errormessage=`echo $logline | cut -d' ' -f2-`
+				lastinstance=`echo $logline | cut -d' ' -f1`
+			fi
+		fi
+	done
+
+	exitstatus=3
+	txtstatus=UNKNOWN
+	case $maxerror in
+		0)	# informational
+
+			exitstatus=0
+			txtstatus=OK
+		;;
+		1)	# warning
+			exitstatus=1
+			txtstatus=WARNING
+		;;
+		2)	# error
+			exitstatus=2
+			txtstatus=CRITICAL
+		;;
+		3)	# error
+			exitstatus=2
+			txtstatus=CRITICAL
+		;;
+	esac
+	echo "$txtstatus: Cache Log Status: $lastinstance - $errormessage"
+	return $exitstatus
+}
+
+
+# check all instances
+ccontrol qlist | checkaudit $@
+#ccontrol qlist | checklog $@
+exit $?

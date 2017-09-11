@@ -1,0 +1,23 @@
+lucap - need logcheck equivalent.... in progress
+
+vxfs from Caché docs
+
+glenpp - check for cfg2html
+
+glenpp - check mountpoints for at least /var
+
+glenpp/lucap - verify (somehow) that app and print server hostnames are unique and match IPs
+
+lucap - check journals are mounted directio / cio
+	... only where the Journal path is a mountpoint
+
+glenpp - new enxx naming can't find tc2014print tc2014analytics ... maybe just go for the top level
+
+glenpp - should also do an analytics santiy check
+
+lucap - check for account timeouts http://wrcissues:8024/problems/737xxx/737487.htm
+	SELECT ID,AccountNeverExpires,PasswordNeverExpires FROM Security.Users
+
+Luke/IT - Apache MaxRequestsPerChild causes problems as per Thiene
+	... however this has been the same in SuSE 11SP2 which we have used with no problems which suggests that this problem is because of some other bad config (eg. for CSP Gateway) rather than this particular setting and changing this is hiding the root cause (eg. memory leaks which don't become a problem when processes cycle fast enough) - don't think we should check for symptms, only causes. RH has it set to 4000 which is still nearly 10x what was used for Thiene... again points to some other problem being concealed by setting this very low.
+

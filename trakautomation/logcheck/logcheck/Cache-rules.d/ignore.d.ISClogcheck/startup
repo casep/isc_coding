@@ -1,0 +1,406 @@
+^CSTART of Cache for UNIX 
+^\tin /
+^\twith wij: 
+^\tfrom:
+^  OS=
+^  nodename=
+^  numasyncwijbuf: 
+^  System Initialized\.
+^\*\*\* Recovery started at 
+^     Current default directory: /
+^     Log file directory: /
+^     WIJ file spec: \./CACHE\.WIJ
+^Recovering local \(\./CACHE\.WIJ\) image journal file\.\.\.
+^Starting WIJ recovery for '\./CACHE\.WIJ'\.
+^  0 blocks pending in this WIJ\.
+^Exiting with status 3 \(Success\)
+^Journaling started to: /
+^Cache-CSTAT \(\d+\) 
+^CSTAT: Data from prior to system force
+^CSTAT: stdout redirected to console log
+^Cache Running version:
+^ Cache for UNIX 
+^From [dD]irectory: +/
+^CSTAT Compiled with:
+^The time is: 
+^ClientSystemName \(clisysname\): 
+^CPU info --
+^Architecture: 
+^       Model: 
+^       Clock: 
+^ Chip vendor: 
+^     Threads: 
+^       Cores: 
+^       Chips: 
+^Threads/Core: 
+^  Cores/Chip: 
+^MT Supported: 
+^  MT Enabled: 
+^-------------------------------------
+^SWITCH: 
+^GAUDITLOST 
+^IJULOCK: 
+^SHMLBA: 
+^WDTHRS: 
+^MASYNC: 
+^Buffer Size: 
+^GMINREQUEUE: 
+^GWDQSize: 
+^GAvailBuf: 
+^WDSUSPD: 
+^NUMRBUF: 
+^MXLKCNV: 
+^GBLJOBS: 
+^ \d+:\d+:\d+ +\d+:\d+:\d+ +\d+:\d+:\d+
+^GACCUPDQ: 
+^GFOWNQ:   
+^GBFANYQ:  
+^GBFSPECQ: 
+^GCTOPPNT\(2\):
+^\tslot\tsfn\ttop\tname
+^\s+\d+:\s+\d+:\s+\d+:\s
+^GCDISMOUNT\(2\): 
+^gincblkpnt: 0x0x007f70025b6610, gincstrtab1: 0x0x007f70025b6610, gincstrtab2: 0x0x007f70025b7210
+^gincerrflg1: 0, gcinerrflg2: 0, gincstrtab1.cnt 0, gcinstrtab2.cnt: 0
+^Audit Event Table:
+^Audit Event Name +Rq +Sy +#Total +#Written +#Failed
+^%[^ ]+ +\d+ +\d+ +\d+ +\d+ +\d+
+^PIDTAB for \d+ jobs:
+^ +:jt:pstate:
+^ +:refcnt:bufhit:
+^ +:pidflags: pidflagnames
+^ +:pgbdbsav 
+^Job: PID:resw:SF:GloF:jt:PF:PB:swchk:rfcnt:bfhit:logrd:privglob:pgblkcnt:gstate:GN:transindx:filc:errn:pidflags:pidflagnames:pgbdbsav:D
+^ *\d+: +\d+ +:\d+:\d+: *:\d+: *[A-Z]*: *\d*: *: *\d*B?: *\d*: *\d*:(\s*2\^\s*\d*| *\d*):\d*: *\d*:: *\d*: *\d*: *\d*: *\d*::
+^ Summary of jobs in each gstatebits state:
+^  job:jrnhibtime \(in units, 1000000 units = 1 sec\)
+^    4:         1
+^ +job: +routn +nmsp +#lines +#glorefs +device +exe +ip
+^ *\d+j: *\d+ +\d+
+^ *\d+j: *\w+ %SYS *\d+ +\d+ +
+^ *\d+j: *[\w\.%]+
+^ +%SYS *\d+ +\d+ +
+^Dumping pgshared for all jobs
+^ +Job +PID +numshared +BDB +SFN +Block
+^Dumping free block pool for all jobs
+^ +Job +PID +blkcnt +Block
+^ *\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+
+^ +\d+ +\d+ +\d+ +\d+
+^ *\d+ +\d+ +\d+ +\d+
+^Transaction\(s\) in process: job:TPindex,TPfilecnt
+^JOB Server Statistics \[jsid:pid:status\]
+^\tMaximum Number of JOB Servers: 
+^\tTotal Number of JOB Servers (Created|Existing|Idle|In Use): 
+^CacheTempSfn: \d+, CacheAuditSfn \d+
+^GFILETAB:\t+SFN +SYS +UIC +VOL +KB +BLOCKS +EXPBLKS +MAXBLOCKS +GDIR +GPNT +RDIR +RGRW +GDAT +COL +FLAGS
+^\t+ *satmap0 +satmap1 +satmap2 +ready/cur/owner +blks +wrt
+^1 /
+^ +\t+\d+ +0 +0,0 +1 +8 +\d+ +0 +0 +3 +16 +0 +0 +50 +5 \w+
+^ +0 +\d+$
+^\t+00000000 00000000 00000000 +0/0/0 +\d+
+^\t+gfincrblk = 
+^\t+gfexptime = 
+^\t+devid: 
+^ +gsfn_sysrgid == \d+
+^Daemon #\d+:
+^volume queue for daemon #\d+ is empty
+^\tvqwdq=x0000000000000000, vqnext=x0[a-f\d]+, vqsfn=\d+, vqvolseq=1, pwrt=0, twrt=\d+
+^GDEVID:\s+index\s+devid\s+dmnid
+^\t+ +0\s+802\s+1
+^RESOURCE STATS +seize +Nseize +Aseize +Bseize +BusySet +Wakeups
+^ *\d+ - [\w\-]+ +0 +0 +0 +0 +0 +0
+^RESOURCE % STATS +seize Nseize Aseize Bseize BusySet Wakeups
+^ *\d+ - [\w\-]+ +0 +0.00% +0.00% +0.00% +0.00% +0.00%
+^Rtn Statistics:
+^ +rtn wasn't in local cache \d+
+^ +Switch routine buffer to bigger size \d+
+^ +Switch routine buffer to smaller size \d+
+^ +Loaded \d+ KB size routine buffer \d+
+^Global Counters:$
+^ +[\w\-:> ]+ +\d+ +[\w\-: ]+ +-?\d+ +[\w\-:> ]+ +0$
+^Lock Statistics:$
+^ *NewLock -------------- lock cmds \d+
+^ *lock succeed partially \d+
+^ *lock succeed non partially \d+
+^ *delock on non-locked node \d+
+^ *locks expanded \d+
+^ *delock cmds \d+
+^ *delock found in transcb \d+
+^ *delock not found in transcb \d+
+^ *call get_block_pool to get LHB or LRB \d+
+^ *Global Name lock \d+
+^ *Lock vector matched \d+
+^ *Lock vector next \d+
+^ *Lock vector not match and create new one \d+
+^ *Lock SLM vector matched \d+
+^ *Lock SLM vector next \d+
+^ *Lock SLM vector not match and create new one \d+
+^ *Lock SLM spawned more locks \d+
+^Journaling stats:$
+^ +jrndmn writes \d+
+^ +# journal entries \d+
+^:$
+^ +sync calls 375
+^ +writes 6
+^ +# cycles w/(no|\d+) +i/o \d+
+^ +jd wait for no inuse \d+
+^ +jrnsyncblk wait curr \d+
+^Disk I/O Stats:$
+^ Block Type +Logical Reads +Physical Reads +Physical Writes
+^ ----------  ---------------  ---------------  ---------------
+^ *[\w ]+ +\d+ +[\d\.]+% +\d+ +[\d\.]+% +\d+ +[\d\.]+%
+^ *Total +\d+ +\d+ +\d+
+^ *last blk # +0: +0 +0: +0
+^Global Directory Stats:$
+^ *shared directory search encountered undefined global             14020
+^ *exclusive directory search encountered undefined global          20586
+^\t+ *------------
+^\t+ *Total +\d+
+^ *undefined globals / all directory block reads +
+^ *repetitive directory search avoided for undefined global +
+^ *proportion of potential searches for undefined globals avoided +
+^ *new globals created +
+^ *directory blocks read while creating new globals +
+^ *proportion of all directory block reads +
+^In memory database queue never written to disk$
+^BSHASH chain statistics$
+^Average chain length: 
+^Maximum chain length: 
+^Chain distribution
+^Asynchronous Disk I/O Statistics:
+^WD Phase: \d+: 
+^Number Of Blocks/Write For Each Write Daemon$
+^ WD # +#blk/wrt=\d+ 
+^Master Write Daemon Statistics:$
+^ *mwd blocks written by current cycle 
+^ *mwd cumulative blocks written 
+^ *mwd number of active cycles 
+^ *average blocks written per mwd cycle 
+^ *volume queue is empty
+^Slave Write Daemon #\d+ Statistics:$
+^ *swd blocks written by current cycle 
+^ *swd cumulative \d+-block writev calls 
+^ *swd cumulative blocks written
+^ *swd number of active cycles
+^ *average blocks written per swd cycle
+^ *swd swdwake
+^ *volume queue \(sfn:volseq:wdq:pwrt:twrt\)
+^ +\d+:1:0000000000000000:0:\d+
+^\$INDEX and \$SORTMERGE Statistics:$
+^ +\$SORTBEGIN executed 
+^ +gformat GLSET with sort active 
+^ +gformat set gsortidtab 
+^ +gformat set gsortid 
+^ +SET command redirected to sort 
+^ +\$SORTEND executed 
+^ +\$SORTEND removed sortid 
+^ +\$SORTEND cleared gsortid 
+^ +\$SORTEND cleared gsortidtab 
+^ +\$SORTEND freed sortidtab 
+^ +\$SORTEND removed global name 
+^ +\$SORTEND freed memory 
+^ +indexnew malloc successful 
+^ +index saved 
+^ +indexsave called gset for key/value 
+^ +maximum sort pio size in kb 
+^ +minimum sort pio size in kb 
+^ +most recent sort pio size in kb 
+^SYMBOL and OBJECT SAVE/RESTORE Statistics:$
+^DKQIO_ASYNC Statistics:$
+^Hibernation Semaphores:   Job:\[Value:LastPid:Cnt:Zcnt:\]
+^ *\d+\[0:\d+:1:0\]
+^==== ECP Clients ==== 
+^\t+netbignode_c 0x.+, mxnetbignode_c 2
+^ +IsBusy/Pending-HB-\+
+^ \+-Connection Number +- +Buf# waiting for answer--\+  \|
+^ \|    \+-Net Number \(netnode #\) +- +ans wait q---\+  \|  \|
+^ \|    \|   \+-Net Node name +- +First req buf #-\+   \|  \|  \|
+^ \|    \|   \|             .+ \|
+^ECP net# Name         WPid     RPid    Req# CB Use pBlk Avl BQ WB  AQ AB B/P NP1 CP1 State
+^  \d+   \d+  <Free/unused>
+^========== ECP Detailed Client Connections ===========
+^    ECP Client Stats:
+^    ECP Client Flush rules:
+^         \[0\]=1, \[1\]=4, \[2\]=4, \[3\]=4, 
+^    ECP Client Data Structures
+^     Available bigstring buffers \(ansbigbufavailq\) : 
+^         Jobs waiting for bigansbuf \(ansbigemptyq\) : 
+^     Blocks to Purge from Some Server \(gbignet_c_purgeblk_pntcnt=0\):
+^    ECP client trans bitmap
+^    Chunk#0 cnt = 
+^\tJob: S\[Summary\] Pend\[ing trans\] disable\[ed nodes\]
+^================ ECP Server: Incoming Connections ==================
+^ SYS     ClientName               RPid     WPid  State    Hex  Flags
+^   1   <free/unused>
+^Journal Synch Point:
+^  \[LocSys\], JrnOffset=\d+ file=\d+
+^\tECP dmns waiting for Jrn Sync:
+^TRANSCB for lock sys:
+^========== ECP Detailed Server Connections ===========
+^==== ECP  Server ====\tnetbignode_s 0x.+, mxnetbignode_s 1
+^ +ECP Comm Params: cWaitInt \d+ cReconnectDur \d+ sTroubleDur \d+ backsrv/conn 1
+^ +cSendBufSz \d+ +cRcvBufSz \d+ sSendBufSz \d+ sRcvBufSz \d+
+^ +findblk_strategy 0 ecpdebugflags 0x0 ECPJrnSyncCntrl 0
+^ +Requests to Background Jobs :
+^ +Available ECPWork Jobs : 
+^ +Max ECPWork Jobs : 
+^ +Max Back Servers : 
+^Active Worklist of backrequest structs \(backtodoq\) : 
+^ +Background jobs waiting for backreqs \(backwaitq\) : 
+^ +Free List of backrequest structs \(backavailq\) : 
+^Jobs waiting for a backrequest struct \(backemptyq\) : 
+^ +Incoming Conn 0 <Free>
+^ +ECP Server Cumulative Stats \(All connections\):
+^===== Older Request Buffers====
+^License information:
+^LicenseCapacity=
+^CustomerName=
+^OrderNumber=
+^ExpirationDate=
+^MachineID=
+^AuthorizationKey=
+^Current Licenses available =
+^Minimum Licenses available =
+^Total   Licenses available =
+^wdpaused: 0, busyslaves: 0
+^BDBWDQ:
+^\{bdb:sha :ver:reqcnt:ActiveCnt:sfn:block:own:cnt\[:flags\]\}
+^WDSECQ:
+^\{bdb:sha :ver:reqcnt:ActiveCnt:sfn:block:own:cnt\[:flags\]\}
+^WDSFNs:
+^\{bdb:sha :ver:reqcnt:ActiveCnt:sfn:block:own:cnt\[:flags\]\}
+^WDVOLQs:
+^\{bdb:sha :ver:reqcnt:ActiveCnt:sfn:block:own:cnt\[:flags\]\}
+^ERROR LOG:
+^         Err         Pid     Date     Time Module  Line Routine
+^      0 errors kept out of 0 errors total occurred
+^Lock String Table: slstrtab = 0x.+, sgmhbase=0x.+, mcom=0x.+
+^   maxgmh=\d+, curgmh=\d+, minbuck=\d+, maxbuck=\d+
+^Bucket *\d+\( *\d+\):
+^0x[\da-f]+
+^Total bytes = \d+
+^LHB pool :
+^LRB pool :
+^Processes' Cached Size Info: slckcachem=0
+^ +\d+: +lsz=-?\d+, lhb=\d+\(.+\), lrb0=\d+\(.+\), lrb1=\d+\(.+\),lckq\(.+,.+\), str=\d+\(.+\)
+^System's Used Count \.\.\.\.\.\.\..\.\.\.:
+^Processes' Used Count \.\.\.\.\.\.\.\.\.:
+^Processes' Unused Count \.\.\.\.\.\.\.:
+^LHB Free Pool Count \.\.\.\.\.\.\.\.\.\.\.:
+^Bad LHB Count \.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.:
+^LRB Free Pool Count \.\.\.\.\.\.\.\.\.\.\.:
+^String Table Count \.\.\.\.\.\.\.\.\.\.\.\.:
+^Calculated Total Lock Table Size:
+^System's Total Lock Table Size :
+^New Lock Table Water Mark:
+^Hash # \d+ : high water = \d, current LHB count = \d gennum=\d+
+^New Lock Table Structures \(detailed view\):
+^\*\*\* Hash # \d+ lht_lhbcnt=\d, lht_gennum=\d+ :
+^---LHB=0x0x00.+, lh_lnext=0x.+, lh_lprev=0x.+
+^   lh_reflen=\d+, lh_totreflen=\d+, lh_name.nargs=\d, lh_name.nnsfn=
+^   lh_rqhead=0x.+, lh_rqtail=0x.+, lh_hash=\d+
+^   lh_ngrantgrp=\d, lh_nconvert=\d, lh_granted_mode=
+^   lh_rmtwaiter=\d, lh_rwhead=0x.+, lh_rwtail=0x.+
+^   lh_flags=0x\d+\(\)
+^   lh_waiter=0 lh_gennum=0x.+, lh_localidx=0, lh_convcnt=\d+
+^   lh_sharenum=0
+^   lh_sharenum=0, lh_lrbneedpend=0x.+
+^   lh_lrbtoken=0x.+, lh_ref=0x.+
+^   lock string \(raw\)=
+^   0000:   [\da-f]{2} [\da-f]{2} [\da-f]{2} [\da-f]{2} [\da-f]{2} [\da-f]{2} [\da-f]{2} [\da-f]{2} - 
+^   lock string \(decoded\)=\^\["\^\^/
+^\^\^\^LRB=0x.+, lr_next=0x.+, lr_parent=0x.+
+^   lr_lock_head=0x.+, lr_wpid=0x.+, lr_transcb=0x.+
+^   lr_tid=0x.+, +lr_transq=0x.+,
+^   lr_lock_status=GRANTED, lr_wait_mode=
+^   lr_wtid=0x0, lr_lstrlen=0, lr_lstr=0x.+
+^   lr_delckmode=0, lr_delaycnt=0,0, lr_subexp=0x.+
+^   lr_canceltoken=0x.+, lr_desrequetor=0x.+
+^   lr_pendcnt=0,0,
+^      lr_count\[\w+\]=
+^Journaling system master structure: 
+^\tjournal file name: /
+^\tenabled: \d, suspended: \d, frozen: \d, paused: 0/0, failcnt: 0
+^\timjupdate: \d, skipcnt: \d+, numbuf: \d+, filecnt: \d
+^\tfget: 0, logwt: \(0,0\), logrd: \(0,0\)/\(0,0\), iocomplete: \d+
+^\tsync.fcnt: 1, sync.pos: \d+, wdwait.fcnt: 0, wdwait.pos: 0
+^\tjrnenqhib: 0, Unit write sz: \d+, dirio: 1 \(\+DSYNC\)
+^\tjdpid: \d+, jdwake: 0, secdirlock: 0
+^\tcurrent journal directory name: /
+^\talternate journal directory name: /
+^\tjournal file prefix: 
+Journal file header information
+^\tJournal version:
+^\tFile size:
+^\tMaximum size:
+^\tEnding offset:
+^\tFlags \(hex\):
+^\tDirectory offset:
+^\tCreation date \(\d+\): 
+^\[Q=wtrq, P=ioinprog, W=wtcmplt, S=stat\]
+^ jrniodb   buffer  blk   loc   out cmplt iosiz start   Q P W use S N
+^[\da-f]+ [\da-f]+ +[\da-f]+ +\d+ +\d+ +\d+ +\d+ +\d+ +0 +0 +0 +0 +\d
+^[\da-f]+ [\da-f]+ +[\da-f]+ +\d+ +\d+ +\d+ +\d+ +\d+ C +0 +0 +0 +0 +\d
+^Dumping gmaxsharedclsvec \d+, gmaxclsvec \d+ \(cached cls/proc\) classes inuse \d+ classes
+^Dumping all shard classes - num vec \d \* vec-size \d+ max sid \d+ inuse 
+^    num vec \d, clsid/vec 
+^\tshared cls memused 
+^numrblru=\d
+^Number of rtn buf:
+^gmaxrouvec \(cache rtns/proc\):
+^gmaxinitalrouvec:
+^Dumping Namespace sub class cache
+^ +\d+: Dumping Namespace
+^    nsversion \d+
+^\t+clsid refs    sz   tsz supcls instv props methds params state   pid name
+^\t +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +ok \d+ 
+^Dumping all shard classes - num vec 1 * vec-size 256 max sid 255 inuse 18!!
+^clsid ref su meth prop instvars      pid ty state name
+^\t==== Super classes =====
+^\tID Lvl numb Cprop Cmthd Cprm refs sfn methds props prms desc rtns ty  pid   St name
+^\t *\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +\d+ +ok 
+^\t====== Rtns ============
+^\tSup# num  buf# rdesc name
+^\t *\d+ +\d+ +\d+\.? +\d+ 
+^\t *\d+ +\d+ +\d+ +<Not yet loaded!!>
+^\t========================
+^Beginning hang self-diagnosis
+^The system does not appear to be hung
+^Summary of Job States: 
+^SUSPECT: 
+^EXONERATED: 
+^DEAD: 
+^LOSTWAKE: 
+^\twdpass: 
+^\tjrnwdpass: 
+^\tfspec: /
+^\tfilecnt: 
+^\tfileoff: 
+^\tprevfcnt: 
+^\tprevfileoeff: 
+^\tmin trans cnt: 
+^\tmin trans index: 
+^DISMOUNT\(1\):  2 
+^gincblkpnt: 0x0x00.+, gincstrtab1: 0x0x00.+, gincstrtab2: 0x0x00.+
+^                                  sync calls 
+^                                      writes 
+^    shared directory search encountered undefined global 
+^    exclusive directory search encountered undefined global 
+^ *\d+\[0: \d+:1:0\] 
+^\tsync.fcnt: \d, sync.pos: \d+, wdwait.fcnt: \d, wdwait.pos: \d
+^[\da-f]+ [\da-f]+ +0 +0 +65536 +65536 +0 +0 +0 0 1 +0 1
+^GCTOPPNT\(\d+\):
+^GCDISMOUNT\(1\):  2 
+^            DOCBOOK +\d+ +\d+ +\|TCP\|1972\|\d+
+^                         \d+ +\d+ +\d+
+^                       lock failed timed out 
+^                             locks converted 
+^ +-?\d+ +\d+ +\d+/\d+/\d+ \d+:\d+:\d+ +\d+ +\d+
+
+
+
+
+
+
+
+^\d+/\d+/\d+-

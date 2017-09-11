@@ -1,0 +1,24 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130722
+# Checks number of disabled printers
+# $0 <warning threshold> <critical threshold>
+
+# count of jobs
+disabled=`lpstat -p 2>/dev/null | grep '^printer [^ ]\+ \+disabled since ' | wc -l`
+
+msg='CUPS Disabled Printers'
+if [ -z "$disabled" ]; then
+	echo "UNKNOWN: $msg: Failed to get stats"
+	exit 3
+elif [ $disabled -ge $2 ]; then
+	echo "CRITICAL: $msg: $disabled Disabled Printers (>= $2)"
+	exit 2
+elif [ $disabled -ge $1 ]; then
+	echo "WARNING: $msg: $disabled Disabled Printers (>= $1)"
+	exit 1
+else
+	echo "OK: $msg: $disabled Disabled Printers (< $1)"
+	exit 0
+fi
+
+

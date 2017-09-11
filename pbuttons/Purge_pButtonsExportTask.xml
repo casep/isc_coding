@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks><Task>
+  <Name>Purge pButtons</Name>
+  <RunAsUser>SuperUser</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>false</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>%SYS.Task.RunLegacyTask</TaskClass>
+  <Settings>DQFFeGVjdXRlQ29kZWABU2V0IHpQdXJnZT0kWkYoLTEsImZpbmQgL3RyYWsvZW5udFBSRC90YzIwMTUvaHMvcGJ1dHRvbnMvIC1tdGltZSArOTEgLWV4ZWMgL3Vzci9iaW4vcm0ge30gXDsiKQ==</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>%SYS</NameSpace>
+  <TimePeriod>4</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>0</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>5F081E20-5405-11E6-97CB-50568A144500</JobGUID>
+  <RunAfterGUID>3FE3BB80-5405-11E6-97CB-50568A144500</RunAfterGUID>
+  <StartDate>2016-07-28</StartDate>
+  <LastSchedule>64140,120</LastSchedule>
+  <LastStarted>64140,180</LastStarted>
+  <LastFinished>64140,180</LastFinished>
+  <Error>Success</Error>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Purge pButtons over 91 days</Description>
+  <DisplayRun>After task Compress pButtons (%SYS-ID:1010) completes</DisplayRun>
+  <DisplayInterval>After Task </DisplayInterval>
+  <DisplayStarted>2016-08-10 00:03</DisplayStarted>
+  <DisplayStartDate>2016-07-28</DisplayStartDate>
+  <DisplayEndDate>None</DisplayEndDate>
+  <DisplayDayNextScheduled>1840-12-31</DisplayDayNextScheduled>
+  <DisplayFinished>2016-08-10 00:03</DisplayFinished>
+  <DisplayStatus>1</DisplayStatus>
+  <DisplayNextScheduled>Runs After Compress pButtons (%SYS-ID:1010)</DisplayNextScheduled>
+  <DisplayNextScheduledBrief>Runs After #1010</DisplayNextScheduledBrief>
+  <DisplayRunAfter>Compress pButtons (%SYS-ID:1010)</DisplayRunAfter>
+</Task>
+
+</Tasks>

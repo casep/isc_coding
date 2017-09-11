@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks><Task>
+  <Name>pButtons</Name>
+  <RunAsUser>SuperUser</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>true</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>%SYS.Task.RunLegacyTask</TaskClass>
+  <Settings>DQFFeGVjdXRlQ29kZTQBc2V0IF56bWdzdGF0KCskaCwxKT0kJHJ1bl5wQnV0dG9ucygiMjRob3Vyc181c2VjIik=</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>%SYS</NameSpace>
+  <TimePeriod>0</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>0</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>C6D5F14C-5402-11E6-A3C5-50568A144500</JobGUID>
+  <StartDate>2016-07-30</StartDate>
+  <LastSchedule>64140,0</LastSchedule>
+  <LastStarted>64140,0</LastStarted>
+  <LastFinished>64140,10</LastFinished>
+  <Error>Success</Error>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Performance Buttons</Description>
+  <DisplayRun>Daily, every day</DisplayRun>
+  <DisplayInterval>Once at 00:00:00</DisplayInterval>
+  <DisplayStarted>2016-08-10 00:00</DisplayStarted>
+  <DisplayStartDate>2016-07-30</DisplayStartDate>
+  <DisplayEndDate>None</DisplayEndDate>
+  <DisplayDayNextScheduled>2016-08-11</DisplayDayNextScheduled>
+  <DisplayFinished>2016-08-10 00:00</DisplayFinished>
+  <DisplayStatus>1</DisplayStatus>
+  <DisplayNextScheduled>2016-08-11 00:00:00</DisplayNextScheduled>
+  <DisplayNextScheduledBrief>2016-08-11 00:00</DisplayNextScheduledBrief>
+</Task>
+
+</Tasks>

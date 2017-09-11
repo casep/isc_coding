@@ -1,0 +1,24 @@
+#!/bin/sh
+# Glen Pitt-Pladdy (ISC) 20130722
+# Checks overall CUPS queue length
+# $0 <warning threshold> <critical threshold>
+
+# count of jobs
+queue=`lpstat -W not-completed -o | wc -l`
+
+msg='CUPS Queues'
+if [ -z "$queue" ]; then
+	echo "UNKNOWN: $msg: Failed to get queue stats"
+	exit 3
+elif [ $queue -ge $2 ]; then
+	echo "CRITICAL: $msg: $queue Jobs (>= $2)"
+	exit 2
+elif [ $queue -ge $1 ]; then
+	echo "WARNING: $msg: $queue Jobs (>= $1)"
+	exit 1
+else
+	echo "OK: $msg: $queue Jobs (< $1)"
+	exit 0
+fi
+
+

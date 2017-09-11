@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="User.Monitor2File">
+<Description>
+Caché performance monitoring for snmpd extensions by Glen Pitt-Pladdy (InterSystems)
+Updates files in the given path with current performance metrics
+best to "job" the Run method off</Description>
+<Super>%RegisteredObject</Super>
+<TimeCreated>62824,45194.38172</TimeCreated>
+
+<Method name="tmpname">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutFile:%String</FormalSpec>
+<Private>1</Private>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	set TmpFile = ##class(%File).GetDirectory(OutFile)_"/TMP_"_##class(%File).GetFilename(OutFile)
+	quit TmpFile
+]]></Implementation>
+</Method>
+
+<Method name="GlobalStats2File">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutFile:%String</FormalSpec>
+<Implementation><![CDATA[
+	set data=##class(SYS.Stats.Global).Sample()
+	set TmpFile = ..tmpname(OutFile)
+	set fs=##class(%File).%New(TmpFile)
+	do fs.Open("WN")
+	do fs.WriteLine("JrnBlocks="_data.JrnBlocks)
+	do fs.WriteLine("JrnEntries="_data.JrnEntries)
+	do fs.WriteLine("LogicalBlocks="_data.LogicalBlocks)
+	do fs.WriteLine("PhysBlockReads="_data.PhysBlockReads)
+	do fs.WriteLine("PhysBlockWrites="_data.PhysBlockWrites)
+	do fs.WriteLine("RefLocal="_data.RefLocal)
+	do fs.WriteLine("RefRemote="_data.RefRemote)
+	do fs.WriteLine("RefUpdateLocal="_data.RefUpdateLocal)
+	do fs.WriteLine("RefUpdateRemove="_data.RefUpdateRemote)
+	do fs.WriteLine("ThrottleCnt="_data.ThrottleCnt)
+	do fs.WriteLine("ThrottleCur="_data.ThrottleCur)
+	do fs.WriteLine("ThrottleMax="_data.ThrottleMax)
+	do fs.WriteLine("UpdateCnt="_data.UpdateCnt)
+	do fs.WriteLine("UpdateLock="_data.UpdateLock)
+	// get on per-database basis
+	set rs=##class(%ResultSet).%New("SYS.Stats.Global:ByDatabase")
+	do rs.Execute()
+	set count=1
+	while rs.Next()
+	{
+		do fs.WriteLine("DB:Name:"_count_"="_rs.GetData(1))
+		do fs.WriteLine("DB:"_rs.GetData(1)_":PhysBlockReads="_rs.GetData(2))
+		do fs.WriteLine("DB:"_rs.GetData(1)_":PhysBlockWrites="_rs.GetData(3))
+		set count=count+1
+	}
+	do fs.Close()
+	do ##class(%File).Rename(TmpFile,OutFile)
+]]></Implementation>
+</Method>
+
+<Method name="DiskStats2File">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutFile:%String</FormalSpec>
+<Implementation><![CDATA[
+	set data=##class(SYS.Stats.Disk).Sample()
+	set TmpFile = ..tmpname(OutFile)
+	set fs=##class(%File).%New(TmpFile)
+	do fs.Open("WN")
+	do fs.WriteLine("LogBdata="_data.LogBdata)
+	//do fs.WriteLine("="_data.)
+	do fs.Close()
+	do ##class(%File).Rename(TmpFile,OutFile)
+]]></Implementation>
+</Method>
+
+<Method name="DashboardStats2File">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutFile:%String</FormalSpec>
+<Implementation><![CDATA[
+	set data=##class(SYS.Stats.Dashboard).Sample()
+	set TmpFile = ..tmpname(OutFile)
+	set fs=##class(%File).%New(TmpFile)
+	do fs.Open("WN")
+	do fs.WriteLine("ApplicationErrors="_data.ApplicationErrors)
+	do fs.WriteLine("CSPSessions="_data.CSPSessions)
+	do fs.WriteLine("CacheEfficiency="_data.CacheEfficiency)
+	do fs.WriteLine("DatabaseSpace="_data.DatabaseSpace)
+	do fs.WriteLine("DiskReads="_data.DiskReads)
+	do fs.WriteLine("DiskWrites="_data.DiskWrites)
+	do fs.WriteLine("ECPAppServer="_data.ECPAppServer)
+	do fs.WriteLine("ECPAppSrvRate="_data.ECPAppSrvRate)
+	do fs.WriteLine("ECPDataServer="_data.ECPDataServer)
+	do fs.WriteLine("ECPDataSrvRate="_data.ECPDataSrvRate)
+	do fs.WriteLine("GloRefs="_data.GloRefs)
+	do fs.WriteLine("JournalEntries="_data.JournalEntries)
+	do fs.WriteLine("JournalSpace="_data.JournalSpace)
+	do fs.WriteLine("JournalStatus="_data.JournalStatus)
+	do fs.WriteLine("LastBackup="_data.LastBackup)
+	do fs.WriteLine("LicenseCurrent="_data.LicenseCurrent)
+	do fs.WriteLine("LicenseCurrentPct="_data.LicenseCurrentPct)
+	do fs.WriteLine("LicenseHigh="_data.LicenseHigh)
+	do fs.WriteLine("LicenseHighPct="_data.LicenseHighPct)
+	do fs.WriteLine("LicenseLimit="_data.LicenseLimit)
+	do fs.WriteLine("LicenseType="_data.LicenseType)
+	do fs.WriteLine("LockTable="_data.LockTable)
+	do fs.WriteLine("LogicalReads="_data.LogicalReads)
+	do fs.WriteLine("Processes="_data.Processes)
+	do fs.WriteLine("RouRefs="_data.RouRefs)
+	do fs.WriteLine("SeriousAlerts="_data.SeriousAlerts)
+	do fs.WriteLine("ShadowServer="_data.ShadowServer )
+	do fs.WriteLine("ShadowSource="_data.ShadowSource )
+	do fs.WriteLine("SystemUpTime="_data.SystemUpTime)
+	do fs.WriteLine("WriteDaemon="_data.WriteDaemon)
+	do fs.Close()
+	do ##class(%File).Rename(TmpFile,OutFile)
+]]></Implementation>
+</Method>
+
+<Method name="RoutineStats2File">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutFile:%String</FormalSpec>
+<Implementation><![CDATA[
+	set data=##class(SYS.Stats.Routine).Sample()
+	set TmpFile = ..tmpname(OutFile)
+	set fs=##class(%File).%New(TmpFile)
+	do fs.Open("WN")
+	do fs.WriteLine("RtnCallsLocal="_data.RtnCallsLocal)
+	do fs.WriteLine("RtnCallsRemote="_data.RtnCallsRemote)
+	do fs.WriteLine("RtnCommands="_data.RtnCommands)
+	do fs.WriteLine("RtnFetchLocal="_data.RtnFetchLocal)
+	do fs.WriteLine("RtnFetchRemote="_data.RtnFetchRemote)
+	do fs.Close()
+	do ##class(%File).Rename(TmpFile,OutFile)
+]]></Implementation>
+</Method>
+
+<Method name="WDStats2File">
+<ClassMethod>1</ClassMethod>
+<FormalSpec><![CDATA[OutFile:%String,&WDCycle:%Global,&WDSeconds:%Global]]></FormalSpec>
+<Implementation><![CDATA[
+	// Important: This needs to run at less than 10 second intervals to catch WD cycles
+	set TmpFile = ..tmpname(OutFile)
+	set fs=##class(%File).%New(TmpFile)
+	do fs.Open("WN")
+	for i=1:1
+	{
+		set data=##class(SYS.Stats.WriteDaemon).Sample(i)
+		quit:(data.Index=0)||(data.Cycles=0)
+		if $DATA(WDCycle(i))=0 set WDCycle(i)=0
+		if $DATA(WDSeconds(i))=0 set WDSeconds(i)=0
+		if WDCycle(i)'=data.Cycles
+		{
+			// new cycle
+			set WDSeconds(i)=WDSeconds(i)+(data.CycleTime/1000)
+			set WDCycle(i)=data.Cycles
+		}
+		do fs.WriteLine("WD:Index:"_i_"="_data.Index)
+		do fs.WriteLine("WD:TotBlk:"_i_"="_data.TotBlk)
+		do fs.WriteLine("WD:TotTime:"_i_"="_WDSeconds(i))
+		do fs.WriteLine("WD:Cycles:"_i_"="_data.Cycles)
+		do fs.WriteLine("WD:CycleStart:"_i_"="_data.CycleStart)
+		do fs.WriteLine("WD:CycleStartSeconds:"_i_"="_(($PIECE(data.CycleStart,",",1)*24)+$PIECE(data.CycleStart,",",2)))
+	}
+	do fs.Close()
+	do ##class(%File).Rename(TmpFile,OutFile)
+]]></Implementation>
+</Method>
+
+<Method name="Run">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>OutDir:%String</FormalSpec>
+<Implementation><![CDATA[
+	set WDCycle(1)=0
+	set WDSeconds(1)=0
+	set Global=##class(%Dictionary.CompiledClass).%Exists($LB("SYS.Stats.Global"))
+	set Disk=##class(%Dictionary.CompiledClass).%Exists($LB("SYS.Stats.Disk"))
+	set Dashboard=##class(%Dictionary.CompiledClass).%Exists($LB("SYS.Stats.Dashboard"))
+	set Routine=##class(%Dictionary.CompiledClass).%Exists($LB("SYS.Stats.Routine"))
+	set WD=##class(%Dictionary.CompiledClass).%Exists($LB("SYS.Stats.WriteDaemon"))
+	set Instance=##class(%SYS.System).GetInstanceName()
+	while 1
+	{
+		if Global do ..GlobalStats2File(OutDir_"/ISCC+"_Instance_"+GlobalStats")
+		if Disk do ..DiskStats2File(OutDir_"/ISCC+"_Instance_"+DiskStats")
+		if Dashboard do ..DashboardStats2File(OutDir_"/ISCC+"_Instance_"+DashboardStats")
+		if Routine do ..RoutineStats2File(OutDir_"/ISCC+"_Instance_"+RoutineStats")
+		if WD do ..WDStats2File(OutDir_"/ISCC+"_Instance_"+WDStats", .WDCycle, .WDSeconds)
+		hang 5
+	}
+]]></Implementation>
+</Method>
+</Class>
+</Export>

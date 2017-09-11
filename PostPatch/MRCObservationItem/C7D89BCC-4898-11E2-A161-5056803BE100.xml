@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><Export>
+<User.MRCObservationItem GUID="C7D89BCC-4898-11E2-A161-5056803BE100">
+<ITMCode>GXXXPCA2</ITMCode>
+<ITMDesc>Attempts</ITMDesc>
+<ITMGraphColor>91</ITMGraphColor>
+<ITMGraphMarker>13</ITMGraphMarker>
+<ITMGraphPattern>0</ITMGraphPattern>
+<ITMRangeFrom>1</ITMRangeFrom>
+<ITMRangeTo>1</ITMRangeTo>
+<ITMAllowMultiple>N</ITMAllowMultiple>
+<ITMDateFrom>2000-01-01</ITMDateFrom>
+</User.MRCObservationItem>
+<Information GUID="C7D89BCC-4898-11E2-A161-5056803BE100">
+<Id>470</Id>
+<ClassName>User.MRCObservationItem</ClassName>
+<Description>Attempts</Description>
+<Content>
+<Class Version="//trak/main/releases/T2016.2/0/SYS/cls/User/MRCObservationItem.xml#1">User.MRCObservationItem</Class>
+</Content>
+</Information>
+</Export>

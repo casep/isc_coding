@@ -1,0 +1,3 @@
+syslog-ng\[\d+\]: Termination requested via signal, terminating;
+syslog-ng\[\d+\]: syslog-ng shutting down; version='[\d\.]+'
+syslog-ng\[\d+\]: syslog-ng starting up; version='[\d\.]+'

@@ -1,0 +1,20 @@
+[traktemp$]
+ comment = traktemp
+ path = PATHTRAKTEMP
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+
+[usertemp]
+ comment = User Temp area - deleted after 14 days
+ path = PATHUSERTEMP
+ browseable = yes
+ guest ok = yes
+ writeable = yes
+ printable = no
+ create mask = 0660
+ directory mask = 0770
+

@@ -1,0 +1,37 @@
+
+
+run like:
+
+do_autoECP <SourceServer> <OSUser> <SourceInst> <SourceDBPrefix> <SourceNamespace> <DestDatabasePrefix> <DestNamespace> <DestType>
+
+
+========================================
+
+Set ECP connection:
+
+s Name="ConnectionName"
+s Properties("Address")="127.0.0.10"
+s Properties("Port")="1972"
+s Status=##Class(Config.ECPServers).Create(Name,.Properties)
+
+OR
+
+ini_update.pl <path of cache.cpf> [ECPServers]<SourceInst>=<SourceServer>,<port> [Databases]<DestPrefix>-APPSYS=<DestDBPath>/appsys/,<SourceInst>
+
+========================================
+
+Fetch cache.cpf from a remote instance:
+
+ssh <OSUser>@<SourceServer> 'cat `ccontrol qlist <SourceInst> | cut -d^ -f2,5 | sed 's/\^/\//'` >/path/to/temp/file.cpf
+
+========================================
+
+
+
+
+
+
+
+
+
+

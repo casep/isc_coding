@@ -1,1 +1,0 @@
-/home/casep/coding/yape/graph_pButtons.py

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2012-06-28 11:38:56">
+<Routine name="UManageShadow" type="MAC" languagemode="0" timestamp="62627,38484"><![CDATA[
+ //Stop Shadow 
+ //Casep, 20150601, version inicial
+ //Casep, 20150602, con parametro
+  
+pausar(parameter);
+ zn "%SYS"
+ s MyShadow=##class(SYS.Shadowing.Shadow).%OpenId(parameter)
+ s rc=MyShadow.Suspend()
+ q 1 
+
+resumir(parameter);
+ zn "%SYS"
+ s MyShadow=##class(SYS.Shadowing.Shadow).%OpenId(parameter)
+ s rc=MyShadow.Resume()
+ q 1
+
+]]></Routine>
+</Export>

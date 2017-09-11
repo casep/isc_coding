@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="24" zv="Cache for UNIX (IBM AIX for System P5-64) 2010.2.1 (Build 503U)" ts="2010-12-27 16:31:02">
+<Routine name="zIntegridadBases" type="MAC" languagemode="0" timestamp="62056,46853"><![CDATA[
+ 
+ zn "%SYS"
+ 
+ Set LogFile="/tmp/"_$tr($zdatetime($h,8)," :","_")_"-IntegrityCheck.Log"
+ Set result=##class(%ResultSet).%New("SYS.Database:Integrity")
+ Set sc=result.Execute("*",LogFile)
+ While result.Next(.sc) {
+ 	Write result.Data("Directory")_" status= "_result.Data("Status"),!
+ }
+ Quit
+      
+ 
+]]></Routine>
+</Export>

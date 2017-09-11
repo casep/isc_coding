@@ -1,0 +1,8 @@
+echo "1
+7
+/lusers/polmos.xml
+
+yes
+yes
+8
+10" | csession sdvpdb -U"%SYS" "SECURITY"

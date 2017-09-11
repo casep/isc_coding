@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2011-12-16 12:46:35">
+<Routine name="UActualizaAmbiente" type="MAC" languagemode="0" timestamp="62441,45953"><![CDATA[
+ //Actualizo passwords
+ &Sql(Update %NOLOCK %NOTRIGGER SS_User Set SSUSR_Password='(189N,!V2"Z[', SSUSR_Pin='(189N,!V2"Z[' Where %ID >0)
+ //Anonimizado
+ d $system.OBJ.Load("/routines/Anonimizado_20121020.xml","fck")
+//j ##Class(Custom.AnonymizerFromUK).DoRange()
+ //Interfaces
+ d $system.OBJ.Load("/routines/Custom.Nexus.Facade.IWB.xml","fck")
+ d ##class(Custom.Nexus.Facade.IWB).StopAndCleanAll()
+
+ 
+]]></Routine>
+</Export>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for Windows (x86-32) 2008.2 (Build 526U)" ts="2009-02-26 14:34:17">
+<Routine name="mpmon" type="MAC" languagemode="0" timestamp="61418,52440"><![CDATA[
+mpmon	;
+    ; Set waiting time for collection
+    s wait = 30
+	g Start
+Time(cycle)	;
+	w ">collection limited to a cyle of 10 seconds to 5 minutes",!
+	s wait = cycle
+	if cycle > 600 s wait = 600	; protect with no more than 5 minutes
+	if cycle <  10 s wait = 10	; protect with no less than 10 second
+Start	;
+	s $ZT="Trap"
+	s currentns = $ZNSPACE
+	ZNSPACE "%SYS"
+	W "PERFMON collection start",!,!
+
+	;perfmon parameters: (#process,#routines,#globals,#network)
+	;
+	;Set version
+	s version = "PMONv1.0"
+	;define report file name
+	s config=$p($zu(86),"*",2),fdate=$zd($h,8),ftime=$tr($zt($p($h,",",2)),":",""),fname=$zu(54,0)_"_"_config_"_"_fdate_"_"_ftime_".pmon"
+   	; Get current number of jobs in the system and add 20%
+   	SET PID=""
+   	FOR I=1:1 {
+      SET PID=$ORDER(^$JOB(PID))
+      QUIT:PID="" 
+    }
+	s njobs = $NORMALIZE(I*1.2,0), nrouts = 1000, nglobs = 1000
+	w "Starting PERFMON [jobs,routines,globals]: ",njobs,", ",nrouts,", ",nglobs,!
+	s status=$$Start^PERFMON(njobs, nrouts, nglobs,0)
+	s status = $p(status,",",1)
+	if (status '= 1) {
+		if (status = -1) { w "Monitor already in use.",! q }
+		if (status = -2) { w "Monitor already running.",! q }
+		if (status = -3) { w "Memory allocation failed.",! q }
+		if (status = -4) { w "Could not enable statistics collection.",! q }
+	}
+    w "Waiting: collecting data for "_wait_" seconds.",!,!
+    ;Divide wait in two and take a pSS in the middle
+    H wait/2
+	d pSS
+	if ($d(^%SYS("Ensemble"))>0) d ens 
+    H wait/2
+    ;
+    use 0
+	w "Pause PERFMON",!
+	s status = $$Pause^PERFMON()
+	w "Creating PERFMON reports",!
+	w " ... Report: GG",!
+	s status = $$Report^PERFMON("G","G","D","pGG.txt",,2)
+	w " ... Report: GR",!
+	s status = $$Report^PERFMON("G","R","D","pGR.txt",,2)
+	w " ... Report: RR",!
+	s status = $$Report^PERFMON("R","R","D","pRR.txt",,2)
+	w " ... Report: RP",!
+	s status = $$Report^PERFMON("R","P","D","pRP.txt",,2)
+	w " ... Report: GP",!
+	s status = $$Report^PERFMON("G","P","D","pGP.txt",,2)
+	w "End of Reports",!
+	w "Resume PERFMON",!
+	s status = $$Resume^PERFMON()
+	w "Stop PERFMON",!
+	s status = $$Stop^PERFMON()
+	if (status '= 1) { w !,!,"ERROR stopping PERFMON. Please check.",!,!  q}
+	H 3    ;wait for perfmon to stop
+	;Double check that perfmon is STOP -2 is not running
+	s status = $$Stop^PERFMON()
+	s status = $p(status,",",1)
+	if (status '= -2) { w !,!,"ERROR ERROR Please confirm that Monitor is not running.",!,!  q}
+	w "PERFMON is not running.",!,!
+	set ofile = fname
+	open ofile:"WNS"
+	w "... Preparing file: "_ofile,!
+	use ofile w fname,",",version,",","wait-P-R-G",",",wait,",",njobs,",",nrouts,",",nglobs,!
+	do fileapp("pGG.txt")
+	do fileapp("pGR.txt")
+	do fileapp("pRR.txt")
+	do fileapp("pRP.txt")
+	do fileapp("pGP.txt")
+	do fileapp("pSS.txt")
+	if ($d(^%SYS("Ensemble"))>0) do fileapp("pEN.txt")
+	close ofile
+	use 0
+	;w !,">> NOTE: file perfmon_results.log ready. Please send to InterSystems.",!,!
+	w !,">> NOTE: file "_ofile_" ready.",!
+	w "  Please send to InterSystems.",!,!
+	w "End of collection.",!
+	ZNSPACE currentns
+	q
+	
+ ;Process perfmon reports in one files
+fileapp(ifile)	;
+	s $ZTRAP = "EOF"
+	close ifile			;in case perfmon doesn't close it
+	open ifile
+	s section = $EXTRACT(ifile,2,3)
+	use ofile w "<"_section_">",!
+	for {
+		use ifile
+		read line
+		use ofile
+		write line,!
+	}
+EOF	
+	s $ZTRAP = ""
+	close ifile:"D"
+	use ofile w "</"_section_">",!
+	q
+	
+ ;Create a $SS-like report
+pSS; pids	;
+  	; Loop on current number of processes
+	s pssfile = "pSS.txt"
+  	open pssfile:"WNS" 	
+  	use pssfile
+    w "Pid^Mode^Dev^Mem^Dir^Rou^Stat^Prio^Uic^Loc^Blk^na^na^Defns^Lic^Jbstat^Jobtype^Username^Clientname^Exename^OSinfo^IPname",!
+	for jobid=0:1 {
+		s pid=$ZU(61,jobid) 
+		q:pid=""   ; null string means job > largest job #
+    	if pid'=0 {  ;pid is zero if slot is empty
+		; get info about job here using $ZU(61,item,jobid)
+	    	W $V(-1,pid)
+    		W "^",$ZU(67,10,pid)		;jobtype
+	      	W "^",$ZU(67,11,pid)		;username
+      		W "^",$ZU(67,12,pid)		;clientname
+      		W "^",$ZU(67,13,pid)		;exename
+      		W "^",$ZU(67,14,pid)		;osinfo
+      		W "^",$ZU(67,15,pid)		;ipname
+      		W !
+		}
+	}
+    close pssfile
+	q
+ 
+ens; Ensemble Jobs	;
+	; Loop on Ensemble jobs
+	ZNSPACE currentns
+
+	s ensfile = $zu(12)_"pEN.txt"
+  	open ensfile:"WNS" 	
+  	use ensfile
+
+	set qHandle=""
+	w "Pid,JobName,Mode,Status,DorA",!
+  	do {
+		Set qHandle=$Order(^Ens.JobStatus("sys",qHandle))
+		If qHandle="" Quit
+		w qHandle //pid
+		w ","_^Ens.JobStatus("sys",qHandle,"%StartConfigName")
+		w ","_$case(^Ens.JobStatus("sys",qHandle,"%Foreground"), 1:"Foreground", 0:"Background")
+		w ","_^Ens.JobStatus("sys",qHandle,"%Status")
+		set state= $Case($ZStrip($E(qHandle),"*N"),"Z":"Dead","X":"Starting",:"Alive")
+		w ","_state
+		//if state '= "Dead" W ","_$V(-1,qHandle)
+		w !
+	} while 1
+    close ensfile
+   	ZNSPACE "%SYS"
+
+ 	q
+ 
+Trap	;
+	s $ZT=""
+	ZNSPACE "%SYS"
+	W "mpmon: Error  - Stop PERFMON",!
+	s status = $$Stop^PERFMON()
+	if (status '= 1) { w !,!,"ERROR stopping PERFMON. Please check.",!,!  q}
+	H 3    ;wait for perfmon to stop
+	;Double check that perfmon is STOP -2 is not running
+	s status = $$Stop^PERFMON()
+	s status = $p(status,",",1)
+	if (status '= -2) { w !,!,"ERROR ERROR Please confirm that Monitor is not running.",!,!  q}
+	w "PERFMON is not running.",!,!
+	q
+
+	
+]]></Routine>
+</Export>

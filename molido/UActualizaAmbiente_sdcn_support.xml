@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="22" zv="Cache for UNIX (IBM AIX for System P5-64) 2008.1.1 (Build 579U)" ts="2011-12-16 12:46:35">
+<Routine name="UActualizaAmbiente" type="MAC" languagemode="0" timestamp="62441,45953"><![CDATA[
+ //Actualizo passwords
+ &Sql(Update %NOLOCK %NOTRIGGER SS_User Set SSUSR_Password='(189N,!V2"Z[', SSUSR_Pin='(189N,!V2"Z[' Where %ID >0)
+ //Actualizo websys.Configuration
+ &Sql(update websys.configuration set LayoutManager = 'cn_iptcp:172.18.19.146[1782]:TRAK:', PathToApp = '/sdcn/support', PathToScripts = '/trak/devel/BUILD/sdcn/web/scripts_gen', PathsToWebServers = '/trak/devel/BUILD/sdcn/web/', WebServer = '172.18.19.146', PathToWebPatches='/tmp/TC2010', DSN='TRAK', DataNamespace='TRAK', PathToTemporaryFiles='/tmp', PathToTemporaryFilesUnix='/tmp', URLToZENReports='http://172.18.19.146/sdcn/support/')
+ //Tonteras ZEN
+ k ^ISC.SASchema  
+ d ##class(%ZEN.Utils).%GenerateSchema()
+ //Recompilo TrakCare
+ d $system.OBJ.DeletePackage("csp","dr")  
+ d $system.CSP.LoadPageDir("/sdcn/support","ck")
+ //Anonimizado
+ d $system.OBJ.Load("/routines/Anonimizado_20121020.xml","fck")
+ j ##Class(Custom.AnonymizerFromUK).DoRange()
+ //Interfaces
+ d $system.OBJ.Load("/routines/Custom.Nexus.Facade.IWB.xml","fck")
+ d ##class(Custom.Nexus.Facade.IWB).StopAndCleanAll()
+ 
+ 
+ 
+]]></Routine>
+</Export>

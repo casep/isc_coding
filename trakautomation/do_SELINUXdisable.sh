@@ -13,8 +13,7 @@ config_LINUX() {
 	# backup original config
 	cp -a ${CONF} ${CONF}.original
 	# disable
-	sed 's/^\(SELINUX\)=.*$/\1=disabled/' <${CONF}.original >${CONF}
-	echo 0 >/selinux/enforce
+	perl -pi -e 's/SELINUX=enforcing/SELINUX=disabled/' ${CONF}
 # TODO docs say add to grub.conf: selinux=0 TODO
 }
 

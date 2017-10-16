@@ -33,7 +33,8 @@ apacherestart_RHEL() {
 
 
 echo "########################################"
-INST=`instname $SITE $ENV DB$VER`
+#INST=`instname $SITE $ENV PRT$VER`
+INST=$(/bin/ccontrol qlist | grep $SITE | grep $ENV | grep $VER | cut -d"^" -f1)
 TRAKNS=`traknamespace $SITE $ENV`
 TRAKPATH=`trakpath $SITE $ENV DB$VER`
 echo "Vanilla Trak $VER Install for $SITE : $ENV ($INST: $TRAKNS)"

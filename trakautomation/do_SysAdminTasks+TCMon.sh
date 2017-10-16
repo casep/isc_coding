@@ -40,6 +40,9 @@ if [ `whoami` != 'root' ]; then
 fi
 # configure and install Caché side
 NS=`echo $SITE | tr '[:lower:]' '[:upper:]'`-`echo $ENV | sed 's/[0-9]*$//'`
+
+echo "INST="$INST
+echo "NS="$NS
 ./expect/SysAdminTasks+TCMon.expect $INST $NS
 
 

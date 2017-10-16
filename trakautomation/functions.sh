@@ -277,7 +277,9 @@ trakpath() {
 		PRT*)
 			# TrakCare Print (EPS) Server
 			#SUBDIR="tc$VER"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
-			SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
+			#SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
+			#For SCLA paths
+			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`$VER
 		;;
 		CSP)
 			# Generic CSP instance - no actual install
@@ -698,8 +700,9 @@ cacheconfig() {
 		return 1
 	fi
 	# finalise path
-	#export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
-	export TRAKPATH=`trakpath $SITE $ENV $TYPE`
+	#There gotta be a better way to do this, new implementations to get rid of the VER
+	export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
+	#export TRAKPATH=`trakpath $SITE $ENV $TYPE`
 }
 
 

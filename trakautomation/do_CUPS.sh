@@ -59,6 +59,8 @@ else
 	# enable apache
 	osspecific enable
 	# add dummy queues - for safety and testing
+	# Cups is taking a while to respond, let's go for a cuppa...
+	sleep 10
 	lpadmin -p DUMMY -D 'Discards all jobs' -L 'Not a real printer' -m raw -v 'file:///dev/null' -E
 	lpadmin -p DUMMY_QUEUE -D 'Discards all jobs' -L 'Not a real printer' -m raw -v 'file:///dev/null' -E
 fi

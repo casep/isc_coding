@@ -10,6 +10,9 @@ sed --in-place 's/^\(ALL\( \|\t\)\)/# \1/' $1
 # %wheel
 sed --in-place 's/^# \(%wheel\( \|\t\)\+\ALL=(ALL)\( \|\t\)\+ALL\)/\1/' $1
 # %trakcache
+
+echo "here"
+echo "processing="$1
 grep -q ^%trakcache $1 || sed --in-place "/%wheel\\( \\|\\t\\)\\+ALL=(ALL)\\( \\|\\t\\)\\+NOPASSWD:\\( \\|\\t\\)\\+ALL/ a \\\\n# ISC TrakCare: sudo -u $CACHEUSR\\n%trakcache ALL=($CACHEUSR) ALL" $1
 
 

@@ -60,7 +60,8 @@ else
 	# read in password for Caché - this will be inherited by all Caché installs in this script
 	getpass "Caché Password to use" CACHEPASS
 	# read in the password for the TrakCare .zip
-	getpass "TrakCare .zip Password" TRAKZIPPASS
+	#getpass "TrakCare .zip Password" TRAKZIPPASS
+	export TRAKZIPPASS="no longer needed"
 	echo
 fi
 
@@ -108,7 +109,7 @@ fi
 
 # install HS
 echo HealthShare
-./do_HSAP2015_Install.sh $SITE $ENV PRT$VER
+./do_HSAP2015_Install.sh $SITE $ENV $TYPE$VER
 
 # install license keys - without args does this for all instances found
 ./do_Environment_key.sh
@@ -116,22 +117,22 @@ echo HealthShare
 # set HS config
 # <Site Code> <Environment> <Type>[Version] <routine buffers in MiB> <global buffers in MiB> <lock table size in B> <gmheap in kiB>
 # Routine 512MB, Globals 24GB, Lock Table 12MB, GMheap 36MB
-./do_Environment_config.sh $SITE $ENV PRT$VER 1000 24000 12582912 98304
+./do_Environment_config.sh $SITE $ENV $TYPE$VER 1000 24000 12582912 98304
 
 # printing & preview
 ./do_CUPS.sh
-./do_FOPConf.sh $SITE $ENV PRT$VER 4096m 4096m
+./do_FOPConf.sh $SITE $ENV $TYPE$VER 4096m 4096m
 
 # do Trak install
 ./do_TrakVanillaT2016_Install.sh
-./do_TrakCare2016_ApacheCSP.sh PRT
+./do_TrakCare2016_ApacheCSP.sh $TYPE
 
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
 #./do_zCustom.CheckSNMP_Install.sh DB
-./do_zCustom.SnapBackup_Install.sh PRT
+./do_zCustom.SnapBackup_Install.sh $TYPE
 
 # SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
-./do_zCustom.TrakCareCustomTasks_Install.sh PRT
+./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
 
 # set to auto-start
 ./do_SetAutostart.sh

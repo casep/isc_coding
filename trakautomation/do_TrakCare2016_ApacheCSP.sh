@@ -65,7 +65,7 @@ fi
 # calculate vital information
 INST=`instname $SITE $ENV $TYPE$VER`
 TRAKNS=`traknamespace $SITE $ENV`
-TRAKPATH=`trakpath $SITE $ENV DB2016`
+TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
 # on with the show
 echo "Trak 2016 Apache & CSP config for $SITE : $ENV ($INST: $TRAKNS)"
 # check if we need to do this
@@ -146,7 +146,7 @@ else
 		"[$DBINST]Maximum_Session_Connections=6"
 
 	# install Trak config
-	cp conffiles/apache-t2016.conf $CONF
+	cp conffiles/apache-t$VER.conf $CONF
 	chmod 644 $CONF
 	# apply custom settings
 	sed -i "s/TRAKWEBAPP/`path2regexp ${WEBAPPTRAK}`/g" $CONF

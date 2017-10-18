@@ -268,7 +268,7 @@ trakpath() {
 	case $TYPE in
 		DB)
 			# TrakCare Database
-			SUBDIR="tc$VER"
+			#SUBDIR="tc$VER"
 			SUBDIR="tc"
 		;;
 		APP*)
@@ -279,7 +279,7 @@ trakpath() {
 			#SUBDIR="tc$VER"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
 			#SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
 			#For SCLA paths
-			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`$VER
+			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
 		;;
 		CSP)
 			# Generic CSP instance - no actual install
@@ -290,7 +290,7 @@ trakpath() {
 		INTEGRATION)
 			# TrakCare Integration
 			#SUBDIR="integration$VER"
-			#SUBDIR="int"
+			SUBDIR="int"
 		;;
 		INTEGRITY*)
 			# TrakCare Integrity Check - these are generic, we only care about the version

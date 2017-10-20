@@ -285,6 +285,8 @@ trakpath() {
 		;;
 		ANALYTICS)
 			# TrakCare Analytics Server - using (above) matching path
+			SUBDIR="analytics"
+			SUBDIR="analytics$VER"
 		;;
 		INTEGRATION)
 			# TrakCare Integration

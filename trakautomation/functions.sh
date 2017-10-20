@@ -268,18 +268,17 @@ trakpath() {
 	case $TYPE in
 		DB)
 			# TrakCare Database
-			#SUBDIR="tc$VER"
 			SUBDIR="tc"
+			SUBDIR="tc$VER"
 		;;
 		APP*)
 			# TrakCare App Server - using (above) matching path
 		;;
 		PRT*)
 			# TrakCare Print (EPS) Server
-			#SUBDIR="tc$VER"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
-			#SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
 			#For SCLA paths
 			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
+			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`$VER
 		;;
 		CSP)
 			# Generic CSP instance - no actual install
@@ -289,8 +288,8 @@ trakpath() {
 		;;
 		INTEGRATION)
 			# TrakCare Integration
-			#SUBDIR="integration$VER"
 			SUBDIR="int"
+			SUBDIR="integration$VER"
 		;;
 		INTEGRITY*)
 			# TrakCare Integrity Check - these are generic, we only care about the version
@@ -311,13 +310,13 @@ trakpath() {
 		;;
 		LABDB)
 			# TrakCare Lab Server
-			#SUBDIR="lab$VER"
 			SUBDIR="lab"
+			SUBDIR="lab$VER"
 		;;
 		SC)
 			# TrakCare SimpleCode Server
-			#SUBDIR="sc$VER"
 			SUBDIR="sc"
+			SUBDIR="sc$VER"
 		;;
 		*)
 			echo "$0: ERROR - unknown environment type \"$TYPE\"" >&2

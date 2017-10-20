@@ -102,7 +102,7 @@ fi
 
 # apache
 ./do_apache.sh
-./do_apacheTune.sh 1024 512 0
+./do_apacheTune.sh
 
 # samba
 #./do_samba.sh WORKGROUP `hostname | cut -d. -f1` "Test Server" $SITE_UC

@@ -18,7 +18,11 @@ expect "%SYS>" { send "set render.Port=54321\r" }
 expect "%SYS>" { send "set render.PingPort=12345\r" }
 expect "%SYS>" { send "set render.ConfigFile=##class(%File).GetDirectory(##class(%SYS.System).GetCPFFileName())_\"fop/conf/fop.xconf\"\r" }
 expect "%SYS>" { send "set render.LogFile=##class(%File).GetDirectory(##class(%SYS.System).GetCPFFileName())_\"fop/conf/fop.log\"\r" }
-#expect "%SYS>" { send "set render.Renderer=\"FOP\"\r" }	# should default
+expect "%SYS>" { send "set render.LogFile=\"/tmp/fop.log\"\r" }
+expect "%SYS>" { send "set render.LogLevel=1\r" }
+expect "%SYS>" { send "set render.MaxLogFileSize=3200000\r" }
+expect "%SYS>" { send "set render.NumPingThreads=10\r" }
+expect "%SYS>" { send "set render.NumThreads=10\r" }
 # remaining defaults should be OK
 expect "%SYS>" { send "write render.%Save()\r" }
 # start

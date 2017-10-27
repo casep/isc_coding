@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
-# do_apacheTune.sh 
+#  do_HugePages.sh
 #  
 #  Copyright 2017 Carlos "casep" Sepulveda <casep@fedoraproject.org>
 #  
@@ -20,9 +20,20 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-# Quick and dirty deploy of Apache configuration files
-# Works on RedHat, I don't care about Suse
+#  Update the memory configuration for Huge Pages
+#  https://community.intersystems.com/post/linux-transparent-hugepages-and-impact-cach%C3%A9
 
-cp conffiles/isckeepalive.conf /etc/httpd/conf.d/
-mv /etc/httpd/conf.modules.d/00-mpm.conf /etc/httpd/conf.modules.d/00-mpm.conf.orig
-cp conffiles/00-mpm.conf /etc/httpd/conf.modules.d/
+checkPreviousConfig() {
+	return $(grep "TrakCare" /etc/sysctl.d/99-sysctl.conf|wc -l)
+}
+
+echo "########################################"
+echo "Huge Pages memory configuration"
+
+if [ checkPreviousConfig ]; then
+	echo "Generating configuration"
+else	
+	echo "Configuration exists, exiting"
+fi
+
+

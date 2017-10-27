@@ -33,9 +33,10 @@ apacherestart_RHEL() {
 
 
 echo "########################################"
-INST=`instname $SITE $ENV DB$VER`
+INST=`instname $SITE $ENV $TYPE$VER`
+#INST=$(/bin/ccontrol qlist | grep $SITE | grep $ENV | grep $VER | cut -d"^" -f1)
 TRAKNS=`traknamespace $SITE $ENV`
-TRAKPATH=`trakpath $SITE $ENV DB$VER`
+TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
 echo "Vanilla Trak $VER Install for $SITE : $ENV ($INST: $TRAKNS)"
 # check if we need to do this
 if [ -f ${TRAKPATH}/web/default.htm -a -f ${TRAKPATH}/db/data/CACHE.DAT ]; then
@@ -94,12 +95,13 @@ cd ${olddir}
 rm -r $TMPDIR/trakextract
 
 # fix up database naming to UK convention
-ccontrol stop $INST nouser
+ccontrol stop $INST quietly
 SITE_UC=`echo $SITE | tr '[:lower:]' '[:upper:]'`
 sed -i "s/^$TRAKNS=$ENV-DATA,$ENV-APPSYS/$TRAKNS=$TRAKNS-DATA,$TRAKNS-APPSYS/" ${TRAKPATH}/hs/cache.cpf
 sed -i "s/^$ENV-/$TRAKNS-/" ${TRAKPATH}/hs/cache.cpf
 sed -i "s/\(Global_.*\|Routine_.*\|Package_.*\)=$ENV-/\1=$TRAKNS-/" ${TRAKPATH}/hs/cache.cpf
-./expect/TrakVanillaT2016_Install_start.expect $INST
+#./expect/TrakVanillaT2016_Install_start.expect $INST
+ccontrol start $INST quietly
 
 # change web/ directory to use site code (and possibly create lc symlink)
 cd ${TRAKPATH}/web/custom/
@@ -112,8 +114,8 @@ cd ${olddir}
 
 # fix web/ permissions
 chown $CACHEUSR.$CACHEGRP ${TRAKPATH}/web -R
-find ${TRAKPATH}/web -type d -exec chmod 2770 {} \;
-find ${TRAKPATH}/web -type f -exec chmod 660 {} \;
+find ${TRAKPATH}/web -type d -exec chmod 775 {} \;
+find ${TRAKPATH}/web -type f -exec chmod 664 {} \;
 
 ## install the apache config
 #osspecific trakapacheconf

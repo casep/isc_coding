@@ -23,7 +23,7 @@ echo "########################################"
 echo "Trak Directories"
 TRAKPATH=`trakpath $SITE $ENV $THISTYPE$VER`
 
-#mkdirifneeded ${TRAKPATH}/hs true
+mkdirifneeded ${TRAKPATH}/hs true
 mkdirifneeded ${TRAKPATH}/web true
 #jrnbase=jrn
 #for dir in jrn/ db/jrn/ hs/jrn/ ensemble/jrn/ cache/jrn/; do
@@ -32,11 +32,11 @@ mkdirifneeded ${TRAKPATH}/web true
 #		break
 #	fi
 #done
-#mkdirifneeded ${TRAKPATH}/$jrnbase/pri true
-#mkdirifneeded ${TRAKPATH}/$jrnbase/alt true
-#mkdirifneeded ${TRAKPATH}/db true
-#mkdirifneeded ${TRAKPATH}/db/audit true
-#mkdirifneeded ${TRAKPATH}/db/log true
+mkdirifneeded ${TRAKPATH}/$jrnbase/pri true
+mkdirifneeded ${TRAKPATH}/$jrnbase/alt true
+mkdirifneeded ${TRAKPATH}/db true
+mkdirifneeded ${TRAKPATH}/db/audit true
+mkdirifneeded ${TRAKPATH}/db/log true
 mkdirifneeded ${TRAKPATH}/store/temp true
 mkdirifneeded ${TRAKPATH}/patches true
 mkdirifneeded ${TRAKPATH}/patches-completed true

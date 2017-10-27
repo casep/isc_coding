@@ -7,63 +7,63 @@ expect {
 	"Username:" {
 		send "SuperUser\r"
 		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
-		expect -re ".*>" { send "zn \"%SYS\"\r" }
+		expect -re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
 	}
-	-re ".*>" { send "zn \"%SYS\"\r" }
+	-re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
 }
 # load in the Utilities class
-send "zn \"[lindex $argv 1]\" do \$system.OBJ.Load(\"[lindex $argv 2]\",\"fck\") zn \"%SYS\"\r" 
+send "zn \"[lindex $argv 1]\" do \$system.OBJ.Load(\"[lindex $argv 2]\",\"fck\") zn \"[lindex $argv 1]\"\r" 
 
 # remove existing schedule if it exists
-expect "%SYS>" { send "\r" }
-expect "%SYS>" { send "set tasklist=##class(%ResultSet).%New(\"%SYS.Task:QuickTaskList\")\r" }
-expect "%SYS>" { send "do tasklist.Execute()\r" }
-expect "%SYS>" { send "while tasklist.Next() { quit:(tasklist.Get(\"Task Name\")=\"TCMon\") }\r" }
-expect "%SYS>" { send "if tasklist.Get(\"Task Name\")=\"TCMon\" do ##class(%SYS.Task).%DeleteId(tasklist.Get(\"ID\"))\r" }
+expect "[lindex $argv 1]>" { send "\r" }
+expect "[lindex $argv 1]>" { send "set tasklist=##class(%ResultSet).%New(\"%SYS.Task:QuickTaskList\")\r" }
+expect "[lindex $argv 1]>" { send "do tasklist.Execute()\r" }
+expect "[lindex $argv 1]>" { send "while tasklist.Next() { quit:(tasklist.Get(\"Task Name\")=\"TCMon\") }\r" }
+expect "[lindex $argv 1]>" { send "if tasklist.Get(\"Task Name\")=\"TCMon\" do ##class(%SYS.Task).%DeleteId(tasklist.Get(\"ID\"))\r" }
 
 # configure the scheduled task
-expect "%SYS>" { send "set task=##class(%SYS.Task).%New()\r" }
-expect "%SYS>" { send "set task.Name=\"TCMon\"\r" }
-expect "%SYS>" { send "set task.Description=\"TrakCare Monitoring\"\r" }
-expect "%SYS>" { send "set task.DailyFrequency=1\r" }       # serveral times a day
-expect "%SYS>" { send "set task.DailyFrequencyTime=0\r" }   # minutes
-expect "%SYS>" { send "set task.DailyIncrement=1\r" }               # 1 minute
-expect "%SYS>" { send "set task.DailyStartTime=\$ZTIMEH(\"00:00:01\",1)\r" }        # start just past midnight
-expect "%SYS>" { send "set task.RunAsUser=\"SuperUser\"\r" }
-expect "%SYS>" { send "set task.NameSpace=\"[lindex $argv 1]\"\r" }
-expect "%SYS>" { send "set task.TaskClass=\"zCustom.TC.Task.TrakMonitorInfoToFile\"\r" }
+expect "[lindex $argv 1]>" { send "set task=##class(%SYS.Task).%New()\r" }
+expect "[lindex $argv 1]>" { send "set task.Name=\"TCMon\"\r" }
+expect "[lindex $argv 1]>" { send "set task.Description=\"TrakCare Monitoring\"\r" }
+expect "[lindex $argv 1]>" { send "set task.DailyFrequency=1\r" }       # serveral times a day
+expect "[lindex $argv 1]>" { send "set task.DailyFrequencyTime=0\r" }   # minutes
+expect "[lindex $argv 1]>" { send "set task.DailyIncrement=1\r" }               # 1 minute
+expect "[lindex $argv 1]>" { send "set task.DailyStartTime=\$ZTIMEH(\"00:00:01\",1)\r" }        # start just past midnight
+expect "[lindex $argv 1]>" { send "set task.RunAsUser=\"SuperUser\"\r" }
+expect "[lindex $argv 1]>" { send "set task.NameSpace=\"[lindex $argv 1]\"\r" }
+expect "[lindex $argv 1]>" { send "set task.TaskClass=\"zCustom.TC.Task.TrakMonitorInfoToFile\"\r" }
 # define task
-expect "%SYS>" { send "set taskdef=##class(zCustom.TC.Task.TrakMonitorInfoToFile).%New()\r" }
-expect "%SYS>" { send "set taskdef.CSPSessionCount=1\r" }
-expect "%SYS>" { send "set taskdef.EnsembleUptime=1\r" }
-expect "%SYS>" { send "set taskdef.ErrorStats=1\r" }
-expect "%SYS>" { send "set taskdef.TrakPrintStats=1\r" }
-#expect "%SYS>" { send "set taskdef.FilePrefix=\"\"\r" }
-#expect "%SYS>" { send "set taskdef.LogPath=\"\"\r" }
-expect "%SYS>" { send "set taskdef.ProductionUptimes=1\r" }
-expect "%SYS>" { send "set taskdef.TrakEPSDebug=1\r" }
-expect "%SYS>" { send "set taskdef.TrakEPSOldestMessage=1\r" }
-expect "%SYS>" { send "set taskdef.TrakEPSProductionStatus=1\r" }
-expect "%SYS>" { send "set taskdef.TrakInterfaceStats=1\r" }
-expect "%SYS>" { send "set taskdef.TrakLicenseStats=1\r" }
-#expect "%SYS>" { send "set taskdef.TrakPerformanceSampleSize=300\r" }
-expect "%SYS>" { send "set taskdef.TrakPerformanceStats=1\r"}
-#expect "%SYS>" { send "set taskdef.TrakPerformanceThreshold=2.5\r" }
-expect "%SYS>" { send "set taskdef.TrakPrintStats=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef=##class(zCustom.TC.Task.TrakMonitorInfoToFile).%New()\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.CSPSessionCount=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.EnsembleUptime=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.ErrorStats=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakPrintStats=1\r" }
+#expect "[lindex $argv 1]>" { send "set taskdef.FilePrefix=\"\"\r" }
+#expect "[lindex $argv 1]>" { send "set taskdef.LogPath=\"\"\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.ProductionUptimes=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakEPSDebug=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakEPSOldestMessage=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakEPSProductionStatus=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakInterfaceStats=1\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakLicenseStats=1\r" }
+#expect "[lindex $argv 1]>" { send "set taskdef.TrakPerformanceSampleSize=300\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakPerformanceStats=1\r"}
+#expect "[lindex $argv 1]>" { send "set taskdef.TrakPerformanceThreshold=2.5\r" }
+expect "[lindex $argv 1]>" { send "set taskdef.TrakPrintStats=1\r" }
 # wrap up and save
-expect "%SYS>" { send "do task.AssignSettings(taskdef)\r" }
-expect "%SYS>" { send "set r=task.%Save()\r" }
-expect "%SYS>" { send "write \$system.Status.DecomposeStatus(r,.errors,\"d\")\r" }
-expect "%SYS>" { send "zw errors\r" }
+expect "[lindex $argv 1]>" { send "do task.AssignSettings(taskdef)\r" }
+expect "[lindex $argv 1]>" { send "set r=task.%Save()\r" }
+expect "[lindex $argv 1]>" { send "write \$system.Status.DecomposeStatus(r,.errors,\"d\")\r" }
+expect "[lindex $argv 1]>" { send "zw errors\r" }
 
 # kick off immediately
-expect "%SYS>" { send "set tasklist=##class(%ResultSet).%New(\"%SYS.Task:QuickTaskList\")\r" }
-expect "%SYS>" { send "do tasklist.Execute()\r" }
-expect "%SYS>" { send "while tasklist.Next() { quit:(tasklist.Get(\"Task Name\")=\"TCMon\") }\r" }
-expect "%SYS>" { send "if tasklist.Get(\"Task Name\")=\"TCMon\" do ##class(%SYS.Task).RunNow(tasklist.Get(\"ID\"))\r" }
+expect "[lindex $argv 1]>" { send "set tasklist=##class(%ResultSet).%New(\"%SYS.Task:QuickTaskList\")\r" }
+expect "[lindex $argv 1]>" { send "do tasklist.Execute()\r" }
+expect "[lindex $argv 1]>" { send "while tasklist.Next() { quit:(tasklist.Get(\"Task Name\")=\"TCMon\") }\r" }
+expect "[lindex $argv 1]>" { send "if tasklist.Get(\"Task Name\")=\"TCMon\" do ##class(%SYS.Task).RunNow(tasklist.Get(\"ID\"))\r" }
 
 
 # all done
-expect "%SYS>" { send "h\r" }
+expect "[lindex $argv 1]>" { send "h\r" }
 send_user "\n"
 

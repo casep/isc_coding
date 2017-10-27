@@ -208,9 +208,11 @@ unset incachegrp
 
 EOFBASHRC
 	# sudoers - for this we use a "helper" which acts as the editor for "visudo"
-	export VISUAL=`dirname $0`/helper_UserEnv_sudoers.sh
-	export EDITOR=$VISUAL
-	visudo
+	#export VISUAL=`dirname $0`/helper_UserEnv_sudoers.sh
+	#export EDITOR=$VISUAL
+	#visudo
+	echo "# ISC TrakCare: sudo -u cacheusr" > /etc/sudoers.d/trakcare
+	echo "%trakcache ALL=(cacheusr) ALL" >> /etc/sudoers.d/trakcare
 }
 
 

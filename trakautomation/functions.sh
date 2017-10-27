@@ -701,10 +701,7 @@ cacheconfig() {
 		return 1
 	fi
 	# finalise path
-<<<<<<< HEAD
-=======
 	#There gotta be a better way to do this, new implementations to get rid of the VER
->>>>>>> c6b1ed3a23ff00a66153e7465d135a9c5fb7aa0f
 	export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
 	#export TRAKPATH=`trakpath $SITE $ENV $TYPE`
 }

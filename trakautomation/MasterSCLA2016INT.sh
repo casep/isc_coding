@@ -101,8 +101,8 @@ fi
 ./do_nagios-nrpe.sh $MONITORIP DB,PRT,WEB TODO-licenses TODO-episodes
 
 # apache
-#./do_apache.sh
-#./do_apacheTune.sh 1024 512 0
+./do_apache.sh
+./do_apacheTune.sh 1024 512 0
 
 
 # samba

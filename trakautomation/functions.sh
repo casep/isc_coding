@@ -237,11 +237,11 @@ trakpath_SC() {
 	fi
 	# done - output the path
 	if [ -n "$SUBDIR" ]; then
-		#echo /trak/$SITE/$ENV$VER/$SUBDIR
-		echo /trak/$SITE/$ENV/$SUBDIR
+		echo /trak/$SITE/$ENV$VER/$SUBDIR
+		#echo /trak/$SITE/$ENV/$SUBDIR
 	else
-		#echo /trak/$SITE/$ENV$VER
-		echo /trak/$SITE/$ENV
+		echo /trak/$SITE/$ENV$VER
+		#echo /trak/$SITE/$ENV
 	fi
 	return 0
 }
@@ -269,15 +269,15 @@ trakpath() {
 		DB)
 			# TrakCare Database
 			SUBDIR="tc$VER"
-			SUBDIR="tc"
+			#SUBDIR="tc"
 		;;
 		APP*)
 			# TrakCare App Server - using (above) matching path
 		;;
 		PRT*)
 			# TrakCare Print (EPS) Server
-			#SUBDIR="tc$VER"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
-			SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
+			SUBDIR="tc$VER"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
+			#SUBDIR="tc"`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
 		;;
 		CSP)
 			# Generic CSP instance - no actual install
@@ -287,18 +287,18 @@ trakpath() {
 		;;
 		INTEGRATION)
 			# TrakCare Integration
-			#SUBDIR="integration$VER"
+			SUBDIR="integration$VER"
 			#SUBDIR="int"
 		;;
 		INTEGRITY*)
 			# TrakCare Integrity Check - these are generic, we only care about the version
 			if echo $TYPE | grep -q '[0-9]$'; then
 				# numbered
-				#SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`-$VER"
-				SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`"
+				SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`-$VER"
+				#SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`"
 			else
-				#SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`$VER"
-				SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`"
+				SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`$VER"
+				#SUBDIR="`echo $TYPE | tr '[A-Z]' '[a-z]'`"
 			fi
 		;;
 		REPORTING)
@@ -309,13 +309,13 @@ trakpath() {
 		;;
 		LABDB)
 			# TrakCare Lab Server
-			#SUBDIR="lab$VER"
-			SUBDIR="lab"
+			SUBDIR="lab$VER"
+			#SUBDIR="lab"
 		;;
 		SC)
 			# TrakCare SimpleCode Server
-			#SUBDIR="sc$VER"
-			SUBDIR="sc"
+			SUBDIR="sc$VER"
+			#SUBDIR="sc"
 		;;
 		*)
 			echo "$0: ERROR - unknown environment type \"$TYPE\"" >&2
@@ -698,8 +698,8 @@ cacheconfig() {
 		return 1
 	fi
 	# finalise path
-	#export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
-	export TRAKPATH=`trakpath $SITE $ENV $TYPE`
+	export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
+	#export TRAKPATH=`trakpath $SITE $ENV $TYPE`
 }
 
 

@@ -269,7 +269,7 @@ trakpath() {
 		DB)
 			# TrakCare Database
 			SUBDIR="tc"
-			SUBDIR="tc$VER"
+			#SUBDIR="tc$VER"
 		;;
 		APP*)
 			# TrakCare App Server - using (above) matching path
@@ -278,7 +278,7 @@ trakpath() {
 			# TrakCare Print (EPS) Server
 			#For SCLA paths
 			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`
-			SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`$VER
+			#SUBDIR=`echo $TYPE | sed 's/^PRT/PRINT/' | tr '[A-Z]' '[a-z]'`$VER
 		;;
 		CSP)
 			# Generic CSP instance - no actual install
@@ -286,12 +286,12 @@ trakpath() {
 		ANALYTICS)
 			# TrakCare Analytics Server - using (above) matching path
 			SUBDIR="analytics"
-			SUBDIR="analytics$VER"
+			#SUBDIR="analytics$VER"
 		;;
 		INTEGRATION)
 			# TrakCare Integration
 			SUBDIR="int"
-			SUBDIR="integration$VER"
+			#SUBDIR="integration$VER"
 		;;
 		INTEGRITY*)
 			# TrakCare Integrity Check - these are generic, we only care about the version
@@ -313,12 +313,12 @@ trakpath() {
 		LABDB)
 			# TrakCare Lab Server
 			SUBDIR="lab"
-			SUBDIR="lab$VER"
+			#SUBDIR="lab$VER"
 		;;
 		SC)
 			# TrakCare SimpleCode Server
 			SUBDIR="sc"
-			SUBDIR="sc$VER"
+			#SUBDIR="sc$VER"
 		;;
 		*)
 			echo "$0: ERROR - unknown environment type \"$TYPE\"" >&2
@@ -703,7 +703,6 @@ cacheconfig() {
 	# finalise path
 	#There gotta be a better way to do this, new implementations to get rid of the VER
 	export TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
-	#export TRAKPATH=`trakpath $SITE $ENV $TYPE`
 }
 
 

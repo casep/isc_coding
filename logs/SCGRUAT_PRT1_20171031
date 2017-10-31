@@ -1,0 +1,856 @@
+Script started on Tue 31 Oct 2017 10:28:19 GMT
+]0;root@scgr16uatprt1:/trak/iscbuild/trakautomation[?1034h[root@scgr16uatprt1 trakautomation]# ./MasterSCGRUAT2016PRT.sh
+
+Caché Password to use: 
+Confirm: 
+########################################
+SELINUX Configuration (Disable)
+########################################
+User/Group Configuration
+########################################
+TrakCare Shell Environment Configuration
+########################################
+Trak Directories
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+epel/x86_64/metalink                                                                                                                    |  24 kB  00:00:00     
+epel                                                                                                                                    | 4.3 kB  00:00:00     
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+(1/2): epel/x86_64/updateinfo                                     0% [                                                       ]  0.0 B/s |    0 B  --:--:-- ETA (1/2): epel/x86_64/updateinfo                                                                                                           | 838 kB  00:00:00     
+(2/2): epel/x86_64/primary_db                                    11% [======-                                                ]  0.0 B/s | 838 kB  --:--:-- ETA (2/2): epel/x86_64/primary_db                                                                                                           | 6.1 MB  00:00:01     
+Resolving Dependencies
+--> Running transaction check
+---> Package unzip.x86_64 0:6.0-16.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================
+ Package                          Arch                              Version                                Repository                                     Size
+===============================================================================================================================================================
+Installing:
+ unzip                            x86_64                            6.0-16.el7                             rhel-7-server-rpms                            169 k
+
+Transaction Summary
+===============================================================================================================================================================
+Install  1 Package
+
+Total download size: 169 k
+Installed size: 365 k
+Downloading packages:
+unzip-6.0-16.el7.x86_64.rpm                                                                                                             | 169 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : unzip-6.0-16.el7.x86_64 [                                                                                                                 ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#########                                                                                                        ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#############################                                                                                    ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [####################################                                                                             ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#####################################                                                                            ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [######################################                                                                           ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#######################################                                                                          ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#############################################                                                                    ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [##############################################                                                                   ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###################################################                                                              ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#####################################################                                                            ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [######################################################                                                           ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [########################################################                                                         ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [############################################################################                                     ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [################################################################################################                 ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###############################################################################################################  ] 1/1  Installing : unzip-6.0-16.el7.x86_64                                                                                                                     1/1 
+Uploading Package Profile
+  Verifying  : unzip-6.0-16.el7.x86_64                                                                                                                     1/1 
+
+Installed:
+  unzip.x86_64 0:6.0-16.el7                                                                                                                                    
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+Package util-linux-2.23.2-43.el7.x86_64 already installed and latest version
+Nothing to do
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+########################################
+snmpd Install/Configuration
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package net-snmp.x86_64 1:5.7.2-28.el7 will be installed
+--> Processing Dependency: net-snmp-agent-libs = 1:5.7.2-28.el7 for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmptrapd.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpmibs.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpagent.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Running transaction check
+---> Package net-snmp-agent-libs.x86_64 1:5.7.2-28.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================
+ Package                                   Arch                         Version                                 Repository                                Size
+===============================================================================================================================================================
+Installing:
+ net-snmp                                  x86_64                       1:5.7.2-28.el7                          rhel-7-server-rpms                       321 k
+Installing for dependencies:
+ net-snmp-agent-libs                       x86_64                       1:5.7.2-28.el7                          rhel-7-server-rpms                       704 k
+
+Transaction Summary
+===============================================================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 1.0 M
+Installed size: 2.9 M
+Downloading packages:
+(1/2): net-snmp-5.7.2-28.el7.x86_64.rpm                                                                                                 | 321 kB  00:00:00     
+(2/2): net-snmp-agent-libs-5.7.2-28.el7.x86_64.rpm                                                                                      | 704 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                          7.0 MB/s | 1.0 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [                                                                                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##                                                                                             ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#####                                                                                          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [########                                                                                       ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########                                                                                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############                                                                                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################                                                                              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################                                                                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################                                                                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################                                                                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################                                                                   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############################                                                                ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##################################                                                             ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#####################################                                                          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######################################                                                        ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##########################################                                                     ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#############################################                                                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################################################                                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################################################                                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################################################                                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################################################                                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########################################################                                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############################################################                                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################################################################                              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####################################################################                           ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######################################################################                        ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########################################################################                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#############################################################################                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################################################################################               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################################################################################            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################################################################################         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################################################################################      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################################################################################   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################################################################################## ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                                                                   1/2 
+  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [                                                                                                          ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##                                                                                                        ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####                                                                                                      ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######                                                                                                   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########                                                                                               ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############                                                                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################                                                                                    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################                                                                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############################                                                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################                                                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############################################                                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######################################################                                                   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################################                                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############################################################                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################################################                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################################################################                              ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####################################################################################                      ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################################################################################                    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########################################################################################                 ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##########################################################################################                ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################################################################################               ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################################################################################              ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#############################################################################################             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##############################################################################################            ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############################################################################################           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##################################################################################################        ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###################################################################################################       ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####################################################################################################      ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#####################################################################################################     ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################################################################################################    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######################################################################################################   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################################################################################  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64                                                                                                              2/2 
+Uploading Package Profile
+  Verifying  : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                                                                   1/2 
+  Verifying  : 1:net-snmp-5.7.2-28.el7.x86_64                                                                                                              2/2 
+
+Installed:
+  net-snmp.x86_64 1:5.7.2-28.el7                                                                                                                               
+
+Dependency Installed:
+  net-snmp-agent-libs.x86_64 1:5.7.2-28.el7                                                                                                                    
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Note: Forwarding request to 'systemctl enable snmpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/snmpd.service to /usr/lib/systemd/system/snmpd.service.
+Redirecting to /bin/systemctl start snmpd.service
+########################################
+snmpd Install/Configuration for cacti-apache
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-cups
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-iostat
+cron iostat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-processes+
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-TCMon
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-vmstat
+cron vmstat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-hugepages
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+Nagios nrpe Install/Configuration
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package perl-Digest-HMAC.noarch 0:1.03-5.el7 will be installed
+---> Package perl-Digest-SHA1.x86_64 0:2.13-9.el7 will be installed
+---> Package perl-Socket6.x86_64 0:0.23-15.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================
+ Package                                  Arch                           Version                              Repository                                  Size
+===============================================================================================================================================================
+Installing:
+ perl-Digest-HMAC                         noarch                         1.03-5.el7                           rhel-7-server-rpms                          16 k
+ perl-Digest-SHA1                         x86_64                         2.13-9.el7                           rhel-7-server-rpms                          50 k
+ perl-Socket6                             x86_64                         0.23-15.el7                          rhel-7-server-rpms                          27 k
+
+Transaction Summary
+===============================================================================================================================================================
+Install  3 Packages
+
+Total download size: 94 k
+Installed size: 167 k
+Downloading packages:
+(1/3): perl-Digest-HMAC-1.03-5.el7.noarch.rpm                                                                                           |  16 kB  00:00:00     
+(2/3): perl-Digest-SHA1-2.13-9.el7.x86_64.rpm                                                                                           |  50 kB  00:00:00     
+(3/3): perl-Socket6-0.23-15.el7.x86_64.rpm                                                                                              |  27 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                          560 kB/s |  94 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [                                                                                                      ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [######                                                                                                ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#######                                                                                               ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [############################                                                                          ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#############################                                                                         ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [##########################################                                                            ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [###########################################                                                           ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [####################################################                                                  ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [################################################################################################      ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [####################################################################################################  ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64                                                                                                          1/3 
+  Installing : perl-Socket6-0.23-15.el7.x86_64 [                                                                                                         ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [###################                                                                                      ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [####################################################################                                     ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [##########################################################################################               ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [###############################################################################################          ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [#######################################################################################################  ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64                                                                                                             2/3 
+  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [                                                                                                      ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#                                                                                                     ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#####                                                                                                 ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##########                                                                                            ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#############################                                                                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [############################################                                                          ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [############################################################                                          ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#############################################################                                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##################################################################################                    ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [###########################################################################################           ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [####################################################################################################  ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch                                                                                                          3/3 
+Uploading Package Profile
+  Verifying  : perl-Digest-HMAC-1.03-5.el7.noarch                                                                                                          1/3 
+  Verifying  : perl-Socket6-0.23-15.el7.x86_64                                                                                                             2/3 
+  Verifying  : perl-Digest-SHA1-2.13-9.el7.x86_64                                                                                                          3/3 
+
+Installed:
+  perl-Digest-HMAC.noarch 0:1.03-5.el7                 perl-Digest-SHA1.x86_64 0:2.13-9.el7                 perl-Socket6.x86_64 0:0.23-15.el7                
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+Examining nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm: fping-3.5-3.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm: nagios-common-3.5.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-plugins-2.0.1-1.el7.x86_64.rpm: nagios-plugins-2.0.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-plugins-2.0.1-1.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nrpe-2.15-2.el7.x86_64.rpm: nrpe-2.15-2.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nrpe-2.15-2.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/perl-Crypt-DES-2.05-20.el7.x86_64.rpm: perl-Crypt-DES-2.05-20.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/perl-Crypt-DES-2.05-20.el7.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package fping.x86_64 0:3.5-3.el7 will be installed
+---> Package nagios-common.x86_64 0:3.5.1-1.el7 will be installed
+---> Package nagios-plugins.x86_64 0:2.0.1-1.el7 will be installed
+---> Package nrpe.x86_64 0:2.15-2.el7 will be installed
+---> Package perl-Crypt-DES.x86_64 0:2.05-20.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================
+ Package                            Arch                       Version                            Repository                                              Size
+===============================================================================================================================================================
+Installing:
+ [1mfping(B[m                              x86_64                     3.5-3.el7                          /fping-3.5-3.el7.x86_64                                102 k
+ [1mnagios-common(B[m                      x86_64                     3.5.1-1.el7                        /nagios-common-3.5.1-1.el7.x86_64                      0.0  
+ [1mnagios-plugins(B[m                     x86_64                     2.0.1-1.el7                        /nagios-plugins-2.0.1-1.el7.x86_64                     993 k
+ [1mnrpe(B[m                               x86_64                     2.15-2.el7                         /nrpe-2.15-2.el7.x86_64                                288 k
+ [1mperl-Crypt-DES(B[m                     x86_64                     2.05-20.el7                        /perl-Crypt-DES-2.05-20.el7.x86_64                      35 k
+
+Transaction Summary
+===============================================================================================================================================================
+Install  5 Packages
+
+Total size: 1.4 M
+Installed size: 1.4 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : nagios-common-3.5.1-1.el7.x86_64 [                                                                                                        ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [###################                                                                                     ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [########################################                                                                ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [##############################################################                                          ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [###################################################################################                     ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64                                                                                                            1/5 
+  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [                                                                                                       ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [####                                                                                                   ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [########                                                                                               ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#########                                                                                              ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [############                                                                                           ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###################                                                                                    ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#########################                                                                              ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [################################                                                                       ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#######################################                                                                ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##############################################                                                         ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [####################################################                                                   ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##########################################################                                             ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#################################################################                                      ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [########################################################################                               ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###############################################################################                        ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#####################################################################################                  ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#######################################################################################                ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##########################################################################################             ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###########################################################################################            ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [############################################################################################           ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###################################################################################################    ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#####################################################################################################  ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64                                                                                                           2/5 
+  Installing : nrpe-2.15-2.el7.x86_64 [                                                                                                                  ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [##                                                                                                                ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [###                                                                                                               ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [######################                                                                                            ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [###########################                                                                                       ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [####################################################                                                              ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [#############################################################################                                     ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [######################################################################################################            ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [############################################################################################################      ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [###############################################################################################################   ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [################################################################################################################  ] 3/5  Installing : nrpe-2.15-2.el7.x86_64                                                                                                                      3/5 
+  Installing : fping-3.5-3.el7.x86_64 [                                                                                                                  ] 4/5  Installing : fping-3.5-3.el7.x86_64 [######################################                                                                            ] 4/5  Installing : fping-3.5-3.el7.x86_64 [##############################################################################                                    ] 4/5  Installing : fping-3.5-3.el7.x86_64 [###############################################################################                                   ] 4/5  Installing : fping-3.5-3.el7.x86_64 [#####################################################################################################             ] 4/5  Installing : fping-3.5-3.el7.x86_64 [######################################################################################################            ] 4/5  Installing : fping-3.5-3.el7.x86_64 [############################################################################################################      ] 4/5  Installing : fping-3.5-3.el7.x86_64 [################################################################################################################  ] 4/5  Installing : fping-3.5-3.el7.x86_64                                                                                                                      4/5 
+  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [                                                                                                       ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [##########                                                                                             ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [###########                                                                                            ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [############################################################################                           ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [#############################################################################                          ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [####################################################################################                   ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [#############################################################################################          ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [#####################################################################################################  ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64                                                                                                           5/5 
+Uploading Package Profile
+rhel-7-server-extras-rpms/x86_64                                                                                                        | 2.0 kB  00:00:00     
+rhel-7-server-rpms/7Server/x86_64                                                                                                       | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms/x86_64                                                                                           | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms/7Server/x86_64                                                                                             | 2.0 kB  00:00:00     
+  Verifying  : perl-Crypt-DES-2.05-20.el7.x86_64                                                                                                           1/5 
+  Verifying  : nagios-plugins-2.0.1-1.el7.x86_64                                                                                                           2/5 
+  Verifying  : nagios-common-3.5.1-1.el7.x86_64                                                                                                            3/5 
+  Verifying  : nrpe-2.15-2.el7.x86_64                                                                                                                      4/5 
+  Verifying  : fping-3.5-3.el7.x86_64                                                                                                                      5/5 
+
+Installed:
+  fping.x86_64 0:3.5-3.el7 nagios-common.x86_64 0:3.5.1-1.el7 nagios-plugins.x86_64 0:2.0.1-1.el7 nrpe.x86_64 0:2.15-2.el7 perl-Crypt-DES.x86_64 0:2.05-20.el7
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+grep: /etc/ntp.conf: No such file or directory
+Note: Forwarding request to 'systemctl enable nrpe.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/nrpe.service to /usr/lib/systemd/system/nrpe.service.
+Redirecting to /bin/systemctl start nrpe.service
+########################################
+Apache Install/Configuration
+Note: Forwarding request to 'systemctl enable httpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+Redirecting to /bin/systemctl restart httpd.service
+HealthShare
+########################################
+HSAP Install for scgr : UAT : DB (SCGRUAT2016DB) below /trak/scgrUAT/tc
+No files matching "HSAP-2015*-hscore*-lnxrhx64.tar.gz" in: /trak/iscbuild/trakautomation /tmp /root .. ../installers ../InstallKit ../Kit ../setup ../tools
+]0;root@scgr16uatprt1:/trak/iscbuild/trakautomation[root@scgr16uatprt1 trakautomation]# scp -r scgr16uatdbm1:/trak/iscbuild/ions[K[K[Knstallers ../
+^C]0;root@scgr16uatprt1:/trak/iscbuild/trakautomation[root@scgr16uatprt1 trakautomation]# scp -r scgr16uatdbm1:/trak/iscbuild/installers ../[C[C[1@i[1@n[1@t[1@e[1@r[1@@[1@:[1P
+The authenticity of host 'scgr16uatdbm1 (10.251.19.57)' can't be established.
+ECDSA key fingerprint is SHA256:G43nGsEw07vDZeSFt+TqlVpVBykiU0nFfFb4Rq/+u+Q.
+ECDSA key fingerprint is MD5:c5:76:fd:11:51:72:c9:4e:9c:21:97:75:f6:87:fa:85.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'scgr16uatdbm1,10.251.19.57' (ECDSA) to the list of known hosts.
+inter@scgr16uatdbm1's password: 
+T2016.2_20160422_1705_R0_SCXX_FULL_B2.zip                                                                                      0%    0     0.0KB/s   --:-- ETAT2016.2_20160422_1705_R0_SCXX_FULL_B2.zip                                                                                     31%  193MB 192.5MB/s   00:02 ETAT2016.2_20160422_1705_R0_SCXX_FULL_B2.zip                                                                                     65%  400MB 194.0MB/s   00:01 ETAT2016.2_20160422_1705_R0_SCXX_FULL_B2.zip                                                                                     99%  607MB 195.2MB/s   00:00 ETAT2016.2_20160422_1705_R0_SCXX_FULL_B2.zip                                                                                    100%  611MB  57.1MB/s   00:10    
+HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz                                                              0%    0     0.0KB/s   --:-- ETAHSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz                                                             24%  190MB 190.3MB/s   00:03 ETAHSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz                                                             50%  396MB 191.9MB/s   00:02 ETAHSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz                                                             75%  596MB 192.7MB/s   00:01 ETAHSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz                                                            100%  792MB  56.6MB/s   00:13    
+]0;root@scgr16uatprt1:/trak/iscbuild/trakautomation[root@scgr16uatprt1 trakautomation]# ls -la /trak/inst[K[Kt[Ks[K[Ko[Kscbuild/ty[K[Kos[K[Kinstallers/
+total 1436576
+drwxr-xr-x 2 root  root        128 Oct 31 10:31 [0m[01;34m.[0m
+drwxrwxr-x 9 inter inter       141 Oct 31 10:31 [01;34m..[0m
+-rw-r--r-- 1 root  root  830170580 Oct 31 10:31 [01;31mHSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz[0m
+-rw-r--r-- 1 root  root  640878649 Oct 31 10:31 [01;31mT2016.2_20160422_1705_R0_SCXX_FULL_B2.zip[0m
+]0;root@scgr16uatprt1:/trak/iscbuild/trakautomation[root@scgr16uatprt1 trakautomation]# ls -la /trak/iscbuild/installers/scp -r inter@scgr16uatdbm1:/trak/iscbuild/installers ../[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[25P./MasterSCGRUAT2016PRT.sh
+
+Caché Password to use: 
+Confirm: 
+########################################
+SELINUX Already Disabled
+########################################
+User/Group Configuration exists
+########################################
+TrakCare Shell Environment Configuration exists
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/web" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print//pri" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print//alt" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/db" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/db/audit" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/db/log" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/store/temp" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/patches" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/patches-completed" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/print/perforce" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+Package util-linux-2.23.2-43.el7.x86_64 already installed and latest version
+Nothing to do
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+########################################
+snmpd Configuration Exists
+########################################
+snmpd Configuration Exists for cacti-apache
+########################################
+snmpd Configuration Exists for cacti-cups
+########################################
+snmpd Configuration Exists for cacti-iostat
+########################################
+snmpd Configuration Exists for cacti-processes+
+########################################
+snmpd Configuration Exists for cacti-TCMon
+########################################
+snmpd Configuration Exists for cacti-vmstat
+########################################
+snmpd Configuration Exists for cacti-hugepages
+########################################
+Nagios nrpe Configuration Exists
+########################################
+Apache Configuration Exists
+HealthShare
+########################################
+HSAP Install for scgr : UAT : DB (SCGRUAT2016DB) below /trak/scgrUAT/tc
+Found Installer: /trak/scgrUAT/temp/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+NOTE - no Primary Journal directory found
+NOTE - no Alternate Journal directory found
+NOTE - no WIJ directory found
+installing Cache now
+Installing with CSP
+spawn ./cinstall
+
+Your system type is 'Red Hat Enterprise Linux (x64)'.
+
+Currently defined instances:
+
+
+Enter instance name: SCGRUAT2016DB
+Do you want to create HealthShare instance 'SCGRUAT2016DB' <Yes>? 
+Enter a destination directory for the new instance.
+Directory: /trak/scgrUAT/tc/hs
+ccontrol(open registry): No such file or directory
+
+----------------------------------------------------
+NOTE: Users should not attempt to access HealthShare while
+      the installation is in progress.
+----------------------------------------------------
+
+
+Disk blocks required  = 3755292
+Disk blocks available = 206527112
+
+How restrictive do you want the initial Security settings to be?
+"Normal" is less restrictive, "Locked Down" is the most secure.
+    1) Normal
+    2) Locked Down
+Initial Security settings <1>? 1
+
+What user should be the owner of this instance? cachesys
+A Cache account will also be created for user cachesys.
+
+Install will create the following HealthShare accounts for you: 
+_SYSTEM, Admin, SuperUser, cachesys and CSPSystem. 
+Please enter the common password for _SYSTEM, Admin, SuperUser and cachesys: 
+Re-enter the password to confirm it: 
+
+Please enter the password for CSPSystem: 
+Re-enter the password to confirm it: 
+
+What group should be allowed to start and stop
+  this instance? cachemgr
+
+Do you want to configure additional security options <No>? y
+
+What is the effective group for HealthShare processes <cacheusr>? cachegrp
+
+What is the effective user for the Cache SuperServer
+  and its jobs <cacheusr>? cacheusr
+
+Do you want to load the Manager utility source code <Yes>? 
+
+Enter the SuperServer port number <1972>: 
+
+Enter the WebServer port number <57772>: 
+
+Do you want to configure the CSP Gateway to use an existing web server <No>? y
+
+Specify the WebServer type. Choose "None" if you want to configure
+your WebServer manually.
+    1) Apache
+    2) SunOne
+    3) None
+WebServer type <3>? 1
+
+Please enter location of Apache configuration file </etc/httpd/conf/httpd.conf>: /etc/httpd/conf.d/isccspgateway.conf
+
+Enter user name used by Apache server to run it's worker processes <apache>: 
+
+Please enter location of Apache executable file </usr/sbin/httpd>: 
+Apache version 2.4 is detected.
+
+Please enter destination directory for CSP Gateway files </opt/cspgateway>: 
+
+Do you want to create directory /opt/cspgateway <Yes>? 
+
+Cache did not detect a license key
+in directory /trak/scgrUAT/tc/hs/mgr.
+Do you want to enter a license key <No>? 
+
+Client component selection
+
+   [ ]    1) C++ binding
+   [ ]    2) C++ SDK
+   [ ]    3) Perl binding
+   [ ]    4) Python binding
+   [ ]    5) HealthShare engine link libraries (callin/callout)
+   [ ]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+
+Client component selection
+
+   [*]    1) C++ binding
+   [*]    2) C++ SDK
+   [*]    3) Perl binding
+   [*]    4) Python binding
+   [*]    5) HealthShare engine link libraries (callin/callout)
+   [*]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+Selecting 1
+Selecting 2
+Selecting 3
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+Please review the installation options:
+------------------------------------------------------------------
+Instance name: SCGRUAT2016DB
+Destination directory: /trak/scgrUAT/tc/hs
+HealthShare version to install: 2015.2.0.664.3.17168
+Installation type: Custom
+Unicode support: Y
+Initial Security settings: Normal
+User who owns instance: cachesys
+Group allowed to start and stop instance: cachemgr
+Effective group for HealthShare processes: cachegrp
+Effective user for HealthShare SuperServer: cacheusr
+SuperServer port: 1972
+WebServer port: 57772
+JDBC Gateway port: 62972
+CSP Gateway: installed into /opt/cspgateway
+Apache web server will be configured for CSP Gateway
+Client components:
+   ODBC client
+   C++ binding
+   Perl binding
+   Python binding
+   HealthShare engine link libraries
+   Light C++ binding
+------------------------------------------------------------------
+
+Do you want to proceed with the installation <Yes>? 
+
+Starting installation...
+
+    Updating Apache configuration file ...
+    - /etc/httpd/conf.d/isccspgateway.conf
+
+    * You need to restart your Apache server before any
+      configuration changes will take effect. 
+
+Starting up HealthShare for loading...
+../bin/cinstall -s . -B -c c -C /trak/scgrUAT/tc/hs/cache.cpf*SCGRUAT2016DB -W 1 -g2 
+Starting Control Process
+Allocated 101MB shared memory: 2MB global buffers, 35MB routine buffers
+Cache startup successful.
+System locale setting is 'en_GB.UTF-8'
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+^^/trak/scgrUAT/tc/hs/mgr/>
+
+^^/trak/scgrUAT/tc/hs/mgr/>
+Start of Cache initialization
+
+Loading system routines
+
+
+Updating Cachetemp and Cache database
+
+Installing National Language support
+
+Loading system classes
+
+Updating Security database
+
+Loading system source code
+
+
+Building system indices
+
+Updating Audit database
+
+Updating Journal directory
+
+Updating User database
+
+Updating Ensemble databases
+Load started on 10/31/2017 10:35:42
+Loading file /tmp/cacheextract/dist/install/misc/hsutil.xml as xml
+Imported class: %ZHSLIB.Audit.Log
+Imported class: %ZHSLIB.Audit.LogParticipant
+Imported class: %ZHSLIB.Component
+Imported class: %ZHSLIB.HealthShareMgr
+Imported class: %ZHSLIB.Services.Client
+Imported class: %ZHSLIB.Services.NVPair
+Imported class: %ZHSLIB.Services.Server
+Imported class: %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Imported class: %ZHSLIB.Services.TaskUpdateRolesAndResources
+Imported class: %ZHSLIB.SessionEventUtil
+Imported class: %ZHSLIB.UserChangePassword
+Imported class: %ZHSLIB.UserLogin
+Imported class: %ZHSLIB.UsersAndRoles
+Imported routine: %ZHSLIB.INC
+Imported routine: %ZJRNPURGE.MAC, compiling 13 classes, using 4 worker jobs
+Compiling class %ZHSLIB.Audit.Log
+Compiling class %ZHSLIB.HealthShareMgr
+Compiling class %ZHSLIB.Services.Client
+Compiling class %ZHSLIB.Services.NVPair
+Compiling class %ZHSLIB.Services.Server
+Compiling class %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Compiling class %ZHSLIB.Services.TaskUpdateRolesAndResources
+Compiling class %ZHSLIB.SessionEventUtil
+Compiling class %ZHSLIB.UserChangePassword
+Compiling class %ZHSLIB.UserLogin
+Compiling class %ZHSLIB.UsersAndRoles
+Compiling class %ZHSLIB.Audit.LogParticipant
+Compiling table %ZHSLIB_Audit.Log
+Compiling table %ZHSLIB_Audit.LogParticipant
+Compiling routine %ZHSLIB.Audit.Log.1
+Compiling routine %ZHSLIB.HealthShareMgr.1
+Compiling routine %ZHSLIB.Services.Client.1
+Compiling routine %ZHSLIB.Services.NVPair.1
+Compiling routine %ZHSLIB.Services.Server.1
+Compiling routine %ZHSLIB.Services.TaskCalculateUpdatedRAndR.1
+Compiling routine %ZHSLIB.Services.TaskUpdateRolesAndResources.1
+Compiling routine %ZHSLIB.SessionEventUtil.1
+Compiling routine %ZHSLIB.UserChangePassword.1
+Compiling routine %ZHSLIB.UserLogin.1
+Compiling routine %ZHSLIB.UsersAndRoles.1
+Compiling routine %ZHSLIB.Audit.LogParticipant.1
+Compiling class %ZHSLIB.Component
+Compiling routine %ZHSLIB.Component.1
+Compiling class %ZHSLIB.Services.Client.GetNVPair
+Compiling class %ZHSLIB.Services.Server.GetNVPair
+Compiling routine %ZHSLIB.Services.Client.GetNVPair.1
+Compiling routine %ZHSLIB.Services.Server.GetNVPair.1
+Compiling routine : %ZJRNPURGE.MAC
+Load finished successfully.
+
+
+Scheduling inventory scan
+
+Cache initialization complete in 1 minute
+
+See the cboot.log file for a record of the installation.
+
+Starting up HealthShare...
+Once this completes, users may access HealthShare
+Starting SCGRUAT2016DB
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Automatically configuring buffers
+Allocated 638MB shared memory: 256MB global buffers, 300MB routine buffers
+Creating a WIJ file to hold 31 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+1 alert(s) during startup. See cconsole.log for details.
+
+
+You can point your browser to http://scgr16uatprt1.nhsg.grampian.scot.nhs.uk:57772/csp/sys/UtilHome.csp
+to access the management portal.
+
+Installation completed successfully
+Redirecting to /bin/systemctl restart httpd.service
+spawn su - cacheusr -c csession SCGRUAT2016DB
+
+Node: scgr16uatprt1.nhsg.grampian.scot.nhs.uk, Instance: SCGRUAT2016DB
+
+Username: SuperUser
+Password: *********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/iscbuild/trakautomation/conffiles/ZSTU.xml","ck")
+
+Load started on 10/31/2017 10:36:33
+Loading file /trak/iscbuild/trakautomation/conffiles/ZSTU.xml as xml
+Imported routine: ZSTU.MAC
+Compiling routine : ZSTU.MAC
+Load finished successfully.
+
+%SYS>
+Oct 31 2017 10:36:33 : INFO: /etc/init.d/isccache executing on "scgr16uatprt1.nhsg.grampian.scot.nhs.uk": Starting Cache
+NOTE - Instance SCGRUAT2016DB has not been added to /etc/init.d/isccache to start at boot
+########################################
+Installing licenses...
+/trak/iscbuild/trakautomation/cache.key
+Installing license for /trak/scgrUAT/tc/hs/mgr
+########################################
+Configuring Environment SCGRUAT2016DB
+Environment Configuration for scgr : UAT (SCGRUAT2016DB)
+
+10:36:33 Shutting down Cache
+10:36:33 Notifying Clients
+10:36:33 No user shutdown routines to execute
+10:36:33 Stopping User Jobs
+10:36:33 Stopping Network Servers
+10:36:33 Withdrawing from License Domain
+10:36:33 Waiting for users to stop
+10:36:33 Stopping Client Networking
+10:36:33 Removing database locks
+10:36:33 Updating Journal File
+10:36:35 Waiting for database updates to complete
+10:36:35 Database updates complete
+10:36:35 Stopping System Jobs
+10:36:37 Shutdown complete
+Starting SCGRUAT2016DB
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Allocated 16275MB shared memory: 14337MB global buffers, 1000MB routine buffers
+Creating a WIJ file to hold 49 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+ISC TrakCare Development
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+########################################
+CUPS Install/Configuration
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                                                               | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                                                                      | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                                                                  | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                                                                            | 2.0 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package hplip.x86_64 0:3.15.9-3.el7 will be installed
+--> Processing Dependency: hplip-libs(x86-64) = 3.15.9-3.el7 for package: hplip-3.15.9-3.el7.x86_64
+--> Processing Dependency: hpijs(x86-64) = 1:3.15.9-3.el7 for package: hplip-3.15.9-3.el7.x86_64
+--> Processing Dependency: python-pillow for package: hplip-3.15.9-3.el7.x86_64
+--> Processing Dependency: libhpmud.so.0()(64bit) for package: hplip-3.15.9-3.el7.x86_64
+--> Running transaction check
+---> Package hpijs.x86_64 1:3.15.9-3.el7 will be installed
+---> Package hplip-libs.x86_64 0:3.15.9-3.el7 will be installed
+--> Processing Dependency: hplip-common(x86-64) = 3.15.9-3.el7 for package: hplip-libs-3.15.9-3.el7.x86_64
+--> Processing Dependency: libsane.so.1()(64bit) for package: hplip-libs-3.15.9-3.el7.x86_64
+---> Package python-pillow.x86_64 0:2.0.0-19.gitd1c6db8.el7 will be installed
+--> Processing Dependency: libwebp.so.4()(64bit) for package: python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64
+--> Running transaction check
+---> Package hplip-common.x86_64 0:3.15.9-3.el7 will be installed
+---> Package libwebp.x86_64 0:0.3.0-7.el7 will be installed
+---> Package sane-backends-libs.x86_64 0:1.0.24-9.el7 will be installed
+--> Processing Dependency: libv4l1.so.0()(64bit) for package: sane-backends-libs-1.0.24-9.el7.x86_64
+--> Processing Dependency: libieee1284.so.3()(64bit) for package: sane-backends-libs-1.0.24-9.el7.x86_64
+--> Processing Dependency: libgphoto2_port.so.10()(64bit) for package: sane-backends-libs-1.0.24-9.el7.x86_64
+--> Processing Dependency: libgphoto2.so.6()(64bit) for package: sane-backends-libs-1.0.24-9.el7.x86_64
+--> Processing Dependency: libexif.so.12()(64bit) for package: sane-backends-libs-1.0.24-9.el7.x86_64
+--> Running transaction check
+---> Package libexif.x86_64 0:0.6.21-6.el7 will be installed
+---> Package libgphoto2.x86_64 0:2.5.2-5.el7 will be installed
+--> Processing Dependency: lockdev for package: libgphoto2-2.5.2-5.el7.x86_64
+--> Processing Dependency: liblockdev.so.1()(64bit) for package: libgphoto2-2.5.2-5.el7.x86_64
+--> Processing Dependency: libgd.so.2()(64bit) for package: libgphoto2-2.5.2-5.el7.x86_64
+---> Package libieee1284.x86_64 0:0.2.11-15.el7 will be installed
+---> Package libv4l.x86_64 0:0.9.5-4.el7 will be installed
+--> Running transaction check
+---> Package gd.x86_64 0:2.0.35-26.el7 will be installed
+--> Processing Dependency: libXpm.so.4()(64bit) for package: gd-2.0.35-26.el7.x86_64
+---> Package lockdev.x86_64 0:1.0.4-0.13.20111007git.el7 will be installed
+--> Running transaction check
+---> Package libXpm.x86_64 0:3.5.12-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================
+ Package                                Arch                       Version                                        Repository                              Size
+===============================================================================================================================================================
+Installing:
+ hplip                                  x86_64                     3.15.9-3.el7                                   rhel-7-server-rpms                     6.1 M
+Installing for dependencies:
+ gd                                     x86_64                     2.0.35-26.el7                                  rhel-7-server-rpms                     146 k
+ hpijs                                  x86_64                     1:3.15.9-3.el7                                 rhel-7-server-rpms                     6.3 M
+ hplip-common                           x86_64                     3.15.9-3.el7                                   rhel-7-server-rpms                      89 k
+ hplip-libs                             x86_64                     3.15.9-3.el7                                   rhel-7-server-rpms                     176 k
+ libXpm                                 x86_64                     3.5.12-1.el7                                   rhel-7-server-rpms                      56 k
+ libexif                                x86_64                     0.6.21-6.el7                                   rhel-7-server-rpms                     347 k
+ libgphoto2                             x86_64                     2.5.2-5.el7                                    rhel-7-server-rpms                     1.2 M
+ libieee1284                            x86_64                     0.2.11-15.el7                                  rhel-7-server-rpms                      39 k
+ libv4l                                 x86_64                     0.9.5-4.el7                                    rhel-7-server-rpms                     194 k
+ libwebp                                x86_64                     0.3.0-7.el7                                    rhel-7-server-rpms                     170 k
+ lockdev                                x86_64                     1.0.4-0.13.20111007git.el7                     rhel-7-server-rpms                      31 k
+ python-pillow                          x86_64                     2.0.0-19.gitd1c6db8.el7                        rhel-7-server-rpms                     438 k
+ sane-backends-libs                     x86_64                     1.0.24-9.el7                                   rhel-7-server-rpms                      95 k
+
+Transaction Summary
+===============================================================================================================================================================
+Install  1 Package (+13 Dependent packages)
+
+Total download size: 15 M
+Installed size: 30 M
+Downloading packages:
+(1/14): gd-2.0.35-26.el7.x86_64.rpm                                                                                                     | 146 kB  00:00:00     
+(2/14): hpijs-3.15.9-3.el7.x86_64.rpm                                                                                                   | 6.3 MB  00:00:00     
+(3/14): hplip-3.15.9-3.el7.x86_64.rpm                                                                                                   | 6.1 MB  00:00:00     
+(4/14): hplip-common-3.15.9-3.el7.x86_64.rpm                                                                                            |  89 kB  00:00:00     
+(5/14): libXpm-3.5.12-1.el7.x86_64.rpm                                                                                                  |  56 kB  00:00:00     
+(6/14): hplip-libs-3.15.9-3.el7.x86_64.rpm                                                                                              | 176 kB  00:00:00     
+(7/14): libexif-0.6.21-6.el7.x86_64.rpm                                                                                                 | 347 kB  00:00:00     
+(8/14): libgphoto2-2.5.2-5.el7.x86_64.rpm                                                                                               | 1.2 MB  00:00:00     
+(9/14): libieee1284-0.2.11-15.el7.x86_64.rpm                                                                                            |  39 kB  00:00:00     
+(10/14): libv4l-0.9.5-4.el7.x86_64.rpm                                                                                                  | 194 kB  00:00:00     
+(11/14): libwebp-0.3.0-7.el7.x86_64.rpm                                                                                                 | 170 kB  00:00:00     
+(12/14): lockdev-1.0.4-0.13.20111007git.el7.x86_64.rpm                                                                                  |  31 kB  00:00:00     
+(13/14): sane-backends-libs-1.0.24-9.el7.x86_64.rpm                                                                                     |  95 kB  00:00:00     
+(14/14): python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64.rpm                                                                               | 438 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                           28 MB/s |  15 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libexif-0.6.21-6.el7.x86_64 [                                                                                                           ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###                                                                                                        ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [######                                                                                                     ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##########                                                                                                 ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#############                                                                                              ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##############                                                                                             ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [################                                                                                           ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#################                                                                                          ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##################                                                                                         ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#####################                                                                                      ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [########################                                                                                   ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###########################                                                                                ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###############################                                                                            ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#################################                                                                          ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#####################################                                                                      ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#######################################                                                                    ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###########################################                                                                ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##############################################                                                             ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###############################################                                                            ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##################################################                                                         ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [####################################################                                                       ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [######################################################                                                     ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#######################################################                                                    ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###########################################################                                                ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [############################################################                                               ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###############################################################                                            ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##################################################################                                         ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#####################################################################                                      ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [########################################################################                                   ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###########################################################################                                ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##############################################################################                             ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##################################################################################                         ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [######################################################################################                     ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [########################################################################################                   ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#########################################################################################                  ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#############################################################################################              ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##############################################################################################             ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [###############################################################################################            ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [################################################################################################           ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [##################################################################################################         ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [######################################################################################################     ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [########################################################################################################   ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64 [#########################################################################################################  ]  1/14  Installing : libexif-0.6.21-6.el7.x86_64                                                                                                                1/14 
+  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [                                                                                             ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [##########################                                                                   ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [############################################                                                 ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [#############################################                                                ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [##############################################                                               ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [###########################################################################################  ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64 [############################################################################################ ]  2/14  Installing : lockdev-1.0.4-0.13.20111007git.el7.x86_64                                                                                                  2/14 
+  Installing : hplip-common-3.15.9-3.el7.x86_64 [                                                                                                      ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [#                                                                                                     ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [########                                                                                              ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [##############                                                                                        ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [####################                                                                                  ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [##########################                                                                            ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [################################                                                                      ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [######################################                                                                ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [############################################                                                          ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [###################################################                                                   ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [#########################################################                                             ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [###############################################################                                       ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [######################################################################                                ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [############################################################################                          ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [##################################################################################                    ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [########################################################################################              ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [##############################################################################################        ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64 [####################################################################################################  ]  3/14  Installing : hplip-common-3.15.9-3.el7.x86_64                                                                                                           3/14 
+  Installing : libv4l-0.9.5-4.el7.x86_64 [                                                                                                             ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [###########                                                                                                  ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#######################                                                                                      ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [###########################                                                                                  ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#############################                                                                                ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [##################################                                                                           ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#####################################                                                                        ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [######################################                                                                       ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [########################################                                                                     ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [############################################                                                                 ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#######################################################                                                      ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#############################################################                                                ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [#########################################################################                                    ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [######################################################################################                       ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [###########################################################################################                  ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [##############################################################################################               ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [####################################################################################################         ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [##########################################################################################################   ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64 [###########################################################################################################  ]  4/14  Installing : libv4l-0.9.5-4.el7.x86_64                                                                                                                  4/14 
+  Installing : libieee1284-0.2.11-15.el7.x86_64 [                                                                                                      ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64 [#############                                                                                         ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64 [#########################################################################                             ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64 [##############################################################################################        ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64 [#################################################################################################     ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64 [####################################################################################################  ]  5/14  Installing : libieee1284-0.2.11-15.el7.x86_64                                                                                                           5/14 
+  Installing : libwebp-0.3.0-7.el7.x86_64 [                                                                                                            ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [##################                                                                                          ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [####################################                                                                        ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [#######################################################                                                     ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [#########################################################################                                   ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [##########################################################################################                  ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [###################################################################################################         ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [####################################################################################################        ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [#####################################################################################################       ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64 [##########################################################################################################  ]  6/14  Installing : libwebp-0.3.0-7.el7.x86_64                                                                                                                 6/14 
+  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [                                                                                          ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#                                                                                         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##                                                                                        ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###                                                                                       ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [####                                                                                      ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#####                                                                                     ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#########                                                                                 ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###########                                                                               ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [############                                                                              ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#############                                                                             ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##############                                                                            ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###############                                                                           ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [################                                                                          ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#################                                                                         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##################                                                                        ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###################                                                                       ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [####################                                                                      ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#####################                                                                     ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [######################                                                                    ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#######################                                                                   ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [########################                                                                  ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#########################                                                                 ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##########################                                                                ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###########################                                                               ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [############################                                                              ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##############################                                                            ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [################################                                                          ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#################################                                                         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##################################                                                        ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###################################                                                       ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [######################################                                                    ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#########################################                                                 ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##########################################                                                ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#############################################                                             ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#################################################                                         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#####################################################                                     ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [########################################################                                  ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##########################################################                                ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###########################################################                               ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#############################################################                             ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##############################################################                            ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#################################################################                         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##################################################################                        ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###################################################################                       ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [####################################################################                      ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#####################################################################                     ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [######################################################################                    ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#######################################################################                   ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [########################################################################                  ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##########################################################################                ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###########################################################################               ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [############################################################################              ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#############################################################################             ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##############################################################################            ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###############################################################################           ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [################################################################################          ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#################################################################################         ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [##################################################################################        ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [###################################################################################       ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [####################################################################################      ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#####################################################################################     ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [#######################################################################################   ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [########################################################################################  ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64 [######################################################################################### ]  7/14  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64                                                                                               7/14 
+  Installing : libXpm-3.5.12-1.el7.x86_64 [                                                                                                            ]  8/14  Installing : libXpm-3.5.12-1.el7.x86_64 [###########################################################                                                 ]  8/14  Installing : libXpm-3.5.12-1.el7.x86_64 [####################################################################                                        ]  8/14  Installing : libXpm-3.5.12-1.el7.x86_64 [########################################################################                                    ]  8/14  Installing : libXpm-3.5.12-1.el7.x86_64 [##########################################################################################################  ]  8/14  Installing : libXpm-3.5.12-1.el7.x86_64                                                                                                                 8/14 
+  Installing : gd-2.0.35-26.el7.x86_64 [                                                                                                               ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [############                                                                                                   ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [#########################                                                                                      ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [######################################                                                                         ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [####################################################                                                           ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [#######################################################                                                        ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [########################################################                                                       ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [###########################################################                                                    ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [#########################################################################                                      ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [######################################################################################                         ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [###################################################################################################            ]  9/14  Installing : gd-2.0.35-26.el7.x86_64 [#############################################################################################################  ]  9/14  Installing : gd-2.0.35-26.el7.x86_64                                                                                                                    9/14 
+  Installing : libgphoto2-2.5.2-5.el7.x86_64 [                                                                                                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#                                                                                                        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##                                                                                                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###                                                                                                      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####                                                                                                     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######                                                                                                   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######                                                                                                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [########                                                                                                 ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########                                                                                               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###########                                                                                              ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [############                                                                                             ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############                                                                                            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##############                                                                                           ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############                                                                                          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################                                                                                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#################                                                                                        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################                                                                                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###################                                                                                      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#####################                                                                                    ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######################                                                                                   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################                                                                                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [########################                                                                                 ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#########################                                                                                ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########################                                                                               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###########################                                                                              ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [############################                                                                             ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############################                                                                            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##############################                                                                           ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############################                                                                          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################################                                                                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################################                                                                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###################################                                                                      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####################################                                                                     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######################################                                                                   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################################                                                                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [########################################                                                                 ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########################################                                                               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###########################################                                                              ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############################################                                                            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##############################################                                                           ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############################################                                                          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################################################                                                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#################################################                                                        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################################################                                                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###################################################                                                      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####################################################                                                     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#####################################################                                                    ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######################################################                                                   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################################################                                                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [########################################################                                                 ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#########################################################                                                ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########################################################                                               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###########################################################                                              ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [############################################################                                             ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############################################################                                            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############################################################                                          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################################################################                                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#################################################################                                        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################################################################                                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###################################################################                                      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####################################################################                                     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#####################################################################                                    ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################################################################                                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#########################################################################                                ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########################################################################                               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###########################################################################                              ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [############################################################################                             ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############################################################################                            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##############################################################################                           ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############################################################################                          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################################################################################                         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#################################################################################                        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################################################################################                       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####################################################################################                     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#####################################################################################                    ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######################################################################################                   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################################################################################                  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#########################################################################################                ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##########################################################################################               ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [############################################################################################             ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#############################################################################################            ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##############################################################################################           ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###############################################################################################          ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [################################################################################################         ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#################################################################################################        ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [##################################################################################################       ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [###################################################################################################      ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [####################################################################################################     ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [######################################################################################################   ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64 [#######################################################################################################  ] 10/14  Installing : libgphoto2-2.5.2-5.el7.x86_64                                                                                                             10/14 
+  Installing : sane-backends-libs-1.0.24-9.el7.x86_64 [                                                                                                ] 11/14  Installing : sane-backends-libs-1.0.24-9.el7.x86_64 [#################################                                                               ] 11/14  Installing : sane-backends-libs-1.0.24-9.el7.x86_64 [####################################################################                            ] 11/14  Installing : sane-backends-libs-1.0.24-9.el7.x86_64 [############################################################################################### ] 11/14  Installing : sane-backends-libs-1.0.24-9.el7.x86_64                                                                                                    11/14 
+  Installing : hplip-libs-3.15.9-3.el7.x86_64 [                                                                                                        ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [################                                                                                        ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [##################################                                                                      ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [##########################################                                                              ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [################################################                                                        ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [#################################################                                                       ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [##################################################################                                      ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [###############################################################################                         ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [########################################################################################                ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [############################################################################################            ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [#################################################################################################       ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64 [######################################################################################################  ] 12/14  Installing : hplip-libs-3.15.9-3.el7.x86_64                                                                                                            12/14 
+  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [                                                                                                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#                                                                                                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##                                                                                                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###                                                                                                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####                                                                                                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####                                                                                                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######                                                                                                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######                                                                                                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########                                                                                                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########                                                                                                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########                                                                                                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###########                                                                                                ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [############                                                                                               ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#############                                                                                              ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##############                                                                                             ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################                                                                                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################                                                                                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################                                                                                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################                                                                                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################                                                                                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################                                                                                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################                                                                                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################                                                                                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################                                                                                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################                                                                                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########################                                                                                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###########################                                                                                ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [############################                                                                               ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#############################                                                                              ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###############################                                                                            ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################################                                                                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################################                                                                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################################                                                                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################################                                                                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################################                                                                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################################                                                                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################################                                                                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################################                                                                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################################                                                                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################################                                                                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########################################                                                                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###########################################                                                                ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [############################################                                                               ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##############################################                                                             ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###############################################                                                            ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################################################                                                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################################################                                                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################################################                                                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################################################                                                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################################################                                                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################################################                                                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################################################                                                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################################################                                                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################################################                                                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################################################                                                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########################################################                                                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###########################################################                                                ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [############################################################                                               ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##############################################################                                             ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###############################################################                                            ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################################################################                                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################################################################                                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################################################################                                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################################################################                                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################################################################                                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################################################################                                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################################################################                                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################################################################                                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################################################################                                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################################################################                                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########################################################################                                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###########################################################################                                ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#############################################################################                              ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##############################################################################                             ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###############################################################################                            ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################################################################################                           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################################################################################                          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################################################################################                         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################################################################################                        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################################################################################                       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################################################################################                      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################################################################################                     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################################################################################                    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################################################################################                   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################################################################################                  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##########################################################################################                 ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [############################################################################################               ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#############################################################################################              ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##############################################################################################             ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###############################################################################################            ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [################################################################################################           ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#################################################################################################          ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [##################################################################################################         ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [###################################################################################################        ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [####################################################################################################       ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#####################################################################################################      ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [######################################################################################################     ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#######################################################################################################    ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [########################################################################################################   ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64 [#########################################################################################################  ] 13/14  Installing : 1:hpijs-3.15.9-3.el7.x86_64                                                                                                               13/14 
+  Installing : hplip-3.15.9-3.el7.x86_64 [                                                                                                             ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#                                                                                                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##                                                                                                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###                                                                                                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [####                                                                                                         ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####                                                                                                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######                                                                                                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######                                                                                                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [########                                                                                                     ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########                                                                                                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########                                                                                                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########                                                                                                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############                                                                                                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############                                                                                               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############                                                                                              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [################                                                                                             ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################                                                                                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################                                                                                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################                                                                                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [####################                                                                                         ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################                                                                                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################                                                                                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################                                                                                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################                                                                                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################                                                                                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################                                                                                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [############################                                                                                 ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############################                                                                                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############################                                                                               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############################                                                                              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [################################                                                                             ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################################                                                                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################################                                                                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################################                                                                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################################                                                                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################################                                                                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################################                                                                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [########################################                                                                     ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################################                                                                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################################                                                                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################################                                                                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [############################################                                                                 ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############################################                                                                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############################################                                                               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############################################                                                              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################################################                                                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################################################                                                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################################################                                                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [####################################################                                                         ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################################################                                                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################################################                                                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################################################                                                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [########################################################                                                     ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################################################                                                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################################################                                                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################################################                                                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############################################################                                                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############################################################                                               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############################################################                                              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [################################################################                                             ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################################################################                                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################################################################                                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################################################################                                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [####################################################################                                         ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################################################################                                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################################################################                                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################################################################                                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################################################################                                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################################################################                                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################################################################                                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [############################################################################                                 ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############################################################################                                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############################################################################                               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############################################################################                              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [################################################################################                             ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################################################################################                            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################################################################################                           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################################################################################                          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################################################################################                        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################################################################################                       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################################################################################                      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [########################################################################################                     ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################################################################################                    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################################################################################                   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################################################################################                  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [############################################################################################                 ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#############################################################################################                ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##############################################################################################               ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###############################################################################################              ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#################################################################################################            ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##################################################################################################           ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###################################################################################################          ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [####################################################################################################         ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#####################################################################################################        ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [######################################################################################################       ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#######################################################################################################      ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [########################################################################################################     ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [#########################################################################################################    ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [##########################################################################################################   ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64 [###########################################################################################################  ] 14/14  Installing : hplip-3.15.9-3.el7.x86_64                                                                                                                 14/14 
+Uploading Package Profile
+  Verifying  : libXpm-3.5.12-1.el7.x86_64                                                                                                                 1/14 
+  Verifying  : libwebp-0.3.0-7.el7.x86_64                                                                                                                 2/14 
+  Verifying  : gd-2.0.35-26.el7.x86_64                                                                                                                    3/14 
+  Verifying  : hplip-libs-3.15.9-3.el7.x86_64                                                                                                             4/14 
+  Verifying  : libieee1284-0.2.11-15.el7.x86_64                                                                                                           5/14 
+  Verifying  : sane-backends-libs-1.0.24-9.el7.x86_64                                                                                                     6/14 
+  Verifying  : libv4l-0.9.5-4.el7.x86_64                                                                                                                  7/14 
+  Verifying  : libexif-0.6.21-6.el7.x86_64                                                                                                                8/14 
+  Verifying  : hplip-common-3.15.9-3.el7.x86_64                                                                                                           9/14 
+  Verifying  : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64                                                                                              10/14 
+  Verifying  : 1:hpijs-3.15.9-3.el7.x86_64                                                                                                               11/14 
+  Verifying  : libgphoto2-2.5.2-5.el7.x86_64                                                                                                             12/14 
+  Verifying  : hplip-3.15.9-3.el7.x86_64                                                                                                                 13/14 
+  Verifying  : lockdev-1.0.4-0.13.20111007git.el7.x86_64                                                                                                 14/14 
+
+Installed:
+  hplip.x86_64 0:3.15.9-3.el7                                                                                                                                  
+
+Dependency Installed:
+  gd.x86_64 0:2.0.35-26.el7                        hpijs.x86_64 1:3.15.9-3.el7                         hplip-common.x86_64 0:3.15.9-3.el7                    
+  hplip-libs.x86_64 0:3.15.9-3.el7                 libXpm.x86_64 0:3.5.12-1.el7                        libexif.x86_64 0:0.6.21-6.el7                         
+  libgphoto2.x86_64 0:2.5.2-5.el7                  libieee1284.x86_64 0:0.2.11-15.el7                  libv4l.x86_64 0:0.9.5-4.el7      

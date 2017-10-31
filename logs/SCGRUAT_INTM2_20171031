@@ -1,0 +1,828 @@
+Script started on Tue 31 Oct 2017 15:42:38 GMT
+]0;root@scgr16uatintm2:/trak/iscbuild/trakautomation[?1034h[root@scgr16uatintm2 trakautomation]# ./MasterSCGRUAT2016INT.sh
+
+Caché Password to use: 
+Confirm: 
+########################################
+SELINUX Configuration (Disable)
+########################################
+User/Group Configuration
+########################################
+TrakCare Shell Environment Configuration
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/int/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/scgrUAT/int/db" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                  | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                         | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                     | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                               | 2.0 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package unzip.x86_64 0:6.0-16.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================
+ Package               Arch                   Version                    Repository                          Size
+==================================================================================================================
+Installing:
+ unzip                 x86_64                 6.0-16.el7                 rhel-7-server-rpms                 169 k
+
+Transaction Summary
+==================================================================================================================
+Install  1 Package
+
+Total download size: 169 k
+Installed size: 365 k
+Downloading packages:
+unzip-6.0-16.el7.x86_64.rpm                                                                | 169 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : unzip-6.0-16.el7.x86_64 [                                                                    ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#####                                                               ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#################                                                   ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#####################                                               ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [######################                                              ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#######################                                             ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###########################                                         ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###############################                                     ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [################################                                    ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [##################################                                  ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [##############################################                      ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#########################################################           ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [################################################################### ] 1/1  Installing : unzip-6.0-16.el7.x86_64                                                                        1/1 
+Uploading Package Profile
+  Verifying  : unzip-6.0-16.el7.x86_64                                                                        1/1 
+
+Installed:
+  unzip.x86_64 0:6.0-16.el7                                                                                       
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                  | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                         | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                     | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                               | 2.0 kB  00:00:00     
+Package util-linux-2.23.2-43.el7.x86_64 already installed and latest version
+Nothing to do
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+########################################
+snmpd Install/Configuration
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package net-snmp.x86_64 1:5.7.2-28.el7 will be installed
+--> Processing Dependency: net-snmp-agent-libs = 1:5.7.2-28.el7 for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmptrapd.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpmibs.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpagent.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Running transaction check
+---> Package net-snmp-agent-libs.x86_64 1:5.7.2-28.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================
+ Package                        Arch              Version                     Repository                     Size
+==================================================================================================================
+Installing:
+ net-snmp                       x86_64            1:5.7.2-28.el7              rhel-7-server-rpms            321 k
+Installing for dependencies:
+ net-snmp-agent-libs            x86_64            1:5.7.2-28.el7              rhel-7-server-rpms            704 k
+
+Transaction Summary
+==================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 1.0 M
+Installed size: 2.9 M
+Downloading packages:
+(1/2): net-snmp-5.7.2-28.el7.x86_64.rpm                                                    | 321 kB  00:00:00     
+(2/2): net-snmp-agent-libs-5.7.2-28.el7.x86_64.rpm                                         | 704 kB  00:00:00     
+------------------------------------------------------------------------------------------------------------------
+Total                                                                             7.2 MB/s | 1.0 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [                                                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#                                                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###                                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####                                              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######                                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######                                           ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########                                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##########                                        ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############                                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#############                                     ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############                                   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################                                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##################                                ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#####################                             ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [########################                          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########################                       ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############################                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############################                   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################################                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##################################                ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####################################              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#####################################             ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######################################           ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################################         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##########################################        ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################################      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#############################################     ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############################################   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################################################  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################################################# ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                      1/2 
+  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [                                                             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#                                                            ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##                                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####                                                         ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######                                                       ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########                                                    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############                                                 ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##############                                               ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##################                                           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######################                                      ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###############################                              ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [################################                             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####################################                         ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########################################                    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################################                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [################################################             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##################################################           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###################################################          ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####################################################         ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#####################################################        ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################################################       ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################################     ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########################################################    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##########################################################   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################################################  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################################################ ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64                                                                 2/2 
+Uploading Package Profile
+  Verifying  : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                      1/2 
+  Verifying  : 1:net-snmp-5.7.2-28.el7.x86_64                                                                 2/2 
+
+Installed:
+  net-snmp.x86_64 1:5.7.2-28.el7                                                                                  
+
+Dependency Installed:
+  net-snmp-agent-libs.x86_64 1:5.7.2-28.el7                                                                       
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Note: Forwarding request to 'systemctl enable snmpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/snmpd.service to /usr/lib/systemd/system/snmpd.service.
+Redirecting to /bin/systemctl start snmpd.service
+########################################
+snmpd Install/Configuration for cacti-apache
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-cups
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-iostat
+cron iostat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-processes+
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-TCMon
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-vmstat
+cron vmstat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-hugepages
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+Nagios nrpe Install/Configuration
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+rhel-7-server-extras-rpms                                                                  | 2.0 kB  00:00:00     
+rhel-7-server-rpms                                                                         | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms                                                     | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms                                                               | 2.0 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package perl-Digest-HMAC.noarch 0:1.03-5.el7 will be installed
+---> Package perl-Digest-SHA1.x86_64 0:2.13-9.el7 will be installed
+---> Package perl-Socket6.x86_64 0:0.23-15.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================
+ Package                       Arch                Version                  Repository                       Size
+==================================================================================================================
+Installing:
+ perl-Digest-HMAC              noarch              1.03-5.el7               rhel-7-server-rpms               16 k
+ perl-Digest-SHA1              x86_64              2.13-9.el7               rhel-7-server-rpms               50 k
+ perl-Socket6                  x86_64              0.23-15.el7              rhel-7-server-rpms               27 k
+
+Transaction Summary
+==================================================================================================================
+Install  3 Packages
+
+Total download size: 94 k
+Installed size: 167 k
+Downloading packages:
+(1/3): perl-Digest-HMAC-1.03-5.el7.noarch.rpm                                              |  16 kB  00:00:00     
+(2/3): perl-Digest-SHA1-2.13-9.el7.x86_64.rpm                                              |  50 kB  00:00:00     
+(3/3): perl-Socket6-0.23-15.el7.x86_64.rpm                                                 |  27 kB  00:00:00     
+------------------------------------------------------------------------------------------------------------------
+Total                                                                             571 kB/s |  94 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [                                                         ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [###                                                      ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [###############                                          ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [################                                         ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#######################                                  ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [########################                                 ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#############################                            ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [######################################################   ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [######################################################## ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64                                                             1/3 
+  Installing : perl-Socket6-0.23-15.el7.x86_64 [                                                            ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [###########                                                 ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [#######################################                     ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [###################################################         ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [######################################################      ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [########################################################### ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64                                                                2/3 
+  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [                                                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##                                                       ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#####                                                    ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [################                                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#########################                                ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#################################                        ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##################################                       ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##############################################           ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [###################################################      ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [######################################################## ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch                                                             3/3 
+Uploading Package Profile
+  Verifying  : perl-Digest-HMAC-1.03-5.el7.noarch                                                             1/3 
+  Verifying  : perl-Socket6-0.23-15.el7.x86_64                                                                2/3 
+  Verifying  : perl-Digest-SHA1-2.13-9.el7.x86_64                                                             3/3 
+
+Installed:
+  perl-Digest-HMAC.noarch 0:1.03-5.el7  perl-Digest-SHA1.x86_64 0:2.13-9.el7  perl-Socket6.x86_64 0:0.23-15.el7 
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+Loaded plugins: enabled_repos_upload, package_upload, product-id, search-disabled-repos, subscription-manager
+Examining nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm: fping-3.5-3.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm: nagios-common-3.5.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-plugins-2.0.1-1.el7.x86_64.rpm: nagios-plugins-2.0.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-plugins-2.0.1-1.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nrpe-2.15-2.el7.x86_64.rpm: nrpe-2.15-2.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nrpe-2.15-2.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/perl-Crypt-DES-2.05-20.el7.x86_64.rpm: perl-Crypt-DES-2.05-20.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/perl-Crypt-DES-2.05-20.el7.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package fping.x86_64 0:3.5-3.el7 will be installed
+---> Package nagios-common.x86_64 0:3.5.1-1.el7 will be installed
+---> Package nagios-plugins.x86_64 0:2.0.1-1.el7 will be installed
+---> Package nrpe.x86_64 0:2.15-2.el7 will be installed
+---> Package perl-Crypt-DES.x86_64 0:2.05-20.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================
+ Package                 Arch            Version                Repository                                   Size
+==================================================================================================================
+Installing:
+ [1mfping(B[m                   x86_64          3.5-3.el7              /fping-3.5-3.el7.x86_64                     102 k
+ [1mnagios-common(B[m           x86_64          3.5.1-1.el7            /nagios-common-3.5.1-1.el7.x86_64           0.0  
+ [1mnagios-plugins(B[m          x86_64          2.0.1-1.el7            /nagios-plugins-2.0.1-1.el7.x86_64          993 k
+ [1mnrpe(B[m                    x86_64          2.15-2.el7             /nrpe-2.15-2.el7.x86_64                     288 k
+ [1mperl-Crypt-DES(B[m          x86_64          2.05-20.el7            /perl-Crypt-DES-2.05-20.el7.x86_64           35 k
+
+Transaction Summary
+==================================================================================================================
+Install  5 Packages
+
+Total size: 1.4 M
+Installed size: 1.4 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : nagios-common-3.5.1-1.el7.x86_64 [                                                           ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [###########                                                ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [#######################                                    ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [###################################                        ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64 [###############################################            ] 1/5  Installing : nagios-common-3.5.1-1.el7.x86_64                                                               1/5 
+  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [                                                          ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##                                                        ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [####                                                      ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#####                                                     ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [######                                                    ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###########                                               ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##############                                            ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##################                                        ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [######################                                    ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [##########################                                ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#############################                             ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#################################                         ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#####################################                     ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [########################################                  ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [############################################              ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [################################################          ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [#################################################         ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [###################################################       ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [####################################################      ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [########################################################  ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64 [######################################################### ] 2/5  Installing : nagios-plugins-2.0.1-1.el7.x86_64                                                              2/5 
+  Installing : nrpe-2.15-2.el7.x86_64 [                                                                     ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [#                                                                    ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [##                                                                   ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [#############                                                        ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [################                                                     ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [###############################                                      ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [##############################################                       ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [##############################################################       ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [#################################################################    ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [###################################################################  ] 3/5  Installing : nrpe-2.15-2.el7.x86_64 [#################################################################### ] 3/5  Installing : nrpe-2.15-2.el7.x86_64                                                                         3/5 
+  Installing : fping-3.5-3.el7.x86_64 [                                                                     ] 4/5  Installing : fping-3.5-3.el7.x86_64 [#######################                                              ] 4/5  Installing : fping-3.5-3.el7.x86_64 [###############################################                      ] 4/5  Installing : fping-3.5-3.el7.x86_64 [################################################                     ] 4/5  Installing : fping-3.5-3.el7.x86_64 [#############################################################        ] 4/5  Installing : fping-3.5-3.el7.x86_64 [##############################################################       ] 4/5  Installing : fping-3.5-3.el7.x86_64 [#################################################################    ] 4/5  Installing : fping-3.5-3.el7.x86_64 [#################################################################### ] 4/5  Installing : fping-3.5-3.el7.x86_64                                                                         4/5 
+  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [                                                          ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [#####                                                     ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [######                                                    ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [##########################################                ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [###########################################               ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [###############################################           ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [####################################################      ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64 [######################################################### ] 5/5  Installing : perl-Crypt-DES-2.05-20.el7.x86_64                                                              5/5 
+Uploading Package Profile
+rhel-7-server-extras-rpms/x86_64                                                           | 2.0 kB  00:00:00     
+rhel-7-server-rpms/7Server/x86_64                                                          | 2.0 kB  00:00:00     
+rhel-7-server-satellite-tools-6.2-rpms/x86_64                                              | 2.1 kB  00:00:00     
+rhel-server-rhscl-7-eus-rpms/7Server/x86_64                                                | 2.0 kB  00:00:00     
+  Verifying  : perl-Crypt-DES-2.05-20.el7.x86_64                                                              1/5 
+  Verifying  : nagios-plugins-2.0.1-1.el7.x86_64                                                              2/5 
+  Verifying  : nagios-common-3.5.1-1.el7.x86_64                                                               3/5 
+  Verifying  : nrpe-2.15-2.el7.x86_64                                                                         4/5 
+  Verifying  : fping-3.5-3.el7.x86_64                                                                         5/5 
+
+Installed:
+  fping.x86_64 0:3.5-3.el7      nagios-common.x86_64 0:3.5.1-1.el7       nagios-plugins.x86_64 0:2.0.1-1.el7     
+  nrpe.x86_64 0:2.15-2.el7      perl-Crypt-DES.x86_64 0:2.05-20.el7     
+
+Complete!
+Uploading Enabled Reposistories Report
+Loaded plugins: product-id
+grep: /etc/ntp.conf: No such file or directory
+Note: Forwarding request to 'systemctl enable nrpe.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/nrpe.service to /usr/lib/systemd/system/nrpe.service.
+Redirecting to /bin/systemctl start nrpe.service
+########################################
+Apache Install/Configuration
+Note: Forwarding request to 'systemctl enable httpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+Redirecting to /bin/systemctl restart httpd.service
+HealthShare
+########################################
+HSAP Install for scgr : UAT : INTEGRATION (SCGRUAT2016INTEGRATION) below /trak/scgrUAT/int
+Found Installer: /trak/scgrUAT/int/db/temp/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/scgrUAT/int/hs" as it exists
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/scgrUAT/int/db" as it exists
+NOTE - no WIJ directory found
+installing Cache now
+Installing with CSP
+spawn ./cinstall
+
+Your system type is 'Red Hat Enterprise Linux (x64)'.
+
+Currently defined instances:
+
+
+Enter instance name: SCGRUAT2016INTEGRATION
+Do you want to create HealthShare instance 'SCGRUAT2016INTEGRATION' <Yes>? 
+Enter a destination directory for the new instance.
+Directory: /trak/scgrUAT/int/hs
+ccontrol(open registry): No such file or directory
+
+----------------------------------------------------
+NOTE: Users should not attempt to access HealthShare while
+      the installation is in progress.
+----------------------------------------------------
+
+
+Disk blocks required  = 3755292
+Disk blocks available = 52337312
+
+How restrictive do you want the initial Security settings to be?
+"Normal" is less restrictive, "Locked Down" is the most secure.
+    1) Normal
+    2) Locked Down
+Initial Security settings <1>? 1
+
+What user should be the owner of this instance? cachesys
+A Cache account will also be created for user cachesys.
+
+Install will create the following HealthShare accounts for you: 
+_SYSTEM, Admin, SuperUser, cachesys and CSPSystem. 
+Please enter the common password for _SYSTEM, Admin, SuperUser and cachesys: 
+Re-enter the password to confirm it: 
+
+Please enter the password for CSPSystem: 
+Re-enter the password to confirm it: 
+
+What group should be allowed to start and stop
+  this instance? cachemgr
+
+Do you want to configure additional security options <No>? y
+
+What is the effective group for HealthShare processes <cacheusr>? cachegrp
+
+What is the effective user for the Cache SuperServer
+  and its jobs <cacheusr>? cacheusr
+
+Do you want to load the Manager utility source code <Yes>? 
+
+Enter the SuperServer port number <1972>: 
+
+Enter the WebServer port number <57772>: 
+
+Do you want to configure the CSP Gateway to use an existing web server <No>? y
+
+Specify the WebServer type. Choose "None" if you want to configure
+your WebServer manually.
+    1) Apache
+    2) SunOne
+    3) None
+WebServer type <3>? 1
+
+Please enter location of Apache configuration file </etc/httpd/conf/httpd.conf>: /etc/httpd/conf.d/isccspgateway.conf
+
+Enter user name used by Apache server to run it's worker processes <apache>: 
+
+Please enter location of Apache executable file </usr/sbin/httpd>: 
+Apache version 2.4 is detected.
+
+Please enter destination directory for CSP Gateway files </opt/cspgateway>: 
+
+Do you want to create directory /opt/cspgateway <Yes>? 
+
+Cache did not detect a license key
+in directory /trak/scgrUAT/int/hs/mgr.
+Do you want to enter a license key <No>? 
+
+Client component selection
+
+   [ ]    1) C++ binding
+   [ ]    2) C++ SDK
+   [ ]    3) Perl binding
+   [ ]    4) Python binding
+   [ ]    5) HealthShare engine link libraries (callin/callout)
+   [ ]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+
+Client component selection
+
+   [*]    1) C++ binding
+   [*]    2) C++ SDK
+   [*]    3) Perl binding
+   [*]    4) Python binding
+   [*]    5) HealthShare engine link libraries (callin/callout)
+   [*]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+Selecting 1
+Selecting 2
+Selecting 3
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+Please review the installation options:
+------------------------------------------------------------------
+Instance name: SCGRUAT2016INTEGRATION
+Destination directory: /trak/scgrUAT/int/hs
+HealthShare version to install: 2015.2.0.664.3.17168
+Installation type: Custom
+Unicode support: Y
+Initial Security settings: Normal
+User who owns instance: cachesys
+Group allowed to start and stop instance: cachemgr
+Effective group for HealthShare processes: cachegrp
+Effective user for HealthShare SuperServer: cacheusr
+SuperServer port: 1972
+WebServer port: 57772
+JDBC Gateway port: 62972
+CSP Gateway: installed into /opt/cspgateway
+Apache web server will be configured for CSP Gateway
+Client components:
+   ODBC client
+   C++ binding
+   Perl binding
+   Python binding
+   HealthShare engine link libraries
+   Light C++ binding
+------------------------------------------------------------------
+
+Do you want to proceed with the installation <Yes>? 
+
+Starting installation...
+
+    Updating Apache configuration file ...
+    - /etc/httpd/conf.d/isccspgateway.conf
+
+    * You need to restart your Apache server before any
+      configuration changes will take effect. 
+
+Starting up HealthShare for loading...
+../bin/cinstall -s . -B -c c -C /trak/scgrUAT/int/hs/cache.cpf*SCGRUAT2016INTEGRATION -W 1 -g2 
+Starting Control Process
+Allocated 97MB shared memory: 2MB global buffers, 35MB routine buffers
+Cache startup successful.
+System locale setting is 'en_GB.UTF-8'
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+^^/trak/scgrUAT/int/hs/mgr/>
+
+^^/trak/scgrUAT/int/hs/mgr/>
+Start of Cache initialization
+
+Loading system routines
+
+
+Updating Cachetemp and Cache database
+
+Installing National Language support
+
+Loading system classes
+
+Updating Security database
+
+Loading system source code
+
+
+Building system indices
+
+Updating Audit database
+
+Updating Journal directory
+
+Updating User database
+
+Updating Ensemble databases
+Load started on 10/31/2017 15:45:50
+Loading file /tmp/cacheextract/dist/install/misc/hsutil.xml as xml
+Imported class: %ZHSLIB.Audit.Log
+Imported class: %ZHSLIB.Audit.LogParticipant
+Imported class: %ZHSLIB.Component
+Imported class: %ZHSLIB.HealthShareMgr
+Imported class: %ZHSLIB.Services.Client
+Imported class: %ZHSLIB.Services.NVPair
+Imported class: %ZHSLIB.Services.Server
+Imported class: %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Imported class: %ZHSLIB.Services.TaskUpdateRolesAndResources
+Imported class: %ZHSLIB.SessionEventUtil
+Imported class: %ZHSLIB.UserChangePassword
+Imported class: %ZHSLIB.UserLogin
+Imported class: %ZHSLIB.UsersAndRoles
+Imported routine: %ZHSLIB.INC
+Imported routine: %ZJRNPURGE.MAC, compiling 13 classes, using 2 worker jobs
+Compiling class %ZHSLIB.Audit.Log
+Compiling class %ZHSLIB.HealthShareMgr
+Compiling class %ZHSLIB.Services.Client
+Compiling class %ZHSLIB.Services.NVPair
+Compiling class %ZHSLIB.Services.Server
+Compiling class %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Compiling class %ZHSLIB.Services.TaskUpdateRolesAndResources
+Compiling class %ZHSLIB.SessionEventUtil
+Compiling class %ZHSLIB.UserChangePassword
+Compiling class %ZHSLIB.UserLogin
+Compiling class %ZHSLIB.UsersAndRoles
+Compiling class %ZHSLIB.Audit.LogParticipant
+Compiling table %ZHSLIB_Audit.Log
+Compiling table %ZHSLIB_Audit.LogParticipant
+Compiling routine %ZHSLIB.Audit.Log.1
+Compiling routine %ZHSLIB.HealthShareMgr.1
+Compiling routine %ZHSLIB.Services.Client.1
+Compiling routine %ZHSLIB.Services.NVPair.1
+Compiling routine %ZHSLIB.Services.Server.1
+Compiling routine %ZHSLIB.Services.TaskCalculateUpdatedRAndR.1
+Compiling routine %ZHSLIB.Services.TaskUpdateRolesAndResources.1
+Compiling routine %ZHSLIB.SessionEventUtil.1
+Compiling routine %ZHSLIB.UserChangePassword.1
+Compiling routine %ZHSLIB.UserLogin.1
+Compiling routine %ZHSLIB.UsersAndRoles.1
+Compiling routine %ZHSLIB.Audit.LogParticipant.1
+Compiling class %ZHSLIB.Component
+Compiling routine %ZHSLIB.Component.1
+Compiling class %ZHSLIB.Services.Client.GetNVPair
+Compiling class %ZHSLIB.Services.Server.GetNVPair
+Compiling routine %ZHSLIB.Services.Client.GetNVPair.1
+Compiling routine %ZHSLIB.Services.Server.GetNVPair.1
+Compiling routine : %ZJRNPURGE.MAC
+Load finished successfully.
+
+
+Scheduling inventory scan
+
+Cache initialization complete
+
+See the cboot.log file for a record of the installation.
+
+Starting up HealthShare...
+Once this completes, users may access HealthShare
+Starting SCGRUAT2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Automatically configuring buffers
+Allocated 634MB shared memory: 256MB global buffers, 300MB routine buffers
+Creating a WIJ file to hold 31 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+1 alert(s) during startup. See cconsole.log for details.
+
+
+You can point your browser to http://scgr16uatintm2.nhsg.grampian.scot.nhs.uk:57772/csp/sys/UtilHome.csp
+to access the management portal.
+
+Installation completed successfully
+Redirecting to /bin/systemctl restart httpd.service
+spawn su - cacheusr -c csession SCGRUAT2016INTEGRATION
+
+Node: scgr16uatintm2.nhsg.grampian.scot.nhs.uk, Instance: SCGRUAT2016INTEGRATION
+
+Username: SuperUser
+Password: *********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/iscbuild/trakautomation/conffiles/ZSTU.xml","ck")
+
+Load started on 10/31/2017 15:46:40
+Loading file /trak/iscbuild/trakautomation/conffiles/ZSTU.xml as xml
+Imported routine: ZSTU.MAC
+Compiling routine : ZSTU.MAC
+Load finished successfully.
+
+%SYS>
+Oct 31 2017 15:46:40 : INFO: /etc/init.d/isccache executing on "scgr16uatintm2.nhsg.grampian.scot.nhs.uk": Starting Cache
+NOTE - Instance SCGRUAT2016INTEGRATION has not been added to /etc/init.d/isccache to start at boot
+########################################
+Installing licenses...
+/trak/iscbuild/trakautomation/cache.key
+Installing license for /trak/scgrUAT/int/hs/mgr
+########################################
+Configuring Environment SCGRUAT2016INTEGRATION
+Environment Configuration for scgr : UAT (SCGRUAT2016INTEGRATION)
+Pri Journal /trak/scgrUAT/int/jrn/pri/
+Alt Journal /trak/scgrUAT/int/jrn/alt/
+
+15:46:40 Shutting down Cache
+15:46:40 Notifying Clients
+15:46:40 No user shutdown routines to execute
+15:46:40 Stopping User Jobs
+15:46:40 Stopping Network Servers
+15:46:40 Withdrawing from License Domain
+15:46:40 Waiting for users to stop
+15:46:40 Stopping Client Networking
+15:46:40 Removing database locks
+15:46:40 Updating Journal File
+15:46:42 Waiting for database updates to complete
+15:46:42 Database updates complete
+15:46:42 Stopping System Jobs
+15:46:44 Shutdown complete
+Starting SCGRUAT2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Allocated 6158MB shared memory: 4642MB global buffers, 1000MB routine buffers
+Creating a WIJ file to hold 49 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+ISC TrakCare Development
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+########################################
+zCustom.CheckSNMP Install for scgr : UAT (SCGRUAT2016INTEGRATION)
+/trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml
+spawn su - cacheusr -c csession SCGRUAT2016INTEGRATION
+
+Node: scgr16uatintm2.nhsg.grampian.scot.nhs.uk, Instance: SCGRUAT2016INTEGRATION
+
+Username: SuperUser
+Password: *********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml","ck")
+
+Load started on 10/31/2017 15:46:47
+Loading file /trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml as xml
+Imported class: zCustom.CheckSNMP
+Compiling class zCustom.CheckSNMP
+Compiling routine zCustom.CheckSNMP.1
+Load finished successfully.
+
+%SYS>do ##class(zCustom.CheckSNMP).Setup()
+
+%SYS>set mon=##Class(Config.Monitor).Open()
+
+%SYS>set mon.SNMPEnabled=1
+
+%SYS>write mon.%Save()
+1
+%SYS>
+
+%SYS>
+########################################
+zCustom.SnapBackup Install for scgr : UAT (SCGRUAT2016INTEGRATION)
+Found Class: /trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml
+Found Call-in: /trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup.sh
+Found snaplib: /trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/snaplib.sh
+spawn su - cacheusr -c csession SCGRUAT2016INTEGRATION
+
+Node: scgr16uatintm2.nhsg.grampian.scot.nhs.uk, Instance: SCGRUAT2016INTEGRATION
+
+Username: SuperUser
+Password: *********
+USER>zn "%SYS"
+
+%SYS>write ##class(Security.Users).Exists("cachebackup")
+0
+%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","T4l1skt3r","Cache Backup user","","","",0,1,"",1,"","","",1,1)
+
+%SYS>do ^SECURITY
+
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 12
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 2
+Allow Unauthenticated access? Yes => Yes
+Allow Operating System authentication? No => Yes
+Allow Delegated Authorization for O/S authentication? No => No
+Allow Password authentication? Yes => Yes
+Allow Delegated authentication? Yes => Yes
+Allow Kerberos authentication? Yes => Yes
+Allow Delegated Authorization for Kerberos authentication? No => No
+Allow LDAP authentication? No => No
+Use Login Cookies? No => No
+Allow Two-factor Time-based One-time Password authentication? No => No
+Allow Two-factor SMS authentication? No => No
+
+Confirm changes to authentication options? Yes => Yes
+Authentication options updated
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 3
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 1
+
+Service to edit? %Service_Terminal
+Enabled? Yes => Yes
+Allow Unauthenticated access? No => No
+Allow Operating System authentication? Yes => Yes
+Allow Password authentication? Yes => Yes
+Allow Kerberos authentication? No => No
+Allow Kerberos Credentials Cache authentication? No => No
+Confirm changes to service %Service_Terminal? Yes => Yes
+Service %Service_Terminal updated
+
+Service to edit? 
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 
+%SYS>do $system.OBJ.Load("/trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml","ck")
+
+Load started on 10/31/2017 15:47:18
+Loading file /trak/scgrUAT/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml as xml
+Imported class: zCustom.SnapBackup
+Compiling class zCustom.SnapBackup
+Compiling routine zCustom.SnapBackup.1
+Load finished successfully.
+
+%SYS>
+########################################
+Setting Autostart....
+Setting Autostart for SCGRUAT2016INTEGRATION
+
+Probably worth rebooting to ensure no memory fragmentation and test the config...
+]0;root@scgr16uatintm2:/trak/iscbuild/trakautomation[root@scgr16uatintm2 trakautomation]# ^C
+]0;root@scgr16uatintm2:/trak/iscbuild/trakautomation[root@scgr16uatintm2 trakautomation]# ^C
+]0;root@scgr16uatintm2:/trak/iscbuild/trakautomation[root@scgr16uatintm2 trakautomation]# exit
+
+Script done on Tue 31 Oct 2017 15:47:55 GMT

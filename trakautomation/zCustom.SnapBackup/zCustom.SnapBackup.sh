@@ -2,21 +2,17 @@
 # InterSystems TrakCare UK zCustom.SnapBackup Call-in script
 # This is a call-in script that does error checking and returns the status specified
 # Glen Pitt-Pladdy (InterSystems) 20131118
-#
+# Carlos Sepulveda 20160218, update for instance down to integrate with VBA
 
 # set exist codes - some backup systems require non-standard ones
 EXITFAILURE=1
 EXITSUCCESS=0
 
 # what user to use for call-ins - if unset this will not "su"
-CACHEUSER=cachebackup
+CACHEUSER=cacheusr
 
 # the timestamp we use
 TIMESTAMP=`date +%Y%m%d-%H%M%S`
-
-
-
-
 
 usage() {
 	echo "Usage: $0 <Freeze|Thaw|History|JournalSwitch> <Instance|_ALL> [Additional Options]" >&2
@@ -25,20 +21,20 @@ usage() {
 
 # args: <Freeze|Thaw|History> <INSTANCE> [Additional Options]
 execute() {
-	local instance=`ccontrol qlist | cut -d^ -f1 | grep $2`
+	local instance=`ccontrol qlist | cut -d^ -f1 | grep -i $2`
 	if [ -z "$instance" ]; then
 		badinstance=1
 		backuperror=1
 		echo "ERROR - Instance \"$2\" not found" >&2
 		return 1
 	fi
-	status=`ccontrol qlist | grep ^$2^ | cut -d^ -f4 | cut -d, -f1`
+	status=`ccontrol qlist | grep -i ^$2^ | cut -d^ -f4 | cut -d, -f1`
 	if [ -z "$status" -o "$status" != "running" ]; then
-		backuperror=1
+		backuperror=0
 		echo "ERROR - Instance \"$2\" not running (status: $status)" >&2
-		return 1
+		return 0
 	fi
-	cachedir=`ccontrol qlist | grep ^$2^ | cut -d^ -f2`
+	cachedir=`ccontrol qlist | grep -i ^$2^ | cut -d^ -f2`
 	tmpdir=$cachedir/mgr/Temp
 	if [ ! -d $tmpdir ]; then
 		backuperror=1
@@ -198,5 +194,4 @@ else
 	echo "* $FUNCTION Complete with ERRORS - see above"
 	exit $EXITFAILURE
 fi
-
 

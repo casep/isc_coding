@@ -1,0 +1,2706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Routine name="pButtons" type="MAC" languagemode="0"><![CDATA[
+pButtons ; performance monitor routine ; 
+#include COPYRIGH
+#if 0	/*=======================Maintenance========================*/
+#; NOTE: Update VERSION string when making changes for tracking versions that customers download. Keep it numeric
+#;AAR013 06/08/16 Aaron Wassall,   Do not use -c-1 cstat flag on versions 2015.1 through 2016.1 (SJ3060 without JO2882)
+#;AAR014 07/14/16 Aaron Wassall,   Prodlog 141654 - EnsQCount section could get cut off if components were added during the report
+#;JEH002 03/29/16 Erik Hemdal,     Prodlog 137920 - Add device mapper information to pButtons for Linux systems
+#;AAR009 03/10/16 Aaron Wassall,   Prodlog 130753 - Fix slow ^pButtons collect by removing $ZU(112,8,0) in collectme() and bgchkruns()
+#;AAR008 03/01/16 Aaron Wassall,   Prodlog 139069 - Display HealthShare version info instead of $ZV in HealthShare builds
+#;AAR004 11/20/15 Aaron Wassall,   Prodlog 133688 - Add seconds to runid string for more granular uniqueness
+#;JEH001  10/08/205 Erik Hemdal Update version and make it numeric (PL135411)
+#;RJW2297 6/08/2015 Ron Watt, pButtons utility misses information on Windows if current directory is in UNC format.
+#;AAR003 03/30/15 Aaron Wassall,   Remove usage of * syntax with $p and $e for backwards compatibility
+#;AAR002 05/07/14 Aaron Wassall,   Prodlog 117961 - persist VMS monitor/t4 cmds by using detached processes
+#;								   and then clean up new .COM and .ERR files in stopjobs() and createfile()
+#;AAR001 05/07/14 Aaron Wassall,   fix failing VMS 24-hour profiles by rewriting endstr code in VMS()
+#;HCR525 01/06/14 Heloisa Ramalho, Prodlog 117368, Add queue headings with abbreviated queue names and legend with full queue names.
+#;NGA205 08/28/13 Neil Alton, change ensqmon to aggregate _syncCalls 1.16c
+#;							  fix stranded lock in copyprofile
+#;NGA204 08/27/13 Neil Alton, add stderr redirection to lsb cmd 1.16b
+#;NGA203 07/30/13 Neil Alton, add lsb_release -a to linux info. fix typo in Mac label
+#;							  change iostat -x to -xt for linux (pl LucaR) 1.16a
+#;							  add auto collect, ensemble queues and don't use licenses
+#;NGA201 04/11/13 Neil Alton, pl 108569, add veritas detection for unix platforms, [En|Dis]ablevxstat api
+#;							  generalize enable/disable cmd api 1.16
+#;NGA199 01/31/13 Neil Alton, fix genfilename defaulting wrongly to mgr when called for precollect info.
+#;NGA198 12/06/12 Neil Alton, various fixes in Collect related functions, improve error handling
+#;							  made chkcoldir fix the array if missing nodes detected
+#;NGA197 11/27/12 Neil Alton, fix Preview broken by NGA193 (lost the collect count)
+#;NGA196 11/21/12 Neil Alton, fix pl 105823 - allow null perfmon definition, 1.15c
+#;							  add error trapping to buildcolarray to avoid failures in WRCCollect
+#;NGA195 11/13/12 Neil Alton, fix pl 105490 - runinfo file left behind by $$Stop,
+#;							  fix pl 105491 - ps file left behind by $$Stop, 1.15b
+#;NGA194 11/05/12 Neil Alton, pl 99942 - add [En|Dis]ablenfs api 1.15a
+#;NGA193 10/29/12 Neil Alton, pl 103944 - Add WRCCollect to collect to run from dir listing 1.15
+#;NGA192 10/15/12 Neil Alton, pl 104004 - add ps to unix, 1.14, 
+#;							  moved some stuff around to facilitate easier splitting for download
+#;NGA190 08/30/12 Neil Alton, pl 103268 - adjust perfmon ctrs: add disk reads/writes per sec
+#;							  remove logical disk from default, but add another
+#;							  counter definition including them for compatibility,
+#;							  fix an issue with undef userjob comments messing up collection. 1.13h
+#;NGA189 08/29/12 Neil Alton, fix pl 103239 - move pb vers strings to display,
+#;							  fix hp-ux swlist needs absolute path, add kcalarm,
+#;							  fix windows chkver to be more generic
+#;NGA188 07/05/12 Neil Alton, fix pl 101850 - fix perfmon duration setting to hhmmss format, 1.13g
+#;NGA186 04/02/12 Neil Alton, fix pl 98871 - improve resilience in collect errors
+#;							  added ctrfile counter list to [hidden] debug details
+#;NGA185 03/28/12 Neil Alton, fix pl 98867 - Provide option to not post-process MS perfmon data, 1.13f
+#;							  fix undefined error in getctrdefault on non win platforms
+#;							  fix pl 98870 - add Disk Transfers/sec to perfmon ctr
+#;							  added windows perfmon counter definition name to profile area in html file
+#;NGA184 03/06/12 Neil Alton, add missing df commands to rest of *ix platforms (pl 98113)- 1.13e
+#;							  address pl96631 - append filename to success return in Collect(<runid>)
+#;							  and add waittime api - to get time to end of <runid>, reqd changes to cmptime()
+#;							  Collect when called interactively now reports the waittime.
+#;NGA183 01/24/12 Neil Alton, correct various Tru64 host commands, add sysconfig -q info
+#;							  add svrname back into perfmon column header for date column
+#;							  added logdir to profile output, added ccontrol all for win, 1.13d
+#;NGA181 11/10/11 Neil Alton, check for machinfo in HP/UX, suppress AIX errors in lspv
+#;							  add preview comment in collect, rework importctrs
+#;							  add literun mode which omits the host OS data 1.13b
+#;NGA180 10/20/11 Neil Alton, add logman interface for windows, add Collect handling for light run (no OS stats)
+#;NGA179 10/11/11 Neil Alton, don't copy empty lines in OS file cmd output. 1.13a (no upg but diff)
+#;							  Remove empty line at start of mgstat report. Only get fdisk if root.
+#;NGA177 06/30/11 Neil Alton, additions to Solaris built-in info
+#;NGA176 03/08/11 Neil Alton, add semops to aix,hp and solaris, swapped model to machinfo, 1.13
+#;NGA175 02/17/11 Neil Alton, fix Sun/Solaris identification in 11.1 and up,
+#;							  fixed bug in AIX upgrading (oslev was left undefined),
+#;							  added model and swlist to HPUX,
+#;							  added argument to quit in Collect to prevent command error
+#;NGA174 12/16/10 Neil Alton, fix debug left in NGA172, changed genprofile for documentation
+#;							  added id and ulimit -a o unix platforms
+#;NGA173 12/07/10 Neil Alton, fix pl 84375 - recognise HP Tru64 as Tru64, add cmds to unknown platform
+#;NGA172 12/02/10 Neil Alton, add ccontrol all, fix undef in defaix, add concurrent to aix vgs
+#;							  add -x to linux iostat *command change so 1.12, sysctl hw to mac,
+#;							  changed default -D cstat arguments to -a0 -f1 -D10,100.
+#;							  fix pl73429 - add stop mechanism (not in 5.0.x download)
+#;NGA170 07/13/10 Neil Alton, add lspv details for active vgs on AIX, and detect AIX 6
+#;NGA168 03/16/10 Neil Alton, add Preview function, allows collection of still running profile
+#;			      			  Note that some files will be missing!
+#;NGA157 03/16/10 Neil Alton, add recovery of lost runs - ResetCollect()
+#;NGA163 01/12/10 Neil Alton, fix pl 76339 - fix cstat for uppercase default in VMS
+#;			      			  added sw_vers to mac.
+#;NGA162 12/24/09 Neil Alton, fix pl 76838 - allow addprofile to have 1 second interval on <hr profiles
+#;							  also allowed sample to be defaulted in addprofile (but not others)
+#;NGA161 11/11/09 Neil Alton, fix pl 75813 - handle unknown awk in Linux commands, old awk would
+#;							  not recognise date handling and stopped the whole command. 1.11 for cmd change.
+#;							  Also added prtdiag to solaris, and changed oslevel to oslevel -r in aix.
+#;NGA160 06/30/09 Neil Alton, change AIX iostat default to DlT (pl 72677) - 1.10 for cmd change!
+#;							  check oslevel to get correct settings, warn if none (OSUNDEF)
+#;NGA158 03/12/09 Neil Alton, add date and time to linux free output by default,
+#;							  ensure freetocsv can handle both formats (w and wo date)
+#;NGA156 03/11/09 Neil Alton, fix job w/o timeout and remove break left in freetocsv
+#;NGA157 12/17/08 Neil Alton, handle old runs never collected, changed AIX iostat command so bumped ver -1.09
+#;NGA155 12/16/08 Neil Alton, fix default logdir to prevent problems with OSdir true
+#;							  and collect and run not being used from same host dir.
+#;							  presented current location prior to menu,
+#;							  save logdir of collected run in history,
+#;							  fixed old relative logdirs should have been converted to full,
+#;							  added mount to AIX commands to run.
+#;NGA153 07/09/08 Neil Alton, fixed <undefined> in freetocsv, fixed ctr clash too,
+#;							  fixed bug in NGA144 (count in MaxServer check for ecpstat),
+#;							  added Sun as alias for Solaris recognition, added pb version
+#;							  to commands to differentiate collect version, reworked collection
+#;							  checks to output full filename, added windows information - 1.08
+#;NGA151 05/28/08 Neil Alton, added kctune to hpux static info
+#;NGA150 05/07/08 Neil Alton, add post processing for "free" output on linux - cmds chg so 1.07
+#;NGA148 04/09/08 Neil Alton, add document version comment to html output, add news to prevent tag corruption
+#;NGA147 03/10/08 Neil Alton, minor change for mac recognition, bump version to get cmds rebuilt.
+#;NGA144 11/19/07 Neil Alton, change cstat handling to cope with SwitchOSdir=1 on both Unix and Win
+#;							  forced the logdir to be saved as absolute to avoid issues with multiple reldirs
+#;							  changed ecpserver logic for new mgstat (2.2), bumped pB version to 1.05
+#;							  fixed inconsistency in grace period usage
+#;NGA143 11/07/07 Neil Alton, v1.04, handle new mgstat - remove ecpclientstat, fixed cmd merge logic
+#;NGA140 07/02/07 Neil Alton, changed filenaming to standard WRC performance convention,
+#;							  changed version to 1.03, took out -e1 of cstat -D, fixed sarucombine,
+#;							  added ipcs to all UNIX platforms (not mac), added mount & sysdef to HP,
+#;							  fixed interval calculation in cstats (dec count before division),
+#;							  changed mgstat call to be the new WRC copy, fixed an error in setlogdir for Win.
+#;NGA138 05/01/07 Neil Alton, removed filemon from aix, added labels and postprocessing for tmpfiles
+#;							  added version, v1.02, and upgrade checks
+#;NGA136 04/10/07 Neil Alton, changed -p-1 to cstat, added comment for mgstat, and 
+#;							  added missing platform recognition for HPit (needs reworking for 7.1)
+#;NGA135 02/20/07 Neil Alton, added separator to filename for date and time, changed
+#;							  cstat counts to 4, fixed extra <pre> tag in cstat section
+#;NGA134 10/30/06 Neil Alton, added interval to pname in genprofile
+#;NGA132 10/02/06 Neil Alton, fixed undefined errors on first run
+#;NGA131 08/21/06 Neil Alton, merged 5.0&5.1 srcs, fixed missing cmds in cache section,
+#;							  fixed last iteration should not hang in for()s.
+#;NGA126 06/29/06 Neil Alton, fixed dangling lock and <COMMAND> error in collection
+#;NGA125 05/19/06 Neil Alton, added profile apis
+#;NGA124 02/13/06 Neil Alton, fixed eof error in UXaix.
+#;NGA117 01/01/05 Neil Alton, New Routine 
+#endif	/*=====================End Maintenance======================*/
+	; 
+	; pButtons documentation:
+	; base report is cfg, cache, then cpu, memory and disk info
+	; 
+	; control of the utility is from ^|%SYS|pButtons
+	; nodes:
+	; "silent"		flag for silent mode, default off
+	; "profile"		name and sample definitions for each run profile
+	; "debug"		if set run in debug mode, default not set
+	; "cdebug"		as above but for collection side of utility
+	; "logdir"		place to put logfile(s), default mgr! saved as full path
+	; 
+	; Assumptions - 
+	; 1. Cache is at least running so there are no problems setting globals.
+	; 2. Caller has permission to execute admin scripts at OS level
+	; 3. Has to be a quiet/simple mode? 
+	; 4. Basic profile definition is interval,count and flags
+	; 5. Data Gathering has to be in parallel
+	; 6. Therefore need a collector function to pull together
+	; 7. Datafiles to gather are indexed by runid so one logdir for all runs is sufficient
+	; 
+	; constants:
+#define	VERSION		"9"
+#define	DAYSECS		86400
+#define	HRSECS		3600
+#define	MINS		60
+#define	MAXHRS		24
+#define	GRACE		120
+#define	MINREQVER	5
+#define	OPENTIMEOUT	2
+#define	JOBTIMEOUT	2
+#define	LOCKTIMEOUT	2
+#define	READTIMEOUT	2
+#define PIPERDTMOUT	1
+#define	TRUE		1
+#define FALSE		0
+#define	PROGMODE	($zj\1#2)
+#define	BGJOB		($zj\2#2)
+#define	MAXMGINT	10
+#define	MAXSAMPLE	300
+#define	MINSAMPLE	2
+#define	DEFSAMPLE	10
+#define	OSUNDEF		999
+	; profile description
+#define	PROFILEDESC		1
+#define PROFILEINTERVAL	2
+#define	PROFILECOUNT	3
+#define PROFILECFLAGS	4
+#define	PROFILEOFLAGS	5
+#define	PROFILEWCTRFILE	6
+	; os & run command format
+#define	RUNWCTRFILE	9
+#define	STOPTIME	8
+#define	RUNVER	7
+#define	JOBID	7
+#define	POSTPROC	6
+#define	LABELTEXT	5
+#define OCSTATS	4
+#define	KILLME	4
+#define	OPFILE	3
+#define	COMMAND	2
+#define	COMMENT 1
+#; might want this next one to be part of the global definition to ensure no collisions
+#define	SQZOFILE	"PBSQZ"
+	; cacheflags
+#define	CFSS			1
+#define	CFECP			2
+#define	CFBUTTONS		3	/// obsolete!
+#define	CFUSER			4
+#define CFCSTATOFFSET	4
+#define	CSTATCOM		1
+#define	CSTATCNT		2
+#define	CSTATARGS		3
+#define	PSCNT		1
+#define	PSARGS		2
+#define PSPATH		3
+	; osflags
+#define	OFCPU		1
+#define	OFMEMORY	2
+#define	OFDISK		3
+#define	OFNETWORK	4
+#define	OFUSER		5
+	; collection offsets
+#define	COLPH		6
+#define	COLPCNT		5
+#define	COLPINT		4
+#define	TABCOLS		9
+	;
+	i '$D(^pButtons("debug")) N  s debug=0
+	e  s debug=1
+	d init()
+	d getprofile()  ; includes flags for pieces to not collect
+	q:pname=""
+	i $zversion(1)=2 { // windows specific
+		n oldDir
+		try {
+			s oldDir=$zu(168)
+			#; if current directory is in UNC format, the "cmd" used in $zf(-1) will fail.
+			i $e(oldDir,1,2)="\\" d $zu(168,$zu(12))
+			d work($$$PROGMODE)
+		} catch {
+		}
+		i $e(oldDir,1,2)="\\" d $zu(168,oldDir)
+	}
+	i $zversion(1)'=2 d work($$$PROGMODE)
+	q 
+version()	q $$$VERSION
+	; programmable entry point
+literun(pname)
+	N (pname) s pname=$g(pname) q:pname="" 0
+	s lite=1
+	q $$run(pname,lite)
+run(pname,lite) ; if no profile quit error...
+	N (pname,lite) s lite=$g(lite,0)
+	i '$$$PROGMODE d $ZU(112,8,0)
+	i '$D(^pButtons("debug")) { s debug=0 } else { s debug=1 }
+	d init()
+	q:'$d(^pButtons("profile",pname)) 0
+	s plist=^pButtons("profile",pname)
+	d getsampleinfo(plist)	
+	d work(0) // appmode so no output to $I
+	q runid
+init()
+	s $zt="initerr"
+	;
+	; initialisation 
+	i '$d(lite) s lite=0
+	j bgchkruns()::$$$JOBTIMEOUT
+	i debug s pButtons("requestat",$h)="" k oscmd,cmdcnt
+	s OSFamily=$System.Version.GetCompBuildOS()
+	s Majver=$System.Version.GetMajor()
+	s Minver=$System.Version.GetMinor()
+	i Majver<$$$MINREQVER w "Sorry this won't work on this version of Caché",! q  // not tested on non-5.0 systems.
+	s Build=$System.Version.Format(5)
+	s cpffile=$zu(86),configname=$p(cpffile,"*",2),cpffile=$p(cpffile,"*")
+	d chkver()
+	i '$D(^pButtons("profile")) d default()
+	q
+chkver()
+	i $D(^pButtons("cmds")) {
+		//JEH001: Get version from old-style version strings
+		if ($G(^pButtons("version")) [ "pButtons") {
+			s oldver=$p($g(^pButtons("version")),"v",2) 
+		} else { 
+			s oldver=^pButtons("version") 
+		}
+		s curver=($$version()) //JEH001
+		i (curver>oldver) {
+			i $$$PROGMODE u 0 w "re-creating command data for new ^pButtons version",!
+			i '$D(^pButtons("oldcmds")) m ^pButtons("oldcmds")=^pButtons("cmds") i $$$PROGMODE u 0 w "old data saved in ^pButtons(""oldcmds"")",!
+			k ^pButtons("cmds")
+		}
+		i $zversion(1)=2 { // windows specific
+			i (oldver["1.13")&&(curver]oldver)&&("1.13h"]oldver) d defwin()  // new default ctrs
+		}
+		d setlogdir($$getlogdir,0)  // need to convert any old relative logdir to full
+	}
+	s ^pButtons("version")=$$$VERSION
+	q
+purgeoldcmds()
+	k ^pButtons("oldcmds")
+	q
+	; real work
+work(pmode)
+	s fdate=$zd($h,8)  ; in yyyymmdd format
+	s reqtime=$ztime($p($h,",",2),1) ; need request time later
+	s ftime=$tr(reqtime,":","")
+	s runid=fdate_"_"_ftime_"_"_pname 
+	; now make sure runid is unique
+	if $D(^pButtons("run",runid)) s dummy=$i(^pButtons("run",runid)),runid=runid_^pButtons("run",runid)
+	s logdir=$g(^%SYS("PTools","logdir"),"")
+	i logdir="" s logdir=$$getlogdir  ; PTools overrides pButtons
+	;
+	s $zt="err"  ; reset err trap for actual run
+	;
+	s sampletime=interval*count
+	s ^pButtons("run",runid,"profile")=$lb(pname,reqtime,$zd($h,7),count,interval,$h,$$$VERSION)
+	s ^pButtons("run",runid,"general")=$lb(configname,$zu(54,0),$System.License.KeyCustomerName(),$System.License.KeyOrderNumber(),$zv,OSFamily)
+	s ^pButtons("run",runid,"logdir")=logdir   ; can no longer be null 1.08+
+	do OSFamily()
+	do Cache()
+	do calcinctime($h)
+	;
+	s ^pButtons("run",runid,"end")=+$h+incdays_","_incsecs ; new time in $h format
+	s runfile=logdir_runid_"_runinfo.log"
+	o runfile:"WNS":$$$OPENTIMEOUT
+	i '$T { set ^pButtons("run",runid,"runinfo")=$lb("runinfo",,"error",,,,0)
+	} else {
+		set ^pButtons("run",runid,"runinfo")=$lb("runinfo",,runfile,,,,0)
+		//PUT EXPORT HERE for old products //
+		u runfile zw ^pButtons("run",runid)
+		u runfile zw ^pButtons("cmds")
+		; handle winctr="" - mark no perfmon! at least in debug
+		i os="win" {
+			i winctr="" {
+				u runfile w "^pButtons(""ctrfile"")=""no perfmon!""",!
+			} else {
+				u runfile zw ^pButtons("ctrfile",winctr)
+			}
+		}
+		c runfile
+	}
+	k ^pButtons("lastpid") ; for clean rtn only
+	;
+	i pmode {
+		write "Collection of this sample data will be available in ",sampletime+$$$GRACE," seconds.",!
+		write "The runid for this data is ",runid,".",!
+	}
+	j collectme(runid,sampletime)
+	q
+collectme(runid,waittime)
+	s $zt="cmeerr"
+	// record collectme jobid for stopping
+	s ^pButtons("run",runid,"auto")=$j
+	h waittime+$$$GRACE	
+	d Collect^pButtons(runid)
+	q
+cmeerr	;
+	do BACK^%ETN
+	q
+	;
+Cache() ; cache section which includes cstats 
+	; always get cpf, mgstat then rest from global
+	s $zt="cacheerr"
+	i '$D(^pButtons("cmds","SS")) d defcache()
+	s cccnt=0,opcnt=cmdcnt  ; cccnt- cache cmd cnt, opcnt - current output file cnt
+	; ccontrol all (not win prior to 2007)
+	i $zversion(1)'=2 {
+		s ofile=logdir_runid_"_"_$i(opcnt)_".log"
+		if $zversion(1)=3 {
+			s sc=$zf(-2,"ccontrol all > "_ofile)
+		} else {
+			s sc=$zf(-2,"ccontrol all",ofile) i sc=1 s sc=0
+		}
+		i sc=0 { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("ccontrol all",,ofile,,,,0) }
+		else { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("ccontrol all",,"error",,,,0) }
+	} else {
+		if Majver>5 {
+			s ofile=logdir_runid_"_"_$i(opcnt)_".log"
+			s sc=$zf(-2,"..\bin\ccontrol all nodisplay > "_ofile)
+			i sc=0 { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("ccontrol all",,ofile,,,,0) }
+			else { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("ccontrol all",,"error",,,,0) }
+		}
+	}
+	; license info
+	s ofile=logdir_runid_"_"_$i(opcnt)_".log"
+	i debug w "license gathering",!
+	o ofile:"WNS":$$$OPENTIMEOUT
+	i '$T { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("license",,"error",,,,0)
+	} else {
+		u ofile d Decode^%LICENSE
+		u ofile d counts^%LICENSE
+		c ofile
+		set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("license",,ofile,,,,0)
+	}
+	; cpf
+	s ofile=logdir_runid_"_"_$i(opcnt)_".log"
+	i debug w "cpf file args: ",cpffile,",",ofile,!
+	s sc=$zu(140,11,cpffile,ofile)
+	if sc=0 { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("cpf file",,ofile,,,,0) }
+	else { set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("cpf file",,"error",,,,0) }
+	; mgstat // don't allow bad interval
+	i (interval>$$$MAXMGINT) {
+		s tcnt=count,tint=interval,interval=$$$MAXMGINT
+		d recalcd(sampletime,.count,interval)
+	} else { s tcnt=0 }
+	s mgstr=$g(^pButtons("cmds","mgstat"))
+	i mgstr="" s mgstr="^mgstat(interval,count,outfile)"
+	d dojob(mgstr,"mgstat",,"mgstat")
+	i tcnt { // restore sample count and interval
+		s count=tcnt,interval=tint
+	}
+	; %SS * n ?
+	s sscnt=+$lg(cacheflags,$$$CFSS,+$g(^pButtons("cmds","SS"),1))
+	if sscnt>0 {
+		i debug w "doing %SS",!
+		i sscnt>count s sscnt=count
+		s ssint=$$calcintvl(sscnt)
+		s ofile=logdir_runid_"_"_$i(opcnt)_".log",pid=0
+		j doSS(ofile,sscnt,ssint)::$$$JOBTIMEOUT i $T s pid=$zc
+		set ^pButtons("run",runid,"cache",$i(cccnt))=$lb("%SS","^%SS",ofile,,,,pid)
+	}
+	; ECP ?
+	i +$lg(cacheflags,$$$CFECP,1) {
+		s ecpsstr=$g(^pButtons("cmds","ecpsvr"))
+		i ecpsstr'=""&&($system.ECP.MaxServerConnections()>0) d dojob(ecpsstr,"ECP Server")
+	}
+	; cstat handling
+	s cstatcnt=+$g(^pButtons("cmds","cstat"))
+	f i=1:1:cstatcnt {
+		continue:'+$lg(cacheflags,(i+$$$CFCSTATOFFSET),1)
+		s cstatinfo=$g(^pButtons("cmds","cstat",i))
+		s cstatargs=$lg(cstatinfo,$$$CSTATARGS),crcnt=$lg(cstatinfo,$$$CSTATCNT,2),crcom=$lg(cstatinfo,$$$CSTATCOM)
+		i crcnt="count" s crcnt=count
+		s crint=$$calcintvl(crcnt)
+		s ofile=logdir_runid_"_"_$i(opcnt)_".log",pid=0
+		i debug w "cstat: i:",i," ",cstatcom," ",cstatargs,",",!,ofile,!,",",crcnt,",",crint,! h 0.1
+		i os="vms" {
+			s jcstatcom=cstatcom_configname_" "_cstatargs,ofile=ofile_"."
+		} else { // win and unix
+			i cstatcom["ccontrol" { s jcstatcom=cstatcom_configname_" "_cstatargs_cstatout_ofile } else { s jcstatcom=cstatcom_cstatargs_cstatout_ofile }
+		}
+		i debug w jcstatcom,! h 0.1
+		j docstat(jcstatcom,crcnt,crint,ofile,os)::$$$JOBTIMEOUT
+		i $T set pid=$zc,^pButtons("run",runid,"cache",$i(cccnt))=$lb(crcom,cstatargs,ofile,crcnt,,,pid)
+		e  set ^pButtons("run",runid,"cache",$i(cccnt))=$lb(crcom,cstatargs,"error",,,,0)
+	}
+	; check for ens!
+	if $D(^%SYS("Ensemble")) {
+		;Qinfo job per nsp 
+		s nsp=$o(^%SYS("Ensemble","RunningNamespace",""))
+		while nsp'="" {
+			s outfile=logdir_runid_"_"_$i(opcnt)_".log",ejob="ensqcnt"_nsp,ecmt="EnsQCount "_nsp
+			job ensqcnt(nsp,interval,count,outfile,Majver)::$$$JOBTIMEOUT
+			i $T s pid=$zc,^pButtons("run",runid,"cache",$i(cccnt))=$lb(ecmt,ejob,outfile,,,,pid)
+			e  s ^pButtons("run",runid,"cache",$i(cccnt))=$lb(ecmt,ejob,"error",,,,0)
+			set nsp=$o(^%SYS("Ensemble","RunningNamespace",nsp))
+		}
+	}
+	; check for custom jobs
+	if +$lg(cacheflags,$$$CFUSER,0) { 
+		s cscnt=+$g(^pButtons("cmds","userjobs"))
+		f i=1:1:cscnt {
+			s crstr=$g(^pButtons("cmds","userjobs",i))
+			s crtn=$lg(crstr,1),ccomment=$lg(crstr,2,"userjob"_i),cfile=$lg(crstr,3)
+			i crtn'="" d dojob(crtn,ccomment,cfile) ;note no label allowed by this call!
+		}
+	}
+	set ^pButtons("run",runid,"cache")=cccnt	
+	quit
+cacheerr ; 
+	; may try to handle noroutine etc...
+	set ^pButtons("run",runid,"cache")=cccnt ; salvage what we can for collect
+	i debug w $ze,!
+	q  ; will go thru end processing so that profile data is completed
+	;
+doSS(opfile,scnt,sint) ; do ss to given file
+	d $ZU(112,8,0)
+	o opfile:"WAS":$$$OPENTIMEOUT
+	if $T {
+		for si=1:1:scnt { 
+			d addlink(opfile,si,scnt,"ss")
+			d ALL^%SS h:si'=scnt sint 
+		}
+		c opfile
+	}
+	q
+dojob(rtnstr,comment,cfile,intlab) ; cfile,intlab optional, side effects - incs cccnt and opcnt if rtn exists
+	i debug w "attempting job of ",rtnstr,!
+	s $zt="dojoberr"
+	q:'$D(^rOBJ($p($p(rtnstr,"("),"^",2)))  ; check rtn exists
+	i debug w "doing job",!
+	s outfile=logdir_runid_"_"_$i(opcnt)_".log"
+	i $g(cfile)'="" s outfile=cfile ; test after init as we want to inc opcnt anyway
+	s rtnstr=rtnstr_"::"_$$$JOBTIMEOUT ; add job timeout so we don't just sit here
+	j @rtnstr
+	i $T s pid=$zc,^pButtons("run",runid,"cache",$i(cccnt))=$lb(comment,rtnstr,outfile,,intlab,,pid)
+	e  s ^pButtons("run",runid,"cache",$i(cccnt))=$lb(comment,rtnstr,"error",,,,0)
+	q
+dojoberr ; error specifically in jobbing... just set error flag and continue
+	s ^pButtons("run",runid,"cache",$i(cccnt))=$lb(comment,rtnstr,"error",,,,0)
+	q
+docstat(cstatcom,cstcnt,cstint,cstfile,os) ; this is jobbed off!!!
+	s $zt="^%ETN"
+	d $ZU(112,8,0)
+	; create cstcnt separate cstat files (no way to avoid this on vms)
+	for ci=1:1:cstcnt {
+		i os="vms" {
+			s sc=$zf(-2,cstatcom,cstfile)
+		} else { // win and unix
+			s sc=$zf(-2,cstatcom_ci) ; append loop cnt to filename (a la vms version)
+		}
+		i ci'=cstcnt h cstint
+	}
+	q
+getenserrorcounts(nsp,results)
+	s $zt="enserr"
+	f i=1:1:6 s results(i)=+$G(^CacheTemp.EnsLogMonitor(nsp,i,"%Count"))
+	// ^CacheTemp.EnsLogMonitor(<nsp>,type,"%Count") where type is 2 errors, 3 warnings, (4 info), 6 alerts
+	q 1
+ensqcnt(nsp,interval,count,ofile,Majver)
+	// only in running nsp
+	s $zt="enserr"
+	d $ZU(112,8,0)
+	zn nsp
+	s starttime=$h k qc,qi s qi=0
+	o ofile:"WAS":$$$OPENTIMEOUT
+	i $T { s fileok=1 } else { s fileok=0 }
+	s msgstart=+$G(^Ens.MessageHeaderD)
+	// job list and error counts
+	i Majver>2007 { // global structure different prior to 2008.1.1
+		i fileok u ofile w "Ensemble jobs for namespace ",nsp,", running production: ",^Ens.Configuration("csp","LastProduction")
+		s rc=$$getenserrorcounts(nsp,.startcnt)
+		s job=$o(^CacheTemp.EnsJobMonitor(nsp,""))
+		while job'="" {
+			i fileok u ofile w !,"Process ",$p(job,":",2)," - ",$o(^CacheTemp.EnsJobMonitor(nsp,job,""))
+			s job=$o(^CacheTemp.EnsJobMonitor(nsp,job))
+		}
+		i fileok u ofile w !
+	}
+	// now get queues
+	s qsc="sync calls" ; aggregate column
+	i fileok u ofile w !,"Ensemble queue counts for namespace ",nsp,", running production: ",^Ens.Configuration("csp","LastProduction"),!
+	for i=1:1:count {
+		s szh=$zh,str=$zd($h)_" "_$zt($p($h,",",2)) s sccnt=0 f j=1:1:qi s qc(j)=0
+		i $D(^Ens.Queue)>0 { // if $D()=0 then prod got disabled
+			s qn=$o(^Ens.Queue(""))
+			while (qn'="") {
+				if qn'["SystemSignal" { 
+					i $e($zcvt(qn,"L"),2,10)="synccall:" {
+						i '$d(qi(qsc)) s qi(qsc)=$i(qi),qi(qi)=qsc ; if not in idx ary add it!
+						s qc(qi(qsc))=$i(sccnt)
+					} else {
+						i '$d(qi(qn)) s qi(qn)=$i(qi),qi(qi)=qn ; if not in idx ary add it!
+						; use $get to avoid <UNDEFINED> if the queue global for this config item suddenly disappears
+						s qc(qi(qn))=+$g(^Ens.Queue(qn,0,"count"))
+					}
+				}
+				s qn=$o(^Ens.Queue(qn))
+			}
+		}
+		//do output
+		i fileok {
+			u ofile
+			i i=1 {
+				k qh
+				d ensqcntheadings
+				d ensqcntline
+			}
+			w !,str f j=1:1:qi w " ",$j(qc(j),8)
+		}
+		s ezh=$zh,ct=ezh-szh h interval-ct // take off $zh for $order handling??? - might be significant in big prod
+	}
+	k qh
+	d ensqcntline
+	d ensqcntheadings
+	d ensqcntlegend
+	s endtime=$h,msgend=+$G(^Ens.MessageHeaderD)
+	w !!,"Messages: ",msgend-msgstart
+	// error counts for the sampletime
+	i Majver>2007 { //rc always 1 from getenserrorcounts
+		s rc=$$getenserrorcounts(nsp,.endcnt)
+		i fileok u ofile w !,"Events during the sample- Errors: ",endcnt(2)-startcnt(2),", Warnings: ",endcnt(3)-startcnt(3),", Alerts: ",endcnt(6)-startcnt(6),!
+	}
+	c ofile
+	; now export msg hdrs if profile < 15 minutes
+	i (interval*count<901)&&($d(^rOBJ("EnsExport"))) d Date^EnsExport($zdt(starttime,3),$zdt(endtime,3))
+	q
+ensqcntheadings	; column headings
+	If '$D(qh) {
+		// create array with abbreviated queue names, up to 8 characters
+		For j = 1:1:qi {
+			Set name = qi(j)
+			If $L(name)>8 {
+				Set abr = name
+				For irrel = "processes","services","operations","process","service","operation" {
+					For {
+						Set f = $F($ZCVT(abr,"l"),irrel)
+						Quit:'f
+						Set $E(abr,f-$L(irrel),f-1) = "" // remove irrelevant part of name
+					}
+					For {
+						Quit:abr'[".."
+						Set $E(abr,$F(abr,"..")-1) = "" // remove extra dots
+					}
+					Set:$E(abr,$l(abr))="." $E(abr,$l(abr)) = "" // remove trailing dot
+				}
+				Set:abr'="" name = abr // if not too short let's use it
+				Set abr = $E($P(name,".",$l(name,".")),1,8)
+				Set:abr="" abr = $E(name,1,8)
+				Set qh(j) = abr
+			}
+			Else {
+				Set qh(j) = name
+			}		
+		}
+	}
+	Write !,"          "
+	Write "         "
+	For j = 1:1:qi {
+		Set ref = "(*"_j_")"
+		Write " ",$J(ref,8)
+	}
+	Write !,"Date      "
+	Write " Time    "
+	For j = 1:1:qi {
+		w " ",$J(qh(j),8)
+	}
+	Quit
+ensqcntline	; line separating headings
+	Write !,"----------"
+	Write " --------"
+	For j = 1:1:qi {
+		Write " --------"
+	}
+	Quit
+ensqcntlegend	; legend with full column names
+	Write !!,"Legend:"
+	For j = 1:1:qi {
+		Write !,"(*",j,") ",qi(j),", abbreviated as ",qh(j)
+	}
+	Quit
+enserr ; log and carry on
+	do BACK^%ETN
+	q
+calcintvl(incnt) ;
+	i incnt=count { s intv=interval }
+	elseif incnt=2 { s intv=sampletime-interval }
+	elseif incnt=1 { s intv=1 } 
+	else { s intv=(sampletime-interval)\(incnt-1) }
+	q intv
+recalcci(a,b,d) ; recalc time props of profile given update of one
+	i 'b {
+		s b=d\a
+	} else {
+		s d=b*a
+	}
+	q
+recalcd(d,c,i) ; recalc time from duration
+	q:'i&&'c
+	; interval takes precedence over count
+	; could track last change...
+	i i { s c=d\i }
+	else { s i=d\c }
+	q
+OSFamily() ; pick which OS and do the right one
+	;
+	; oscmd(i) is $listbuild(comment,command,file,nokill,label,postproc)
+	;
+	s $zt="err" 
+	s cmdcnt=0
+	if OSFamily="VMS" { 
+		do VMS()
+	} else { 
+		s linuxbug=$$$FALSE
+		if (OSFamily="NT")||(OSFamily="Windows") { do Windoze() }  ; windows is 5.1+
+		else { do UNIX() }
+		if '$D(^pButtons("cmds","cstat")) d defcstat()
+	}
+	set ^pButtons("run",runid,"os")=cmdcnt
+	quit 
+	;
+initerr ; initialisation errors - 
+	d BACK^%ETN
+	q  ;
+	;
+getprofile()	; determine which type of run this is - set intv/cnt
+	; first check for defaults
+	i debug w "getprofile",!
+	if $D(^pButtons("silent")) {
+		set pname=$g(^pButtons("profile"),"test")
+		set plist=^pButtons("profile",pname)
+		do getsampleinfo(plist)
+		quit
+	}
+	d listprof("Available",1,"run")
+	q
+listprof(current,select,func)
+	; build array for menu - should be a minimum of 2 profiles
+	set idx="",icnt=0,ans=0,pname="" kill profarr
+	write "Current log directory: ",$$getlogdir,!
+	i $zversion(1)=2 {
+		s rc=-1,winver=$$winver(.nostr)
+		i winver>5 s rc=$$getperfmonpostproc()
+		i rc>=0 write "Windows Perfmon data will be "_$s(rc=0:"left in raw format.",1:"post-processed."),!
+	}
+	write current," profiles:",!
+	for  set idx=$o(^pButtons("profile",idx),1,plist) quit:idx=""  do
+	. set desc=$li(plist,$$$PROFILEDESC)
+	. i ((func="edit") || (func="delete")) && ((idx="test") || (idx="test30mins")) write ?8,idx,?20,desc,"  !protected!",!
+	. else  write ?5,$i(icnt),?8,idx,?20,"- ",desc,! s profarr(icnt)=$lb(idx,plist)
+	; now get ans, null or zero will quit
+	i select {
+		i icnt {
+			do { 
+				w !,"select profile number to ",func,": " read myans s ans=+myans
+				if ans=0 continue
+				if (ans>icnt) || (ans<0) {
+					write !,ans," not a valid profile." set ans=-1
+				} else {
+					set pname=$li(profarr(ans),1),tmp=$li(profarr(ans),2)
+					i ((func="edit") || (func="delete")) && ((pname="test") || (pname="test30mins")) w !,"you are not allowed to ",func," the ",pname," profile." s ans=-1 
+					do getsampleinfo(tmp)
+				}
+			} while ans<0
+			i ans>0 w !
+		} else {
+			w !," No available profiles to ",func,"."
+		} 
+	}
+	q
+getsampleinfo(plist)	; given profile get info
+	set interval=$li(plist,$$$PROFILEINTERVAL),count=$li(plist,$$$PROFILECOUNT)
+	set cacheflags=$lg(plist,$$$PROFILECFLAGS),osflags=$lg(plist,$$$PROFILEOFLAGS)
+	i $zversion(1)=2 set winctr=$lg(plist,$$$PROFILEWCTRFILE,$$getctrdefault())
+	q
+buildcmd(sect,i) ; builduniversal command
+	s comlist=^pButtons("cmds",sect,i),cmdstr="",ops=0
+	s ilabel=$g(^pButtons("cmds",sect,i,"label")),pprtn=$g(^pButtons("cmds",sect,i,"postproc"),$$$SQZOFILE),stopjob=$g(^pButtons("cmds",sect,i,"stopme"),1)
+	s comhdg=$li(comlist,$$$COMMENT)
+	for gi=$$$COMMAND:1:$ll(comlist) {	// min length is 3 if no args in cmd!
+		s cmditem=$lg(comlist,gi)  // get piece and check for arg substitution
+		if cmditem="interval" { s cmditem=interval }
+		elseif cmditem="count" { s cmditem=count }
+		elseif cmditem="sample" { s cmditem=sampletime }
+		elseif cmditem="endtime" { s cmditem=endstr }  // vms only
+		elseif cmditem="outfile" { s cmditem=ofile,ops=1 }
+		elseif cmditem="custfile" { // cfile should be set
+			i cfile'="" { s ofile=cfile } 
+			s cmditem=ofile,ops=1
+		}
+		s cmdstr=cmdstr_cmditem
+	}
+	i ops s oscmd($i(cmdcnt))=$lb(comhdg,cmdstr,ofile)
+	e  s oscmd($i(cmdcnt))=$lb(comhdg,cmdstr)
+	i $l(ilabel) set $li(oscmd(cmdcnt),$$$LABELTEXT)=ilabel
+	i $l(pprtn) set $li(oscmd(cmdcnt),$$$POSTPROC)=pprtn
+	set $li(oscmd(cmdcnt),$$$KILLME)=stopjob
+	q
+bugjob(com) ; workaround for $zf-2 of sar not working on linux
+	i $zf(-1,com)
+	q
+UNIX() ; unix section
+	s $zt="err"
+	if debug set pButtons("family")="unix"
+	if $zu(69,51)||($d(^pButtons("cmds","cstat","useccontrol"))) { s cstatcom="ccontrol stat " } else { s cstatcom="../bin/cstat -s. " }
+	s cstatout=" >> ",os="unix"
+	q:lite'=0
+	s rootid=$$getrootid
+	s eof=$zu(68,40,1)
+	; generate unix worklist
+	; first distinguish between flavours of unix
+	i $zv["Tru64" { s OSspec="Tru64" } else { s OSspec=$tr($p($system.Version.Format(2)," ",4),"()","") }
+	;  do specific pieces for each os...
+	i debug w OSspec,!
+	do $case(OSspec,
+		"Oracle"	:UXsol,
+		"Solaris"	:UXsol,
+		"Sun"		:UXsol,
+		"IBM"		:UXaix,
+		"Alpha/64-bit":UXtru,
+		"Tru64"		:UXtru,
+		"Clusters"	:UXtru,
+		"Linux"		:UXlin,
+		"SUSE"		:UXlin,
+		"Red"		:UXlin,
+		"HP"		:UXhp,
+		"HP-UX"		:UXhp,
+		"HP-UX/Itanium":UXhp,
+		"Mac"		:UXmac,
+		"Apple"		:UXmac,
+					:UXunk)
+	;
+	; now do the cpu/mem/disk stuff which is the same logic no matter the flavour
+	; just pull the actual command from the global
+	; 
+	i $zu(68,40,eof) ; restore eof handling
+	s chkflag=0,zfresult=0
+	s pscnt=$lg(^pButtons("cmds","ps"),$$$PSCNT,0)
+	i pscnt>0 { // bypass buildcmd for ps
+		s psargs=$lg(^pButtons("cmds","ps"),$$$PSARGS),pspath=$lg(^pButtons("cmds","ps"),$$$PSPATH)
+		s pscmd=pspath_"ps "_psargs_" >> "  ;; don't want redirect in loop!
+		s oscmd($i(cmdcnt))=$lb("ps",pscmd)
+	}
+	for sect="cpu","memory","disk","network","user" { 
+		if $i(chkflag)  ; increment piece for flag checks
+		if '$p(osflags,$c(1),chkflag) {  ; should change the flags to $lb too
+			set sccnt=+$g(^pButtons("cmds",sect))
+			for i=1:1:sccnt { // build each cmd from pieces in global
+				s ofile=logdir_runid_"_"_(cmdcnt+1)_".log",cfile=$g(^pButtons("cmds",sect,i,"out"))
+				d buildcmd(sect,i) ; buildcmd incs cmdcnt
+			}
+		}
+	}
+	; got the list now spawn the jobs
+	; foreach cmd do set x=$zf-2 save status and logfile
+	i debug w "UNIX spawn jobs now",!
+	for i=1:1:+$g(cmdcnt) {
+		s ofile=$lg(oscmd(i),$$$OPFILE),com=$li(oscmd(i),$$$COMMAND),ilabel=$lg(oscmd(i),$$$LABELTEXT),pprtn=$lg(oscmd(i),$$$POSTPROC),kill=$lg(oscmd(i),$$$KILLME,1)
+		i ofile="" s ofile=logdir_runid_"_"_i_".log",com=com_ofile
+		s oldcpid=$zc,rc=0,multi=0
+		i com["ps" {
+			// need to calc hang interval after count checking
+			// this command check is not generic, but the infrastructure pretty much is - could use "times" keyword
+			s multi=1
+			i pscnt>count s pscnt=count ;(no point in more than samples)
+			s htim=$$calcintvl(pscnt)
+			j domulti(com,ofile,pscnt,htim)::$$$JOBTIMEOUT i '$T { s rc=-1 } else { s cpid=$zc }
+		}
+		elseif linuxbug&&(com["sar") { s kill=0 j bugjob(com)::$$$JOBTIMEOUT }
+		else { s rc=$zf(-2,com,"","",1) /* NOT5.0 */ }
+		i rc=0 {
+			set cpid=$zc i cpid=oldcpid set cpid=0
+			i 'kill s cpid=0  ; no point in saving cpid if we're not going to use it
+			i (cpid>0)&&(multi=0) s cpid="kill -9 "_cpid
+			set ^pButtons("run",runid,"os",i)=$li(oscmd(i),$$$COMMENT,$$$COMMAND)_$lb(ofile,,,,cpid)
+			i $l(ilabel) set $li(^pButtons("run",runid,"os",i),$$$LABELTEXT)=ilabel
+			i $l(pprtn) set $li(^pButtons("run",runid,"os",i),$$$POSTPROC)=pprtn
+		} else { set ^pButtons("run",runid,"os",i)=$li(oscmd(i),$$$COMMENT,$$$COMMAND)_$lb("error",,,,0) }
+	}
+	i debug w "ux return point",!
+	quit
+domulti(cmd,opfile,cnt,int) ; jobbed off routine to run oscmd a number of times
+	s $zt="^%ETN",scmd=$p(cmd," >")
+	d $ZU(112,8,0)
+	for si=1:1:cnt { 
+		o opfile:"WAS":$$$OPENTIMEOUT
+		if $T {
+			d addlink(opfile,si,cnt,scmd)
+			c opfile
+		}
+		i $zf(-2,cmd) 
+		h:si'=cnt int 
+	}
+	c opfile
+	q
+	; these are the specific sections - these commands cannot be disabled by flags!
+UXsol	; 64 bit only, failover cluster?
+	s os="solaris"
+	i debug w os,! ;  i have assumed only att universe here - could be an issue... if ucb
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) k ^pButtons("cmds") d defsolaris()
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo uname -X: > "_tmpfile_"; uname -X >> "_tmpfile)
+	i $zf(-1,"echo isainfo -kv: `isainfo -kv` >> "_tmpfile)
+	i $zf(-1,"echo isainfo -v: >> "_tmpfile_"; isainfo -v >> "_tmpfile)
+	i $zf(-1,"echo clinfo: `clinfo` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo zonename: `zonename` >> "_tmpfile)
+	i $zf(-1,"echo zonelist: >> "_tmpfile_"; /usr/sbin/zoneadm list -v >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo project file: >> "_tmpfile_"; cat /etc/project >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	s pipe="ps -o taskid -p "_$J,taskid=0
+	o pipe:"RQ":$$$OPENTIMEOUT
+	i $T {
+		u pipe r line:$$$READTIMEOUT
+		u pipe r taskid:$$$READTIMEOUT
+		i (taskid>0) {
+			i $zf(-1,"echo >> "_tmpfile)
+			i $zf(-1,"echo resource control list: >> "_tmpfile)
+			i $zf(-1,"prctl -i taskid "_taskid_" >> "_tmpfile)
+		}
+		c pipe
+	}
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("Solaris info","mv "_tmpfile_" ",,0)
+	s oscmd($i(cmdcnt))=$lb("prtdiag","/usr/sbin/prtdiag > ",,0)
+	s oscmd($i(cmdcnt))=$lb("psrinfo","/usr/sbin/psrinfo -v > ",,0)
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","mount > ")
+	s oscmd($i(cmdcnt))=$lb("df -k","df -k > ")
+	q
+UXaix	; 32 bit or 64 bit and with/without HACMP
+	s os="aix"
+	i debug w os,!
+	s oslev=$$aixos()	
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) { k ^pButtons("cmds") d defaix() }
+	; filemon, nmon?, get /etc/filesystems, df -k, /usr/sysv/bin/df -l, 
+	s tmpfile=logdir_"osinfo",pipe="prtconf 2>/dev/null"
+	i $zf(-1,"echo oslevel -r: `oslevel -r` > "_tmpfile)
+	i $zf(-1,"echo uname -a: `uname -a` >> "_tmpfile)
+	if $zu(140,4,"/var/ha")>=0 {	; find out if this is HACMP system...
+		i $zf(-1,"echo This system may be part of an HACMP cluster >> "_tmpfile)
+	}
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	do chk4vx(tmpfile)
+	o tmpfile:"WAS":$$$OPENTIMEOUT
+	i $T {
+		o pipe:"RQ":$$$OPENTIMEOUT
+		i $T {
+			u tmpfile w "prtconf:",!
+			f  u pipe r line:$$$READTIMEOUT s zeof=$zeof q:zeof!($e(line,1,9)="INSTALLED")  u tmpfile w line,!
+			c pipe
+		}
+		c tmpfile
+	}
+	i $zf(-1,"echo lspv: >> "_tmpfile_"; lspv 2>/dev/null >> "_tmpfile)
+	i $zf(-1,"echo \\nlspv details: >> "_tmpfile_"; lspv 2>/dev/null | grep -e active -e concurrent | cut -f1 -d "" "" | xargs -I % lspv -l % >> "_tmpfile)
+	s oscmd($i(cmdcnt))=$lb("AIX info","mv "_tmpfile_" ",,0)
+	s oscmd($i(cmdcnt))=$lb("cpu type","lsattr -El proc0 > ",,0)
+	s oscmd($i(cmdcnt))=$lb("vmstat -s","vmstat -s > ",,0)
+	s oscmd($i(cmdcnt))=$lb("1st vmstat -v","vmstat -v > ",,0)
+	s oscmd($i(cmdcnt))=$lb("2nd vmstat -v","sleep 120; vmstat -v > ")
+	i rootid {
+		i oslev<6 { s arg="a" } else { s arg="Fa" }
+		s oscmd($i(cmdcnt))=$lb("vmo -a","vmo -"_arg_" > ",,0)
+		s oscmd($i(cmdcnt))=$lb("ioo -a","ioo -"_arg_" > ",,0)
+	}
+	s oscmd($i(cmdcnt))=$lb("filesystems","cp /etc/filesystems ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","mount > ")
+	s oscmd($i(cmdcnt))=$lb("df -k","df -k > ")
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	q
+UXtru	; 64 bit with/without clustering
+	s os="tru64"  // need root for hwmgr and collect cmds!
+	i debug w os,!
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) k ^pButtons("cmds") d deftru64()
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo uname -a: `uname -a` > "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo cluster info: >> "_tmpfile_"; /usr/sbin/clu_get_info >> "_tmpfile_" 2>&1")
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; /usr/bin/ulimit -a >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo sysconfig: >> "_tmpfile_"; /sbin/sysconfig -q generic >> "_tmpfile)
+	i $zf(-1,"/sbin/sysconfig -q proc >> "_tmpfile)
+	i $zf(-1,"/sbin/sysconfig -q vm >> "_tmpfile)
+	i $zf(-1,"/sbin/sysconfig -q ipc >> "_tmpfile)
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("Tru64 info","mv "_tmpfile_" ",,0)
+	i rootid {
+		s oscmd($i(cmdcnt))=$lb("platform","/sbin/hwmgr get attributes -id 1 -id 2 > ",,0)
+		s oscmd($i(cmdcnt))=$lb("devices","/sbin/hwmgr view devices > ",,0)
+	}
+	s oscmd($i(cmdcnt))=$lb("vmstat -s","vmstat -s > ",,0)
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","mount > ")
+	s oscmd($i(cmdcnt))=$lb("df -k","df -k > ")
+	q
+UXlin	; what flavour!!!, 32bit or 64bit, clustering ?
+	s os="linux",linuxbug=$$$TRUE
+	i debug w os,!
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) {
+		k ^pButtons("cmds") d deflinux()
+	} else {
+		d checkawk($g(^pButtons("cmds","check")))
+	}
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo uname -a: `uname -a` > "_tmpfile)
+	i $zf(-1,"echo issue: >> "_tmpfile_"; cat /etc/issue.net >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo lsb_release: >> "_tmpfile_"; lsb_release -a >> "_tmpfile_" 2>&1")
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	; JEH002+ Add /proc/partitions and device mapper data to output file. Force blank lines for readability
+	if $zf(-1,"echo -ne '\n' >> "_tmpfile_"; echo /proc/partitions: >> "_tmpfile_"; cat /proc/partitions >> "_tmpfile)
+	if $zf(-1,"echo -ne '\n' >> "_tmpfile_"; echo /dev/mapper: >> "_tmpfile_"; ls -l /dev/mapper >> "_tmpfile)
+	; JEH002-
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("Linux info","mv "_tmpfile_" ",,0)
+	s oscmd($i(cmdcnt))=$lb("cpu","cp /proc/cpuinfo ",,0)
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	i rootid s oscmd($i(cmdcnt))=$lb("fdisk -l","/sbin/fdisk -l > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","mount > ")
+	s oscmd($i(cmdcnt))=$lb("df -m","df -m > ")
+	s oscmd($i(cmdcnt))=$lb("ifconfig","/sbin/ifconfig > ",,0)
+	s oscmd($i(cmdcnt))=$lb("sysctl -a","/sbin/sysctl -a > ",,0)
+	q
+UXhp	; 32 bit or 64 bit and with/without service guard
+	s os="hpux"
+	i debug w os,!
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) k ^pButtons("cmds") d defhpux()
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo uname -a:  `uname -a` > "_tmpfile)
+	if $zu(140,4,"/usr/contrib/bin/machinfo")=0 { // not there on older HP
+		i $zf(-1,"echo machinfo: >> "_tmpfile_"; /usr/contrib/bin/machinfo >> "_tmpfile)
+	}
+	if $zu(140,4,"/vmunix")=0 {  // not that we know this is the boot file...
+		i $zf(-1,"echo hpux file: `file /vmunix` >> "_tmpfile)
+	} else {
+		i $zf(-1,"echo hpux file: `file /stand/vmunix` >> "_tmpfile)
+	}
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo kcalarm status: >> "_tmpfile_"; /usr/sbin/kcalarm -m status >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo vmstat -f: >> "_tmpfile_"; vmstat -f >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo swlist: >> "_tmpfile_"; /usr/sbin/swlist 2>/dev/null >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo sysdef: >> "_tmpfile_"; /usr/sbin/sysdef >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	if $zu(140,4,"/usr/sbin/kctune")=0 i $zf(-1,"echo kctune: >> "_tmpfile_"; /usr/sbin/kctune -g 2>/dev/null >> "_tmpfile)
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("HP-UX info","mv "_tmpfile_" ",,0)
+	if $zu(140,4,"/etc/cmcluster.conf")=0 {  // ServiceGuard environ var file
+		s oscmd($i(cmdcnt))=$lb("Serviceguard","cp /etc/cmcluster.conf ",,0)
+	} else {
+		i $zf(-1,"echo This system does not have MC Serviceguard >> "_tmpfile)	
+	}
+	s oscmd($i(cmdcnt))=$lb("vmstat -s","vmstat -s > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","/sbin/mount > ")
+	s oscmd($i(cmdcnt))=$lb("df -k","df -k > ")
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	q
+UXmac	; 
+	s os="mac"
+	i debug w os,!
+	i '$D(^pButtons("cmds","cpu"))||$D(^pButtons("cmds","unknown")) k ^pButtons("cmds") d defmac()
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo sw_vers: > "_tmpfile_"; sw_vers >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo uname -a: `uname -a` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)	
+	i $zf(-1,"echo sysctl hw: >> "_tmpfile_"; sysctl hw >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo vm_stat: >> "_tmpfile_"; vm_stat >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo netstat: >> "_tmpfile_"; /usr/sbin/netstat -i >> "_tmpfile)
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("MacOSX info","mv "_tmpfile_" ",,0)
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","/sbin/mount > ",,0)
+	s oscmd($i(cmdcnt))=$lb("df -m","df -m > ")
+	s oscmd($i(cmdcnt))=$lb("sysctl -a","/usr/sbin/sysctl -a > ",,0)
+	q
+UXunk	; whoops error but should be some common cmds...
+	s os="unknown"
+	i debug w "Unable to identify Unix platform",os,!
+	i '$D(^pButtons("cmds","cpu")) d defunk()
+	s tmpfile=logdir_"osinfo"
+	i $zf(-1,"echo Failed to identify platform! > "_tmpfile)
+	i $zf(-1,"echo Debug info follows... >> "_tmpfile)
+	i $zf(-1,"echo OSspec: "_OSspec_" >> "_tmpfile)
+	i $zf(-1,"echo ""Product platform string: "_$system.Version.Format(2)_""" >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo uname -a: `uname -a` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo id: `id` >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo ulimit -a: >> "_tmpfile_"; ulimit -a >> "_tmpfile)
+	do chk4vx(tmpfile)
+	s oscmd($i(cmdcnt))=$lb("OS info","mv "_tmpfile_" ",,0)
+	s oscmd($i(cmdcnt))=$lb("ipcs","ipcs -a > ",,0)
+	s oscmd($i(cmdcnt))=$lb("mount","mount > ",,0)
+	s oscmd($i(cmdcnt))=$lb("df -k","df -k > ")
+	q
+chk4vx(tmpfile)
+	; detection of veritas
+	s $zt="cvxerr",novx=1
+	if $zu(140,4,"/usr/sbin/vxstat")>=0 s novx=0
+	q:novx
+	i $zf(-1,"echo >> "_tmpfile)
+	i $zf(-1,"echo Detected Veritas! >> "_tmpfile)
+	i rootid {
+		i $zf(-1,"echo >> "_tmpfile)
+		i $zf(-1,"echo Veritas version: `/opt/VRTSob/bin/vxsvcctrl version` >> "_tmpfile)
+		i $zf(-1,"echo Veritas status: `/opt/VRTSob/bin/vxsvcctrl status` >> "_tmpfile)
+		i $zf(-1,"echo >> "_tmpfile)
+		i $zf(-1,"echo Veritas diskgroup list:>> "_tmpfile_"; /usr/sbin/vxdg list 2>/dev/null >> "_tmpfile)
+		i $zf(-1,"echo >> "_tmpfile)
+		i $zf(-1,"echo Veritas diskgroup freespace:>> "_tmpfile_"; /usr/sbin/vxdg free 2>/dev/null >> "_tmpfile)
+		i $zf(-1,"echo >> "_tmpfile)
+	} else { // not root
+		i $zf(-1,"echo Not root so unable to run privileged vx commands. >> "_tmpfile)
+	}
+	i $zf(-1,"echo Veritas vxprint list:>> "_tmpfile_"; /usr/sbin/vxprint -v 2>/dev/null >> "_tmpfile)
+	i $zf(-1,"echo >> "_tmpfile)
+	quit
+cvxerr
+	d BACK^%ETN
+	q
+Windoze() ; win section
+	s $zt="Winerr"
+	s os="win",wver=0,verl="unable to open ver command"
+	i debug w os,! set pButtons($h,"family")="win"
+	i '$D(^pButtons("ctrfile","default")) d defwin()
+	i $zu(69,51) { s cstatcom=$e($zu(12),1,$l($zu(12))-4)_"bin\cstat -s "_$e($zu(12),1,$l($zu(12))-1)_" " } else  {s cstatcom="..\bin\cstat -s. " }
+	s cstatout=" >> "
+	quit:lite
+	; so detect win version...
+	s eof=$zu(68,40,1)
+	s wver=$$winver(.verl)
+	i 'wver { 
+		s $li(^pButtons("run",runid,"general"),7)="unknown Win version - "_verl
+	} elseif wver<5.1 {
+		; older than XP => no sysinfo/tasklist/perfmon api
+		s $li(^pButtons("run",runid,"general"),7)="old Win version ("_wver_") - "_verl
+		w "Please run the Windows performance monitor with the html provided",!
+	} else { // winXP or newer
+		s logmstart=0
+		if wver>=5.3 s logmstart="logman start "_runid
+		s chklm=$$getlmstrings(.lmgood,.lmbad)
+		i debug u 0 w "getlmstrings result: ",chklm,",",lmgood,",",lmbad,!
+		s ofile=logdir_runid,^pButtons("run",runid,"os")=$i(cmdcnt),tmpfile=ofile_"_"_cmdcnt_".log"
+		s rc=$$Winsysinf(tmpfile)
+		i rc<0 { s ^pButtons("run",runid,"os",cmdcnt)=$lb("Windows info",,"error",,,,0) }
+		else { s ^pButtons("run",runid,"os",cmdcnt)=$lb("Windows info",,tmpfile,,,,0) }
+		s ^pButtons("run",runid,"os")=$i(cmdcnt),tmpfile=ofile_"_"_cmdcnt_".log"
+		i $zf(-2,"tasklist -V > "_tmpfile)
+		i rc<0 { s ^pButtons("run",runid,"os",cmdcnt)=$lb("tasklist",,"error",,,,0) }
+		else { s ^pButtons("run",runid,"os",cmdcnt)=$lb("tasklist",,tmpfile,,,,0) } 
+		s rc=$$mkctrfile(winctr,0)
+		i +rc<-1 { //early exit... (-1 ok as file already there), handles null perfmon
+			i $zu(68,40,eof)
+			q
+		}
+		s $li(^pButtons("run",runid,"profile"),$$$RUNWCTRFILE)=winctr
+		s winctrfile=^pButtons("ctrfile",winctr),ctrfile=logdir_winctrfile,lmok=$$$TRUE,winpproc=""
+		i $$getperfmonpostproc()>0 s winpproc="wincsv"
+		s hh=sampletime\$$$HRSECS,mm=sampletime#$$$HRSECS\$$$MINS,ss=sampletime#$$$HRSECS#$$$MINS
+		i hh>0 { s sampstr=hh_":"_mm_":"_ss } 
+		elseif mm>0 { s sampstr=mm_":"_ss }
+		else { s sampstr=ss }
+		s cmd="logman create counter "_runid_" -si "_interval_" -rf "_sampstr_" --v -f csv -o "_ofile_" -cf "_ctrfile
+		s ^pButtons("run",runid,"os")=$i(cmdcnt),lmresp=""
+		s ^pButtons("run",runid,"os",cmdcnt+1)=cmd ;purely for the debug section of the html
+		o cmd:"RQ":$$$OPENTIMEOUT
+		i '$T {
+			s lmok=$$$FALSE,lmp2="logman create cmd no pipe"
+		} else { //opened logman create pipe
+			s lmp2="logman create cmd"
+			f  u cmd r l:$$$PIPERDTMOUT s zeof=$zeof,lmresp=lmresp_"^"_l q:zeof||('chklm&&((l[lmgood)||(l[lmbad)))
+			c cmd
+			i zeof||(('zeof)&&('chklm)&&(l[lmbad)) s lmok=$$$FALSE
+			// if XP or 2003 we're done, or prev cmd was not ok!
+			i (logmstart'=0)&&(lmok=$$$TRUE) {
+				s lmp2=logmstart,lmresp=""
+				o logmstart:"RQ":$$$OPENTIMEOUT
+				i '$T {
+					s lmok=$$$FALSE
+				} else {
+					f  u logmstart r l:$$$PIPERDTMOUT s zeof=$zeof,lmresp=lmresp_"^"_l q:zeof||('chklm&&((l[lmgood)||(l[lmbad)))
+					i l[lmbad u logmstart r l:$$$PIPERDTMOUT s lmok=$$$FALSE,^pButtons("run",runid,"os",cmdcnt,"err")=l
+					c logmstart
+					i zeof||(('zeof)&&('chklm)&&(l[lmbad)) s lmok=$$$FALSE
+				}
+			} //logmstart (aka Windows Vista or higher)
+		} // opened logman create pipe
+		i lmok {
+			s ^pButtons("run",runid,"os",cmdcnt)=$lb("perfmon",lmp2,ofile_".csv",,"win_perfmon",winpproc,"logman stop "_runid)
+		} else {
+			s ^pButtons("run",runid,"os",cmdcnt)=$lb("perfmon",lmp2,"error",lmresp,,,0)
+		}
+	}
+	i $zu(68,40,eof)
+	q
+winver(verl) ; get winver
+	s $zt="Winverr",weof=$zu(68,40,1),wver=0,pipe="ver" o pipe:"RQ":$$$OPENTIMEOUT
+	i $T {
+		f  u pipe r verl:$$$READTIMEOUT s zeof=$zeof q:zeof!($l(verl)>0)
+		s wver=+$p($p($g(verl),"[",2)," ",2) ; cuts build # out too
+		c pipe
+	}
+	i $zu(68,40,weof)
+	q wver
+Winerr ; save error and try to continue
+	d BACK^%ETN
+	q
+Winverr
+	d BACK^%ETN
+	q wver
+Winsysinf(tmpfile)
+	n (tmpfile)
+	s f="sys1.txt",skip=0,$zt="Winsierr"
+	i $zf(-1,"systeminfo > "_f)
+	o f::$$$OPENTIMEOUT
+	q:'$T "-1^unable to open tmp file"
+	o tmpfile:"WNS":$$$OPENTIMEOUT
+	q:'$T "-2^unable to open output file"
+	f { ; upto Hotfixes...
+		u f r l:$$$PIPERDTMOUT s zeof=$zeof q:zeof
+		q:$e(l,1,6)="Hotfix"
+		u tmpfile w l,!
+	}
+	f { ; skip to first char not space
+		u f r l:$$$PIPERDTMOUT s zeof=$zeof q:zeof
+		i $e(l)'=" " u tmpfile w l,! q
+	}
+	f { 
+		u f r l:$$$PIPERDTMOUT s zeof=$zeof q:zeof
+		u tmpfile w l,!
+	}
+	c f,tmpfile
+	if $zu(140,5,f)
+	q 0
+Winsierr
+	d BACK^%ETN
+	q -3 ; some other-unexpected error
+setctrdefault(ctrname) ; make ctrname default win ctr
+	q:$zversion(1)'=2 "0^Not Windows!"
+	i '$D(ctrname) s ctrname="default"
+	i (ctrname'="")&&('$D(^pButtons("ctrfile",ctrname))) s ctrname="default"
+	i (ctrname="default")&&('$D(^pButtons("ctrfile",ctrname))) do defwin()
+	q:(ctrname'="")&&('$D(^pButtons("ctrfile",ctrname))) "0^No such counter!"
+	s ^pButtons("ctrdefault")=ctrname
+	q 1
+clrctrdefault()
+	d setctrdefault("") q 1
+getctrdefault()
+	q:$d(^pButtons("ctrdefault"))&&((^pButtons("ctrdefault")="")||($D(^pButtons("ctrfile",$g(^pButtons("ctrdefault")))))) ^pButtons("ctrdefault")
+	n rc s rc=$$setctrdefault() i +rc>0 q ^pButtons("ctrdefault")
+	q ""
+getperfmonpostproc()
+	q:$d(^pButtons("perfmonpostprocessing")) +^pButtons("perfmonpostprocessing")
+	n rc s rc=$$setperfmonpostproc() i +rc>0 q ^pButtons("perfmonpostprocessing")
+	q -1
+setperfmonpostproc(onoff)
+	q:$zversion(1)'=2 "0^Not Windows!"
+	s onoff=$g(onoff) i onoff="" s onoff=0
+	s onoff=$zcvt(onoff,"l") i ($e(onoff,1,2)="on")||(onoff=1) { s onoff=1 } else { s onoff=0 }
+	s ^pButtons("perfmonpostprocessing")=onoff
+	q $s(onoff=1:"1^Perfmon data post-processing is enabled",1:"1^Perfmon data post-processing is disabled")
+VMS() ; vms section
+	s os="vms",$zt="err" ; vms version, clu info, hwlist, sysgen, monitor or t4
+	i debug w os,!
+	i '$D(^pButtons("cmds","monitor")) d defvms()
+	i '$D(^pButtons("cmds","cstat")) d defvmscstat()
+	s ^pButtons("lastpid")=$j  ; protection from accvio - for cleanup rtn
+	s cstatcom="ccontrol stat "
+	s cstatout="",zfresult=1
+	quit:lite
+	; first command is sync rather than async... need to lock this?
+	s tfcnt=0,ofile=logdir_runid_"_"_$i(cmdcnt)_".log"
+	s tf="cpbutinf.txt",iop="WNS"
+	s nodename=$$getsyi("nodename","??")
+	s hwname=$$getsyi("hw_name","??")
+	s vversion=$$getsyi("version","V??")
+	s clumemb=$$getsyi("cluster_member","FALSE")
+	s clunodes=$$getsyi("cluster_nodes",1)
+	s cpus=$$getsyi("activecpu_cnt","??")
+	s mem=$$getsyi("memsize","??")
+	o ofile:iop:$$$OPENTIMEOUT
+	i $T  { u ofile
+		w "This is node ",nodename,", ",hwname," running VMS ",vversion,!
+		i clumemb="TRUE" { w "This is a cluster member, with ",clunodes-1," other members.",! }
+		else { w "This is a standalone server.",! }
+		w "Using ",cpus," processor",$s(cpus=1:"",1:"s")," and ",mem," memory pages.",!
+		c ofile
+		set ^pButtons("run",runid,"os",1)=$lb("VMS version",,ofile,,,,0)
+	} else { // if we fail to open the file - we're stuffed...
+		set ^pButtons("run",runid,"os",1)=$lb("VMS version",,"error",,,,0)
+	}
+	; now delete the working files that contributed to the summary info
+	f i=1:1:tfcnt { i $zu(140,5,tf_".") h 0.1 }
+	; sysgen
+	s ofile=logdir_runid_"_"_$i(cmdcnt)_".log"
+	s sc=$zf(-2,"mc sysgen show /all",ofile)
+	s ^pButtons("run",runid,"os",cmdcnt)=$lb("Sysgen","",ofile,,,,0)
+	; if no commands are predefined then
+	; AAR001 - for end time, need to calc days and remainder properly
+	s incdays=sampletime\$$$DAYSECS
+	s endstr=$zt(sampletime#$$$DAYSECS,1)
+	; now /ending is "+dd-hh:mm:ss"
+	s:(incdays>0) endstr=incdays_"-"_endstr
+	s endstr="""+"_endstr_""""
+	i (^pButtons("cmds","t4")=0 && ^pButtons("cmds","monitor")=0) {
+		; do the basic monitor command
+		s ofilestem=logdir_runid_"_"_$i(cmdcnt)
+		s ofile=ofilestem_".LOG",comfile=ofilestem_".COM",errfile=ofilestem_".ERR"
+		s basicmon="monitor all /interval="_interval_" /display="_ofile_" /ending="_endstr
+		open comfile:("WM"):$$$OPENTIMEOUT
+		; if open succeeds...
+		if ($T) {
+			use comfile w "$ "_basicmon,!
+			use comfile w "$ exit",!
+			close comfile
+			; unique process name that we will assign to our detached process
+			set procname="BM"_+$h_$p($h,",",2)
+			; AAR002 - use detached process
+			set rc=$zf(-2,"RUN SYS$SYSTEM:LOGINOUT/DETACH/INPUT="_comfile_"/OUT="_errfile_"/PROCESS="_procname)
+			; stop command now uses process name and not its id	
+			s ^pButtons("run",runid,"os",cmdcnt)=$lb("monitor",basicmon,ofile,,,,"stop "_procname)
+		}
+		; if open fails...
+		else {
+			s ^pButtons("run",runid,"os",cmdcnt)=$lb("monitor",basicmon,"[Basic Monitor] Error: opening comfile for writing",,,,0)	
+		}		
+	}
+	i debug w "VMS spawn jobs now",!
+	; sect="t4","monitor" moved outside original loop since they require special treatment - AAR002
+	for sect="t4","monitor" {
+		set sccnt=+$g(^pButtons("cmds",sect))
+		for i=1:1:sccnt {
+			; comfile will contain the actual command
+			s ofile=logdir_runid_"_"_(cmdcnt+1)_".LOG",cfile=$g(^pButtons("cmds",sect,i,"out"))
+			d buildcmd(sect,i) ; buildcmd incs cmdcnt
+			; set up variables for file names based on chosen output file
+			s comfile=$p($li(oscmd(cmdcnt),$$$OPFILE),".",1,$l($li(oscmd(cmdcnt),$$$OPFILE),".")-1)_".COM",errfile=$p($li(oscmd(cmdcnt),$$$OPFILE),".",1,$l($li(oscmd(cmdcnt),$$$OPFILE),".")-1)_".ERR"
+			open comfile:("WM"):$$$OPENTIMEOUT
+			; if open succeeds...
+			if ($T) {
+				; write our built cmd to file
+				use comfile w "$ "_$li(oscmd(cmdcnt),$$$COMMAND),!
+				use comfile w "$ exit",!
+				close comfile
+				; unique process name that we will assign to our detached process
+				set procname=$e(sect,1,2)_+$h_$p($h,",",2)
+				; AAR002 - use detached process
+				set rc=$zf(-2,"RUN SYS$SYSTEM:LOGINOUT/DETACH/INPUT="_comfile_"/OUT="_errfile_"/PROCESS="_procname)
+				; stop command now uses process name and not its id
+				set ^pButtons("run",runid,"os",cmdcnt)=$li(oscmd(cmdcnt),$$$COMMENT,$$$COMMAND)_$lb($li(oscmd(cmdcnt),$$$OPFILE),,,,"stop "_procname)
+			}
+			; if open fails...
+			else {
+				set ^pButtons("run",runid,"os",cmdcnt)=$li(oscmd(cmdcnt),$$$COMMENT,$$$COMMAND)_$lb("["_sect_"] Error: opening comfile for writing",,,,0)	
+			}
+		}
+	}
+	; AAR002 leaves this unchanged
+	for sect="user" { 
+		set sccnt=+$g(^pButtons("cmds",sect))
+		for i=1:1:sccnt {
+			s ofile=logdir_runid_"_"_(cmdcnt+1)_".log",cfile=$g(^pButtons("cmds",sect,i,"out"))
+			d buildcmd(sect,i) ; buildcmd incs cmdcnt
+			i ops=0 s rc=$zf(-2,$li(oscmd(cmdcnt),$$$COMMAND),ofile,"",1)
+			e  s rc=$zf(-2,$li(oscmd(cmdcnt),$$$COMMAND),"","",1)
+			set ^pButtons("run",runid,"os",cmdcnt)=$li(oscmd(cmdcnt),$$$COMMENT,$$$COMMAND)_$lb(ofile,,,,"stop/id="_$zh($zc))
+		}
+	}
+	q
+getsyi(sym,default)
+	; callout read tmpfile return value	; this is needed until memsize is added to cache...
+	s sc=$zf(-1,"write sys$output f$getsyi("""_sym_""")",tf)
+	i sc o tf::$$$OPENTIMEOUT
+	i $T { u tf r var c tf i $i(tfcnt) }
+	else { s var=default }
+	quit var
+default()	; setup default structure if none exists (first run)
+	d defprofile()
+	d defcache()
+	q   ; cstat is detected and defaulted at the family level
+defprofile()	; pre-defined profiles
+	set ^pButtons("profile","test")=$lb("A 5 minute TEST run sampling every 30 seconds",30,10)
+	set rc=$$genprofile("24:"),rc=$$genprofile("12:"),rc=$$genprofile("8:"),rc=$$genprofile("4:",5),rc=$$genprofile(30,1)
+	q
+defcache()	; cache
+	set ^pButtons("cmds","mgstat")="^mgstat(interval,count,outfile)"
+	set ^pButtons("cmds","ecpsvr")="conns^ecpstat(interval,outfile,count)"
+	set ^pButtons("cmds","SS")=4
+	q 
+defcstat() ; but not the vms cstat...
+	set installedVersion=$System.Version.GetMajor()_"."_$System.Version.GetMinor()
+	set ^pButtons("cmds","cstat")=2
+	if ((installedVersion>=2015.1)&&(installedVersion<=2016.1)) {
+		set ^pButtons("cmds","cstat",1)=$lb("cstat -c1",4,"-p-1 -c-262145 -e1 -m8 -n2 -N127")
+	} else {
+		set ^pButtons("cmds","cstat",1)=$lb("cstat -c1",4,"-p-1 -c-1 -e1 -m8 -n2 -N127")
+	}
+	set ^pButtons("cmds","cstat",2)=$lb("cstat -D",8,"-a0 -f1 -D10,100")
+	q
+defwin()	; windoze - create default pbctrs definition and file
+	q:$zversion(1)'=2
+	k ^pButtons("cmds","cpu"),^("memory"),^("disk"),^("network")
+	s logdir=$$getlogdir^pButtons,cfile=logdir_"pbctrs.txt"
+	i $D(^pButtons("ctrfile","default")) m ^pButtons("ctrfile","olddefault")=^pButtons("ctrfile","default") k ^pButtons("ctrfile","default")
+	s ^pButtons("ctrfile","default")="pbctrs.txt"
+	s ^pButtons("ctrfile","default","\Memory\Available MBytes")=""
+	s ^pButtons("ctrfile","default","\Memory\Free System Page Table Entries")=""
+	s ^pButtons("ctrfile","default","\Memory\Page Reads/sec")=""
+	s ^pButtons("ctrfile","default","\Memory\Page Writes/sec")=""
+	s ^pButtons("ctrfile","default","\Network Interface(*)\Bytes Received/sec")=""
+	s ^pButtons("ctrfile","default","\Network Interface(*)\Bytes Sent/sec")=""
+	s ^pButtons("ctrfile","default","\Paging File(_Total)\% Usage")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Avg. Disk Read Queue Length")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Avg. Disk Write Queue Length")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Avg. Disk sec/Read")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Avg. Disk sec/Write")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Current Disk Queue Length")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Disk Reads/sec")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Disk Transfers/sec")=""
+	s ^pButtons("ctrfile","default","\PhysicalDisk(*)\Disk Writes/sec")=""
+	s ^pButtons("ctrfile","default","\Processor(*)\% Idle Time")=""
+	s ^pButtons("ctrfile","default","\Processor(*)\% Interrupt Time")=""
+	s ^pButtons("ctrfile","default","\Processor(*)\% Privileged Time")=""
+	s ^pButtons("ctrfile","default","\Processor(*)\% User Time")=""
+	s ^pButtons("ctrfile","default","\Processor(_Total)\% Processor Time")=""
+	s ^pButtons("ctrfile","default","\Processor(_Total)\Interrupts/sec")=""
+	s ^pButtons("ctrfile","default","\System\Processes")=""
+	s ^pButtons("ctrfile","default","\System\Processor Queue Length")=""
+	s x=$$mkctrfile("default",1)
+	s ^pButtons("ctrfile","defwlogdisk")="pbwldctr.txt"
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Avg. Disk Bytes/Read")=""
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Avg. Disk Bytes/Write")=""
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Avg. Disk Read Queue Length")=""
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Avg. Disk Write Queue Length")=""
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Disk Reads/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\LogicalDisk(*)\Disk Writes/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Memory\Available MBytes")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Memory\Free System Page Table Entries")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Memory\Page Reads/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Memory\Page Writes/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Network Interface(*)\Bytes Received/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Network Interface(*)\Bytes Sent/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Paging File(_Total)\% Usage")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Avg. Disk Read Queue Length")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Avg. Disk Write Queue Length")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Avg. Disk sec/Read")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Avg. Disk sec/Write")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Current Disk Queue Length")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Disk Reads/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Disk Transfers/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\PhysicalDisk(*)\Disk Writes/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(*)\% Idle Time")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(*)\% Interrupt Time")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(*)\% Privileged Time")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(*)\% User Time")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(_Total)\% Processor Time")=""
+	s ^pButtons("ctrfile","defwlogdisk","\Processor(_Total)\Interrupts/sec")=""
+	s ^pButtons("ctrfile","defwlogdisk","\System\Processes")=""
+	s ^pButtons("ctrfile","defwlogdisk","\System\Processor Queue Length")=""
+	s x=$$mkctrfile("defwlogdisk",1)
+	q
+mkctrfile(ctr,force) ; write new ctr file from pB description
+	n (ctr,force)
+	q:(ctr="")||'$D(^pButtons("ctrfile",ctr)) "-2^no such counter definition"
+	s file=^pButtons("ctrfile",ctr),logdir=$$getlogdir^pButtons,cfile=logdir_file
+	s force=$g(force,0)
+	q:'(force)&&'($zu(140,4,cfile)) "-1^file already exists"
+	o cfile:"WNS":$$$OPENTIMEOUT
+	q:'$T "-3^failed to open ctr file"
+	u cfile s idx=""
+	f  s idx=$o(^pButtons("ctrfile",ctr,idx)) q:idx=""  w idx,!
+	c cfile
+	q 0
+importctrs(winctrname,pbctrname,file) ; get counters from perfmon
+	q:$zversion(1)'=2 $$$FALSE_"^not available on non-Windows servers"
+	n (winctrname,pbctrname,file)
+	s winctrname=$g(winctrname),pbctrname=$g(pbctrname),file=$g(file)
+	q:(winctrname="") "-1^insufficient arguments"
+	i pbctrname="" s pbctrname="pb"_winctrname
+	s pbctrname=$zcvt($zstrip(pbctrname,"*PC"),"l")
+	q:$d(^pButtons("ctrfile",pbctrname)) "-2^pButtons counter name:"""_pbctrname_""" already exists"
+	i file="" s file=pbctrname_".txt"
+	s eof=$zu(68,40,1)
+	s chk=$$getlmstrings(.lmg,.lmb),cnt=0,exit=0
+	s pipe="logman query "_winctrname
+	o pipe:"RQ":$$$OPENTIMEOUT
+	q:'$T "-3^unable to open pipe"
+	f { ; skip to counters list
+		u pipe r l:$$$READTIMEOUT s zeof=$zeof q:zeof
+		i (l[lmb)||(l[lmg) s exit=1 q
+		quit:($l(l)>0)&&($e(l)=" ")
+	}
+	i (exit)||(zeof) c pipe q "-4^no counters detected"
+	f { ; copy counters to list/file
+		f  q:$e(l,1)'=" "  s l=$e(l,2,999)
+		s ^pButtons("ctrfile",pbctrname,l)="",cnt=$i(cnt) h 0.01
+		u pipe r l:$$$READTIMEOUT s zeof=$zeof q:zeof||($l(l)=0)
+	}
+	c pipe
+	q:'cnt "-5^no counters found" 
+	s ^pButtons("ctrfile",pbctrname)=file 
+	d mkctrfile(pbctrname,0)
+	q cnt_" counters imported from "_winctrname
+addctrtoprofile(pname,pbctrname)
+	q:$zversion(1)'=2 $$$FALSE_"^not available on non-Windows servers"
+	s pname=$g(pname),pbctrname=$g(pbctrname)
+	q:(pname="")||'$D(^pButtons("profile",pname)) $$$FALSE_"^no such profile"
+	q:(pbctrname="")||'$D(^pButtons("ctrfile",pbctrname)) $$$FALSE_"^no counter definition found"
+	L +^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^profile locked by another user"
+	s $li(^pButtons("profile",pname),$$$PROFILEWCTRFILE)=pbctrname
+	L -^pButtons("profile",pname)
+	q $$$TRUE
+purgecmds()	; purge all commands
+	r "Are you sure, this will delete all command definitions? [y|n] ",ans
+	i $e($zcvt(ans,"U"))="Y" k ^pButtons("cmds")
+	q
+editprofile(pname,desc,interval,count,cacheflags,osflags,ctrfile)	;
+	n rc s pname=$tr($g(pname)," ","") ; no spaces allowed in profile names
+	q:(pname="test") $$$FALSE_"^protected profile"
+	; check for missing params (to retain old values)
+	; must therefore have a profile to work with
+	q:(pname="")||'$D(^pButtons("profile",pname)) $$$FALSE_"^profile does not exist"
+	L +^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^profile locked by another user"
+	i $g(desc)="" s desc=$li(^pButtons("profile",pname),$$$PROFILEDESC)
+	i $g(interval)="" s interval=$li(^pButtons("profile",pname),$$$PROFILEINTERVAL)
+	i $g(count)="" s count=$li(^pButtons("profile",pname),$$$PROFILECOUNT)
+	i $g(cacheflags)="" s cacheflags=$lg(^pButtons("profile",pname),$$$PROFILECFLAGS)
+	i $g(osflags)="" s osflags=$lg(^pButtons("profile",pname),$$$PROFILEOFLAGS)
+	i $g(ctrfile)="" s ctrfile=$lg(^pButtons("profile",pname),$$$PROFILEWCTRFILE)
+	s rc=$$saveprof($$$FALSE)
+	L -^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q rc
+addprofile(pname,desc,interval,count,cacheflags,osflags,ctrfile)	; allow user to define own profile
+	n rc s pname=$tr($g(pname)," ","") ; no spaces allowed in profile names
+	q:($g(count,0)=0) $$$FALSE_"^must specify a count value"
+	s interval=$g(interval,$$$DEFSAMPLE)
+	L +^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^profile locked by another user"
+	s rc=$$saveprof($$$TRUE)
+	L -^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q rc
+saveprof(new) ; returns [0|1]^'failure reason'
+	; pname, desc, interval, count must not be null
+	; interval >= 1; count > 1; interval*cnt<daysecs
+	; 1st check pname exists or not as appropriate
+	n fail,duration,minsample,maxsample s fail="null profile name invalid"
+	q:pname="" $$$FALSE_"^"_fail  ; in theory this is not possible
+	s fail="profile name exists already"
+	i new { i $D(^pButtons("profile",pname)) q $$$FALSE_"^"_fail } 
+	s fail="description null"
+	q:$g(desc)="" $$$FALSE_"^"_fail
+	s fail="count property invalid"
+	q:(count<2) $$$FALSE_"^"_fail
+	s fail="interval property invalid",duration=count*interval
+	i duration>$$$HRSECS { s minsample=$$$MINSAMPLE } else { s minsample=1 }
+	i duration<$$$MAXSAMPLE { s maxsample=duration } else { s maxsample=$$$MAXSAMPLE }
+	q:(interval<minsample)!(interval>maxsample) $$$FALSE_"^"_fail
+	s fail=""
+	s:duration>$$$DAYSECS count=$$$DAYSECS\interval,fail="count property reduced"
+	; check flags
+	; check ctrfile
+	i $zversion(1)'=2 s ctrfile="" ; only allow on windows
+	i ($g(ctrfile)'="")&&($D(^pButtons("ctrfile",ctrfile))=0) s ctrfile="",fail="no ctr file definition for this name"
+	i $g(ctrfile) {
+		s ^pButtons("profile",pname)=$lb(desc,interval,count,,,ctrfile)
+	} else {
+		s ^pButtons("profile",pname)=$lb(desc,interval,count)
+	}
+	q $$$TRUE_"^"_fail
+genprofile(duration,interval) ; short cut to generate a profile for hh:mm (no colon means mm only)
+	n hrs,mins,dtxt,pname,dsecs,minsample
+	q:$g(duration)="" $$$FALSE_"^zero time duration"
+	i duration[":" { s hrs=+$p(duration,":"),mins=+$p(duration,":",2) }
+	else { s mins=+duration,hrs=0 }
+	q:(hrs=0)&&(mins=0) $$$FALSE_"^zero time duration"
+	i (mins>0)&&(mins#$$$MINS=0) s hrs=hrs+(mins\$$$MINS),mins=0
+	i (hrs>0)&&(mins>$$$MINS) s hrs=hrs+(mins\$$$MINS),mins=mins#$$$MINS ; justincase!
+	s pname=""
+	i hrs=0 s pname=mins_"mins",dtxt=mins_" minute"
+	i mins=0 s dtxt=hrs_" hour" i hrs=1 { s pname="1hour" } else { s pname=hrs_"hours" }
+	i pname="" s dtxt=hrs_" hour "_mins_" minute" i hrs=1 {s pname=hrs_"hour"_mins } else {s pname=hrs_"hours"_mins }
+	s dsecs=(hrs*$$$HRSECS)+(mins*$$$MINS)
+	i dsecs>$$$DAYSECS s dsecs=$$$DAYSECS,pname="24hours",dtxt="24 hour"
+	s interval=+$g(interval,$$$DEFSAMPLE) i interval>$$$MAXSAMPLE s interval=$$$MAXSAMPLE i interval>dsecs s interval=dsecs
+	i dsecs>$$$HRSECS { s minsample=$$$MINSAMPLE } else { s minsample=1 }
+	i interval<minsample s interval=minsample
+	i $D(^pButtons("profile",pname)) s pname=pname_"_"_interval
+	s itxt=" seconds" i interval=1 s itxt=" second"
+	q:$D(^pButtons("profile",pname)) $$$FALSE_"^profile already exists"
+	L +^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^profile locked by another user"
+	s ^pButtons("profile",pname)=$lb(dtxt_" run sampling every "_interval_itxt,interval,dsecs\interval)
+	L -^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q $$$TRUE
+getlogdir()	  ; needs to persist answer if there is none!
+	q:$d(^pButtons("logdir")) ^pButtons("logdir")
+	d setlogdir("",0) q ^pButtons("logdir")
+clrlogdir()	;
+	N  i '$$$PROGMODE s ^pButtons("logdir")=$zu(12) q
+	w "Reset working directory to default, note no files will be moved.",!
+	read "confirm reset of working directory [n]: ",ans
+	i $e($zcvt(ans,"U"))="Y" s ^pButtons("logdir")=$zu(12)
+	q	
+setlogdir(dir,output)	; set logdir for pbuttons - 1.08+ no longer allowed empty logdir
+	N (dir,output) s output=$g(output,1) i ($$$PROGMODE)&&('$d(dir)) read "Enter working directory for pButton files: ",dir,!
+	i dir'="" {
+		s sc=$$validdir(.dir,0) ; returns 0 or 1
+		i sc s ^pButtons("logdir")=dir i output w "logdir updated.",!
+	} else {
+		s ^pButtons("logdir")=$zu(12)   // must be valid !!!
+	}
+	q
+Enablenfs()
+	q $$Enablecmd("disk","nfs")
+Disablenfs()
+	q $$Disablecmd("disk","nfs")
+Enablevxstat()
+	q $$Enablecmd("disk","vxstat")
+Disablevxstat()
+	q $$Disablecmd("disk","vxstat")
+Enablecmd(sect,ncmd) ;add new cmds - assumes no spare/dummy (defined but not counted) entries
+	N (sect,ncmd)
+	q:'$D(^pButtons("cmds",ncmd)) -1
+	s curcnt=$g(^pButtons("cmds",sect),0),newcnt=$g(^pButtons("cmds",ncmd),0),oktoadd=1
+	f i=1:1:curcnt { if $li(^pButtons("cmds",sect,i),2)[ncmd s oktoadd=0 q } 
+	i oktoadd'=0 {
+		f i=1:1:newcnt s ^pButtons("cmds",sect,$i(^pButtons("cmds",sect)))=^pButtons("cmds",ncmd,i)
+		q 1
+	}
+	q 0
+Disablecmd(sect,cmd) ;remove "new" cmds, if there...
+	N (sect,cmd)
+	s cnt=$g(^pButtons("cmds",sect),0),ni=0 m opb("cmds",sect)=^pButtons("cmds",sect) k ^pButtons("cmds",sect)
+	f i=1:1:cnt {
+		if $li(opb("cmds",sect,i),2)'[cmd { 
+			set ^pButtons("cmds",sect,$i(ni))=opb("cmds",sect,i)
+		}
+	}
+	s ^pButtons("cmds",sect)=ni
+	q cnt>ni
+err ; main err handling
+	d BACK^%ETN
+	q  ;
+	;
+getrootid() ; find if root or not
+	n
+	s id=0
+	s eof=$zu(68,40,1)
+	s io="id" o io:"RQ":$$$OPENTIMEOUT i $T u io r line:$$$READTIMEOUT c io i +$p(line,"=",2)=0 s id=1 
+	i $zu(68,40,eof)
+	q id
+calcinctime(horolog)	; calculate total interval increment
+	set day=+horolog,secs=$p(horolog,",",2)
+	set tsecs=secs+sampletime+$$$GRACE
+	if tsecs>$$$DAYSECS {
+		set incdays=tsecs\$$$DAYSECS
+		set incsecs=tsecs#$$$DAYSECS
+	} else {
+		set incdays=0
+		set incsecs=tsecs
+	}
+	q
+getlmstrings(sucstr,errstr)	; get the success and error strings from logman
+	n (sucstr,errstr)
+	; first the success
+	s sucstr=$g(^pButtons("logman","success")),errstr=$g(^pButtons("logman","error")) q:(sucstr'="")&&(errstr'="")&&(sucstr'="UNDEF")&&(errstr'="UNDEF") 0
+	s pipe="logman query",(lncnt,hdr,ctrln)=0,ictr=""
+	s (^pButtons("logman","success"),^pButtons("logman","error"),errstr,sucstr)="UNDEF"
+	o pipe:"RQ":$$$OPENTIMEOUT
+	q:'$T "-2^unable to open pipe"
+	f lncnt=1:1 {
+		u pipe r l:$$$READTIMEOUT s zeof=$zeof q:zeof  i l["----" s hdr=lncnt
+		i (lncnt>hdr)&&(hdr>0)&&('ctrln) s ictr=$p(l," "),ctrln=lncnt
+		s lastln=l
+	}
+	c pipe
+	i ctrln=lncnt s ictr=""
+	s ictr=ictr_"iscnga"
+	s (sucstr,^pButtons("logman","success"))=lastln
+	; now the error (but not syntax error)
+	s pipe="logman query "_ictr,errcnt=0,errl=""
+	o pipe:"RQ":$$$OPENTIMEOUT
+	q:'$T "-4^unable to open pipe"
+	f lncnt=1:1 {
+		u pipe r l:$$$READTIMEOUT s zeof=$zeof q:zeof
+		continue:$l(l)=0
+		i 'errcnt s errl=l,errcnt=lncnt
+	}
+	c pipe
+	s (errstr,^pButtons("logman","error"))=$p(errl," ")
+	q 0
+validdir(logdir,checkonly)	; canonize and create if necessary (as long as checkonly not set)
+	; dir cannot be null at this point.  Note that relative paths are forced to absolutes.
+	if '$D(OSFamily) s OSFamily=$System.Version.GetCompBuildOS() 
+	if (OSFamily="NT")||(OSFamily="Windows") {
+		if $e(logdir,$l(logdir))'="\" set logdir=logdir_"\"
+		if logdir[":" {} else { // relative path conversion to absolute if necessary
+			if $e(logdir)="\" {} else { s logdir=$zu(12)_logdir }		
+		}
+	} elseif OSFamily="VMS" {
+		; don't need the [] for zu140 but do for the buttons
+		if logdir'["[" set logdir="[."_logdir
+		if $e(logdir,$l(logdir))'="]" set logdir=logdir_"]"
+	} else {  
+		;otherwise ux!  (MAC is unix family)
+		if $e(logdir,$l(logdir))'="/" set logdir=logdir_"/"
+		if $e(logdir)'="/" s logdir=$zu(12)_logdir  // force full path
+	}
+	// need zulogdir and pblogdir for windoze at least
+	// as cannot rely on -2 for relative path ending in "\"
+	s sc=$zu(140,4,logdir)
+	;;; NGA add check test for directory return code!!! 
+	s check=+$g(checkonly,0) ; default to create mode
+	q:check sc
+	if sc<0 {  //test for -2 on win at least as -87 on treated logdir
+		; should we check before creating?
+		s sc=$zu(140,9,logdir)
+		if sc=0 { 
+			w "directory created "
+			q 1
+		} elseif sc=-183 {
+			q 1		;was already a directory in windoze
+		} else { 
+			w "failed to create directory",!
+			q 0
+		}
+	} ; should check if it is a directory!
+	q 1
+delprofile(pname)	;
+	s pname=$tr($g(pname)," ","") ; no spaces allowed in profile names
+	q:pname="test" $$$FALSE_"^protected profile" ; cannot delete the test profile
+	q:(pname="")||'$D(^pButtons("profile",pname)) $$$FALSE_"^no profile to delete"
+	L +^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^profile locked by another user"
+	k ^pButtons("profile",pname)
+	L -^pButtons("profile",pname):$$$LOCKTIMEOUT
+	q $$$TRUE
+copyprofile(oldname,newname)
+	s oldname=$tr(oldname," ",""),newname=$tr(newname," ","")
+	q:(oldname="")||'$D(^pButtons("profile",oldname)) $$$FALSE_"^source profile not found"
+	q:(newname="")||$D(^pButtons("profile",newname)) $$$FALSE_"^target profile exists"
+	L +^pButtons("profile",oldname):$$$LOCKTIMEOUT
+	q:'$T $$$FALSE_"^old profile locked by another user"
+	L +^pButtons("profile",newname):$$$LOCKTIMEOUT
+	i '$T {
+		L -^pButtons("profile",oldname):$$$LOCKTIMEOUT
+		q $$$FALSE_"^new profile locked by another user"
+	}
+	s ^pButtons("profile",newname)=^pButtons("profile",oldname)
+	L -^pButtons("profile",newname):$$$LOCKTIMEOUT
+	L -^pButtons("profile",oldname):$$$LOCKTIMEOUT
+	q $$$TRUE
+defsolaris()	; solaris
+	set oslev=$$solver()
+	set ^pButtons("cmds","cpu")=3
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",1,"label")="vmstat"
+	set ^pButtons("cmds","cpu",1,"postproc")="extxtvmstat"
+	set ^pButtons("cmds","cpu",2)=$lb("sar -u","sar -u ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",2,"label")="sar_u"
+	set ^pButtons("cmds","cpu",2,"postproc")="sarucombine"
+	set ^pButtons("cmds","cpu",3)=$lb("sar -m","sar -m ","interval"," ","count"," > ")
+	set ^pButtons("cmds","memory")=1
+	set ^pButtons("cmds","memory",1)=$lb("sar -r","sar -r ","interval"," ","count"," > ")
+	set ^pButtons("cmds","memory",1,"label")="sar_r"
+	set ^pButtons("cmds","disk")=2
+	set ^pButtons("cmds","disk",1)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk",2)=$lb("sar -b","sar -b ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=0
+	set ^pButtons("cmds","ps")=$lb(4,"-efl")
+	set ^pButtons("cmds","nfs")=1
+	i oslev<5.11 {
+		set ^pButtons("cmds","nfs",1)=$lb("nfsstat","nfsstat -cn ","interval"," ","count"," > ")	
+	} else {
+		set ^pButtons("cmds","nfs",1)=$lb("nfsstat","nfsstat -Td -cn ","interval"," ","count"," > ")	
+	}
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+solver() ; solaris ver for nfsstat
+	s oslev="5.10",pipe="uname -r 2>/dev/null" o pipe:"RQ":$$$OPENTIMEOUT
+	i $T {
+		u pipe r oslev:$$$READTIMEOUT
+		c pipe
+	}
+	q oslev
+aixos()	; aix
+	s pipe="oslevel 2>/dev/null" o pipe:"RQ":$$$OPENTIMEOUT
+	i $T {
+		u pipe r oslev:$$$READTIMEOUT
+		c pipe
+	}
+	i '+oslev {
+		i $zf(-1,"oslevel > /tmp/t") ;; could possibly hang here!
+		s tmpfile="/tmp/t" o tmpfile::$$$OPENTIMEOUT
+		i $T {
+			u tmpfile r oslev:$$$READTIMEOUT
+			c tmpfile:"D"
+		}
+	}
+	s oslev=+oslev i 'oslev s oslev=$$$OSUNDEF
+	q oslev
+defaix()	; aix
+	n
+	s oslev=$$aixos()
+	i (oslev=$$$OSUNDEF)&&($$$PROGMODE) w "Warning: oslevel not detected, commands may be wrong",!
+	i '$d(rootid) s rootid=$$getrootid()
+	set ^pButtons("cmds","cpu")=1
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat -t ","interval"," ","count"," > ")
+	i oslev<5 s $li(^pButtons("cmds","cpu",1),$$$COMMAND)="vmstat "
+	set ^pButtons("cmds","cpu",1,"label")="vmstat"
+	set ^pButtons("cmds","cpu",1,"postproc")="extxtvmstat"
+	if $zu(140,4,"/usr/bin/mpstat")=0 {
+		set idx=$i(^pButtons("cmds","cpu"))
+		set ^pButtons("cmds","cpu",idx)=$lb("mpstat","mpstat -a ","interval"," ","count"," > ")
+	}
+	set ^pButtons("cmds","memory")=0
+	set ^pButtons("cmds","disk")=1
+	i oslev<5.3 {
+		i oslev>5.1 { // 5.2
+			s icom="iostat -sadT "
+		} elseif oslev<5.0{ // 4.3 or worse
+			s icom="iostat -d "
+		} else { // 5.0
+			s icom="iostat -sad "
+		}
+	} else { // 5.3 and up
+		s icom="iostat -DlT "
+	}
+	set ^pButtons("cmds","disk",1)=$lb("iostat",icom,"interval"," ","count"," > ")
+	if (rootid)&&($zu(140,4,"/usr/sbin/sar")=0) {
+		set idx=$i(^pButtons("cmds","cpu"),2)
+		set ^pButtons("cmds","cpu",idx)=$lb("sar -m","sar -m ","interval"," ","count"," > ")
+		set ^pButtons("cmds","cpu",idx-1)=$lb("sar -u","sar -u ","interval"," ","count"," > ")
+		set ^pButtons("cmds","cpu",idx-1,"label")="sar_u"
+		set idx=$i(^pButtons("cmds","memory"))
+		set ^pButtons("cmds","memory",idx)=$lb("sar -r","sar -r ","interval"," ","count"," > ")
+		set idx=$i(^pButtons("cmds","disk"))
+		set ^pButtons("cmds","disk",idx)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	}
+	set ^pButtons("cmds","network")=0
+	set ^pButtons("cmds","ps")=$lb(4,"aux")
+	set ^pButtons("cmds","nfs")=1
+	set ^pButtons("cmds","nfs",1)=$lb("nfsstat","/usr/sbin/nfsstat -cn > ")	
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+defhpux()	; hpux
+	set ^pButtons("cmds","cpu")=3
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",1,"label")="vmstat"
+	set ^pButtons("cmds","cpu",1,"postproc")="extxtvmstat"
+	set ^pButtons("cmds","cpu",2)=$lb("sar -u","sar -Mu ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",2,"label")="sar_u"
+	set ^pButtons("cmds","cpu",2,"postproc")="sarucombine"
+	set ^pButtons("cmds","cpu",3)=$lb("sar -m","sar -m ","interval"," ","count"," > ")
+	set ^pButtons("cmds","memory")=1
+	set ^pButtons("cmds","memory",1)=$lb("sar -w","sar -w ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk")=3
+	set ^pButtons("cmds","disk",1)=$lb("iostat","iostat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk",2)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk",3)=$lb("sar -b","sar -b ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=0
+	set ^pButtons("cmds","ps")=$lb(4,"-efl")
+	set ^pButtons("cmds","nfs")=1
+	set ^pButtons("cmds","nfs",1)=$lb("nfsstat","nfsstat -cn > ")	
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+deflinux()	; linux
+	n idx
+	set ^pButtons("cmds","check")="GNU"
+	set ^pButtons("cmds","cpu")=1
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat -n ","interval"," ","count"," |awk '{now=strftime(""%m/%d/%y %T""); print now "" "" $0}'"," > ")
+	set ^pButtons("cmds","cpu",1,"label")="vmstat"
+	set ^pButtons("cmds","cpu",1,"postproc")="extxtvmstat"
+	set ^pButtons("cmds","memory")=1
+	set ^pButtons("cmds","memory",1)=$lb("free","free -m -s ","interval"," -c ","count"," |awk '{now=strftime(""%m/%d/%y %T""); print now "" "" $0}'"," > ")
+	set ^pButtons("cmds","memory",1,"postproc")="freetocsv"
+	set ^pButtons("cmds","disk")=1
+	set ^pButtons("cmds","disk",1)=$lb("iostat","iostat -xt ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=0
+	if $zu(140,4,"/usr/bin/sar")=0 {
+		set idx=$i(^pButtons("cmds","cpu"))
+		set ^pButtons("cmds","cpu",idx)=$lb("sar -u","sar -u ","interval"," ","count"," > ")
+		set ^pButtons("cmds","cpu",idx,"label")="sar_u"
+		set idx=$i(^pButtons("cmds","disk"))
+		set ^pButtons("cmds","disk",idx)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	}
+	d checkawk("GNU")
+	set ^pButtons("cmds","ps")=$lb(4,"-elfy")
+	set ^pButtons("cmds","nfs")=2
+	set ^pButtons("cmds","nfs",1)=$lb("nfsstat","/usr/sbin/nfsstat -cn > ")	
+	set ^pButtons("cmds","nfs",2)=$lb("nfsiostat","/usr/sbin/nfsiostat ","interval"," ","count"," > ")	
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+checkawk(oldawk)	; linux supplement to handle old/no awk program
+	n (oldawk)
+	set pipe="awk -W version",newawk="old"
+	o pipe:"RQ":$$$OPENTIMEOUT
+	i $T {
+		u pipe r line:$$$READTIMEOUT
+		c pipe
+		i $e(line,1,3)="GNU" s newawk="GNU"
+	}
+	q:oldawk=newawk
+	; different so handle it.
+	set ^pButtons("cmds","check")=newawk
+	i newawk="GNU" { ; add awk stuff
+		set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat -n ","interval"," ","count"," |awk '{now=strftime(""%m/%d/%y %T""); print now "" "" $0}'"," > ")
+		set ^pButtons("cmds","memory",1)=$lb("free","free -m -s ","interval"," -c ","count"," |awk '{now=strftime(""%m/%d/%y %T""); print now "" "" $0}'"," > ")
+	} else { ; take out awk stuff
+		set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat -n ","interval"," ","count"," > ")
+		set ^pButtons("cmds","memory",1)=$lb("free","free -m -s ","interval"," -c ","count"," > ")
+	}
+	q
+deftru64()	; tru64
+	set ^pButtons("cmds","cpu")=1
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat -w ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",1,"label")="vmstat"
+	set ^pButtons("cmds","cpu",1,"postproc")="extxtvmstat"
+	set ^pButtons("cmds","memory")=0
+	set ^pButtons("cmds","disk")=1
+	set ^pButtons("cmds","disk",1)=$lb("iostat","iostat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=0
+	set ^pButtons("cmds","ps")=$lb(4,"aux")
+	set ^pButtons("cmds","nfs")=1
+	set ^pButtons("cmds","nfs",1)=$lb("nfsstat","nfsstat -c > ")	
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+defmac()	; mac
+	set ^pButtons("cmds","cpu")=1
+	set ^pButtons("cmds","cpu",1)=$lb("sar -u","sar -u ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",1,"label")="sar_u"
+	set ^pButtons("cmds","memory")=2
+	set ^pButtons("cmds","memory",1)=$lb("sar -g","sar -g ","interval"," ","count"," > ")
+	set ^pButtons("cmds","memory",2)=$lb("sar -p","sar -p ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk")=1
+	set ^pButtons("cmds","disk",1)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=2
+	set ^pButtons("cmds","network",1)=$lb("sar -n DEV","sar -n DEV ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network",2)=$lb("sar -n EDEV","sar -n EDEV ","interval"," ","count"," > ")
+	set ^pButtons("cmds","ps")=$lb(4,"-eflv")
+	set ^pButtons("cmds","nfs")=1
+	set ^pButtons("cmds","nfs",1)=$lb("nfsstat","nfsstat -c > ")	
+	set ^pButtons("cmds","vxstat")=1
+	set ^pButtons("cmds","vxstat",1)=$lb("vxstat","/usr/sbin/vxstat -o alldgs -i ","interval"," -c ","count"," > ")	
+	set ^pButtons("cmds","vxstat",2)=$lb("vxstat","/usr/sbin/vxstat -g YOURDISKGROUP -i ","interval"," -c ","count"," > ")	
+	q
+defunk()	; unknown... try basic vmstat/iostat sar -u, sar -d
+	set ^pButtons("cmds","unknown")="" ; flag unknown platform
+	set ^pButtons("cmds","cpu")=2
+	set ^pButtons("cmds","cpu",1)=$lb("vmstat","vmstat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","cpu",2)=$lb("sar -u","sar -u ","interval"," ","count"," > ")
+	set ^pButtons("cmds","memory")=0
+	set ^pButtons("cmds","disk")=2
+	set ^pButtons("cmds","disk",1)=$lb("iostat","iostat ","interval"," ","count"," > ")
+	set ^pButtons("cmds","disk",2)=$lb("sar -d","sar -d ","interval"," ","count"," > ")
+	set ^pButtons("cmds","network")=0
+	set ^pButtons("cmds","ps")=$lb(4,"-efl")
+	; no nfs cmd
+	q
+defvms()	; vms
+	set ^pButtons("cmds","t4")=0
+	set ^pButtons("cmds","monitor")=1
+	set ^pButtons("cmds","monitor",1)=$lb("monitor","monitor all /interval=","interval"," /display=","outfile"," /ending=","endtime")
+	q
+defvmscstat()
+	set installedVersion=$System.Version.GetMajor()_"."_$System.Version.GetMinor()
+	set ^pButtons("cmds","cstat")=2
+	if ((installedVersion>=2015.1)&&(installedVersion<=2016.1)) {
+		set ^pButtons("cmds","cstat",1)=$lb("cstat -c",4,"-""p""-1 -""c""-262145 -""e""1 -""m""8 -""n""2 -""N""127")
+	} else {
+		set ^pButtons("cmds","cstat",1)=$lb("cstat -c",4,"-""p""-1 -""c""-1 -""e""1 -""m""8 -""n""2 -""N""127")
+	}
+	set ^pButtons("cmds","cstat",2)=$lb("cstat -D",8,"-""a""0 -""f""1 -""D""10,100")
+	q
+Resume() ;	resume a running profile (all of them?? named??)
+	; need to see if its actually worth resuming
+	; would need a time to run calculation from the chk
+	n (runid) ;???
+	i '$D(^pButtons("debug")) { s debug=0 } else { s debug=1 }
+	q "ha ha - you wish!!!"
+Stop(runid,delflag) ;	stop runid
+	N (runid,delflag) q:'$d(runid)||($l(runid)=0) "0^no runid supplied"
+	i '$D(^pButtons("debug")) { s debug=0 } else { s debug=1 }
+	s delflag=+$g(delflag,1) ; default to delete files and remove history
+	q $$stoprun(runid,delflag)
+stoprun(runid,delflag)
+	if $D(^pButtons("run",runid)) {
+		//valid runid - but is it actually alive?
+		do cmptime($g(^pButtons("run",runid,"end")),runid,.dummy)
+		q:cancollect "0^runid already completed"
+		s sc1=$$stopjobs(runid,"os",delflag)
+		s sc2=$$stopjobs(runid,"cache",delflag)
+		i delflag {
+			s infofile=$lg(^pButtons("run",runid,"runinfo"),$$$OPFILE) i infofile'="" i $zu(140,5,infofile)
+			k ^pButtons("run",runid)
+		} else { 
+			s ^pButtons("run",runid,"end")=$h
+			s $li(^pButtons("run",runid,"profile"),$$$STOPTIME)=$h
+			job bgchkruns()::$$$JOBTIMEOUT
+		}
+		q sc1_"_"_sc2
+	}
+	q "0^no such runid found"
+stopjobs(runid,section,delflag)
+	s cnt=$g(^pButtons("run",runid,section),0),(kok,knok,delok,delnok)=0
+	// extra check for autocollect
+	i section="cache" {
+		s job=$G(^pButtons("run",runid,"auto"),0)
+		i job'=0 { s sc=$zu(4,job) i sc=1 { s kok=kok+1 } else { s knok=knok+1 } }
+	}
+	f i=1:1:cnt {
+		s inf=^pButtons("run",runid,section,i),job=$lg(inf,$$$JOBID,0),file=$li(inf,$$$OPFILE),ncstats=$lg(inf,$$$OCSTATS)
+		i job'=0 {
+			i (+job=job) { s sc=$zu(4,job) i sc=1 { s kok=kok+1 } else { s knok=knok+1 }
+			} else {
+				;using $zf-2 no real status - so report success (optimistic)
+				s kok=kok+1
+				i $zf(-2,job) ;for OS, job is the kill cmd pop'd at run time!
+			}
+			h 0.1 ;wait for kill!
+		}
+		i delflag {
+			if 'ncstats {
+				if job["logman" h 0.2
+				set sc=$zu(140,5,file) i (sc=0)||(sc=-2) { s delok=delok+1 } else { s delnok=delnok+1 }
+				; extra cleanup for t4 and/or monitor files on VMS
+				if ($System.Version.GetCompBuildOS()="VMS") {
+					if (($li(inf,$$$COMMENT)["monitor") || ($li(inf,$$$COMMENT)["t4")) {
+						s noext=$p(file,".",1,$l(file,".")-1) ; get proper filename stem by removing .LOG extension
+						d $zu(140,5,noext_".COM") ; clean up com file
+						d $zu(140,5,noext_".ERR") ; clean up err file
+					}
+				}
+			} else {
+				for ci=1:1:ncstats {
+					s cfile=file_ci
+					s sc=$zu(140,5,cfile) i (sc=0)||(sc=-2) { s delok=delok+1 } else { s delnok=delnok+1 }
+				}
+			}
+			i job["logman" { s eof=$zu(68,40,1) s rc=$$getlmstrings(.good,.bad) h 0.5 do dellmctr(good) i $zu(68,40,eof) }
+		}
+	}  ; returning a count of succ/fails
+	q kok_":"_knok_":"_delok_":"_delnok
+precoll(runid,gkill)
+	k pBarray 
+	m pBarray(runid)=^pButtons("run",runid)
+	m pBarray("cmds")=^pButtons("cmds")
+	i gkill k ^pButtons("run",runid)
+	q
+Preview(runid)	; get all pieces together in spite of being in progress
+	N (runid)
+	i $D(runid)&&$l(runid) {
+		if $D(^pButtons("run",runid)) {
+			do cmptime($g(^pButtons("run",runid,"end")),runid,.dummy)
+			do precoll(runid,cancollect)
+			q $$createfile(runid,1,cancollect,1)
+		}
+	}
+	q 0
+Collect(runid)	; get all pieces together and put in report.
+	N (runid)
+	set $zt="collecterr"  ;nothing in init that collect needs
+	i '$D(^pButtons("cdebug")) s debug=0
+	e  s debug=1  ; erase when done
+	i debug set pButtons("collect",$h)=""
+	; find which run if any to collect
+	if $D(runid)&&$l(runid) {
+		// passed in a profile run so check its valid
+		if $D(^pButtons("run",runid)) {
+			// its valid but is it ready
+			do cmptime($g(^pButtons("run",runid,"end")),runid,.dummy)
+			if cancollect {
+				do precoll(runid,$$$TRUE)
+				i debug u 0 zw pBarray
+				q $$createfile(runid,1,$$$TRUE,$$$TRUE)
+			} else {
+				// if we were really nice we might hang around if it was only a few seconds
+				i $$$PROGMODE write "pButtons run "_runid_" is not yet ready for collection.",!
+				q "0^not ready"
+			}
+		} else {
+			// check we didn't already collect it (already checked run)
+			q:$D(^pButtons("history",runid)) 1
+			// not valid = quit out with msg
+			i $$$PROGMODE write "pButtons run "_runid_" was not recognised.",!
+			q "0^runid not found"
+		}
+	}
+	// nothing passed in do menu if interactive
+	i $$$PROGMODE do chkruns() quit availcnt_"^collected"
+	quit $$bgchkruns()
+bgchkruns()	; find any available (completed) profile runs and collect them in bg
+	N  set run="",colcnt=0,$zt="^%ETN"
+	for  set run=$o(^pButtons("run",run)) quit:run=""  do
+	. do cmptime($g(^pButtons("run",run,"end")),run,.dummy)
+	. if cancollect do precoll(run,$$$TRUE) s rc=$$createfile(run,0,$$$TRUE,$$$TRUE) if $i(colcnt)
+	quit colcnt_"^collected"
+chkruns()	; find any available (completed) profile runs
+	set run=$o(^pButtons("run","")),availcnt=0,caption=0
+	while (run'="") {
+		if caption=0 set caption=1 write "Current Performance runs:",!  ; only print title once!
+		do cmptime($g(^pButtons("run",run,"end")),run,.rctime)
+		if cancollect {
+			do genfilename(run,$$$TRUE,$$$TRUE) write ?4,run,?28," collecting ->",!,?8
+			w Logfile,! set availcnt=availcnt+1
+		} else {
+			write ?4,run,?30,"ready in ",rctime,!
+		}
+		set run=$o(^pButtons("run",run))
+	}
+	if (availcnt > 0) {
+		job bgchkruns()::$$$JOBTIMEOUT
+		i $T {
+			write "Please send the collected html file",$S(availcnt=1:"",1:"s")," to the WRC Performance team",!
+			write "Please also send the cconsole.log file.",!
+		}
+	} else { 
+		write "nothing available to collect at the moment.",! 
+		if 'caption write "and no profiles are running.",!
+	}
+	q
+createfile(runid,noisy,delflag,islocal)
+	; so now identified the runid continue - but check for old missing datafiles
+	; reworked to use local array and not global directly
+	s debug=$g(debug) i debug u 0 w "createfile:",runid,!
+	n (runid,noisy,debug,delflag,pBarray,islocal)
+	s $zt="crefileerr"
+	l +perfcollect(runid):$$$LOCKTIMEOUT	
+	i '$T {
+		i noisy write !,"another process is doing collection on this id now",!
+		quit "0^runid locked"
+	}
+	// check for output files first!
+	do genfilename(runid,delflag,islocal)
+	s sc=$$chkcoldir(runid)
+	if (sc=0) {
+		i islocal d archiverun(runid)
+		l -perfcollect(runid)
+		i noisy use 0 write "unable to find logfiles for this run - exiting",!
+		quit "0^all logfiles missing"
+	}
+	open Logfile:"WAS":$$$OPENTIMEOUT ; need a recover for open failure
+	if '$T {
+		l -perfcollect(runid)
+		i noisy use 0 write "unable to open logfile - exiting",!
+		quit "0^file creation error"
+	}
+	set delflag=$g(delflag,$$$TRUE) ; delflag is for preview collection
+	set eof=$zu(68,40,1) ; get current eof behaviour (and set to our needs)
+	do LogHeader(runid,delflag)
+	i (islocal)&&($zversion(1)=2)&&(osrowcnt>2)&&(delflag) s rc=$$getlmstrings(.lok,.lnok) do dellmctr(lok)
+	;
+	; foreach section 
+	;   output section header
+	;   foreach file 
+	;     if cstat handle collection of cstatfiles 
+	;     else
+	;       put file in logfile
+	;       if delflag remove file
+	;     endif
+	;   endfor
+	;   output section trailer
+	; endfor
+	for sect="cache","os" {
+		set cmdsrun=+$g(pBarray(runid,sect))
+		for i=1:1:cmdsrun {
+			; get heading,com,stat|file, check file so appropriate info in Log
+			set inf=pBarray(runid,sect,i),heading=$li(inf,$$$COMMENT),args=$lg(inf,$$$COMMAND),tmpfile=$li(inf,$$$OPFILE),ncstats=$lg(inf,$$$OCSTATS),labtxt=$lg(inf,$$$LABELTEXT),pprou=$lg(inf,$$$POSTPROC)
+			do startsection(heading)
+			if tmpfile="error" { do logmsg("Command failed to run") }
+			elseif heading["cstat" {
+				do logmsg("cstat arguments: "_args)
+				for csi=1:1:ncstats {
+					do addlink(Logfile,csi,ncstats,heading)
+					s ntmpfile=tmpfile_csi
+					do copyfile(Logfile,ntmpfile)
+					if delflag { if $zu(140,5,ntmpfile) }
+				} 
+			} else {
+				set filesz=$zu(140,1,tmpfile)
+				if filesz<0 { 
+					; no file exists - some unexpected error with cmd
+					do logmsg("No output file was created.")
+					; need to find and kill the cmd - we think it may be out there
+				} else {
+					if filesz=0 {
+						; empty file
+						do logmsg("An empty file was created.")
+						; need to check if there is cleanup to do!
+					} else {
+						do docopyfile(Logfile,tmpfile,pprou)
+					}
+					if delflag {
+						if OS="VMS" {
+							; extra cleanup for t4 and monitor files on VMS
+							if ((heading["monitor") || (heading["t4")) {
+								s noext=$p(tmpfile,".",1,$l(tmpfile,".")-1) ; get proper filename stem by removing .LOG extension
+								d $zu(140,5,noext_".COM") ; clean up com file
+								d $zu(140,5,noext_".ERR") ; clean up err file
+							}
+							d $zu(140,5,tmpfile_".")
+						}
+						else { if $zu(140,5,tmpfile) }
+					}
+				}
+			}
+			do endsection()
+		}
+	}
+	do LogTrailer(runid) ; do file trailer
+	close Logfile
+	; tidy up
+	if delflag {
+		i islocal set ^pButtons("history",runid)=$h_"^"_logdir  //specific run logdir not the current!
+		kill pBarray(runid)
+		;kill ^pButtons("run",runid)
+	} else {
+		i islocal set ^pButtons("history",runid,+$g(^pButtons(runid,"collect")))=$h_"^"_logdir
+	}
+	if $zu(68,40,eof) ; restore eof behaviour
+	l -perfcollect(runid)
+	quit 1_"^"_Logfile
+crefileerr  ;
+	do collecterr
+	i islocal m ^pButtons("oldrun",runid)=pBarray(runid) s ^pButtons("oldrun",runid,"error")=$ZE
+	q 0_"^failed to complete html file"
+collecterr	;
+	s $zt="^%ETN"
+	i $$$PROGMODE u 0 w $ze,! h 0
+	i $d(runid) {
+		i $d(LogFile) do LogTrailer(runid)
+		l -perfcollect(runid)
+	}
+	i $d(eof) if $zu(68,40,eof)
+	d BACK^%ETN
+	quit
+docopyfile(Logfile,tmpfile,pprou)
+	; normal condition - check for postproc routine
+	s $zt="dcopyerr"
+	if $l(pprou) { 
+		if pprou=$$$SQZOFILE { do copyfile2(Logfile,tmpfile) } else { do @pprou }
+	} else { do copyfile(Logfile,tmpfile) }
+	s $zt=""
+	q
+dcopyerr	;
+	; primarily pprou copy error handler - isolate noroutine and noline and retry
+	s $zt="^%ETN",ze=$ZE
+	i ($ZE["NOROUTINE")||($ZE["NOLINE") {
+		do logmsg("Problem with post-processing ("_pprou_") in file copy with log file: "_tmpfile)
+		do logmsg("Continuing with raw file copy.")
+		do copyfile(Logfile,tmpfile)
+	} ; other errors handled in copy ...
+	s $zt=""
+	q
+chkcoldir(runid)
+	; does run actually still exist - return status
+	; count the output files, if none move the node and save a bad history
+	; fill in any gaps and check/rebuild the runinfo definition too
+	s filecnt=0
+	for sect="cache","os" {
+		set cmdsrun=+$g(pBarray(runid,sect))
+		for i=1:1:cmdsrun {
+			i $D(pBarray(runid,sect,i)) {
+				set inf=pBarray(runid,sect,i),heading=$li(inf,$$$COMMENT),tmpfile=$lg(inf,$$$OPFILE,"error"),ncstats=$lg(inf,$$$OCSTATS)
+			} else { ; rebuild missing entry
+				set tmpfile="error",pBarray(runid,sect,i)=$lb("missing_"_sect_"_"_i,,tmpfile)
+			}
+			continue:tmpfile="error"
+			if heading["cstat" {
+				for csi=1:1:ncstats {
+					set ntmpfile=tmpfile_csi,filesz=$zu(140,1,ntmpfile)
+					continue:filesz<1  // should we count empty files???
+					i $i(filecnt)
+				}
+			} else {
+				set filesz=$zu(140,1,tmpfile)
+				continue:filesz<1  // should we count empty files???
+				i $i(filecnt)
+			}
+		}
+	}
+	i '$D(pBarray(runid,"runinfo")) s pBarray(runid,"runinfo")=$lb("runinfo",,$g(pBarray(runid,"logdir"))_runid_"_runinfo.log",,,,0)
+	quit filecnt
+archiverun(runid)
+	s ^pButtons("history",runid)=$h_"^"_logdir_"^MISSING!!!"
+	merge ^pButtons("oldrun",runid)=pBarray(runid)
+	k pBarray(runid)
+	quit
+Recollect(runid)
+	N (runid) s runid=$g(runid)
+	if (runid="") { // scan for ids
+		for  s runid=$o(^pButtons("oldrun",runid)) quit:runid=""  do putback(runid)
+	} else {
+		i $d(^pButtons("oldrun",runid)) do putback(runid)
+	}
+	quit
+putback(runid)
+	merge pBarray(runid)=^pButtons("oldrun",runid)
+	kill ^pButtons("oldrun",runid)
+	s sc=$$createfile(runid,0,$$$TRUE,$$$TRUE)
+	quit
+WRCCollect(runid,newdir)
+	; collect from directory of files, assume progmode
+	; also assumes not local source of files so maybe platform diffs
+	N (runid,newdir) s $zt="collecterr",newdir=$g(newdir),runid=$g(runid),notfirst=1,sc=-1
+	i newdir'="" s sc=($$validdir(.newdir,1))
+	while sc<0 {
+		r !,"Enter directory containing pButtons files: ",newdir
+		i newdir="" s sc=0 continue
+		s sc=$$validdir(.newdir,1) ;check only - don't create the newdir!
+		i sc<0 w !,"directory ",newdir," not found, try again..."
+	}
+	q:newdir=""
+	s sc=-1 i runid'="" s notfirst=0
+	while sc<0 {
+		i notfirst {
+			r !,"Enter runid of pButtons files: ",runid
+			i runid="" s sc=0 continue
+		}
+		s rfile=newdir_runid_"_runinfo.log" o rfile::$$$OPENTIMEOUT	i $T s sc=0
+		i sc<0 w !,"Unable to Collect runid - ",runid,", ",rfile," file not found, try again..."
+		s notfirst=1
+	}
+	q:runid=""
+	i $D(^pButtons("run",runid)) {
+		; disallow WRCCollect on local data!!!
+		i ^pButtons("run",runid,"logdir")=newdir {
+			w !,"Use of WRCCollect() on local data is not allowed!",!
+			q
+		}
+	}
+	s rc=$$buildcolarray(runid)
+	i rc<0 w !,"Sorry - failed to interpret runinfo file, unable to proceed!",!,$p(rc,"^",2),! q
+	s $zt="wrccolerr"
+	s olddir=pBarray(runid,"logdir"),pBarray(runid,"logdir")=newdir
+	s pBarray(runid,"runinfo")=$$switchdirinfo(pBarray(runid,"runinfo"),olddir,newdir)
+	f sect="os","cache" {
+		s cnt=$g(pBarray(runid,sect),0)
+		f i=1:1:cnt {
+			s pBarray(runid,sect,i)=$$switchdirinfo(pBarray(runid,sect,i),olddir,newdir)
+		}
+	}
+	s sc=$$createfile(runid,0,$$$TRUE,$$$FALSE)
+	quit
+wrccolerr ;
+	s $zt=""
+	w "Sorry - encountered problem translating runinfo array.",!,"Error info - ",$ZE,!
+	q
+buildcolarray(runid) ; file open already, 
+	s eof=$zu(68,40,1),$zt="bcaerr"
+	f  {
+		u rfile r line:$$$READTIMEOUT s zeof=$zeof q:'$T!zeof
+		continue:($l(line)=0)||(line'["=")
+		s glo=$p(line,"=")
+		i glo["run" { s $p(line,runid)="pBarray(""" } else { s $p(line,"(")="pBarray" }
+		s @line
+	}
+	c rfile
+	s $zt=""
+	quit 0
+bcaerr ; error trap - likely on set @
+	s $zt=""
+	c rfile
+	i $ZE["SYNTAX" {
+		i line'["=" {
+			s rc="-3^Lost the runid in tranlation - did you change the filename???"
+		} else {
+			s rc="-2^Bad data format in line: "_line_" !!!"
+		}
+	} else {
+		s rc="-1^Error info: "_$ZE_" data line: "_line
+	}
+	quit rc
+switchdirinfo(inf,olddir,newdir)
+	s ofile=$li(inf,$$$OPFILE)
+	s pos=$f(ofile,olddir)
+	s nfile=newdir_$e(ofile,pos,$l(ofile))
+	s $li(inf,$$$OPFILE)=nfile
+	q inf
+ResetCollect(runid,newdir)	; flag new logdir for runid - oldruns too?
+	N (runid,newdir) q:'$d(^pButtons("oldrun",runid))
+	q:$g(newdir)=""
+	s sc=$$validdir(.newdir,1) ;check only - don't create the newdir!
+	q:sc<0
+	s olddir=$g(^pButtons("oldrun",runid,"logdir")),^pButtons("oldrun",runid,"logdir")=newdir
+	f sect="os","cache" {
+		s cnt=$g(^pButtons("oldrun",runid,sect),0)
+		f i=1:1:cnt {
+			s ^pButtons("oldrun",runid,sect,i)=$$switchdirinfo(^pButtons("oldrun",runid,sect,i),olddir,newdir)
+		}
+	}
+	i $D(^pButtons("oldrun",runid,"runinfo")) s ^pButtons("oldrun",runid,"runinfo")=$$switchdirinfo(^pButtons("oldrun",runid,"runinfo"),olddir,newdir)
+	do putback(runid)
+	quit
+logmsg(string)	; generic output message to logfile
+	use Logfile write !,string
+	quit
+genfilename(runid,finished,local)	
+	set logdir=$g(pBarray(runid,"logdir")),filenm=runid
+	set fnlist=$g(pBarray(runid,"general")),OS=$lg(fnlist,6),svrname=$p($lg(fnlist,2),"."),config=$lg(fnlist,1)
+	if local=1 {
+		if logdir="" set logdir=$g(^pButtons("run",runid,"logdir"),$$getlogdir())
+		if OS="" set OS=$System.Version.GetCompBuildOS()
+		if svrname="" set svrname=$p($zu(54,0),".")
+		if config="" set config=$p($zu(86),"*",2)
+	} else {
+		; directory listing based collect with no runinfo data
+		if OS="" set OS="unknown"
+	}
+	if 'finished set filenm=filenm_"_"_"P"_$i(^pButtons(runid,"collect")) ; must be local
+	if OS["VMS" { ; VMS has filename length restrictions - duh!
+		set cfglen=$l(config),splen=29-$l(filenm)
+		if cfglen>splen { set fprefix=$e(config,1,splen+2) }
+		else { set fprefix=$e(svrname,1,splen+1-cfglen)_"_"_config }
+	} else {
+		set fprefix=svrname_"_"_config
+	}
+	set Logfile=logdir_fprefix_"_"_filenm_".html"
+	quit
+cmptime(coltime,pbrun,waittime)	; collection time comparison - uses global!
+	set cancollect=1,waittime="ready now"
+	quit:coltime="ready"
+	if coltime="" { // no end setting so something messed up in the data run
+		// repair the end based on the request time
+		s profdata=^pButtons("run",pbrun,"profile")
+		s oldhoro=$li(profdata,$$$COLPH),sampletime=$li(profdata,$$$COLPINT)*$li(profdata,$$$COLPCNT)
+		do calcinctime(oldhoro)
+		s coltime=+oldhoro+incdays_","_incsecs
+		s ^pButtons("run",pbrun,"end")=coltime
+		// now check counts for the sections
+		s dvc=$d(^pButtons("run",pbrun,"cache"))
+		i dvc=10 {
+			s ^pButtons("run",pbrun,"cache")=$o(^pButtons("run",pbrun,"cache",""),-1)
+		} elseif dvc=0 { 
+			// no cache data was run at all - ok - but check os
+			s dvo=$d(^pButtons("run",pbrun,"os"))
+			i dvo=10 s ^pButtons("run",pbrun,"os")=$o(^pButtons("run",pbrun,"os",""),-1)
+			// 11 is ok, 0 will be handled
+		} // any other dvc is ok, well 0 is not, but we'll be okay
+	}
+	set timenow=$h,secsnow=$p(timenow,",",2),colsecs=$p(coltime,",",2)
+	if +coltime>+timenow {
+		set cancollect=0
+		set waittime=$$$DAYSECS-secsnow+colsecs
+	} elseif +coltime<+timenow {
+	} else {
+		if colsecs>secsnow set cancollect=0,waittime=colsecs-secsnow ; and work out waittime
+	}
+	i +waittime>0 {
+		s mins=waittime\60,secs=waittime#60,hours=mins\60,mins=mins#60
+		s waittime=$s(hours=0:"",hours=1:"1 hour ",1:hours_" hours ")_$s(mins=0:"",mins=1:"1 minute ",1:mins_" minutes ")_$s(secs=0:"",secs=1:"1 second",1:secs_" seconds")
+	}
+	quit
+waittime(runid)	; return wait time for given run
+	N (runid)
+	s runid=$g(runid)
+	i runid'="" {
+		q:'$d(^pButtons("run",runid)) "-2^no such runid"
+		do cmptime($g(^pButtons("run",runid,"end")),runid,.answer)
+	} else { 
+		s aryans=""
+		f  s runid=$o(^pButtons("run",runid)) q:runid=""  do cmptime($g(^pButtons("run",runid,"end")),runid,.answer) s aryans=aryans_","_runid_":"_answer
+		i aryans="" {
+			s answer="-1^nothing running"
+		} else {
+			s answer=$e(aryans,2,$l(aryans))
+		}
+		if $$$PROGMODE {
+			u 0 w !,?4,"Current run",?30,"will be ready in",!
+			w ?4,"========================================================"
+			f i=1:1:$l(aryans,",") w ?4,$p($p(aryans,",",i),":"),?30,$p($p(aryans,",",i),":",2),!
+			w !
+		}
+	}
+	quit answer
+startsection(heading)	; header in html file
+	s tag=headtag(heading)
+	Use Logfile
+	Write "<hr size=""4"" noshade>"
+	Write "<b><font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><div id="_tag_"></div>"_heading_"</font></b><br>"
+	If $l(labtxt) { Write "<!-- beg_"_labtxt_" --><pre>" }
+	ElseIf heading'["cstat" { Write "<pre>" }  ; this assume labtxt and cstats are mutually exclusive
+	quit
+endsection()		;
+	If $l(labtxt) Use Logfile Write !,"<!-- end_"_labtxt_" -->" 
+	Use Logfile Write !,"</pre><p align=""right""><font size=""3""><a href=""#Topofpage"">Back to top</a></font></p>"
+	quit
+	;
+addlink(outfile,loopcnt,loopmax,text)	; generic add next and prev links for multi piece sections
+	i loopmax=1 q
+	u outfile ; file is already open!
+	w "</pre><a id="""_text_"_"_loopcnt_"""></a>"
+	i loopcnt=1 { ; just need next link
+		w "<p align=""right""><font size=""3""><a href=""#"_text_"_",loopcnt+1,""">next "_text_"</a></font></p>"
+	} else {
+		w "<p align=""right""><font size=""3""><a href=""#Topofpage"">Back to top</a></font></p><hr size=""2"" noshade>"
+		if loopcnt=loopmax { ; just need prev link
+			w "<p align=""right""><font size=""3""><a href=""#"_text_"_",loopcnt-1,""">previous "_text_"</a></font></p>"
+		} else { ; need both
+			w "<p align=""right""><font size=""3""><a href=""#"_text_"_",loopcnt+1,""">next "_text_"</a> <a href=""#"_text_"_",loopcnt-1,""">previous "_text_"</a></font></p>"
+		}
+	}
+	w "sample "_loopcnt_" of "_loopmax_"<pre>"
+	q
+LogHeader(runid,notpreview) ;  start the file with header info
+	; title bar
+	; table rows - profile and cache info
+	; 			- os info
+	; 	generate tags from the list of headings ensuring uniqueness
+	s proflist=$g(pBarray(runid,"profile")),dataver=$lg(proflist,$$$RUNVER,"pre 1.08")
+	Use Logfile
+	Write "<html>"
+	Write !,"<head>"
+	Write !,"<title>"
+	Write !,"Caché Performance Data Report. Filename: "_svrname_"_"_config_"_"_runid_".html"
+	Write !,"</title>"
+	Write !,"<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"" />"
+	Write !,"</head>"
+	Write !,"<a id=""Topofpage""></a>"
+	Write !,"<table align=""center"" width=""92%"" border=""1"" bordercolor=""#999999"" bgcolor=""#CCCCCC"">"
+	Write !," <tr bgcolor=""#FFFFFF"" bordercolor=""#CCCCCC"">"
+	Write !,"  <td colspan=""9"" height=""40"" align=""center"">"
+	if notpreview {
+		Write !,"   <font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><b>Caché Performance Data Report</b></font>"
+	} else {
+		Write !,"   <font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><b>Preview Caché Performance Data Report</b></font>"
+	}
+	Write !,"  </td>"
+	Write !," </tr>"
+	; need the actual run cmds to generate the links for the table rows
+	; cache row(s)
+	Write !," <tr bgcolor=""#FFFFFF"" bordercolor=""#CCCCCC"">"
+	for i=1:1:+$g(pBarray(runid,"cache")) {
+		set tmp=pBarray(runid,"cache",i),heading=$li(tmp,$$$COMMENT),tag=$$gentag()
+		i nheading'=heading s pBarray(runid,"cache",i)=$lb(nheading)_$li(tmp,$$$COMMAND,$ll(tmp))
+		Write !,"  <td align=""center"">"
+		Write !,"   <b><font face=""Arial, Helvetica, sans-serif"" size=""2"" color=""#006600""><a href=#"_tag_">"_heading_"</a></font></b>"
+		Write !,"  </td>"
+		i i#$$$TABCOLS=0 write !," </tr>",!,"<tr bgcolor=""#FFFFFF"" bordercolor=""#CCCCCC"">"
+	}
+	Write !," </tr>"
+	; OS row(s)
+	s osrowcnt=+$g(pBarray(runid,"os"))
+	i osrowcnt {
+		Write !," <tr bgcolor=""#FFFFFF"" bordercolor=""#CCCCCC"">"
+		for i=1:1:osrowcnt {
+			set tmp=pBarray(runid,"os",i),heading=$li(tmp,$$$COMMENT),tag=$$gentag()
+			i nheading'=heading s pBarray(runid,"os",i)=$lb(nheading)_$li(tmp,$$$COMMAND,$ll(tmp))
+			Write !,"  <td align=""center"">"
+			Write !,"   <b><font face=""Arial, Helvetica, sans-serif"" size=""2"" color=""#006600""><a href=#"_tag_">"_heading_"</a></font></b>"
+			Write !,"  </td>"
+			i i#$$$TABCOLS=0 write !," </tr>",!,"<tr bgcolor=""#FFFFFF"" bordercolor=""#CCCCCC"">"
+		}
+		Write !," </tr>"
+	}
+	Write !,"</table>"
+	;pb global data - hidden
+	w !,"<!-- Debug snapshot of this run!",!
+	s runfile=$lg(pBarray(runid,"runinfo"),$$$OPFILE)
+	//PUT EXPORT HERE for old products //
+	zw pBarray h 0
+	i (runfile'="")&&(runfile'="error") do copyfile(Logfile,runfile) i $zu(140,5,runfile)
+	u Logfile
+	w !,"-->"
+	;now the config info and profile info
+	s conlist=$g(pBarray(runid,"general")),OS=$lg(conlist,6),badwin=$lg(conlist,7)
+	Write !,"<p> <b><font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><div id=""Configuration""></div>Configuration</font></b></p><pre>"
+	Write !,$lg(conlist,1)," on machine ",$li(conlist,2)
+	Write !!,"Customer: ",$li(conlist,3),!,"License : ",$li(conlist,4)
+	Write !!,"Product Version String: "_$li(conlist,5)
+	i (osrowcnt=0) {
+		i (OS="Windows")&&($l(badwin)>0) {
+			Write !!,"Windows information inhibited: ",badwin
+		} else {
+			write !!,"Operating system information omitted!"
+		}
+	}
+	Write !,"Document Version: "_$$$VERSION_", Data Version: "_dataver
+	Write !,"</pre><hr size=""4"" noshade>"
+	Write !,"<p> <b><font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><div id=""Profile""></div>Profile</font></b></p>"
+	Write "<pre>",!,"Profile run """,$li(proflist,1),""" started at ",$li(proflist,2)," on ",$li(proflist,3),"."
+	Write !,"Run over ",$li(proflist,4)," intervals of ",$li(proflist,5)," seconds."
+	i (OS="Windows")&&($lg(proflist,$$$RUNWCTRFILE)'="") Write !,"Using perfmon counter definition: """,$li(proflist,$$$RUNWCTRFILE),"""."
+	s stopped=$lg(proflist,$$$STOPTIME) i stopped'="" Write !,"Stopped early at ",$zt($p(stopped,",",2)),"."
+	Write !,"In directory ",logdir,"."
+	Write !,"</pre>"
+	q
+LogTrailer(runid) ; appends a Trailer record to LogFile
+	Use Logfile
+	Write !,"<hr size=""4"" noshade>"
+	Write !,"<p><font face=""Arial, Helvetica, sans-serif"" size=""4"" color=""#0000FF""><b>End of Caché Performance Data Report</b></font>"
+	Write !,"</p>",!,"</body>",!,"</html>"
+	Quit
+gentag() ; generate a new tag from the heading (heading may be changed too)
+	; check and add presets
+	i '$D(taghead) s taghead("#Profile")="Profile",taghead("#Configuration")="Configuration",taghead("#Topofpage")=""
+	s inc=0,nheading=heading
+	while $D(headtag(nheading)) { s nheading=heading_$i(inc) }
+	s ntag=$tr(nheading," ",""),tag=ntag,inc=0
+	while $D(taghead(tag)) { s tag=ntag_$i(inc) }
+	s headtag(nheading)=tag,taghead(tag)=nheading
+	q tag
+copyfile(Logfile,infile)	; append outfile to logfile,
+	set $zt="copyerr"
+	open infile:"r":$$$OPENTIMEOUT
+	if '$T use Logfile w !,"Unexpected problem opening data file: "_infile set x=$zu(140,11,infile,infile_"bad") quit   ; only cstat files not pre-tested
+	for  u infile r line:$$$READTIMEOUT set zeof=$zeof quit:'$T!zeof  u Logfile write !,line 
+	close infile
+	quit
+copyfile2(Logfile,infile)	; append outfile to logfile, but omit empty or dash lines
+	set $zt="copyerr"
+	open infile:"r":$$$OPENTIMEOUT
+	if '$T use Logfile w !,"Unexpected problem opening data file: "_infile set x=$zu(140,11,infile,infile_"bad") quit  ;this should not be possible! no cstats using this
+	for  u infile r line:$$$READTIMEOUT set zeof=$zeof quit:'$T!zeof  u Logfile write:'(($l(line)=0)||(line["-----")) !,line 
+	close infile
+	quit
+copyerr
+	Set $zt=""
+	close infile
+	i $g(debug) d BACK^%ETN
+	quit
+extxtvmstat ;post processing of vmstat data to extract page-header lines
+	n (Logfile,tmpfile)
+	s rec=0
+	o tmpfile:"R":$$$OPENTIMEOUT
+	if '$T use Logfile w !,"Unexpected problem opening data file: "_tmpfile set x=$zu(140,11,tmpfile,tmpfile_"bad") quit
+	f  {
+		u tmpfile r line:$$$READTIMEOUT s zeof=$zeof q:'$T!zeof
+		i $i(rec)
+		continue:($l(line)=0)||(line["page")||(line["cpu")||(line["---")||((line["fre")&&(rec>8))
+		u Logfile w " ",line,!
+	}
+	c tmpfile
+	q
+sarucombine	;post processing of sar u data to combine multiple cpu lines
+	n (Logfile,tmpfile)
+	o tmpfile:"R":$$$OPENTIMEOUT
+	if '$T use Logfile w !,"Unexpected problem opening data file: "_tmpfile set x=$zu(140,11,tmpfile,tmpfile_"bad") quit
+	f  {
+		u tmpfile r line:$$$READTIMEOUT s zeof=$zeof q:zeof||(line["verage")
+		i line[":" u Logfile w !
+		i $l(line) u Logfile w line
+	}
+	c tmpfile
+	q
+freetocsv ; post processing of linux free command output to csv format
+	n (Logfile,tmpfile)
+	o tmpfile:"R":$$$OPENTIMEOUT
+	if '$T use Logfile w !,"Unexpected problem opening data file: "_tmpfile set x=$zu(140,11,tmpfile,tmpfile_"bad") quit
+	s dtstamp=0
+	u tmpfile r line:$$$READTIMEOUT s zeof=$zeof i zeof c tmpfile quit
+	i $e(line,3)="/" s dtstamp=1 u Logfile w "Date,     Time,     "
+	u tmpfile:0 ; rewind file    
+	u Logfile w " Memtotal,     used,     free,   shared,  buffers,   cached,  adjused,  adjfree,swaptotal, swapused, swapfree,",!
+	f  {
+		u tmpfile r line:$$$READTIMEOUT s zeof=$zeof q:zeof
+		d stripspaces
+		continue:(line="")||(line=" ")||(line["total")  ;skip empty line and title line
+		i dtstamp s date=$e(line,1,8),time=$e(line,10,17),line=$e(line,19,$l(line))
+		i line[":" {
+			i dtstamp&&(line["Mem") u Logfile w date,", ",time,", "
+			s lf=0,first=2,fields=$l(line," ") i line["Swap" { s lf=1 } elseif line["+" { s first=3 }
+			u Logfile f i=first:1:fields-1 s t=$p(line," ",i) w $j(t,9),","
+			i lf u Logfile w !
+		}
+	}
+	c tmpfile
+	q
+wincsv ; post processing for win perfmon to extract machine header from csv file and lose first line.
+	use Logfile w !
+	o tmpfile:"R":$$$OPENTIMEOUT
+	if '$T use Logfile w "Unexpected problem opening data file: "_tmpfile set x=$zu(140,11,tmpfile,tmpfile_"bad") quit
+	u tmpfile r hdrline:$$$READTIMEOUT s zeof=$zeof
+	i zeof u Logfile w "empty input file : ",infile,! q
+	i hdrline["\\" {
+		// reform hdrline - format of hdr is dateinfo then col hdrs so skip date
+		s datestamp=$e($p(hdrline,","),2,99),pc=$p(hdrline,",",2),hdrline=$p(hdrline,",",2,999)
+		s svr=$p(pc,"\",3)
+		s svrnm="\\"_svr
+		do subpstr
+		u Logfile w """Date "_svrnm_" "_datestamp_",""Time"","_hdrline,!
+		u tmpfile r line s zeof=$zeof q:zeof
+	}
+	f  {
+		u tmpfile r line:$$$READTIMEOUT s zeof=$zeof q:zeof  u Logfile w $p(line," ")_""","""_$p(line," ",2,9999),!
+	}
+	c tmpfile
+	q
+dellmctr(lmok)
+	// remove perfctr (not conditional on finding file)
+	s p="logman delete "_runid
+	o p:"RQ":$$$OPENTIMEOUT
+	i $T {
+		f  u p r l:$$$PIPERDTMOUT s zeof=$zeof q:zeof||($l(l)>0)
+		i debug u 0 w l,!
+		i l'[lmok u p r l:$$$PIPERDTMOUT s ^pButtons("history",runid,"lmdelete error")=l
+		c p
+	} else { s ^pButtons("history",runid,"lmdelete error")="NOPIPE!" }
+	q
+stripspaces
+	s line=line_" "
+	f  q:line'["  "  s line=$p(line,"  ",1)_" "_$p(line,"  ",2,999)
+	q
+subpstr
+	f  q:hdrline'[svrnm  s hdrline=$p(hdrline,svrnm,1)_$p(hdrline,svrnm,2,999)
+	Q
+]]></Routine>
+</Export>

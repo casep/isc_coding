@@ -1,0 +1,1849 @@
+Script started on Wed 08 Nov 2017 12:17:00 GMT
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[?1034h[root@schl16testintm1 trakautomation]# ./MasterSCHLTest2016INT.sh
+
+Caché Password to use: 
+Confirm: 
+
+########################################
+SELINUX Configuration (Disable)
+########################################
+User/Group Configuration
+########################################
+TrakCare Shell Environment Configuration
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/db" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package unzip.x86_64 0:6.0-16.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================
+ Package               Arch                   Version                       Repository                          Size
+=====================================================================================================================
+Installing:
+ unzip                 x86_64                 6.0-16.el7                    rhel-7-server-rpms                 169 k
+
+Transaction Summary
+=====================================================================================================================
+Install  1 Package
+
+Total download size: 169 k
+Installed size: 365 k
+Downloading packages:
+unzip-6.0-16.el7.x86_64.rpm                  0% [                                  ]  0.0 B/s |    0 B  --:--:-- ETA unzip-6.0-16.el7.x86_64.rpm                                                                   | 169 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : unzip-6.0-16.el7.x86_64 [                                                                       ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#####                                                                  ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [##################                                                     ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [######################                                                 ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#######################                                                ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [########################                                               ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [############################                                           ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#############################                                          ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [################################                                       ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [#################################                                      ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [##################################                                     ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###################################                                    ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [################################################                       ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [############################################################           ] 1/1  Installing : unzip-6.0-16.el7.x86_64 [###################################################################### ] 1/1  Installing : unzip-6.0-16.el7.x86_64                                                                           1/1 
+  Verifying  : unzip-6.0-16.el7.x86_64                                                                           1/1 
+
+Installed:
+  unzip.x86_64 0:6.0-16.el7                                                                                          
+
+Complete!
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Package util-linux-2.23.2-43.el7.x86_64 already installed and latest version
+Nothing to do
+########################################
+snmpd Install/Configuration
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package net-snmp.x86_64 1:5.7.2-28.el7 will be installed
+--> Processing Dependency: net-snmp-agent-libs = 1:5.7.2-28.el7 for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpagent.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmpmibs.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Processing Dependency: libnetsnmptrapd.so.31()(64bit) for package: 1:net-snmp-5.7.2-28.el7.x86_64
+--> Running transaction check
+---> Package net-snmp-agent-libs.x86_64 1:5.7.2-28.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================
+ Package                         Arch               Version                     Repository                      Size
+=====================================================================================================================
+Installing:
+ net-snmp                        x86_64             1:5.7.2-28.el7              rhel-7-server-rpms             321 k
+Installing for dependencies:
+ net-snmp-agent-libs             x86_64             1:5.7.2-28.el7              rhel-7-server-rpms             704 k
+
+Transaction Summary
+=====================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 1.0 M
+Installed size: 2.9 M
+Downloading packages:
+(2/2): net-snmp-agent-libs-5.7.2-28.el7.x86_ 0% [                                  ]  0.0 B/s |    0 B  --:--:-- ETA (1/2): net-snmp-5.7.2-28.el7.x86_64.rpm                                                       | 321 kB  00:00:00     
+(2/2): net-snmp-agent-libs-5.7.2-28.el7.x86_64.rpm                                            | 704 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------
+Total                                                                                2.2 MB/s | 1.0 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [                                                     ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#                                                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###                                                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####                                                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######                                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######                                              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########                                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##########                                           ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########                                          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############                                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############                                       ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############                                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################                                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################                                  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####################                                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################                               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######################                              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################                            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########################                          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [############################                         ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############################                       ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###############################                      ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################################                    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##################################                   ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [####################################                 ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [######################################               ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#######################################              ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#########################################            ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###########################################          ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#############################################        ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [##############################################       ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [################################################     ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################################################    ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [###################################################  ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64 [#################################################### ] 1/2  Installing : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                         1/2 
+  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [                                                                ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#                                                               ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##                                                              ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####                                                            ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######                                                         ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########                                                       ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#############                                                   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##############                                                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###################                                             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################                                        ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################                                    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#################################                               ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################################                          ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################################                     ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##############################################                  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###################################################             ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [####################################################            ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#####################################################           ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [######################################################          ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#######################################################         ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [########################################################        ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#########################################################       ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [###########################################################     ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################################################    ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [#############################################################   ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [##############################################################  ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64 [############################################################### ] 2/2  Installing : 1:net-snmp-5.7.2-28.el7.x86_64                                                                    2/2 
+  Verifying  : 1:net-snmp-agent-libs-5.7.2-28.el7.x86_64                                                         1/2 
+  Verifying  : 1:net-snmp-5.7.2-28.el7.x86_64                                                                    2/2 
+
+Installed:
+  net-snmp.x86_64 1:5.7.2-28.el7                                                                                     
+
+Dependency Installed:
+  net-snmp-agent-libs.x86_64 1:5.7.2-28.el7                                                                          
+
+Complete!
+Note: Forwarding request to 'systemctl enable snmpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/snmpd.service to /usr/lib/systemd/system/snmpd.service.
+Redirecting to /bin/systemctl start snmpd.service
+########################################
+snmpd Install/Configuration for cacti-apache
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-cups
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-iostat
+cron iostat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-processes+
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-TCMon
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-vmstat
+cron vmstat-cron
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+snmpd Install/Configuration for cacti-hugepages
+Redirecting to /bin/systemctl restart snmpd.service
+########################################
+Nagios nrpe Install/Configuration
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package perl-Digest-HMAC.noarch 0:1.03-5.el7 will be installed
+---> Package perl-Digest-SHA1.x86_64 0:2.13-9.el7 will be installed
+---> Package perl-Socket6.x86_64 0:0.23-15.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================
+ Package                       Arch                Version                     Repository                       Size
+=====================================================================================================================
+Installing:
+ perl-Digest-HMAC              noarch              1.03-5.el7                  rhel-7-server-rpms               16 k
+ perl-Digest-SHA1              x86_64              2.13-9.el7                  rhel-7-server-rpms               50 k
+ perl-Socket6                  x86_64              0.23-15.el7                 rhel-7-server-rpms               27 k
+
+Transaction Summary
+=====================================================================================================================
+Install  3 Packages
+
+Total download size: 94 k
+Installed size: 167 k
+Downloading packages:
+(2/3): perl-Digest-SHA1-2.13-9.el7.x86_64.rp 0% [                                  ]  0.0 B/s |    0 B  --:--:-- ETA (1/3): perl-Digest-HMAC-1.03-5.el7.noarch.rpm                                                 |  16 kB  00:00:00     
+(2/3): perl-Digest-SHA1-2.13-9.el7.x86_64.rpm                                                 |  50 kB  00:00:00     
+(3/3): perl-Socket6-0.23-15.el7.x86_64.rpm                                                    |  27 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------
+Total                                                                                133 kB/s |  94 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [                                                            ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [###                                                         ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [####                                                        ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [################                                            ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#################                                           ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#########################                                   ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [##############################                              ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [#########################################################   ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64 [########################################################### ] 1/3  Installing : perl-Digest-SHA1-2.13-9.el7.x86_64                                                                1/3 
+  Installing : perl-Socket6-0.23-15.el7.x86_64 [                                                               ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [###########                                                    ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [########################################                       ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [######################################################         ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [#########################################################      ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64 [############################################################## ] 2/3  Installing : perl-Socket6-0.23-15.el7.x86_64                                                                   2/3 
+  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [                                                            ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [###                                                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [######                                                      ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [#################                                           ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [##########################                                  ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [###################################                         ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [####################################                        ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [################################################            ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [######################################################      ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch [########################################################### ] 3/3  Installing : perl-Digest-HMAC-1.03-5.el7.noarch                                                                3/3 
+  Verifying  : perl-Digest-HMAC-1.03-5.el7.noarch                                                                1/3 
+  Verifying  : perl-Socket6-0.23-15.el7.x86_64                                                                   2/3 
+  Verifying  : perl-Digest-SHA1-2.13-9.el7.x86_64                                                                3/3 
+
+Installed:
+  perl-Digest-HMAC.noarch 0:1.03-5.el7   perl-Digest-SHA1.x86_64 0:2.13-9.el7   perl-Socket6.x86_64 0:0.23-15.el7  
+
+Complete!
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Examining nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm: fping-3.5-3.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/fping-3.5-3.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm: nagios-common-3.5.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-common-3.5.1-1.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nagios-plugins-all-2.2.1-4git.el7.x86_64.rpm: nagios-plugins-all-2.2.1-4git.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nagios-plugins-all-2.2.1-4git.el7.x86_64.rpm to be installed
+Examining nagios-nrpe-RHEL7.4/nrpe-3.1.1-1.el7.x86_64.rpm: nrpe-3.1.1-1.el7.x86_64
+Marking nagios-nrpe-RHEL7.4/nrpe-3.1.1-1.el7.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package fping.x86_64 0:3.5-3.el7 will be installed
+---> Package nagios-common.x86_64 0:3.5.1-1.el7 will be installed
+---> Package nagios-plugins-all.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: nagios-plugins-breeze for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-by_ssh for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-dhcp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-dig for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-disk for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-disk_smb for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-dns for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-dummy for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-file_age for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-flexlm for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-fping for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-hpjd for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-http for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-icmp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ide_smart for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ircd for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ldap for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-load for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-log for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-mailq for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-mrtg for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-mrtgtraf for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-mysql for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-nagios for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-nt for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ntp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ntp-perl for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-nwstat for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-oracle for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-overcr for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-pgsql for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ping for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-procs for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-game for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-real for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-rpc for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-smtp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-snmp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ssh for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-swap for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-tcp for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-time for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-ups for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-users for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-wave for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-cluster for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-sensors for package: nagios-plugins-all-2.2.1-4git.el7.x86_64
+---> Package nrpe.x86_64 0:3.1.1-1.el7 will be installed
+--> Running transaction check
+---> Package nagios-plugins-breeze.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: nagios-plugins = 2.2.1-4git.el7 for package: nagios-plugins-breeze-2.2.1-4git.el7.x86_64
+--> Processing Dependency: nagios-plugins-perl for package: nagios-plugins-breeze-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-by_ssh.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-cluster.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-dhcp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-dig.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-disk.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-disk_smb.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: /usr/bin/smbclient for package: nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-dns.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-dummy.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-file_age.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-flexlm.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-fping.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-game.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: qstat for package: nagios-plugins-game-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-hpjd.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-http.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-icmp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ide_smart.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ircd.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ldap.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-load.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-log.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-mailq.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-mrtg.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-mrtgtraf.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-mysql.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-nagios.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-nt.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ntp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ntp-perl.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: /usr/sbin/ntpdate for package: nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64
+--> Processing Dependency: /usr/sbin/ntpq for package: nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-nwstat.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-oracle.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-overcr.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-pgsql.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: libpq.so.5()(64bit) for package: nagios-plugins-pgsql-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-ping.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-procs.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-real.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-rpc.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-sensors.x86_64 0:2.2.1-4git.el7 will be installed
+--> Processing Dependency: /usr/bin/sensors for package: nagios-plugins-sensors-2.2.1-4git.el7.x86_64
+---> Package nagios-plugins-smtp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-snmp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ssh.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-swap.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-tcp.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-time.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-ups.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-users.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-wave.x86_64 0:2.2.1-4git.el7 will be installed
+--> Running transaction check
+---> Package lm_sensors.x86_64 0:3.4.0-4.20160601gitf9185e5.el7 will be installed
+---> Package nagios-plugins.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package nagios-plugins-perl.x86_64 0:2.2.1-4git.el7 will be installed
+---> Package ntp.x86_64 0:4.2.6p5-25.el7_3.2 will be installed
+--> Processing Dependency: libopts.so.25()(64bit) for package: ntp-4.2.6p5-25.el7_3.2.x86_64
+---> Package ntpdate.x86_64 0:4.2.6p5-25.el7_3.2 will be installed
+---> Package postgresql-libs.x86_64 0:9.2.23-1.el7_4 will be installed
+---> Package qstat.x86_64 0:2.11-13.20080912svn311.el7 will be installed
+---> Package samba-client.x86_64 0:4.6.2-11.el7_4 will be installed
+--> Processing Dependency: libsmbclient = 4.6.2-11.el7_4 for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: samba-client-libs = 4.6.2-11.el7_4 for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: samba-common = 4.6.2-11.el7_4 for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: samba-common = 4.6.2-11.el7_4 for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: samba-common-libs = 4.6.2-11.el7_4 for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: libsmbclient.so.0(SMBCLIENT_0.1.0)(64bit) for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: libarchive.so.13()(64bit) for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Processing Dependency: libsmbclient.so.0()(64bit) for package: samba-client-4.6.2-11.el7_4.x86_64
+--> Running transaction check
+---> Package autogen-libopts.x86_64 0:5.18-5.el7 will be installed
+---> Package libarchive.x86_64 0:3.1.2-10.el7_2 will be installed
+---> Package libsmbclient.x86_64 0:4.6.2-11.el7_4 will be installed
+---> Package samba-client-libs.x86_64 0:4.6.2-8.el7 will be updated
+--> Processing Dependency: samba-client-libs = 4.6.2-8.el7 for package: samba-libs-4.6.2-8.el7.x86_64
+--> Processing Dependency: samba-client-libs = 4.6.2-8.el7 for package: samba-4.6.2-8.el7.x86_64
+--> Processing Dependency: samba-client-libs = 4.6.2-8.el7 for package: samba-common-tools-4.6.2-8.el7.x86_64
+--> Processing Dependency: samba-client-libs = 4.6.2-8.el7 for package: libwbclient-4.6.2-8.el7.x86_64
+---> Package samba-client-libs.x86_64 0:4.6.2-11.el7_4 will be an update
+---> Package samba-common.noarch 0:4.6.2-8.el7 will be updated
+---> Package samba-common.noarch 0:4.6.2-11.el7_4 will be an update
+---> Package samba-common-libs.x86_64 0:4.6.2-8.el7 will be updated
+---> Package samba-common-libs.x86_64 0:4.6.2-11.el7_4 will be an update
+--> Running transaction check
+---> Package libwbclient.x86_64 0:4.6.2-8.el7 will be updated
+---> Package libwbclient.x86_64 0:4.6.2-11.el7_4 will be an update
+---> Package samba.x86_64 0:4.6.2-8.el7 will be updated
+---> Package samba.x86_64 0:4.6.2-11.el7_4 will be an update
+---> Package samba-common-tools.x86_64 0:4.6.2-8.el7 will be updated
+---> Package samba-common-tools.x86_64 0:4.6.2-11.el7_4 will be an update
+---> Package samba-libs.x86_64 0:4.6.2-8.el7 will be updated
+---> Package samba-libs.x86_64 0:4.6.2-11.el7_4 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================
+ Package                   Arch    Version                          Repository                                  Size
+=====================================================================================================================
+Installing:
+ [1mfping(B[m                     x86_64  3.5-3.el7                        /fping-3.5-3.el7.x86_64                    102 k
+ [1mnagios-common(B[m             x86_64  3.5.1-1.el7                      /nagios-common-3.5.1-1.el7.x86_64          0.0  
+ [1mnagios-plugins-all(B[m        x86_64  2.2.1-4git.el7                   /nagios-plugins-all-2.2.1-4git.el7.x86_64  0.0  
+ [1mnrpe(B[m                      x86_64  3.1.1-1.el7                      /nrpe-3.1.1-1.el7.x86_64                   334 k
+Installing for dependencies:
+ autogen-libopts           x86_64  5.18-5.el7                       rhel-7-server-rpms                          66 k
+ libarchive                x86_64  3.1.2-10.el7_2                   rhel-7-server-rpms                         319 k
+ libsmbclient              x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         130 k
+ lm_sensors                x86_64  3.4.0-4.20160601gitf9185e5.el7   rhel-7-server-rpms                         140 k
+ nagios-plugins            x86_64  2.2.1-4git.el7                   epel                                       251 k
+ nagios-plugins-breeze     x86_64  2.2.1-4git.el7                   epel                                        18 k
+ nagios-plugins-by_ssh     x86_64  2.2.1-4git.el7                   epel                                        44 k
+ nagios-plugins-cluster    x86_64  2.2.1-4git.el7                   epel                                        37 k
+ nagios-plugins-dhcp       x86_64  2.2.1-4git.el7                   epel                                        44 k
+ nagios-plugins-dig        x86_64  2.2.1-4git.el7                   epel                                        44 k
+ nagios-plugins-disk       x86_64  2.2.1-4git.el7                   epel                                        45 k
+ nagios-plugins-disk_smb   x86_64  2.2.1-4git.el7                   epel                                        21 k
+ nagios-plugins-dns        x86_64  2.2.1-4git.el7                   epel                                        45 k
+ nagios-plugins-dummy      x86_64  2.2.1-4git.el7                   epel                                        33 k
+ nagios-plugins-file_age   x86_64  2.2.1-4git.el7                   epel                                        19 k
+ nagios-plugins-flexlm     x86_64  2.2.1-4git.el7                   epel                                        20 k
+ nagios-plugins-fping      x86_64  2.2.1-4git.el7                   epel                                        43 k
+ nagios-plugins-game       x86_64  2.2.1-4git.el7                   epel                                        39 k
+ nagios-plugins-hpjd       x86_64  2.2.1-4git.el7                   epel                                        42 k
+ nagios-plugins-http       x86_64  2.2.1-4git.el7                   epel                                        60 k
+ nagios-plugins-icmp       x86_64  2.2.1-4git.el7                   epel                                        46 k
+ nagios-plugins-ide_smart  x86_64  2.2.1-4git.el7                   epel                                        38 k
+ nagios-plugins-ircd       x86_64  2.2.1-4git.el7                   epel                                        20 k
+ nagios-plugins-ldap       x86_64  2.2.1-4git.el7                   epel                                        42 k
+ nagios-plugins-load       x86_64  2.2.1-4git.el7                   epel                                        39 k
+ nagios-plugins-log        x86_64  2.2.1-4git.el7                   epel                                        19 k
+ nagios-plugins-mailq      x86_64  2.2.1-4git.el7                   epel                                        22 k
+ nagios-plugins-mrtg       x86_64  2.2.1-4git.el7                   epel                                        39 k
+ nagios-plugins-mrtgtraf   x86_64  2.2.1-4git.el7                   epel                                        38 k
+ nagios-plugins-mysql      x86_64  2.2.1-4git.el7                   epel                                        50 k
+ nagios-plugins-nagios     x86_64  2.2.1-4git.el7                   epel                                        39 k
+ nagios-plugins-nt         x86_64  2.2.1-4git.el7                   epel                                        45 k
+ nagios-plugins-ntp        x86_64  2.2.1-4git.el7                   epel                                        63 k
+ nagios-plugins-ntp-perl   x86_64  2.2.1-4git.el7                   epel                                        22 k
+ nagios-plugins-nwstat     x86_64  2.2.1-4git.el7                   epel                                        46 k
+ nagios-plugins-oracle     x86_64  2.2.1-4git.el7                   epel                                        20 k
+ nagios-plugins-overcr     x86_64  2.2.1-4git.el7                   epel                                        41 k
+ nagios-plugins-perl       x86_64  2.2.1-4git.el7                   epel                                        18 k
+ nagios-plugins-pgsql      x86_64  2.2.1-4git.el7                   epel                                        43 k
+ nagios-plugins-ping       x86_64  2.2.1-4git.el7                   epel                                        45 k
+ nagios-plugins-procs      x86_64  2.2.1-4git.el7                   epel                                        44 k
+ nagios-plugins-real       x86_64  2.2.1-4git.el7                   epel                                        40 k
+ nagios-plugins-rpc        x86_64  2.2.1-4git.el7                   epel                                        20 k
+ nagios-plugins-sensors    x86_64  2.2.1-4git.el7                   epel                                        18 k
+ nagios-plugins-smtp       x86_64  2.2.1-4git.el7                   epel                                        47 k
+ nagios-plugins-snmp       x86_64  2.2.1-4git.el7                   epel                                        49 k
+ nagios-plugins-ssh        x86_64  2.2.1-4git.el7                   epel                                        40 k
+ nagios-plugins-swap       x86_64  2.2.1-4git.el7                   epel                                        38 k
+ nagios-plugins-tcp        x86_64  2.2.1-4git.el7                   epel                                        47 k
+ nagios-plugins-time       x86_64  2.2.1-4git.el7                   epel                                        40 k
+ nagios-plugins-ups        x86_64  2.2.1-4git.el7                   epel                                        42 k
+ nagios-plugins-users      x86_64  2.2.1-4git.el7                   epel                                        36 k
+ nagios-plugins-wave       x86_64  2.2.1-4git.el7                   epel                                        18 k
+ ntp                       x86_64  4.2.6p5-25.el7_3.2               rhel-7-server-rpms                         547 k
+ ntpdate                   x86_64  4.2.6p5-25.el7_3.2               rhel-7-server-rpms                          86 k
+ postgresql-libs           x86_64  9.2.23-1.el7_4                   rhel-7-server-rpms                         233 k
+ qstat                     x86_64  2.11-13.20080912svn311.el7       epel                                       167 k
+ samba-client              x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         598 k
+Updating for dependencies:
+ libwbclient               x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         104 k
+ samba                     x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         633 k
+ samba-client-libs         x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         4.7 M
+ samba-common              noarch  4.6.2-11.el7_4                   rhel-7-server-rpms                         197 k
+ samba-common-libs         x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         164 k
+ samba-common-tools        x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         456 k
+ samba-libs                x86_64  4.6.2-11.el7_4                   rhel-7-server-rpms                         265 k
+
+Transaction Summary
+=====================================================================================================================
+Install  4 Packages (+58 Dependent packages)
+Upgrade             (  7 Dependent packages)
+
+Total size: 11 M
+Total download size: 11 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(2/65): libarchive-3.1.2-10.el7_2.x86_64.rpm 0% [                                  ]  0.0 B/s |    0 B  --:--:-- ETA (1/65): autogen-libopts-5.18-5.el7.x86_64.rpm                                                 |  66 kB  00:00:00     
+(2/65): libarchive-3.1.2-10.el7_2.x86_64.rpm                                                  | 319 kB  00:00:00     
+(3/65): libsmbclient-4.6.2-11.el7_4.x86_64.rpm                                                | 130 kB  00:00:00     
+(4/65): libwbclient-4.6.2-11.el7_4.x86_64.rpm                                                 | 104 kB  00:00:00     
+(5/65): nagios-plugins-2.2.1-4git.el7.x86_64.rpm                                              | 251 kB  00:00:00     
+(6/65): nagios-plugins-breeze-2.2.1-4git.el7.x86_64.rpm                                       |  18 kB  00:00:00     
+(7/65): nagios-plugins-by_ssh-2.2.1-4git.el7.x86_64.rpm                                       |  44 kB  00:00:00     
+(8/65): nagios-plugins-cluster-2.2.1-4git.el7.x86_64.rpm                                      |  37 kB  00:00:00     
+(9/65): nagios-plugins-dhcp-2.2.1-4git.el7.x86_64.rpm                                         |  44 kB  00:00:00     
+(10/65): nagios-plugins-dig-2.2.1-4git.el7.x86_64.rpm                                         |  44 kB  00:00:00     
+(11/65): lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_64.rpm                                 | 140 kB  00:00:00     
+(12/65): nagios-plugins-disk-2.2.1-4git.el7.x86_64.rpm                                        |  45 kB  00:00:00     
+(13/65): nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64.rpm                                    |  21 kB  00:00:00     
+(14/65): nagios-plugins-dns-2.2.1-4git.el7.x86_64.rpm                                         |  45 kB  00:00:00     
+(15/65): nagios-plugins-dummy-2.2.1-4git.el7.x86_64.rpm                                       |  33 kB  00:00:00     
+(16/65): nagios-plugins-file_age-2.2.1-4git.el7.x86_64.rpm                                    |  19 kB  00:00:00     
+(17/65): nagios-plugins-flexlm-2.2.1-4git.el7.x86_64.rpm                                      |  20 kB  00:00:00     
+(18/65): nagios-plugins-fping-2.2.1-4git.el7.x86_64.rpm                                       |  43 kB  00:00:00     
+(19/65): nagios-plugins-game-2.2.1-4git.el7.x86_64.rpm                                        |  39 kB  00:00:00     
+(20/65): nagios-plugins-hpjd-2.2.1-4git.el7.x86_64.rpm                                        |  42 kB  00:00:00     
+(21/65): nagios-plugins-http-2.2.1-4git.el7.x86_64.rpm                                        |  60 kB  00:00:00     
+(22/65): nagios-plugins-icmp-2.2.1-4git.el7.x86_64.rpm                                        |  46 kB  00:00:00     
+(23/65): nagios-plugins-ide_smart-2.2.1-4git.el7.x86_64.rpm                                   |  38 kB  00:00:00     
+(24/65): nagios-plugins-ircd-2.2.1-4git.el7.x86_64.rpm                                        |  20 kB  00:00:00     
+(25/65): nagios-plugins-ldap-2.2.1-4git.el7.x86_64.rpm                                        |  42 kB  00:00:00     
+(26/65): nagios-plugins-load-2.2.1-4git.el7.x86_64.rpm                                        |  39 kB  00:00:00     
+(27/65): nagios-plugins-log-2.2.1-4git.el7.x86_64.rpm                                         |  19 kB  00:00:00     
+(28/65): nagios-plugins-mailq-2.2.1-4git.el7.x86_64.rpm                                       |  22 kB  00:00:00     
+(29/65): nagios-plugins-mrtg-2.2.1-4git.el7.x86_64.rpm                                        |  39 kB  00:00:00     
+(30/65): nagios-plugins-mrtgtraf-2.2.1-4git.el7.x86_64.rpm                                    |  38 kB  00:00:00     
+(31/65): nagios-plugins-mysql-2.2.1-4git.el7.x86_64.rpm                                       |  50 kB  00:00:00     
+(32/65): nagios-plugins-nagios-2.2.1-4git.el7.x86_64.rpm                                      |  39 kB  00:00:00     
+(33/65): nagios-plugins-nt-2.2.1-4git.el7.x86_64.rpm                                          |  45 kB  00:00:00     
+(34/65): nagios-plugins-ntp-2.2.1-4git.el7.x86_64.rpm                                         |  63 kB  00:00:00     
+(35/65): nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64.rpm                                    |  22 kB  00:00:00     
+(36/65): nagios-plugins-nwstat-2.2.1-4git.el7.x86_64.rpm                                      |  46 kB  00:00:00     
+(37/65): nagios-plugins-oracle-2.2.1-4git.el7.x86_64.rpm                                      |  20 kB  00:00:00     
+(38/65): nagios-plugins-overcr-2.2.1-4git.el7.x86_64.rpm                                      |  41 kB  00:00:00     
+(39/65): nagios-plugins-perl-2.2.1-4git.el7.x86_64.rpm                                        |  18 kB  00:00:00     
+(40/65): nagios-plugins-pgsql-2.2.1-4git.el7.x86_64.rpm                                       |  43 kB  00:00:00     
+(41/65): nagios-plugins-ping-2.2.1-4git.el7.x86_64.rpm                                        |  45 kB  00:00:00     
+(42/65): nagios-plugins-procs-2.2.1-4git.el7.x86_64.rpm                                       |  44 kB  00:00:00     
+(43/65): nagios-plugins-real-2.2.1-4git.el7.x86_64.rpm                                        |  40 kB  00:00:00     
+(44/65): nagios-plugins-rpc-2.2.1-4git.el7.x86_64.rpm                                         |  20 kB  00:00:00     
+(45/65): nagios-plugins-sensors-2.2.1-4git.el7.x86_64.rpm                                     |  18 kB  00:00:00     
+(46/65): nagios-plugins-smtp-2.2.1-4git.el7.x86_64.rpm                                        |  47 kB  00:00:00     
+(47/65): nagios-plugins-snmp-2.2.1-4git.el7.x86_64.rpm                                        |  49 kB  00:00:00     
+(48/65): nagios-plugins-ssh-2.2.1-4git.el7.x86_64.rpm                                         |  40 kB  00:00:00     
+(49/65): nagios-plugins-swap-2.2.1-4git.el7.x86_64.rpm                                        |  38 kB  00:00:00     
+(50/65): nagios-plugins-tcp-2.2.1-4git.el7.x86_64.rpm                                         |  47 kB  00:00:00     
+(51/65): nagios-plugins-time-2.2.1-4git.el7.x86_64.rpm                                        |  40 kB  00:00:00     
+(52/65): nagios-plugins-ups-2.2.1-4git.el7.x86_64.rpm                                         |  42 kB  00:00:00     
+(53/65): nagios-plugins-users-2.2.1-4git.el7.x86_64.rpm                                       |  36 kB  00:00:00     
+(54/65): nagios-plugins-wave-2.2.1-4git.el7.x86_64.rpm                                        |  18 kB  00:00:00     
+(55/65): ntp-4.2.6p5-25.el7_3.2.x86_64.rpm                                                    | 547 kB  00:00:00     
+(58/65): qstat-2.11-13.20080912svn311.el7.x 30% [==========                        ]  0.0 B/s | 3.2 MB  --:--:-- ETA (56/65): qstat-2.11-13.20080912svn311.el7.x86_64.rpm                                          | 167 kB  00:00:00     
+(57/65): ntpdate-4.2.6p5-25.el7_3.2.x86_64.rpm                                                |  86 kB  00:00:00     
+(58/65): postgresql-libs-9.2.23-1.el7_4.x86_64.rpm                                            | 233 kB  00:00:00     
+(59/65): samba-4.6.2-11.el7_4.x86_64.rpm                                                      | 633 kB  00:00:00     
+(60/65): samba-client-4.6.2-11.el7_4.x86_64.rpm                                               | 598 kB  00:00:00     
+(61/65): samba-client-libs-4.6.2-11.el7_4.x86_64.rpm                                          | 4.7 MB  00:00:00     
+(62/65): samba-common-4.6.2-11.el7_4.noarch.rpm                                               | 197 kB  00:00:00     
+(63/65): samba-common-libs-4.6.2-11.el7_4.x86_64.rpm                                          | 164 kB  00:00:00     
+(64/65): samba-common-tools-4.6.2-11.el7_4.x86_64.rpm                                         | 456 kB  00:00:00     
+(65/65): samba-libs-4.6.2-11.el7_4.x86_64.rpm                                                 | 265 kB  00:00:00     
+---------------------------------------------------------------------------------------------------------------------
+Total                                                                                2.9 MB/s |  11 MB  00:00:03     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : nagios-common-3.5.1-1.el7.x86_64 [                                                            ]  1/76  Installing : nagios-common-3.5.1-1.el7.x86_64 [###########                                                 ]  1/76  Installing : nagios-common-3.5.1-1.el7.x86_64 [#######################                                     ]  1/76  Installing : nagios-common-3.5.1-1.el7.x86_64 [####################################                        ]  1/76  Installing : nagios-common-3.5.1-1.el7.x86_64 [################################################            ]  1/76  Installing : nagios-common-3.5.1-1.el7.x86_64                                                                 1/76 
+  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [                                                        ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [##                                                      ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [####                                                    ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#####                                                   ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [######                                                  ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [##########                                              ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#############                                           ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [################                                        ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [###################                                     ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [######################                                  ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [##########################                              ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#############################                           ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#################################                       ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [####################################                    ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#######################################                 ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [###########################################             ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#############################################           ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [###############################################         ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [#################################################       ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [##################################################      ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [######################################################  ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64 [####################################################### ]  2/76  Installing : nagios-plugins-2.2.1-4git.el7.x86_64                                                             2/76 
+  Installing : nagios-plugins-perl-2.2.1-4git.el7.x86_64 [                                                   ]  3/76  Installing : nagios-plugins-perl-2.2.1-4git.el7.x86_64 [###############################################    ]  3/76  Installing : nagios-plugins-perl-2.2.1-4git.el7.x86_64                                                        3/76 
+  Updating   : samba-common-4.6.2-11.el7_4.noarch [                                                          ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [#####                                                     ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [######                                                    ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [###################################                       ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [######################################################    ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [########################################################  ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch [######################################################### ]  4/76  Updating   : samba-common-4.6.2-11.el7_4.noarch                                                               4/76 
+  Updating   : libwbclient-4.6.2-11.el7_4.x86_64 [                                                           ]  5/76  Updating   : libwbclient-4.6.2-11.el7_4.x86_64 [############                                               ]  5/76  Updating   : libwbclient-4.6.2-11.el7_4.x86_64 [########################################################## ]  5/76  Updating   : libwbclient-4.6.2-11.el7_4.x86_64                                                                5/76 
+  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [                                                     ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#                                                    ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##                                                   ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###                                                  ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [####                                                 ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#####                                                ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [######                                               ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#######                                              ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [########                                             ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#########                                            ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##########                                           ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###########                                          ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [############                                         ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#############                                        ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##############                                       ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###############                                      ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [################                                     ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#################                                    ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##################                                   ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###################                                  ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [####################                                 ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#####################                                ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [######################                               ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#######################                              ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [########################                             ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#########################                            ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##########################                           ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###########################                          ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [############################                         ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#############################                        ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##############################                       ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###############################                      ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [################################                     ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#################################                    ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##################################                   ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###################################                  ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [####################################                 ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#####################################                ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [######################################               ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#######################################              ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [########################################             ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#########################################            ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##########################################           ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###########################################          ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [############################################         ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#############################################        ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##############################################       ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###############################################      ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [################################################     ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#################################################    ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [##################################################   ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [###################################################  ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64 [#################################################### ]  6/76  Updating   : samba-client-libs-4.6.2-11.el7_4.x86_64                                                          6/76 
+  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [                                                     ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [###                                                  ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [################                                     ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [############################                         ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [##################################                   ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [##########################################           ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [#################################################    ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64 [#################################################### ]  7/76  Updating   : samba-common-libs-4.6.2-11.el7_4.x86_64                                                          7/76 
+  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [                                                            ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#####                                                       ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [######                                                      ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#########                                                   ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [##########                                                  ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [###############                                             ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [##################                                          ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [###################                                         ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [########################                                    ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [###########################                                 ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [############################                                ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#################################                           ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#######################################                     ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [############################################                ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#################################################           ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [####################################################        ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [######################################################      ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [#########################################################   ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [##########################################################  ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64 [########################################################### ]  8/76  Updating   : samba-libs-4.6.2-11.el7_4.x86_64                                                                 8/76 
+  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64 [                                                           ]  9/76  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64 [###############################                            ]  9/76  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64 [####################################################       ]  9/76  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64 [#########################################################  ]  9/76  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64 [########################################################## ]  9/76  Installing : ntpdate-4.2.6p5-25.el7_3.2.x86_64                                                                9/76 
+  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [                                                    ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [##                                                  ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#####                                               ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [########                                            ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [###########                                         ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [##############                                      ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#################                                   ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [####################                                ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#######################                             ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [##########################                          ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#############################                       ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [################################                    ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [##################################                  ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#####################################               ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [########################################            ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#########################################           ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [###########################################         ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [############################################        ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [###############################################     ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [################################################    ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [#################################################   ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [##################################################  ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64 [################################################### ] 10/76  Updating   : samba-common-tools-4.6.2-11.el7_4.x86_64                                                        10/76 
+  Installing : libsmbclient-4.6.2-11.el7_4.x86_64 [                                                          ] 11/76  Installing : libsmbclient-4.6.2-11.el7_4.x86_64 [#######################                                   ] 11/76  Installing : libsmbclient-4.6.2-11.el7_4.x86_64 [##############################################            ] 11/76  Installing : libsmbclient-4.6.2-11.el7_4.x86_64 [######################################################### ] 11/76  Installing : libsmbclient-4.6.2-11.el7_4.x86_64                                                              11/76 
+  Installing : nagios-plugins-file_age-2.2.1-4git.el7.x86_64 [                                               ] 12/76  Installing : nagios-plugins-file_age-2.2.1-4git.el7.x86_64 [#############################################  ] 12/76  Installing : nagios-plugins-file_age-2.2.1-4git.el7.x86_64                                                   12/76 
+  Installing : nagios-plugins-rpc-2.2.1-4git.el7.x86_64 [                                                    ] 13/76  Installing : nagios-plugins-rpc-2.2.1-4git.el7.x86_64 [##################################################  ] 13/76  Installing : nagios-plugins-rpc-2.2.1-4git.el7.x86_64                                                        13/76 
+  Installing : nagios-plugins-mailq-2.2.1-4git.el7.x86_64 [                                                  ] 14/76  Installing : nagios-plugins-mailq-2.2.1-4git.el7.x86_64 [################################################# ] 14/76  Installing : nagios-plugins-mailq-2.2.1-4git.el7.x86_64                                                      14/76 
+  Installing : nagios-plugins-breeze-2.2.1-4git.el7.x86_64 [                                                 ] 15/76  Installing : nagios-plugins-breeze-2.2.1-4git.el7.x86_64 [##############################################   ] 15/76  Installing : nagios-plugins-breeze-2.2.1-4git.el7.x86_64                                                     15/76 
+  Installing : nagios-plugins-wave-2.2.1-4git.el7.x86_64 [                                                   ] 16/76  Installing : nagios-plugins-wave-2.2.1-4git.el7.x86_64 [################################################   ] 16/76  Installing : nagios-plugins-wave-2.2.1-4git.el7.x86_64                                                       16/76 
+  Installing : nagios-plugins-flexlm-2.2.1-4git.el7.x86_64 [                                                 ] 17/76  Installing : nagios-plugins-flexlm-2.2.1-4git.el7.x86_64 [################################################ ] 17/76  Installing : nagios-plugins-flexlm-2.2.1-4git.el7.x86_64                                                     17/76 
+  Installing : nagios-plugins-ircd-2.2.1-4git.el7.x86_64 [                                                   ] 18/76  Installing : nagios-plugins-ircd-2.2.1-4git.el7.x86_64 [#################################################  ] 18/76  Installing : nagios-plugins-ircd-2.2.1-4git.el7.x86_64                                                       18/76 
+  Installing : nagios-plugins-mysql-2.2.1-4git.el7.x86_64 [                                                  ] 19/76  Installing : nagios-plugins-mysql-2.2.1-4git.el7.x86_64 [#########################                         ] 19/76  Installing : nagios-plugins-mysql-2.2.1-4git.el7.x86_64 [################################################# ] 19/76  Installing : nagios-plugins-mysql-2.2.1-4git.el7.x86_64                                                      19/76 
+  Installing : nagios-plugins-mrtg-2.2.1-4git.el7.x86_64 [                                                   ] 20/76  Installing : nagios-plugins-mrtg-2.2.1-4git.el7.x86_64 [################################################## ] 20/76  Installing : nagios-plugins-mrtg-2.2.1-4git.el7.x86_64                                                       20/76 
+  Installing : nagios-plugins-nt-2.2.1-4git.el7.x86_64 [                                                     ] 21/76  Installing : nagios-plugins-nt-2.2.1-4git.el7.x86_64 [###################################################  ] 21/76  Installing : nagios-plugins-nt-2.2.1-4git.el7.x86_64 [#################################################### ] 21/76  Installing : nagios-plugins-nt-2.2.1-4git.el7.x86_64                                                         21/76 
+  Installing : nagios-plugins-by_ssh-2.2.1-4git.el7.x86_64 [                                                 ] 22/76  Installing : nagios-plugins-by_ssh-2.2.1-4git.el7.x86_64 [################################################ ] 22/76  Installing : nagios-plugins-by_ssh-2.2.1-4git.el7.x86_64                                                     22/76 
+  Installing : nagios-plugins-procs-2.2.1-4git.el7.x86_64 [                                                  ] 23/76  Installing : nagios-plugins-procs-2.2.1-4git.el7.x86_64 [################################################# ] 23/76  Installing : nagios-plugins-procs-2.2.1-4git.el7.x86_64                                                      23/76 
+  Installing : nagios-plugins-users-2.2.1-4git.el7.x86_64 [                                                  ] 24/76  Installing : nagios-plugins-users-2.2.1-4git.el7.x86_64 [################################################# ] 24/76  Installing : nagios-plugins-users-2.2.1-4git.el7.x86_64                                                      24/76 
+  Installing : nagios-plugins-nwstat-2.2.1-4git.el7.x86_64 [                                                 ] 25/76  Installing : nagios-plugins-nwstat-2.2.1-4git.el7.x86_64 [###########################################      ] 25/76  Installing : nagios-plugins-nwstat-2.2.1-4git.el7.x86_64 [################################################ ] 25/76  Installing : nagios-plugins-nwstat-2.2.1-4git.el7.x86_64                                                     25/76 
+  Installing : nagios-plugins-overcr-2.2.1-4git.el7.x86_64 [                                                 ] 26/76  Installing : nagios-plugins-overcr-2.2.1-4git.el7.x86_64 [################################################ ] 26/76  Installing : nagios-plugins-overcr-2.2.1-4git.el7.x86_64                                                     26/76 
+  Installing : nagios-plugins-log-2.2.1-4git.el7.x86_64 [                                                    ] 27/76  Installing : nagios-plugins-log-2.2.1-4git.el7.x86_64 [##################################################  ] 27/76  Installing : nagios-plugins-log-2.2.1-4git.el7.x86_64                                                        27/76 
+  Installing : nagios-plugins-disk-2.2.1-4git.el7.x86_64 [                                                   ] 28/76  Installing : nagios-plugins-disk-2.2.1-4git.el7.x86_64 [##############################################     ] 28/76  Installing : nagios-plugins-disk-2.2.1-4git.el7.x86_64 [################################################## ] 28/76  Installing : nagios-plugins-disk-2.2.1-4git.el7.x86_64                                                       28/76 
+  Installing : nagios-plugins-ide_smart-2.2.1-4git.el7.x86_64 [                                              ] 29/76  Installing : nagios-plugins-ide_smart-2.2.1-4git.el7.x86_64 [############################################# ] 29/76  Installing : nagios-plugins-ide_smart-2.2.1-4git.el7.x86_64                                                  29/76 
+  Installing : nagios-plugins-dig-2.2.1-4git.el7.x86_64 [                                                    ] 30/76  Installing : nagios-plugins-dig-2.2.1-4git.el7.x86_64 [################################################### ] 30/76  Installing : nagios-plugins-dig-2.2.1-4git.el7.x86_64                                                        30/76 
+  Installing : nagios-plugins-icmp-2.2.1-4git.el7.x86_64 [                                                   ] 31/76  Installing : nagios-plugins-icmp-2.2.1-4git.el7.x86_64 [################################################## ] 31/76  Installing : nagios-plugins-icmp-2.2.1-4git.el7.x86_64                                                       31/76 
+  Installing : nagios-plugins-hpjd-2.2.1-4git.el7.x86_64 [                                                   ] 32/76  Installing : nagios-plugins-hpjd-2.2.1-4git.el7.x86_64 [################################################## ] 32/76  Installing : nagios-plugins-hpjd-2.2.1-4git.el7.x86_64                                                       32/76 
+  Installing : nagios-plugins-swap-2.2.1-4git.el7.x86_64 [                                                   ] 33/76  Installing : nagios-plugins-swap-2.2.1-4git.el7.x86_64 [################################################## ] 33/76  Installing : nagios-plugins-swap-2.2.1-4git.el7.x86_64                                                       33/76 
+  Installing : nagios-plugins-ping-2.2.1-4git.el7.x86_64 [                                                   ] 34/76  Installing : nagios-plugins-ping-2.2.1-4git.el7.x86_64 [#################################################  ] 34/76  Installing : nagios-plugins-ping-2.2.1-4git.el7.x86_64 [################################################## ] 34/76  Installing : nagios-plugins-ping-2.2.1-4git.el7.x86_64                                                       34/76 
+  Installing : nagios-plugins-dns-2.2.1-4git.el7.x86_64 [                                                    ] 35/76  Installing : nagios-plugins-dns-2.2.1-4git.el7.x86_64 [##################################################  ] 35/76  Installing : nagios-plugins-dns-2.2.1-4git.el7.x86_64 [################################################### ] 35/76  Installing : nagios-plugins-dns-2.2.1-4git.el7.x86_64                                                        35/76 
+  Installing : nagios-plugins-http-2.2.1-4git.el7.x86_64 [                                                   ] 36/76  Installing : nagios-plugins-http-2.2.1-4git.el7.x86_64 [#############################                      ] 36/76  Installing : nagios-plugins-http-2.2.1-4git.el7.x86_64 [################################################## ] 36/76  Installing : nagios-plugins-http-2.2.1-4git.el7.x86_64                                                       36/76 
+  Installing : nagios-plugins-smtp-2.2.1-4git.el7.x86_64 [                                                   ] 37/76  Installing : nagios-plugins-smtp-2.2.1-4git.el7.x86_64 [############################################       ] 37/76  Installing : nagios-plugins-smtp-2.2.1-4git.el7.x86_64 [################################################## ] 37/76  Installing : nagios-plugins-smtp-2.2.1-4git.el7.x86_64                                                       37/76 
+  Installing : nagios-plugins-dummy-2.2.1-4git.el7.x86_64 [                                                  ] 38/76  Installing : nagios-plugins-dummy-2.2.1-4git.el7.x86_64 [################################################# ] 38/76  Installing : nagios-plugins-dummy-2.2.1-4git.el7.x86_64                                                      38/76 
+  Installing : nagios-plugins-ups-2.2.1-4git.el7.x86_64 [                                                    ] 39/76  Installing : nagios-plugins-ups-2.2.1-4git.el7.x86_64 [################################################### ] 39/76  Installing : nagios-plugins-ups-2.2.1-4git.el7.x86_64                                                        39/76 
+  Installing : nagios-plugins-nagios-2.2.1-4git.el7.x86_64 [                                                 ] 40/76  Installing : nagios-plugins-nagios-2.2.1-4git.el7.x86_64 [################################################ ] 40/76  Installing : nagios-plugins-nagios-2.2.1-4git.el7.x86_64                                                     40/76 
+  Installing : nagios-plugins-dhcp-2.2.1-4git.el7.x86_64 [                                                   ] 41/76  Installing : nagios-plugins-dhcp-2.2.1-4git.el7.x86_64 [################################################## ] 41/76  Installing : nagios-plugins-dhcp-2.2.1-4git.el7.x86_64                                                       41/76 
+  Installing : nagios-plugins-ntp-2.2.1-4git.el7.x86_64 [                                                    ] 42/76  Installing : nagios-plugins-ntp-2.2.1-4git.el7.x86_64 [#################                                   ] 42/76  Installing : nagios-plugins-ntp-2.2.1-4git.el7.x86_64 [##################################                  ] 42/76  Installing : nagios-plugins-ntp-2.2.1-4git.el7.x86_64 [################################################### ] 42/76  Installing : nagios-plugins-ntp-2.2.1-4git.el7.x86_64                                                        42/76 
+  Installing : nagios-plugins-cluster-2.2.1-4git.el7.x86_64 [                                                ] 43/76  Installing : nagios-plugins-cluster-2.2.1-4git.el7.x86_64 [############################################### ] 43/76  Installing : nagios-plugins-cluster-2.2.1-4git.el7.x86_64                                                    43/76 
+  Installing : nagios-plugins-oracle-2.2.1-4git.el7.x86_64 [                                                 ] 44/76  Installing : nagios-plugins-oracle-2.2.1-4git.el7.x86_64 [################################################ ] 44/76  Installing : nagios-plugins-oracle-2.2.1-4git.el7.x86_64                                                     44/76 
+  Installing : nagios-plugins-mrtgtraf-2.2.1-4git.el7.x86_64 [                                               ] 45/76  Installing : nagios-plugins-mrtgtraf-2.2.1-4git.el7.x86_64 [############################################## ] 45/76  Installing : nagios-plugins-mrtgtraf-2.2.1-4git.el7.x86_64                                                   45/76 
+  Installing : nagios-plugins-ssh-2.2.1-4git.el7.x86_64 [                                                    ] 46/76  Installing : nagios-plugins-ssh-2.2.1-4git.el7.x86_64 [################################################### ] 46/76  Installing : nagios-plugins-ssh-2.2.1-4git.el7.x86_64                                                        46/76 
+  Installing : nagios-plugins-time-2.2.1-4git.el7.x86_64 [                                                   ] 47/76  Installing : nagios-plugins-time-2.2.1-4git.el7.x86_64 [################################################## ] 47/76  Installing : nagios-plugins-time-2.2.1-4git.el7.x86_64                                                       47/76 
+  Installing : nagios-plugins-load-2.2.1-4git.el7.x86_64 [                                                   ] 48/76  Installing : nagios-plugins-load-2.2.1-4git.el7.x86_64 [################################################## ] 48/76  Installing : nagios-plugins-load-2.2.1-4git.el7.x86_64                                                       48/76 
+  Installing : nagios-plugins-ldap-2.2.1-4git.el7.x86_64 [                                                   ] 49/76  Installing : nagios-plugins-ldap-2.2.1-4git.el7.x86_64 [################################################## ] 49/76  Installing : nagios-plugins-ldap-2.2.1-4git.el7.x86_64                                                       49/76 
+  Installing : nagios-plugins-snmp-2.2.1-4git.el7.x86_64 [                                                   ] 50/76  Installing : nagios-plugins-snmp-2.2.1-4git.el7.x86_64 [#######################################            ] 50/76  Installing : nagios-plugins-snmp-2.2.1-4git.el7.x86_64 [################################################## ] 50/76  Installing : nagios-plugins-snmp-2.2.1-4git.el7.x86_64                                                       50/76 
+  Installing : nagios-plugins-real-2.2.1-4git.el7.x86_64 [                                                   ] 51/76  Installing : nagios-plugins-real-2.2.1-4git.el7.x86_64 [################################################## ] 51/76  Installing : nagios-plugins-real-2.2.1-4git.el7.x86_64                                                       51/76 
+  Installing : nagios-plugins-tcp-2.2.1-4git.el7.x86_64 [                                                    ] 52/76  Installing : nagios-plugins-tcp-2.2.1-4git.el7.x86_64 [#                                                   ] 52/76  Installing : nagios-plugins-tcp-2.2.1-4git.el7.x86_64 [###############################################     ] 52/76  Installing : nagios-plugins-tcp-2.2.1-4git.el7.x86_64 [################################################### ] 52/76  Installing : nagios-plugins-tcp-2.2.1-4git.el7.x86_64                                                        52/76 
+  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [                                              ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [###                                           ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#####                                         ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [######                                        ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [########                                      ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#########                                     ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [###########                                   ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [##################                            ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#########################                     ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [################################              ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [##################################            ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [####################################          ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#####################################         ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#######################################       ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [########################################      ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [#########################################     ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [##########################################    ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [###########################################   ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [############################################  ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_ [############################################# ] 53/76  Installing : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_64                                                53/76 
+  Installing : nagios-plugins-sensors-2.2.1-4git.el7.x86_64 [                                                ] 54/76  Installing : nagios-plugins-sensors-2.2.1-4git.el7.x86_64 [############################################    ] 54/76  Installing : nagios-plugins-sensors-2.2.1-4git.el7.x86_64                                                    54/76 
+  Installing : libarchive-3.1.2-10.el7_2.x86_64 [                                                            ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [####                                                        ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [##########                                                  ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [###############                                             ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [#####################                                       ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [#########################                                   ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [###############################                             ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [####################################                        ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [##########################################                  ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [###############################################             ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [####################################################        ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [#######################################################     ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [#########################################################   ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [##########################################################  ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64 [########################################################### ] 55/76  Installing : libarchive-3.1.2-10.el7_2.x86_64                                                                55/76 
+  Installing : samba-client-4.6.2-11.el7_4.x86_64 [                                                          ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#                                                         ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##                                                        ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [####                                                      ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [######                                                    ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [########                                                  ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#########                                                 ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##########                                                ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [############                                              ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#############                                             ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###############                                           ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#################                                         ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###################                                       ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [####################                                      ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [######################                                    ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [########################                                  ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##########################                                ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [############################                              ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##############################                            ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###############################                           ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#################################                         ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###################################                       ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#####################################                     ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [######################################                    ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [########################################                  ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##########################################                ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [############################################              ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [##############################################            ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###############################################           ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [################################################          ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#################################################         ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [###################################################       ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [####################################################      ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#####################################################     ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [######################################################    ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [#######################################################   ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [########################################################  ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64 [######################################################### ] 56/76  Installing : samba-client-4.6.2-11.el7_4.x86_64                                                              56/76 
+  Installing : nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64 [                                               ] 57/76  Installing : nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64 [############################################## ] 57/76  Installing : nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64                                                   57/76 
+  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [                                                     ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [########                                             ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [################                                     ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [########################                             ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [################################                     ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [#######################################              ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [########################################             ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [#########################################            ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [#################################################    ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [##################################################   ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [###################################################  ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64 [#################################################### ] 58/76  Installing : qstat-2.11-13.20080912svn311.el7.x86_64                                                         58/76 
+  Installing : nagios-plugins-game-2.2.1-4git.el7.x86_64 [                                                   ] 59/76  Installing : nagios-plugins-game-2.2.1-4git.el7.x86_64 [################################################## ] 59/76  Installing : nagios-plugins-game-2.2.1-4git.el7.x86_64                                                       59/76 
+  Installing : fping-3.5-3.el7.x86_64 [                                                                      ] 60/76  Installing : fping-3.5-3.el7.x86_64 [#######################                                               ] 60/76  Installing : fping-3.5-3.el7.x86_64 [################################################                      ] 60/76  Installing : fping-3.5-3.el7.x86_64 [#################################################                     ] 60/76  Installing : fping-3.5-3.el7.x86_64 [##############################################################        ] 60/76  Installing : fping-3.5-3.el7.x86_64 [###############################################################       ] 60/76  Installing : fping-3.5-3.el7.x86_64 [##################################################################    ] 60/76  Installing : fping-3.5-3.el7.x86_64 [##################################################################### ] 60/76  Installing : fping-3.5-3.el7.x86_64                                                                          60/76 
+  Installing : nagios-plugins-fping-2.2.1-4git.el7.x86_64 [                                                  ] 61/76  Installing : nagios-plugins-fping-2.2.1-4git.el7.x86_64 [################################################# ] 61/76  Installing : nagios-plugins-fping-2.2.1-4git.el7.x86_64                                                      61/76 
+  Installing : autogen-libopts-5.18-5.el7.x86_64 [                                                           ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64 [##########################                                 ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64 [####################################################       ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64 [######################################################     ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64 [#########################################################  ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64 [########################################################## ] 62/76  Installing : autogen-libopts-5.18-5.el7.x86_64                                                               62/76 
+  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [                                                               ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###                                                            ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#####                                                          ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#######                                                        ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [##########                                                     ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#############                                                  ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [################                                               ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###################                                            ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [######################                                         ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#########################                                      ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###########################                                    ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [##############################                                 ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#################################                              ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [####################################                           ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#######################################                        ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [##########################################                     ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [############################################                   ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###############################################                ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#################################################              ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###################################################            ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [######################################################         ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#######################################################        ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [########################################################       ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [##########################################################     ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [###########################################################    ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [############################################################   ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [#############################################################  ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64 [############################################################## ] 63/76  Installing : ntp-4.2.6p5-25.el7_3.2.x86_64                                                                   63/76 
+  Installing : nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64 [                                               ] 64/76  Installing : nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64 [############################################## ] 64/76  Installing : nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64                                                   64/76 
+  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [                                                       ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [####                                                   ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [######                                                 ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [########                                               ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#############                                          ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [##################                                     ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [########################                               ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#############################                          ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [###############################                        ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#################################                      ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [##################################                     ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [###################################                    ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [####################################                   ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#####################################                  ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [######################################                 ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [########################################               ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [##########################################             ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [############################################           ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#############################################          ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [##############################################         ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [###############################################        ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#################################################      ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [###################################################    ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [#####################################################  ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64 [###################################################### ] 65/76  Installing : postgresql-libs-9.2.23-1.el7_4.x86_64                                                           65/76 
+  Installing : nagios-plugins-pgsql-2.2.1-4git.el7.x86_64 [                                                  ] 66/76  Installing : nagios-plugins-pgsql-2.2.1-4git.el7.x86_64 [################################################# ] 66/76  Installing : nagios-plugins-pgsql-2.2.1-4git.el7.x86_64                                                      66/76 
+  Installing : nagios-plugins-all-2.2.1-4git.el7.x86_64 [                                                    ] 67/76  Installing : nagios-plugins-all-2.2.1-4git.el7.x86_64                                                        67/76 
+  Updating   : samba-4.6.2-11.el7_4.x86_64 [                                                                 ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#                                                                ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###                                                              ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [####                                                             ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#####                                                            ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [######                                                           ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#######                                                          ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [########                                                         ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#########                                                        ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##########                                                       ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###########                                                      ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#############                                                    ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##############                                                   ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###############                                                  ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [################                                                 ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#################                                                ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###################                                              ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [####################                                             ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [######################                                           ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [########################                                         ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#########################                                        ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##########################                                       ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###########################                                      ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [############################                                     ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##############################                                   ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###############################                                  ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [################################                                 ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#################################                                ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##################################                               ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###################################                              ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#####################################                            ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [######################################                           ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#######################################                          ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#########################################                        ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [############################################                     ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##############################################                   ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [################################################                 ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##################################################               ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###################################################              ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [####################################################             ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#####################################################            ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [######################################################           ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#######################################################          ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#########################################################        ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##########################################################       ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [############################################################     ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [#############################################################    ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [##############################################################   ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [###############################################################  ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64 [################################################################ ] 68/76  Updating   : samba-4.6.2-11.el7_4.x86_64                                                                     68/76 
+  Installing : nrpe-3.1.1-1.el7.x86_64 [                                                                     ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [##                                                                   ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [###############                                                      ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [###################                                                  ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [####################                                                 ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [#################################                                    ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [##############################################                       ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [###########################################################          ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [################################################################     ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [##################################################################   ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [###################################################################  ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64 [#################################################################### ] 69/76  Installing : nrpe-3.1.1-1.el7.x86_64                                                                         69/76 
+  Cleanup    : samba-4.6.2-8.el7.x86_64                                                                        70/76 
+  Cleanup    : samba-common-tools-4.6.2-8.el7.x86_64                                                           71/76 
+  Cleanup    : samba-common-libs-4.6.2-8.el7.x86_64                                                            72/76 
+  Cleanup    : samba-libs-4.6.2-8.el7.x86_64                                                                   73/76 
+  Cleanup    : libwbclient-4.6.2-8.el7.x86_64                                                                  74/76 
+  Cleanup    : samba-client-libs-4.6.2-8.el7.x86_64                                                            75/76 
+  Cleanup    : samba-common-4.6.2-8.el7.noarch                                                                 76/76 
+  Verifying  : nagios-plugins-mysql-2.2.1-4git.el7.x86_64                                                       1/76 
+  Verifying  : nagios-plugins-mrtg-2.2.1-4git.el7.x86_64                                                        2/76 
+  Verifying  : nagios-plugins-perl-2.2.1-4git.el7.x86_64                                                        3/76 
+  Verifying  : nagios-plugins-nt-2.2.1-4git.el7.x86_64                                                          4/76 
+  Verifying  : postgresql-libs-9.2.23-1.el7_4.x86_64                                                            5/76 
+  Verifying  : nagios-plugins-by_ssh-2.2.1-4git.el7.x86_64                                                      6/76 
+  Verifying  : autogen-libopts-5.18-5.el7.x86_64                                                                7/76 
+  Verifying  : nagios-plugins-procs-2.2.1-4git.el7.x86_64                                                       8/76 
+  Verifying  : nagios-plugins-users-2.2.1-4git.el7.x86_64                                                       9/76 
+  Verifying  : nagios-plugins-nwstat-2.2.1-4git.el7.x86_64                                                     10/76 
+  Verifying  : nagios-plugins-file_age-2.2.1-4git.el7.x86_64                                                   11/76 
+  Verifying  : nagios-plugins-rpc-2.2.1-4git.el7.x86_64                                                        12/76 
+  Verifying  : nagios-plugins-overcr-2.2.1-4git.el7.x86_64                                                     13/76 
+  Verifying  : nagios-plugins-sensors-2.2.1-4git.el7.x86_64                                                    14/76 
+  Verifying  : nagios-plugins-2.2.1-4git.el7.x86_64                                                            15/76 
+  Verifying  : fping-3.5-3.el7.x86_64                                                                          16/76 
+  Verifying  : qstat-2.11-13.20080912svn311.el7.x86_64                                                         17/76 
+  Verifying  : nagios-plugins-mailq-2.2.1-4git.el7.x86_64                                                      18/76 
+  Verifying  : nagios-plugins-log-2.2.1-4git.el7.x86_64                                                        19/76 
+  Verifying  : nagios-plugins-breeze-2.2.1-4git.el7.x86_64                                                     20/76 
+  Verifying  : nagios-plugins-disk-2.2.1-4git.el7.x86_64                                                       21/76 
+  Verifying  : nagios-plugins-ide_smart-2.2.1-4git.el7.x86_64                                                  22/76 
+  Verifying  : nagios-plugins-dig-2.2.1-4git.el7.x86_64                                                        23/76 
+  Verifying  : ntp-4.2.6p5-25.el7_3.2.x86_64                                                                   24/76 
+  Verifying  : samba-client-4.6.2-11.el7_4.x86_64                                                              25/76 
+  Verifying  : nagios-plugins-icmp-2.2.1-4git.el7.x86_64                                                       26/76 
+  Verifying  : nagios-plugins-hpjd-2.2.1-4git.el7.x86_64                                                       27/76 
+  Verifying  : nagios-plugins-swap-2.2.1-4git.el7.x86_64                                                       28/76 
+  Verifying  : samba-client-libs-4.6.2-11.el7_4.x86_64                                                         29/76 
+  Verifying  : samba-common-4.6.2-11.el7_4.noarch                                                              30/76 
+  Verifying  : nagios-common-3.5.1-1.el7.x86_64                                                                31/76 
+  Verifying  : nagios-plugins-ping-2.2.1-4git.el7.x86_64                                                       32/76 
+  Verifying  : nagios-plugins-dns-2.2.1-4git.el7.x86_64                                                        33/76 
+  Verifying  : nagios-plugins-http-2.2.1-4git.el7.x86_64                                                       34/76 
+  Verifying  : libsmbclient-4.6.2-11.el7_4.x86_64                                                              35/76 
+  Verifying  : nagios-plugins-smtp-2.2.1-4git.el7.x86_64                                                       36/76 
+  Verifying  : nrpe-3.1.1-1.el7.x86_64                                                                         37/76 
+  Verifying  : nagios-plugins-game-2.2.1-4git.el7.x86_64                                                       38/76 
+  Verifying  : nagios-plugins-dummy-2.2.1-4git.el7.x86_64                                                      39/76 
+  Verifying  : nagios-plugins-ups-2.2.1-4git.el7.x86_64                                                        40/76 
+  Verifying  : libarchive-3.1.2-10.el7_2.x86_64                                                                41/76 
+  Verifying  : nagios-plugins-nagios-2.2.1-4git.el7.x86_64                                                     42/76 
+  Verifying  : nagios-plugins-dhcp-2.2.1-4git.el7.x86_64                                                       43/76 
+  Verifying  : nagios-plugins-disk_smb-2.2.1-4git.el7.x86_64                                                   44/76 
+  Verifying  : samba-common-tools-4.6.2-11.el7_4.x86_64                                                        45/76 
+  Verifying  : nagios-plugins-pgsql-2.2.1-4git.el7.x86_64                                                      46/76 
+  Verifying  : nagios-plugins-wave-2.2.1-4git.el7.x86_64                                                       47/76 
+  Verifying  : nagios-plugins-ntp-2.2.1-4git.el7.x86_64                                                        48/76 
+  Verifying  : nagios-plugins-cluster-2.2.1-4git.el7.x86_64                                                    49/76 
+  Verifying  : samba-libs-4.6.2-11.el7_4.x86_64                                                                50/76 
+  Verifying  : nagios-plugins-oracle-2.2.1-4git.el7.x86_64                                                     51/76 
+  Verifying  : nagios-plugins-mrtgtraf-2.2.1-4git.el7.x86_64                                                   52/76 
+  Verifying  : lm_sensors-3.4.0-4.20160601gitf9185e5.el7.x86_64                                                53/76 
+  Verifying  : nagios-plugins-ssh-2.2.1-4git.el7.x86_64                                                        54/76 
+  Verifying  : nagios-plugins-time-2.2.1-4git.el7.x86_64                                                       55/76 
+  Verifying  : nagios-plugins-all-2.2.1-4git.el7.x86_64                                                        56/76 
+  Verifying  : nagios-plugins-ntp-perl-2.2.1-4git.el7.x86_64                                                   57/76 
+  Verifying  : nagios-plugins-flexlm-2.2.1-4git.el7.x86_64                                                     58/76 
+  Verifying  : samba-4.6.2-11.el7_4.x86_64                                                                     59/76 
+  Verifying  : nagios-plugins-load-2.2.1-4git.el7.x86_64                                                       60/76 
+  Verifying  : nagios-plugins-ldap-2.2.1-4git.el7.x86_64                                                       61/76 
+  Verifying  : ntpdate-4.2.6p5-25.el7_3.2.x86_64                                                               62/76 
+  Verifying  : nagios-plugins-ircd-2.2.1-4git.el7.x86_64                                                       63/76 
+  Verifying  : nagios-plugins-fping-2.2.1-4git.el7.x86_64                                                      64/76 
+  Verifying  : samba-common-libs-4.6.2-11.el7_4.x86_64                                                         65/76 
+  Verifying  : nagios-plugins-snmp-2.2.1-4git.el7.x86_64                                                       66/76 
+  Verifying  : nagios-plugins-real-2.2.1-4git.el7.x86_64                                                       67/76 
+  Verifying  : nagios-plugins-tcp-2.2.1-4git.el7.x86_64                                                        68/76 
+  Verifying  : libwbclient-4.6.2-11.el7_4.x86_64                                                               69/76 
+  Verifying  : samba-4.6.2-8.el7.x86_64                                                                        70/76 
+  Verifying  : samba-common-libs-4.6.2-8.el7.x86_64                                                            71/76 
+  Verifying  : samba-common-4.6.2-8.el7.noarch                                                                 72/76 
+  Verifying  : samba-client-libs-4.6.2-8.el7.x86_64                                                            73/76 
+  Verifying  : samba-libs-4.6.2-8.el7.x86_64                                                                   74/76 
+  Verifying  : samba-common-tools-4.6.2-8.el7.x86_64                                                           75/76 
+  Verifying  : libwbclient-4.6.2-8.el7.x86_64                                                                  76/76 
+
+Installed:
+  fping.x86_64 0:3.5-3.el7      nagios-common.x86_64 0:3.5.1-1.el7     nagios-plugins-all.x86_64 0:2.2.1-4git.el7    
+  nrpe.x86_64 0:3.1.1-1.el7    
+
+Dependency Installed:
+  autogen-libopts.x86_64 0:5.18-5.el7                     libarchive.x86_64 0:3.1.2-10.el7_2                        
+  libsmbclient.x86_64 0:4.6.2-11.el7_4                    lm_sensors.x86_64 0:3.4.0-4.20160601gitf9185e5.el7        
+  nagios-plugins.x86_64 0:2.2.1-4git.el7                  nagios-plugins-breeze.x86_64 0:2.2.1-4git.el7             
+  nagios-plugins-by_ssh.x86_64 0:2.2.1-4git.el7           nagios-plugins-cluster.x86_64 0:2.2.1-4git.el7            
+  nagios-plugins-dhcp.x86_64 0:2.2.1-4git.el7             nagios-plugins-dig.x86_64 0:2.2.1-4git.el7                
+  nagios-plugins-disk.x86_64 0:2.2.1-4git.el7             nagios-plugins-disk_smb.x86_64 0:2.2.1-4git.el7           
+  nagios-plugins-dns.x86_64 0:2.2.1-4git.el7              nagios-plugins-dummy.x86_64 0:2.2.1-4git.el7              
+  nagios-plugins-file_age.x86_64 0:2.2.1-4git.el7         nagios-plugins-flexlm.x86_64 0:2.2.1-4git.el7             
+  nagios-plugins-fping.x86_64 0:2.2.1-4git.el7            nagios-plugins-game.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-hpjd.x86_64 0:2.2.1-4git.el7             nagios-plugins-http.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-icmp.x86_64 0:2.2.1-4git.el7             nagios-plugins-ide_smart.x86_64 0:2.2.1-4git.el7          
+  nagios-plugins-ircd.x86_64 0:2.2.1-4git.el7             nagios-plugins-ldap.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-load.x86_64 0:2.2.1-4git.el7             nagios-plugins-log.x86_64 0:2.2.1-4git.el7                
+  nagios-plugins-mailq.x86_64 0:2.2.1-4git.el7            nagios-plugins-mrtg.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-mrtgtraf.x86_64 0:2.2.1-4git.el7         nagios-plugins-mysql.x86_64 0:2.2.1-4git.el7              
+  nagios-plugins-nagios.x86_64 0:2.2.1-4git.el7           nagios-plugins-nt.x86_64 0:2.2.1-4git.el7                 
+  nagios-plugins-ntp.x86_64 0:2.2.1-4git.el7              nagios-plugins-ntp-perl.x86_64 0:2.2.1-4git.el7           
+  nagios-plugins-nwstat.x86_64 0:2.2.1-4git.el7           nagios-plugins-oracle.x86_64 0:2.2.1-4git.el7             
+  nagios-plugins-overcr.x86_64 0:2.2.1-4git.el7           nagios-plugins-perl.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-pgsql.x86_64 0:2.2.1-4git.el7            nagios-plugins-ping.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-procs.x86_64 0:2.2.1-4git.el7            nagios-plugins-real.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-rpc.x86_64 0:2.2.1-4git.el7              nagios-plugins-sensors.x86_64 0:2.2.1-4git.el7            
+  nagios-plugins-smtp.x86_64 0:2.2.1-4git.el7             nagios-plugins-snmp.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-ssh.x86_64 0:2.2.1-4git.el7              nagios-plugins-swap.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-tcp.x86_64 0:2.2.1-4git.el7              nagios-plugins-time.x86_64 0:2.2.1-4git.el7               
+  nagios-plugins-ups.x86_64 0:2.2.1-4git.el7              nagios-plugins-users.x86_64 0:2.2.1-4git.el7              
+  nagios-plugins-wave.x86_64 0:2.2.1-4git.el7             ntp.x86_64 0:4.2.6p5-25.el7_3.2                           
+  ntpdate.x86_64 0:4.2.6p5-25.el7_3.2                     postgresql-libs.x86_64 0:9.2.23-1.el7_4                   
+  qstat.x86_64 0:2.11-13.20080912svn311.el7               samba-client.x86_64 0:4.6.2-11.el7_4                      
+
+Dependency Updated:
+  libwbclient.x86_64 0:4.6.2-11.el7_4                      samba.x86_64 0:4.6.2-11.el7_4                            
+  samba-client-libs.x86_64 0:4.6.2-11.el7_4                samba-common.noarch 0:4.6.2-11.el7_4                     
+  samba-common-libs.x86_64 0:4.6.2-11.el7_4                samba-common-tools.x86_64 0:4.6.2-11.el7_4               
+  samba-libs.x86_64 0:4.6.2-11.el7_4                      
+
+Complete!
+Note: Forwarding request to 'systemctl enable nrpe.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/nrpe.service to /usr/lib/systemd/system/nrpe.service.
+Redirecting to /bin/systemctl start nrpe.service
+########################################
+Apache Install/Configuration
+Note: Forwarding request to 'systemctl enable httpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+Redirecting to /bin/systemctl restart httpd.service
+HealthShare
+########################################
+HSAP Install for schl : TEST : INTEGRATION (SCHLTEST2016INTEGRATION) below /trak/schlTEST/int
+Found Installer: /trak/schlTEST/int/db/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlTEST/int/hs" as it exists
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlTEST/int/db" as it exists
+NOTE - no WIJ directory found
+installing Cache now
+Installing with CSP
+spawn ./cinstall
+
+Your system type is 'Red Hat Enterprise Linux (x64)'.
+
+Currently defined instances:
+
+
+Enter instance name: SCHLTEST2016INTEGRATION
+Do you want to create HealthShare instance 'SCHLTEST2016INTEGRATION' <Yes>? 
+Enter a destination directory for the new instance.
+Directory: /trak/schlTEST/int/hs
+ccontrol(open registry): No such file or directory
+
+----------------------------------------------------
+NOTE: Users should not attempt to access HealthShare while
+      the installation is in progress.
+----------------------------------------------------
+
+
+Disk blocks required  = 3755292
+Disk blocks available = 52337312
+
+How restrictive do you want the initial Security settings to be?
+"Normal" is less restrictive, "Locked Down" is the most secure.
+    1) Normal
+    2) Locked Down
+Initial Security settings <1>? 1
+
+What user should be the owner of this instance? cachesys
+A Cache account will also be created for user cachesys.
+
+Install will create the following HealthShare accounts for you: 
+_SYSTEM, Admin, SuperUser, cachesys and CSPSystem. 
+Please enter the common password for _SYSTEM, Admin, SuperUser and cachesys: 
+Re-enter the password to confirm it: 
+
+Please enter the password for CSPSystem: 
+Re-enter the password to confirm it: 
+
+What group should be allowed to start and stop
+  this instance? cachemgr
+
+Do you want to configure additional security options <No>? y
+
+What is the effective group for HealthShare processes <cacheusr>? cachegrp
+
+What is the effective user for the Cache SuperServer
+  and its jobs <cacheusr>? cacheusr
+
+Do you want to load the Manager utility source code <Yes>? 
+
+Enter the SuperServer port number <1972>: 
+
+Enter the WebServer port number <57772>: 
+
+Do you want to configure the CSP Gateway to use an existing web server <No>? y
+
+Specify the WebServer type. Choose "None" if you want to configure
+your WebServer manually.
+    1) Apache
+    2) SunOne
+    3) None
+WebServer type <3>? 1
+
+Please enter location of Apache configuration file </etc/httpd/conf/httpd.conf>: /etc/httpd/conf.d/isccspgateway.conf
+
+Enter user name used by Apache server to run it's worker processes <apache>: 
+
+Please enter location of Apache executable file </usr/sbin/httpd>: 
+Apache version 2.4 is detected.
+
+Please enter destination directory for CSP Gateway files </opt/cspgateway>: 
+
+Do you want to create directory /opt/cspgateway <Yes>? 
+
+Cache did not detect a license key
+in directory /trak/schlTEST/int/hs/mgr.
+Do you want to enter a license key <No>? 
+
+Client component selection
+
+   [ ]    1) C++ binding
+   [ ]    2) C++ SDK
+   [ ]    3) Perl binding
+   [ ]    4) Python binding
+   [ ]    5) HealthShare engine link libraries (callin/callout)
+   [ ]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+
+Client component selection
+
+   [*]    1) C++ binding
+   [*]    2) C++ SDK
+   [*]    3) Perl binding
+   [*]    4) Python binding
+   [*]    5) HealthShare engine link libraries (callin/callout)
+   [*]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+Selecting 1
+Selecting 2
+Selecting 3
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+Please review the installation options:
+------------------------------------------------------------------
+Instance name: SCHLTEST2016INTEGRATION
+Destination directory: /trak/schlTEST/int/hs
+HealthShare version to install: 2015.2.0.664.3.17168
+Installation type: Custom
+Unicode support: Y
+Initial Security settings: Normal
+User who owns instance: cachesys
+Group allowed to start and stop instance: cachemgr
+Effective group for HealthShare processes: cachegrp
+Effective user for HealthShare SuperServer: cacheusr
+SuperServer port: 1972
+WebServer port: 57772
+JDBC Gateway port: 62972
+CSP Gateway: installed into /opt/cspgateway
+Apache web server will be configured for CSP Gateway
+Client components:
+   ODBC client
+   C++ binding
+   Perl binding
+   Python binding
+   HealthShare engine link libraries
+   Light C++ binding
+------------------------------------------------------------------
+
+Do you want to proceed with the installation <Yes>? 
+
+Starting installation...
+
+    Updating Apache configuration file ...
+    - /etc/httpd/conf.d/isccspgateway.conf
+
+    * You need to restart your Apache server before any
+      configuration changes will take effect. 
+
+Starting up HealthShare for loading...
+../bin/cinstall -s . -B -c c -C /trak/schlTEST/int/hs/cache.cpf*SCHLTEST2016INTEGRATION -W 1 -g2 
+Starting Control Process
+Allocated 97MB shared memory: 2MB global buffers, 35MB routine buffers
+Cache startup successful.
+System locale setting is 'en_GB.UTF-8'
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+...rak/schlTEST/int/hs/mgr/>
+
+...rak/schlTEST/int/hs/mgr/>
+Start of Cache initialization
+
+Loading system routines
+
+
+Updating Cachetemp and Cache database
+
+Installing National Language support
+
+Loading system classes
+
+Updating Security database
+
+Loading system source code
+
+
+Building system indices
+
+Updating Audit database
+
+Updating Journal directory
+
+Updating User database
+
+Updating Ensemble databases
+Load started on 11/08/2017 12:20:14
+Loading file /tmp/cacheextract/dist/install/misc/hsutil.xml as xml
+Imported class: %ZHSLIB.Audit.Log
+Imported class: %ZHSLIB.Audit.LogParticipant
+Imported class: %ZHSLIB.Component
+Imported class: %ZHSLIB.HealthShareMgr
+Imported class: %ZHSLIB.Services.Client
+Imported class: %ZHSLIB.Services.NVPair
+Imported class: %ZHSLIB.Services.Server
+Imported class: %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Imported class: %ZHSLIB.Services.TaskUpdateRolesAndResources
+Imported class: %ZHSLIB.SessionEventUtil
+Imported class: %ZHSLIB.UserChangePassword
+Imported class: %ZHSLIB.UserLogin
+Imported class: %ZHSLIB.UsersAndRoles
+Imported routine: %ZHSLIB.INC
+Imported routine: %ZJRNPURGE.MAC, compiling 13 classes, using 2 worker jobs
+Compiling class %ZHSLIB.Audit.Log
+Compiling class %ZHSLIB.HealthShareMgr
+Compiling class %ZHSLIB.Services.Client
+Compiling class %ZHSLIB.Services.NVPair
+Compiling class %ZHSLIB.Services.Server
+Compiling class %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Compiling class %ZHSLIB.Services.TaskUpdateRolesAndResources
+Compiling class %ZHSLIB.SessionEventUtil
+Compiling class %ZHSLIB.UserChangePassword
+Compiling class %ZHSLIB.UserLogin
+Compiling class %ZHSLIB.UsersAndRoles
+Compiling class %ZHSLIB.Audit.LogParticipant
+Compiling table %ZHSLIB_Audit.Log
+Compiling table %ZHSLIB_Audit.LogParticipant
+Compiling routine %ZHSLIB.Audit.Log.1
+Compiling routine %ZHSLIB.HealthShareMgr.1
+Compiling routine %ZHSLIB.Services.Client.1
+Compiling routine %ZHSLIB.Services.NVPair.1
+Compiling routine %ZHSLIB.Services.Server.1
+Compiling routine %ZHSLIB.Services.TaskCalculateUpdatedRAndR.1
+Compiling routine %ZHSLIB.Services.TaskUpdateRolesAndResources.1
+Compiling routine %ZHSLIB.SessionEventUtil.1
+Compiling routine %ZHSLIB.UserChangePassword.1
+Compiling routine %ZHSLIB.UserLogin.1
+Compiling routine %ZHSLIB.UsersAndRoles.1
+Compiling routine %ZHSLIB.Audit.LogParticipant.1
+Compiling class %ZHSLIB.Component
+Compiling routine %ZHSLIB.Component.1
+Compiling class %ZHSLIB.Services.Client.GetNVPair
+Compiling class %ZHSLIB.Services.Server.GetNVPair
+Compiling routine %ZHSLIB.Services.Client.GetNVPair.1
+Compiling routine %ZHSLIB.Services.Server.GetNVPair.1
+Compiling routine : %ZJRNPURGE.MAC
+Load finished successfully.
+
+
+Scheduling inventory scan
+
+Cache initialization complete
+
+See the cboot.log file for a record of the installation.
+
+Starting up HealthShare...
+Once this completes, users may access HealthShare
+Starting SCHLTEST2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Automatically configuring buffers
+Allocated 634MB shared memory: 256MB global buffers, 300MB routine buffers
+Creating a WIJ file to hold 31 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+1 alert(s) during startup. See cconsole.log for details.
+
+
+You can point your browser to http://schl16testintm1.nhsh.scot.nhs.uk:57772/csp/sys/UtilHome.csp
+to access the management portal.
+
+Installation completed successfully
+Redirecting to /bin/systemctl restart httpd.service
+spawn su - cacheusr -c csession SCHLTEST2016INTEGRATION
+
+Node: schl16testintm1.nhsh.scot.nhs.uk, Instance: SCHLTEST2016INTEGRATION
+
+Username: SuperUser
+Password: **************
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/iscbuild/trakautomation/conffiles/ZSTU.xml","ck")
+
+Load started on 11/08/2017 12:21:01
+Loading file /trak/iscbuild/trakautomation/conffiles/ZSTU.xml as xml
+Imported routine: ZSTU.MAC
+Compiling routine : ZSTU.MAC
+Load finished successfully.
+
+%SYS>
+Nov 08 2017 12:21:02 : INFO: /etc/init.d/isccache executing on "schl16testintm1.nhsh.scot.nhs.uk": Starting Cache
+NOTE - Instance SCHLTEST2016INTEGRATION has not been added to /etc/init.d/isccache to start at boot
+########################################
+Installing licenses...
+/trak/iscbuild/trakautomation/cache.key
+Installing license for /trak/schlTEST/int/hs/mgr
+########################################
+Configuring Environment SCHLTEST2016INTEGRATION
+Environment Configuration for schl : TEST (SCHLTEST2016INTEGRATION)
+Pri Journal /trak/schlTEST/int/jrn/pri/
+Alt Journal /trak/schlTEST/int/jrn/alt/
+
+12:21:02 Shutting down Cache
+12:21:02 Notifying Clients
+12:21:02 No user shutdown routines to execute
+12:21:02 Stopping User Jobs
+12:21:02 Stopping Network Servers
+12:21:02 Withdrawing from License Domain
+12:21:02 Waiting for users to stop
+12:21:02 Stopping Client Networking
+12:21:02 Removing database locks
+12:21:02 Updating Journal File
+12:21:03 Waiting for database updates to complete
+12:21:03 Database updates complete
+12:21:03 Stopping System Jobs
+12:21:05 Shutdown complete
+Starting SCHLTEST2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Allocated 5367MB shared memory: 4000MB global buffers, 1000MB routine buffers
+Creating a WIJ file to hold 49 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+ISC TrakCare Development
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+########################################
+zCustom.SnapBackup Install for schl : TEST (SCHLTEST2016INTEGRATION)
+Found Class: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml
+Found Call-in: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup.sh
+Found snaplib: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/snaplib.sh
+spawn su - cacheusr -c csession SCHLTEST2016INTEGRATION
+
+Node: schl16testintm1.nhsh.scot.nhs.uk, Instance: SCHLTEST2016INTEGRATION
+
+Username: SuperUser
+Password: **************
+USER>zn "%SYS"
+
+%SYS>write ##class(Security.Users).Exists("cachebackup")
+0
+%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","330DEF926a2763","Cache Backup user","","","",0,1,"",1,"","","",1,1)
+
+%SYS>do ^SECURITY
+
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 12
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 2
+Allow Unauthenticated access? Yes => Yes
+Allow Operating System authentication? No => Yes
+Allow Delegated Authorization for O/S authentication? No => No
+Allow Password authentication? Yes => Yes
+Allow Delegated authentication? Yes => Yes
+Allow Kerberos authentication? Yes => Yes
+Allow Delegated Authorization for Kerberos authentication? No => No
+Allow LDAP authentication? No => No
+Use Login Cookies? No => No
+Allow Two-factor Time-based One-time Password authentication? No => No
+Allow Two-factor SMS authentication? No => No
+
+Confirm changes to authentication options? Yes => Yes
+Authentication options updated
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 3
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 1
+
+Service to edit? %Service_Terminal
+Enabled? Yes => Yes
+Allow Unauthenticated access? No => No
+Allow Operating System authentication? Yes => Yes
+Allow Password authentication? Yes => Yes
+Allow Kerberos authentication? No => No
+Allow Kerberos Credentials Cache authentication? No => No
+Confirm changes to service %Service_Terminal? Yes => Yes
+Service %Service_Terminal updated
+
+Service to edit? 
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 
+%SYS>do $system.OBJ.Load("/trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml","ck")
+
+Load started on 11/08/2017 12:21:37
+Loading file /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml as xml
+Imported class: zCustom.SnapBackup
+Compiling class zCustom.SnapBackup
+Compiling routine zCustom.SnapBackup.1
+Load finished successfully.
+
+%SYS>
+########################################
+Setting Autostart....
+Setting Autostart for SCHLTEST2016INTEGRATION
+
+Probably worth rebooting to ensure no memory fragmentation and test the config...
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ccontrol all
+    Instance Name     Version ID        Port   Directory
+    ----------------  ----------------  -----  --------------------------------
+up >SCHLTEST2016INTE  2015.2.0.664.3.1  1972   /trak/schlTEST/int/hs
+    GRATION           7168
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ccontrol delete [K[K[K[K[K[K[Kstop SCHLTEST2016INTEGRATION
+
+                  Cache Shutdown Status: 12:21 pm 08 Nov 2017
+
+       0 interactive jobs (Telnet/Lat)
+       0 background jobs (from job command)
+       0 Cache Direct server jobs
+       0 CSP server jobs
+       0 ODBC server jobs
+      19 system jobs
+
+Do you want to broadcast a message to anyone? No => No
+Do you want to see the Cache status report? No => No
+Do you want to run the user defined shutdown routine? Yes => Yes
+Are you ready for the system to halt? Yes => Yes
+
+12:21:54 Shutting down Cache
+12:21:54 Notifying Clients
+12:21:54 No user shutdown routines to execute
+12:21:54 Stopping User Jobs
+12:21:54 Stopping Network Servers
+12:21:54 Withdrawing from License Domain
+12:21:54 Waiting for users to stop
+12:21:54 Stopping Client Networking
+12:21:54 Removing database locks
+12:21:54 Updating Journal File
+12:21:56 Waiting for database updates to complete
+12:21:56 Database updates complete
+12:21:56 Stopping System Jobs
+12:21:58 Shutdown complete
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ccontrol delete GRATIONuGRATIONpGRATION GRATION>GRATIONSGRATIONCGRATIONHGRATIONLGRATIONTGRATIONEGRATIONSGRATIONTGRATION2GRATION0GRATION1GRATION6GRATIONIGRATIONNGRATIONTGRATIONEGRATION GRATION GRATION2GRATION0GRATION1GRATION5GRATION.GRATION2GRATION.GRATION0GRATION.GRATION6GRATION6GRATION4GRATION.GRATION3GRATION.GRATION1GRATION GRATION GRATION1GRATION9GRATION7GRATION2GRATION GRATION GRATION GRATION/GRATIONtGRATIONrGRATIONaGRATIONkGRATION/GRATIONsGRATIONcGRATION [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[ChGRATIONN[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[ClGRATION[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CTGRATION[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CEGRATION[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSGRATION[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CTGRATION[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C/GRATIONiGRATION[CnGRATION[C[CtGRATION[C[C[C/GRATION[C[C[C[ChGRATION[C[C[C[C[CsGRATION
+ccontrol: syntax error
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ^C
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ^C
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ^C
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ccontrol delete SCHLTEST2016INTEGRATION
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf [K[K[K[K[K[K[Kdf
+Filesystem                    1K-blocks    Used Available Use% Mounted on
+/dev/mapper/rhel-root          12572672 2051060  10521612  17% /
+devtmpfs                        3994500       0   3994500   0% /dev
+tmpfs                           4005420     484   4004936   1% /dev/shm
+tmpfs                           4005420   90764   3914656   3% /run
+tmpfs                           4005420       0   4005420   0% /sys/fs/cgroup
+/dev/sda1                       1038336  235656    802680  23% /boot
+/dev/mapper/rhel-var           10475520  976200   9499320  10% /var
+/dev/mapper/rhel-tmp            6281216   33656   6247560   1% /tmp
+/dev/mapper/schlintdbvg-inths  26201600 3531724  22669876  14% /trak/schlTEST/int/hs
+/dev/mapper/schlintdbvg-intdb 104806400 1543968 103262432   2% /trak/schlTEST/int/db
+/dev/sdc1                      26703012   45404  25278128   1% /trak/schlTEST/int/jrn/pri
+/dev/sdd1                      26703012   45084  25278448   1% /trak/schlTEST/int/jrn/alt
+tmpfs                            801088       0    801088   0% /run/user/1009
+tmpfs                            801088       0    801088   0% /run/user/0
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf /trak/schlTEST/int/hs/*
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf /trak/schlTEST/int/jrn/pri/*
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf /trak/schlTEST/int/jrn/alt/*
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ls -la /trak/schlTEST/int/db
+total 0
+drwxr-xr-x  5 cacheusr cachegrp  48 Nov  8 12:17 [0m[01;34m.[0m
+drwxr-xr-x 12 root     root     139 Nov  8 12:17 [01;34m..[0m
+drwxr-xr-x  2 cacheusr cachegrp   6 Nov  8 12:17 [01;34maudit[0m
+drwxr-xr-x  9 cacheusr cachegrp 141 Nov  8 11:45 [01;34misc_coding[0m
+drwxr-xr-x  2 cacheusr cachegrp   6 Nov  8 12:17 [01;34mlog[0m
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf /trak/schlTEST/int/db/audit/[K
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# rm -rf /trak/schlTEST/int/db/audit[K[K[K[K[K[K/log/[K
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# [17P(reverse-i-search)`':[C.': ccontrol delete up >SCHLTEST2016INTE  2015.2.0.664.3.1  1972   /trak/schlTEST/int/hsGRATION[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C/': ./MasterSCHLTest2016INT.sh[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15@[root@schl16testintm1 trakautomation]#[C
+
+Caché Password to use: 
+Confirm: 
+
+########################################
+SELINUX Already Disabled
+########################################
+User/Group Configuration exists
+########################################
+TrakCare Shell Environment Configuration exists
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/web" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int//pri" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int//alt" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/db" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/store/temp" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/patches" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/patches-completed" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlTEST/int/perforce" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Package util-linux-2.23.2-43.el7.x86_64 already installed and latest version
+Nothing to do
+########################################
+snmpd Configuration Exists
+########################################
+snmpd Configuration Exists for cacti-apache
+########################################
+snmpd Configuration Exists for cacti-cups
+########################################
+snmpd Configuration Exists for cacti-iostat
+########################################
+snmpd Configuration Exists for cacti-processes+
+########################################
+snmpd Configuration Exists for cacti-TCMon
+########################################
+snmpd Configuration Exists for cacti-vmstat
+########################################
+snmpd Configuration Exists for cacti-hugepages
+########################################
+Nagios nrpe Configuration Exists
+########################################
+Apache Configuration Exists
+HealthShare
+########################################
+./do_HSAP2015_Install.sh: NOTE - Skipping CSP as already installed - "/opt/cspgateway/bin/CSP.ini" exists
+HSAP Install for schl : TEST : INTEGRATION (SCHLTEST2016INTEGRATION) below /trak/schlTEST/int
+Found Installer: /trak/schlTEST/int/db/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlTEST/int/hs" as it exists
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlTEST/int/db" as it exists
+NOTE - no WIJ directory found
+installing Cache now
+Installing without CSP
+spawn ./cinstall
+
+Your system type is 'Red Hat Enterprise Linux (x64)'.
+
+Currently defined instances:
+
+
+Enter instance name: SCHLTEST2016INTEGRATION
+Do you want to create HealthShare instance 'SCHLTEST2016INTEGRATION' <Yes>? 
+Enter a destination directory for the new instance.
+Directory: /trak/schlTEST/int/hs
+
+----------------------------------------------------
+NOTE: Users should not attempt to access HealthShare while
+      the installation is in progress.
+----------------------------------------------------
+
+
+Disk blocks required  = 3755292
+Disk blocks available = 52337312
+
+How restrictive do you want the initial Security settings to be?
+"Normal" is less restrictive, "Locked Down" is the most secure.
+    1) Normal
+    2) Locked Down
+Initial Security settings <1>? 1
+
+What user should be the owner of this instance? cachesys
+A Cache account will also be created for user cachesys.
+
+Install will create the following HealthShare accounts for you: 
+_SYSTEM, Admin, SuperUser, cachesys and CSPSystem. 
+Please enter the common password for _SYSTEM, Admin, SuperUser and cachesys: 
+Re-enter the password to confirm it: 
+
+Please enter the password for CSPSystem: 
+Re-enter the password to confirm it: 
+
+What group should be allowed to start and stop
+  this instance? cachemgr
+
+Do you want to configure additional security options <No>? y
+
+What is the effective group for HealthShare processes <cacheusr>? cachegrp
+
+What is the effective user for the Cache SuperServer
+  and its jobs <cacheusr>? cacheusr
+
+Do you want to load the Manager utility source code <Yes>? 
+
+Enter the SuperServer port number <1972>: 
+
+Enter the WebServer port number <57772>: 
+
+Do you want to configure the CSP Gateway to use an existing web server <No>? n
+
+Cache did not detect a license key
+in directory /trak/schlTEST/int/hs/mgr.
+Do you want to enter a license key <No>? 
+
+Client component selection
+
+   [ ]    1) C++ binding
+   [ ]    2) C++ SDK
+   [ ]    3) Perl binding
+   [ ]    4) Python binding
+   [ ]    5) HealthShare engine link libraries (callin/callout)
+   [ ]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+
+Client component selection
+
+   [*]    1) C++ binding
+   [*]    2) C++ SDK
+   [*]    3) Perl binding
+   [*]    4) Python binding
+   [*]    5) HealthShare engine link libraries (callin/callout)
+   [*]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+Selecting 1
+Selecting 2
+Selecting 3
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+Please review the installation options:
+------------------------------------------------------------------
+Instance name: SCHLTEST2016INTEGRATION
+Destination directory: /trak/schlTEST/int/hs
+HealthShare version to install: 2015.2.0.664.3.17168
+Installation type: Custom
+Unicode support: Y
+Initial Security settings: Normal
+User who owns instance: cachesys
+Group allowed to start and stop instance: cachemgr
+Effective group for HealthShare processes: cachegrp
+Effective user for HealthShare SuperServer: cacheusr
+SuperServer port: 1972
+WebServer port: 57772
+JDBC Gateway port: 62972
+CSP Gateway: using built-in web server
+Client components:
+   ODBC client
+   C++ binding
+   Perl binding
+   Python binding
+   HealthShare engine link libraries
+   Light C++ binding
+------------------------------------------------------------------
+
+Do you want to proceed with the installation <Yes>? 
+
+Starting installation...
+
+Starting up HealthShare for loading...
+../bin/cinstall -s . -B -c c -C /trak/schlTEST/int/hs/cache.cpf*SCHLTEST2016INTEGRATION -W 1 -g2 
+Starting Control Process
+Allocated 97MB shared memory: 2MB global buffers, 35MB routine buffers
+Cache startup successful.
+System locale setting is 'en_GB.UTF-8'
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+...rak/schlTEST/int/hs/mgr/>
+
+...rak/schlTEST/int/hs/mgr/>
+Start of Cache initialization
+
+Loading system routines
+
+
+Updating Cachetemp and Cache database
+
+Installing National Language support
+
+Loading system classes
+
+Updating Security database
+
+Loading system source code
+
+
+Building system indices
+
+Updating Audit database
+
+Updating Journal directory
+
+Updating User database
+
+Updating Ensemble databases
+Load started on 11/08/2017 12:24:00
+Loading file /tmp/cacheextract/dist/install/misc/hsutil.xml as xml
+Imported class: %ZHSLIB.Audit.Log
+Imported class: %ZHSLIB.Audit.LogParticipant
+Imported class: %ZHSLIB.Component
+Imported class: %ZHSLIB.HealthShareMgr
+Imported class: %ZHSLIB.Services.Client
+Imported class: %ZHSLIB.Services.NVPair
+Imported class: %ZHSLIB.Services.Server
+Imported class: %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Imported class: %ZHSLIB.Services.TaskUpdateRolesAndResources
+Imported class: %ZHSLIB.SessionEventUtil
+Imported class: %ZHSLIB.UserChangePassword
+Imported class: %ZHSLIB.UserLogin
+Imported class: %ZHSLIB.UsersAndRoles
+Imported routine: %ZHSLIB.INC
+Imported routine: %ZJRNPURGE.MAC, compiling 13 classes, using 2 worker jobs
+Compiling class %ZHSLIB.Audit.Log
+Compiling class %ZHSLIB.HealthShareMgr
+Compiling class %ZHSLIB.Services.Client
+Compiling class %ZHSLIB.Services.NVPair
+Compiling class %ZHSLIB.Services.Server
+Compiling class %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Compiling class %ZHSLIB.Services.TaskUpdateRolesAndResources
+Compiling class %ZHSLIB.SessionEventUtil
+Compiling class %ZHSLIB.UserChangePassword
+Compiling class %ZHSLIB.UserLogin
+Compiling class %ZHSLIB.UsersAndRoles
+Compiling class %ZHSLIB.Audit.LogParticipant
+Compiling table %ZHSLIB_Audit.Log
+Compiling table %ZHSLIB_Audit.LogParticipant
+Compiling routine %ZHSLIB.Audit.Log.1
+Compiling routine %ZHSLIB.HealthShareMgr.1
+Compiling routine %ZHSLIB.Services.Client.1
+Compiling routine %ZHSLIB.Services.NVPair.1
+Compiling routine %ZHSLIB.Services.Server.1
+Compiling routine %ZHSLIB.Services.TaskCalculateUpdatedRAndR.1
+Compiling routine %ZHSLIB.Services.TaskUpdateRolesAndResources.1
+Compiling routine %ZHSLIB.SessionEventUtil.1
+Compiling routine %ZHSLIB.UserChangePassword.1
+Compiling routine %ZHSLIB.UserLogin.1
+Compiling routine %ZHSLIB.UsersAndRoles.1
+Compiling routine %ZHSLIB.Audit.LogParticipant.1
+Compiling class %ZHSLIB.Component
+Compiling routine %ZHSLIB.Component.1
+Compiling class %ZHSLIB.Services.Client.GetNVPair
+Compiling class %ZHSLIB.Services.Server.GetNVPair
+Compiling routine %ZHSLIB.Services.Client.GetNVPair.1
+Compiling routine %ZHSLIB.Services.Server.GetNVPair.1
+Compiling routine : %ZJRNPURGE.MAC
+Load finished successfully.
+
+
+Scheduling inventory scan
+
+Cache initialization complete
+
+See the cboot.log file for a record of the installation.
+
+Starting up HealthShare...
+Once this completes, users may access HealthShare
+Starting SCHLTEST2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Automatically configuring buffers
+Allocated 634MB shared memory: 256MB global buffers, 300MB routine buffers
+Creating a WIJ file to hold 31 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+1 alert(s) during startup. See cconsole.log for details.
+
+
+You can point your browser to http://schl16testintm1.nhsh.scot.nhs.uk:57772/csp/sys/UtilHome.csp
+to access the management portal.
+
+Installation completed successfully
+spawn su - cacheusr -c csession SCHLTEST2016INTEGRATION
+
+Node: schl16testintm1.nhsh.scot.nhs.uk, Instance: SCHLTEST2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/iscbuild/trakautomation/conffiles/ZSTU.xml","ck")
+
+Load started on 11/08/2017 12:24:46
+Loading file /trak/iscbuild/trakautomation/conffiles/ZSTU.xml as xml
+Imported routine: ZSTU.MAC
+Compiling routine : ZSTU.MAC
+Load finished successfully.
+
+%SYS>
+NOTE - Instance SCHLTEST2016INTEGRATION has not been added to /etc/init.d/isccache to start at boot
+########################################
+Installing licenses...
+/trak/iscbuild/trakautomation/cache.key
+Installing license for /trak/schlTEST/int/hs/mgr
+########################################
+Configuring Environment SCHLTEST2016INTEGRATION
+Environment Configuration for schl : TEST (SCHLTEST2016INTEGRATION)
+Pri Journal /trak/schlTEST/int/jrn/pri/
+Alt Journal /trak/schlTEST/int/jrn/alt/
+
+12:24:46 Shutting down Cache
+12:24:46 Notifying Clients
+12:24:46 No user shutdown routines to execute
+12:24:46 Stopping User Jobs
+12:24:46 Stopping Network Servers
+12:24:46 Withdrawing from License Domain
+12:24:46 Waiting for users to stop
+12:24:46 Stopping Client Networking
+12:24:46 Removing database locks
+12:24:46 Updating Journal File
+12:24:47 Waiting for database updates to complete
+12:24:47 Database updates complete
+12:24:47 Stopping System Jobs
+12:24:49 Shutdown complete
+Starting SCHLTEST2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Allocated 5367MB shared memory: 4000MB global buffers, 1000MB routine buffers
+Creating a WIJ file to hold 49 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+ISC TrakCare Development
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+########################################
+zCustom.SnapBackup Install for schl : TEST (SCHLTEST2016INTEGRATION)
+Found Class: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml
+Found Call-in: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup.sh
+Found snaplib: /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/snaplib.sh
+spawn su - cacheusr -c csession SCHLTEST2016INTEGRATION
+
+Node: schl16testintm1.nhsh.scot.nhs.uk, Instance: SCHLTEST2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>write ##class(Security.Users).Exists("cachebackup")
+0
+%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","5pr1ngb@nk?","Cache Backup user","","","",0,1,"",1,"","","",1,1)
+
+%SYS>do ^SECURITY
+
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 12
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 2
+Allow Unauthenticated access? Yes => Yes
+Allow Operating System authentication? No => Yes
+Allow Delegated Authorization for O/S authentication? No => No
+Allow Password authentication? Yes => Yes
+Allow Delegated authentication? Yes => Yes
+Allow Kerberos authentication? Yes => Yes
+Allow Delegated Authorization for Kerberos authentication? No => No
+Allow LDAP authentication? No => No
+Use Login Cookies? No => No
+Allow Two-factor Time-based One-time Password authentication? No => No
+Allow Two-factor SMS authentication? No => No
+
+Confirm changes to authentication options? Yes => Yes
+Authentication options updated
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 3
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 1
+
+Service to edit? %Service_Terminal
+Enabled? Yes => Yes
+Allow Unauthenticated access? No => No
+Allow Operating System authentication? Yes => Yes
+Allow Password authentication? Yes => Yes
+Allow Kerberos authentication? No => No
+Allow Kerberos Credentials Cache authentication? No => No
+Confirm changes to service %Service_Terminal? Yes => Yes
+Service %Service_Terminal updated
+
+Service to edit? 
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 
+%SYS>do $system.OBJ.Load("/trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml","ck")
+
+Load started on 11/08/2017 12:25:21
+Loading file /trak/schlTEST/int/db/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml as xml
+Imported class: zCustom.SnapBackup
+Compiling class zCustom.SnapBackup
+Compiling routine zCustom.SnapBackup.1
+Load finished successfully.
+
+%SYS>
+########################################
+Setting Autostart....
+WARNING - SCHLTEST2016INTEGRATION already exists, skipping! Start order may not be as expected
+
+Probably worth rebooting to ensure no memory fragmentation and test the config...
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# grep -i huge /proc/meminfo 
+Anon[01;31m[KHuge[m[KPages:         0 kB
+[01;31m[KHuge[m[KPages_Total:       0
+[01;31m[KHuge[m[KPages_Free:        0
+[01;31m[KHuge[m[KPages_Rsvd:        0
+[01;31m[KHuge[m[KPages_Surp:        0
+[01;31m[KHuge[m[Kpagesize:       2048 kB
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:           7823         203        1958         355        5660        7134
+Swap:          4091           0        4091
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "# ISC TrakCare OS tuning" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "kernel.shmmax=6492782592" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "vm.nr_hugepages=3400" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "vm.swappiness=5" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "vm.dirty_background_ratio=5" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# echo "vm.dirty_ratio=10" >> /etc/sysctl.d/99-sysctl.conf
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ccontrol all
+    Instance Name     Version ID        Port   Directory
+    ----------------  ----------------  -----  --------------------------------
+up  SCHLTEST2016INTE  2015.2.0.664.3.1  1972   /trak/schlTEST/int/hs
+    GRATION           7168
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# ^C
+]0;root@schl16testintm1:/trak/iscbuild/trakautomation[root@schl16testintm1 trakautomation]# exit
+
+Script done on Wed 08 Nov 2017 12:39:20 GMT

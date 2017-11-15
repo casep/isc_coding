@@ -691,7 +691,7 @@ USER>zn "%SYS"
 
 %SYS>write ##class(Security.Users).Exists("cachebackup")
 0
-%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","T4l1skt3r","Cache Backup user","","","",0,1,"",1,"","","",1,1)
+%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","","Cache Backup user","","","",0,1,"",1,"","","",1,1)
 
 %SYS>do ^SECURITY
 

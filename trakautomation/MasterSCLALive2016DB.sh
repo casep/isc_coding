@@ -5,6 +5,7 @@ export TMPDIR=/trak/iscbuild/tmp
 export SITE=scla
 export ENV=PRD
 export VER=2016
+export TYPE=DB
 MONITORIP=10.20.0.12
 #
 # Various overrides exist to allow customisation of behaviour
@@ -52,24 +53,22 @@ checkvars
 
 # pick up passwords if available (eg. test systems) else prompt
 if [ -f /tmp/testcredentials ]; then
-	# this should just be shell code exporting CACHEPASS and TRAKZIPPASS
-	. /tmp/testcredentials
+        # this should just be shell code exporting CACHEPASS and TRAKZIPPASS
+        . /tmp/testcredentials
 else
-	echo
-	# read in password for Caché - this will be inherited by all Caché installs in this script
-	getpass "Caché Password to use" CACHEPASS
-	# read in the password for the TrakCare .zip
-	getpass "TrakCare .zip Password" TRAKZIPPASS
-	echo
+        echo
+        # read in password for CachÃ© - this will be inherited by all CachÃ© installs in this script
+        getpass "CachÃ© Password to use" CACHEPASS
 fi
+export TRAKZIPPASS="Not needed"
 
 # disable SELINUX
-#./do_SELINUXdisable.sh
+./do_SELINUXdisable.sh
 
 # set users/groups
 ./do_Users.sh
 
-# stop messing about with Caché Terminal from wrong users
+# stop messing about with CachÃ© Terminal from wrong users
 ./do_UserEnv.sh
 
 # Trak Directories
@@ -100,40 +99,37 @@ fi
 
 # apache
 ./do_apache.sh
-./do_apacheTune.sh 1024 512 0
-
-
-# samba
-#./do_samba.sh WORKGROUP `hostname | cut -d. -f1` "Test Server" $SITE_UC
+./do_apacheTune.sh
 
 # install HS
 echo HealthShare
-./do_HSAP2015_Install.sh $SITE $ENV DB$VER
+./do_HSAP2015_Install.sh $SITE $ENV $TYPE$VER
 
 # install license keys - without args does this for all instances found
 ./do_Environment_key.sh
 
 # set HS config
-./do_Environment_config.sh $SITE $ENV DB$VER 1000 54000 67108864 524288
+./do_Environment_config.sh $SITE $ENV $TYPE$VER 1000 54000 67108864 524288
 
 # printing & preview
-./do_CUPS.sh
-./do_FOPConf.sh $SITE $ENV DB$VER 512m 128m
+#./do_CUPS.sh
+#./do_FOPConf.sh $SITE $ENV $TYPE$VER 512m 128m
 
 # do Trak install
 ./do_TrakVanillaT2016_Install.sh
-./do_TrakCare2016_ApacheCSP.sh DB
+./do_TrakCare2016_ApacheCSP.sh $TYPE
 
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
-#./do_zCustom.CheckSNMP_Install.sh DB
-#./do_zCustom.SnapBackup_Install.sh DB
+./do_zCustom.CheckSNMP_Install.sh $TYPE
+./do_zCustom.SnapBackup_Install.sh $TYPE
 
 # SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
-#./do_zCustom.TrakCareCustomTasks_Install.sh DB
+./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
 
 # set to auto-start
-#./do_SetAutostart.sh
+./do_SetAutostart.sh
 
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...
+
 

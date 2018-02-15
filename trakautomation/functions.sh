@@ -72,15 +72,10 @@ checkvars() {
 	if [ -n "$EXTRAENVS" ]; then
 		ENVIRONMENTS="$ENVIRONMENTS|"`echo $EXTRAENVS | sed 's/,/|/g'`
 	fi
-	case $ENV in
-		$ENVIRONMENTS)
-		;;
-		*)
-			echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMENTS"
-			return 1
-		;;
-	esac
-
+	if [[ ! $*$ENVIRONMENTS = *$ENV* ]] ; then
+		echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMENTS"
+		return 1
+	fi
 }
 
 

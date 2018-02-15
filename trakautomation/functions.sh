@@ -68,12 +68,16 @@ checkvars() {
 		return 1
 	fi
 	# check ENV against a known good list
+	ENVIRONMENTS='DR|REP|UAT|TEST|TST|BASE|SCRATCH|TRAIN*|DTO*|EDITION|DEMO|CONFIG'
+	if [ -n "$EXTRAENVS" ]; then
+		ENVIRONMENTS="$ENVIRONMENTS|"`echo $EXTRAENVS | sed 's/,/|/g'`
+	fi
 	case $ENV in
 		DR|REP|UAT|PRD|TEST|TST|BASE|SCRATCH|TRAIN*|DTO*|EDITION|DEMO|CONFIG)
 		;;
 		*)
 			if [ -n "$EXTRAENVS" ] || ! listunion $EXTRAENVS $ENV; then
-				echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMENTS"
+				echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMETS"
 				return 1
 			fi
 		;;
@@ -145,11 +149,6 @@ instname() {
 	TYPE=`echo $3 | sed 's/2[0-9]\{3\}$//'`
 	ENVYEAR=`echo $3 | sed 's/^.*\(2[0-9]\{3\}\)$/\1/'`
 	[ $3 == $ENVYEAR ] && ENVYEAR=''
-# TODO this is now covered in checkvars
-	ENVIRONMENTS='DR|REP|UAT|TEST|TST|BASE|SCRATCH|TRAIN*|DTO*|EDITION|DEMO|CONFIG'
-	if [ -n "$EXTRAENVS" ]; then
-		ENVIRONMENTS="$ENVIRONMENTS|"`echo $EXTRAENVS | sed 's/,/|/g'`
-	fi
 	# check type
 	case $TYPE in
 		DB|APP*|PRT*|ANALYTICS|INTEGRATION|INTEGRITY*|SHADOW|REPORTING|CSP|LABDB)

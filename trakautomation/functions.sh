@@ -76,7 +76,7 @@ checkvars() {
 		$ENVIRONMENTS)
 		;;
 		*)
-			echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMETS"
+			echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMENTS"
 			return 1
 		;;
 	esac

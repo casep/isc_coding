@@ -27,7 +27,6 @@
 #  https://community.intersystems.com/post/linux-transparent-hugepages-and-impact-cach%C3%A9
 
 checkPreviousConfig() {
-	CONF=/etc/sysctl.d/99-sysctl.conf
 	return $(grep "TrakCare" $CONF | wc -l)
 }
 
@@ -57,6 +56,7 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 HUGEPAGES=$1
+CONF=/etc/sysctl.d/99-sysctl.conf
 
 # Check value
 memoryAllocationCheck 

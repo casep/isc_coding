@@ -73,13 +73,11 @@ checkvars() {
 		ENVIRONMENTS="$ENVIRONMENTS|"`echo $EXTRAENVS | sed 's/,/|/g'`
 	fi
 	case $ENV in
-		DR|REP|UAT|PRD|TEST|TST|BASE|SCRATCH|TRAIN*|DTO*|EDITION|DEMO|CONFIG)
+		$ENVIRONMENTS)
 		;;
 		*)
-			if [ -n "$EXTRAENVS" ] || ! listunion $EXTRAENVS $ENV; then
-				echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMETS"
-				return 1
-			fi
+			echo "checkvars() - \$ENV=$ENV does not match one of the expected list: $ENVIRONMETS"
+			return 1
 		;;
 	esac
 

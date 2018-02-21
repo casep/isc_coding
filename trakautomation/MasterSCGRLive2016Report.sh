@@ -98,8 +98,8 @@ export TRAKZIPPASS="not needed"
 ./do_nagios-nrpe.sh $MONITORIP DB,PRT,WEB TODO-licenses TODO-episodes
 
 # apache
-./do_apache.sh
-./do_apacheTune.sh
+#./do_apache.sh
+#./do_apacheTune.sh
 
 # samba
 #./do_samba.sh WORKGROUP `hostname | cut -d. -f1` "Test Server" $SITE_UC
@@ -123,7 +123,7 @@ echo HealthShare
 
 # do Trak install
 ./do_TrakVanillaT2016_Install.sh
-./do_TrakCare2016_ApacheCSP.sh $TYPE
+#./do_TrakCare2016_ApacheCSP.sh $TYPE
 
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
 #./do_zCustom.CheckSNMP_Install.sh $TYPE

@@ -68,7 +68,7 @@ Freezes the Write Daemon, verifying and flagging success with a file</Descriptio
 		}
 		else
 		{
-			if stauts
+			if status
 			{
 				// not suspended but we got good status
 				do ..ReportStatus(StatusFile, "successful return but not frozen", 2)

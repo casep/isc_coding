@@ -9,7 +9,7 @@ EXITFAILURE=1
 EXITSUCCESS=0
 
 # what user to use for call-ins - if unset this will not "su"
-CACHEUSER=cachesys
+CACHEUSER=cachebackup
 
 # the timestamp we use
 TIMESTAMP=`date +%Y%m%d-%H%M%S`

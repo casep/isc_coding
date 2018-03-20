@@ -115,7 +115,7 @@ echo HealthShare
 # Usage: ./do_Environment_config.sh
 # <Site Code> <Environment> <Type>[Version] <routine buffers in MiB> <global buffers in MiB> <lock table size in B> <gmheap in kiB>
 # 1000MB 5000MB 16MB 128MB
-./do_Environment_config.sh $SITE $ENV $TYPE$VER 1000 57342 16777216 131072
+./do_Environment_config.sh $SITE $ENV $TYPE$VER 1000 5000 16777216 131072
 
 # printing & preview
 #./do_CUPS.sh
@@ -123,7 +123,7 @@ echo HealthShare
 
 # do Trak install
 ./do_TrakVanillaT2016_Install.sh
-./do_TrakCare2016_ApacheCSP.sh $TYPE
+#./do_TrakCare2016_ApacheCSP.sh $TYPE
 
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
 #./do_zCustom.CheckSNMP_Install.sh $TYPE

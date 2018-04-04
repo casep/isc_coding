@@ -14,7 +14,7 @@ install_LINUX() {
 	if [ ! -d $BASEPATH/ ]; then
 		mkdir -p $BASEPATH
 	fi
-	tar xzf archives/PMSFonts.tgz -C $BASEPATH/
+	tar xzf archives/PMSFonts.tar.gz -C $BASEPATH/
 	/usr/bin/fc-cache -f $BASEPATH
 }
 

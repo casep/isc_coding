@@ -1,9 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash -e
 # -*- coding: utf-8 -*-
 #
 # do_Feb2017SV.sh
 #
 #  Copyright 2018 Carlos "casep" Sepulveda <casep@fedoraproject.org>
+#  Based on original script by Frank Truscot
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -25,15 +26,14 @@
 
 . ./functions.sh
 
+if [ "$#" -eq "1" ]; then
+	SVINSTNAME="$1"
+else
+	/bin/echo "You must supply the name of the instance to patch"
+	exit 1
+fi
 
 check_LINUX() {
-	if [ "$#" -eq "1" ]; then
-		SVINSTNAME="$1"
-	else
-		ERRMESSAGE="You must supply the name of the instance to patch"
-		return 0
-	fi
-
 	SVSTATE=$(/bin/ccontrol qlist $SVINSTNAME | /bin/awk -F"^" '{print $4}' | /bin/awk -F"," '{print $1}') 
 	if [ "$SVSTATE" != "running" ]; then
 		ERRMESSAGE="${SVINSTNAME} instance is not running. Patch cannot be applied"
@@ -45,20 +45,25 @@ check_LINUX() {
 		ERRMESSAGE="Patch looks already installed"
 		return 0
 	fi
+	
+	return 1
 }
 
 install_LINUX() {
+	echo "wtf"
 	SVVERSION=$(/bin/ccontrol qlist $SVINSTNAME | /bin/awk -F"^" '{print $3}' | /bin/awk -F"." '{print $1"."$2}')
 	SVPTCHDIR=$(/bin/ccontrol qlist $SVINSTNAME | /bin/awk -F"^" '{print $2}')"/mgr/iscpatches"
 	
 	/bin/mkdir -p $SVPTCHDIR
 	/bin/chown cacheusr:cachegrp $SVPTCHDIR 
+	echo "here 1"
 	if [ -f "/trak/iscbuild/installers/Feb17SV_Patch-${SVVERSION}.x-all.zip" ]; then
 		/bin/cp "/trak/iscbuild/installers/Feb17SV_Patch-${SVVERSION}.x-all.zip" ${SVPTCHDIR}/
 		cd ${SVPTCHDIR}/
 		/bin/unzip ${SVPTCHDIR}/Feb17SV_Patch-${SVVERSION}.x-all.zip
 		/bin/rm -f ${SVPTCHDIR}/Feb17SV_Patch-${SVVERSION}.x-all.zip
 		SVPTCHFOLDER=$(/bin/ls ${SVPTCHDIR} | /bin/grep "${SVVERSION}.[0-9]_Feb17SV")
+		echo "here"
 		SVOUT=`/bin/sudo -u cachesys /bin/csession $SVINSTNAME -U %SYS << EOF
 zn "%SYS"
 w "",!

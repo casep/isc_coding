@@ -4,7 +4,6 @@
 # do_SCHLLicense.sh
 #
 #  Copyright 2018 Carlos "casep" Sepulveda <casep@fedoraproject.org>
-#  Based on original script by Frank Truscot
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -34,34 +33,13 @@ else
 fi
 
 check_LINUX() {
+	ERRMESSAGE="OK"
 	return 1
 }
 
 install_LINUX() {
 	tmpFile=$(ccontrol qlist | grep $SVINSTNAME | cut -d"^" -f2)/mgr/Temp/cache.key
 	
-	echo "[ConfigFile]">>$tmpFile
-	echo "FileType=License 2011">>$tmpFile
-	echo "">>$tmpFile
-	echo "[License]">>$tmpFile
-	echo "LicenseCapacity=TrakCare T2012 License, PMS Core / Scotland, Concurrent Users:1000 with HealthShare Foundation 2012.2 HS4 for x86-64 (Red Hat E">>$tmpFile
-	echo "CustomerName=NHS Highland">>$tmpFile
-	echo "OrderNumber=201807763">>$tmpFile
-	echo "ExpirationDate=4/18/2019">>$tmpFile
-	echo "AuthorizationKey=412520010000010000000000000BF812F6B207626301">>$tmpFile
-	echo "MachineID=">>$tmpFile
-	echo "">>$tmpFile
-	echo "[TrakCare]">>$tmpFile
-	echo "Foundation Product=PAS, Clinical">>$tmpFile
-	echo "Facility Name= \"NHS Highland\"">>$tmpFile
-	echo "Facility Class=1">>$tmpFile
-	echo "Concurrent Users=1000">>$tmpFile
-	echo "AddOn:Active Decision Support=1">>$tmpFile
-	echo "AddOn:EPR Connectivity=1">>$tmpFile
-	echo "">>$tmpFile
-	echo "[ISC.HealthShare]">>$tmpFile
-	echo "Foundation=Enabled">>$tmpFile
-
 	chown cacheusr.cachegrp $tmpFile
 	chmod 664 $tmpFile
 

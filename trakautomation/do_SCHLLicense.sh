@@ -38,7 +38,7 @@ check_LINUX() {
 }
 
 install_LINUX() {
-	tmpFile=$(ccontrol qlist | grep $SVINSTNAME | cut -d"^" -f2)/mgr/Temp/cache.key
+	tmpFile=/tmp/cache.key
 	
 	chown cacheusr.cachegrp $tmpFile
 	chmod 664 $tmpFile

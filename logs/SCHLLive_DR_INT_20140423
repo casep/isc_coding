@@ -1,0 +1,1274 @@
+Script started on Mon 23 Apr 2018 13:47:11 BST
+]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[?1034h[inter02@schl16drintm trakautomation]$ sudo ./SCHLLive_DR_20180421[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KMasterSCHLDR2016INT.sh
+
+Caché Password to use: 
+Confirm: 
+########################################
+User/Group Configuration
+########################################
+TrakCare Shell Environment Configuration
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/db" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package unzip.x86_64 0:6.0-19.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================
+ Package                   Arch                       Version                           Repository                              Size
+=====================================================================================================================================
+Installing:
+ unzip                     x86_64                     6.0-19.el7                        rhel-7-server-rpms                     170 k
+
+Transaction Summary
+=====================================================================================================================================
+Install  1 Package
+
+Total download size: 170 k
+Installed size: 365 k
+Downloading packages:
+unzip-6.0-19.el7.x86_64.rpm                          0% [                                          ]  0.0 B/s |    0 B  --:--:-- ETA unzip-6.0-19.el7.x86_64.rpm                                                                                   | 170 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : unzip-6.0-19.el7.x86_64 [                                                                                       ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [######                                                                                 ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [######################                                                                 ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [###########################                                                            ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [############################                                                           ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [#############################                                                          ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [##############################                                                         ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [##################################                                                     ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [###################################                                                    ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [########################################                                               ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [#########################################                                              ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [###########################################                                            ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [###########################################################                            ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [#########################################################################              ] 1/1  Installing : unzip-6.0-19.el7.x86_64 [###################################################################################### ] 1/1  Installing : unzip-6.0-19.el7.x86_64                                                                                           1/1 
+  Verifying  : unzip-6.0-19.el7.x86_64                                                                                           1/1 
+
+Installed:
+  unzip.x86_64 0:6.0-19.el7                                                                                                          
+
+Complete!
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package util-linux.x86_64 0:2.23.2-43.el7_4.2 will be updated
+---> Package util-linux.x86_64 0:2.23.2-52.el7 will be an update
+--> Processing Dependency: libblkid = 2.23.2-52.el7 for package: util-linux-2.23.2-52.el7.x86_64
+--> Processing Dependency: libmount = 2.23.2-52.el7 for package: util-linux-2.23.2-52.el7.x86_64
+--> Processing Dependency: libuuid = 2.23.2-52.el7 for package: util-linux-2.23.2-52.el7.x86_64
+--> Running transaction check
+---> Package libblkid.x86_64 0:2.23.2-43.el7_4.2 will be updated
+---> Package libblkid.x86_64 0:2.23.2-52.el7 will be an update
+---> Package libmount.x86_64 0:2.23.2-43.el7_4.2 will be updated
+---> Package libmount.x86_64 0:2.23.2-52.el7 will be an update
+---> Package libuuid.x86_64 0:2.23.2-43.el7_4.2 will be updated
+---> Package libuuid.x86_64 0:2.23.2-52.el7 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================
+ Package                      Arch                     Version                            Repository                            Size
+=====================================================================================================================================
+Updating:
+ util-linux                   x86_64                   2.23.2-52.el7                      rhel-7-server-rpms                   2.0 M
+Updating for dependencies:
+ libblkid                     x86_64                   2.23.2-52.el7                      rhel-7-server-rpms                   178 k
+ libmount                     x86_64                   2.23.2-52.el7                      rhel-7-server-rpms                   180 k
+ libuuid                      x86_64                   2.23.2-52.el7                      rhel-7-server-rpms                    81 k
+
+Transaction Summary
+=====================================================================================================================================
+Upgrade  1 Package (+3 Dependent packages)
+
+Total download size: 2.4 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(2/4): libmount-2.23.2-52.el7.x86_64.rpm             0% [                                          ]  0.0 B/s |    0 B  --:--:-- ETA (1/4): libblkid-2.23.2-52.el7.x86_64.rpm                                                                      | 178 kB  00:00:00     
+(2/4): libmount-2.23.2-52.el7.x86_64.rpm                                                                      | 180 kB  00:00:00     
+(3/4): libuuid-2.23.2-52.el7.x86_64.rpm                                                                       |  81 kB  00:00:00     
+(4/4): util-linux-2.23.2-52.el7.x86_64.rpm                                                                    | 2.0 MB  00:00:00     
+-------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                2.6 MB/s | 2.4 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : libuuid-2.23.2-52.el7.x86_64 [                                                                                  ] 1/8  Updating   : libuuid-2.23.2-52.el7.x86_64 [##############################################################################    ] 1/8  Updating   : libuuid-2.23.2-52.el7.x86_64 [###############################################################################   ] 1/8  Updating   : libuuid-2.23.2-52.el7.x86_64 [################################################################################# ] 1/8  Updating   : libuuid-2.23.2-52.el7.x86_64                                                                                      1/8 
+  Updating   : libblkid-2.23.2-52.el7.x86_64 [                                                                                 ] 2/8  Updating   : libblkid-2.23.2-52.el7.x86_64 [####################                                                             ] 2/8  Updating   : libblkid-2.23.2-52.el7.x86_64 [########################################                                         ] 2/8  Updating   : libblkid-2.23.2-52.el7.x86_64 [############################################################                     ] 2/8  Updating   : libblkid-2.23.2-52.el7.x86_64 [################################################################################ ] 2/8  Updating   : libblkid-2.23.2-52.el7.x86_64                                                                                     2/8 
+  Updating   : libmount-2.23.2-52.el7.x86_64 [                                                                                 ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64 [##################                                                               ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64 [######################################                                           ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64 [#########################################################                        ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64 [############################################################################     ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64 [################################################################################ ] 3/8  Updating   : libmount-2.23.2-52.el7.x86_64                                                                                     3/8 
+  Updating   : util-linux-2.23.2-52.el7.x86_64 [                                                                               ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#                                                                              ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##                                                                             ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###                                                                            ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [####                                                                           ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#####                                                                          ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [######                                                                         ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#######                                                                        ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [########                                                                       ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#########                                                                      ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##########                                                                     ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###########                                                                    ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############                                                                   ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#############                                                                  ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##############                                                                 ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###############                                                                ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [################                                                               ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#################                                                              ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##################                                                             ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###################                                                            ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [####################                                                           ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#####################                                                          ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [######################                                                         ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#######################                                                        ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [########################                                                       ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#########################                                                      ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##########################                                                     ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###########################                                                    ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############################                                                   ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#############################                                                  ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##############################                                                 ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###############################                                                ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [################################                                               ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#################################                                              ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##################################                                             ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###################################                                            ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [####################################                                           ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#####################################                                          ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [######################################                                         ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#######################################                                        ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [########################################                                       ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#########################################                                      ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##########################################                                     ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###########################################                                    ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############################################                                   ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#############################################                                  ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##############################################                                 ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###############################################                                ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [################################################                               ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#################################################                              ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##################################################                             ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###################################################                            ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [####################################################                           ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#####################################################                          ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [######################################################                         ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#######################################################                        ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [########################################################                       ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#########################################################                      ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##########################################################                     ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###########################################################                    ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############################################################                   ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#############################################################                  ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##############################################################                 ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###############################################################                ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [################################################################               ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#################################################################              ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##################################################################             ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###################################################################            ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [####################################################################           ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#####################################################################          ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [######################################################################         ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#######################################################################        ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [########################################################################       ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#########################################################################      ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [##########################################################################     ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [###########################################################################    ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############################################################################   ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [#############################################################################  ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64 [############################################################################## ] 4/8  Updating   : util-linux-2.23.2-52.el7.x86_64                                                                                   4/8 
+  Cleanup    : util-linux-2.23.2-43.el7_4.2.x86_64                                                                               5/8 
+  Cleanup    : libmount-2.23.2-43.el7_4.2.x86_64                                                                                 6/8 
+  Cleanup    : libblkid-2.23.2-43.el7_4.2.x86_64                                                                                 7/8 
+  Cleanup    : libuuid-2.23.2-43.el7_4.2.x86_64                                                                                  8/8 
+  Verifying  : util-linux-2.23.2-52.el7.x86_64                                                                                   1/8 
+  Verifying  : libmount-2.23.2-52.el7.x86_64                                                                                     2/8 
+  Verifying  : libuuid-2.23.2-52.el7.x86_64                                                                                      3/8 
+  Verifying  : libblkid-2.23.2-52.el7.x86_64                                                                                     4/8 
+  Verifying  : libmount-2.23.2-43.el7_4.2.x86_64                                                                                 5/8 
+  Verifying  : libblkid-2.23.2-43.el7_4.2.x86_64                                                                                 6/8 
+  Verifying  : util-linux-2.23.2-43.el7_4.2.x86_64                                                                               7/8 
+  Verifying  : libuuid-2.23.2-43.el7_4.2.x86_64                                                                                  8/8 
+
+Updated:
+  util-linux.x86_64 0:2.23.2-52.el7                                                                                                  
+
+Dependency Updated:
+  libblkid.x86_64 0:2.23.2-52.el7             libmount.x86_64 0:2.23.2-52.el7             libuuid.x86_64 0:2.23.2-52.el7            
+
+Complete!
+########################################
+snmpd Install/Configuration
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Resolving Dependencies
+--> Running transaction check
+---> Package net-snmp.x86_64 1:5.7.2-32.el7 will be installed
+--> Processing Dependency: net-snmp-agent-libs = 1:5.7.2-32.el7 for package: 1:net-snmp-5.7.2-32.el7.x86_64
+--> Processing Dependency: net-snmp-libs = 1:5.7.2-32.el7 for package: 1:net-snmp-5.7.2-32.el7.x86_64
+--> Processing Dependency: libnetsnmpagent.so.31()(64bit) for package: 1:net-snmp-5.7.2-32.el7.x86_64
+--> Processing Dependency: libnetsnmpmibs.so.31()(64bit) for package: 1:net-snmp-5.7.2-32.el7.x86_64
+--> Processing Dependency: libnetsnmptrapd.so.31()(64bit) for package: 1:net-snmp-5.7.2-32.el7.x86_64
+--> Running transaction check
+---> Package net-snmp-agent-libs.x86_64 1:5.7.2-32.el7 will be installed
+---> Package net-snmp-libs.x86_64 1:5.7.2-28.el7 will be updated
+--> Processing Dependency: net-snmp-libs = 1:5.7.2-28.el7 for package: 1:net-snmp-utils-5.7.2-28.el7.x86_64
+---> Package net-snmp-libs.x86_64 1:5.7.2-32.el7 will be an update
+--> Running transaction check
+---> Package net-snmp-utils.x86_64 1:5.7.2-28.el7 will be updated
+---> Package net-snmp-utils.x86_64 1:5.7.2-32.el7 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================
+ Package                             Arch                   Version                         Repository                          Size
+=====================================================================================================================================
+Installing:
+ net-snmp                            x86_64                 1:5.7.2-32.el7                  rhel-7-server-rpms                 330 k
+Installing for dependencies:
+ net-snmp-agent-libs                 x86_64                 1:5.7.2-32.el7                  rhel-7-server-rpms                 705 k
+Updating for dependencies:
+ net-snmp-libs                       x86_64                 1:5.7.2-32.el7                  rhel-7-server-rpms                 748 k
+ net-snmp-utils                      x86_64                 1:5.7.2-32.el7                  rhel-7-server-rpms                 198 k
+
+Transaction Summary
+=====================================================================================================================================
+Install  1 Package  (+1 Dependent package)
+Upgrade             ( 2 Dependent packages)
+
+Total download size: 1.9 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(2/4): net-snmp-agent-libs-5.7.2-32.el7.x86_64.rpm   0% [                                          ]  0.0 B/s |    0 B  --:--:-- ETA (1/4): net-snmp-5.7.2-32.el7.x86_64.rpm                                                                       | 330 kB  00:00:00     
+(2/4): net-snmp-agent-libs-5.7.2-32.el7.x86_64.rpm                                                            | 705 kB  00:00:00     
+(3/4): net-snmp-libs-5.7.2-32.el7.x86_64.rpm                                                                  | 748 kB  00:00:00     
+(4/4): net-snmp-utils-5.7.2-32.el7.x86_64.rpm       89% [=====================================-    ]  0.0 B/s | 1.7 MB  --:--:-- ETA (4/4): net-snmp-utils-5.7.2-32.el7.x86_64.rpm                                                                 | 198 kB  00:00:00     
+-------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                1.7 MB/s | 1.9 MB  00:00:01     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [                                                                           ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#                                                                          ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###                                                                        ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [####                                                                       ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [######                                                                     ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#######                                                                    ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#########                                                                  ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##########                                                                 ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [############                                                               ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##############                                                             ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###############                                                            ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#################                                                          ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##################                                                         ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [####################                                                       ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [######################                                                     ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [########################                                                   ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#########################                                                  ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###########################                                                ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [############################                                               ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##############################                                             ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [################################                                           ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#################################                                          ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##################################                                         ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [####################################                                       ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [######################################                                     ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [########################################                                   ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##########################################                                 ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###########################################                                ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#############################################                              ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##############################################                             ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [################################################                           ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##################################################                         ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###################################################                        ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#####################################################                      ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [######################################################                     ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#######################################################                    ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [########################################################                   ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#########################################################                  ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##########################################################                 ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###########################################################                ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [############################################################               ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##############################################################             ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###############################################################            ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [################################################################           ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#################################################################          ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [##################################################################         ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [###################################################################        ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [####################################################################       ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#####################################################################      ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [######################################################################     ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [#######################################################################    ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [########################################################################   ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64 [########################################################################## ] 1/6  Updating   : 1:net-snmp-libs-5.7.2-32.el7.x86_64                                                                               1/6 
+  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [                                                                     ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##                                                                   ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [####                                                                 ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [######                                                               ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [########                                                             ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##########                                                           ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [############                                                         ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#############                                                        ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##############                                                       ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [################                                                     ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##################                                                   ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [####################                                                 ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [######################                                               ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [########################                                             ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##########################                                           ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [############################                                         ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [###############################                                      ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#################################                                    ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [###################################                                  ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#####################################                                ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#######################################                              ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#########################################                            ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [###########################################                          ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#############################################                        ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [###############################################                      ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#################################################                    ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [###################################################                  ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#####################################################                ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [########################################################             ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##########################################################           ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [############################################################         ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##############################################################       ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [################################################################     ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [##################################################################   ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64 [#################################################################### ] 2/6  Installing : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64                                                                         2/6 
+  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [                                                                                ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#                                                                               ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [###                                                                             ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#####                                                                           ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [######                                                                          ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [########                                                                        ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [###########                                                                     ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [##############                                                                  ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [###################                                                             ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [####################                                                            ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [##########################                                                      ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [################################                                                ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#####################################                                           ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [###########################################                                     ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#################################################                               ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#######################################################                         ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [##########################################################                      ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [################################################################                ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#################################################################               ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [####################################################################            ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#####################################################################           ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#######################################################################         ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [########################################################################        ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [##########################################################################      ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [###########################################################################     ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [############################################################################    ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [#############################################################################   ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [##############################################################################  ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64 [############################################################################### ] 3/6  Installing : 1:net-snmp-5.7.2-32.el7.x86_64                                                                                    3/6 
+  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [                                                                          ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##                                                                        ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#####                                                                     ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#######                                                                   ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###########                                                               ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##############                                                            ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###############                                                           ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#################                                                         ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##########################                                                ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [############################                                              ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###############################                                           ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [####################################                                      ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [######################################                                    ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##########################################                                ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#############################################                             ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###############################################                           ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [######################################################                    ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###########################################################               ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##############################################################            ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###############################################################           ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#################################################################         ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [##################################################################        ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [###################################################################       ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [####################################################################      ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#####################################################################     ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [######################################################################    ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [#######################################################################   ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64 [######################################################################### ] 4/6  Updating   : 1:net-snmp-utils-5.7.2-32.el7.x86_64                                                                              4/6 
+  Cleanup    : 1:net-snmp-utils-5.7.2-28.el7.x86_64                                                                              5/6 
+  Cleanup    : 1:net-snmp-libs-5.7.2-28.el7.x86_64                                                                               6/6 
+  Verifying  : 1:net-snmp-agent-libs-5.7.2-32.el7.x86_64                                                                         1/6 
+  Verifying  : 1:net-snmp-libs-5.7.2-32.el7.x86_64                                                                               2/6 
+  Verifying  : 1:net-snmp-5.7.2-32.el7.x86_64                                                                                    3/6 
+  Verifying  : 1:net-snmp-utils-5.7.2-32.el7.x86_64                                                                              4/6 
+  Verifying  : 1:net-snmp-libs-5.7.2-28.el7.x86_64                                                                               5/6 
+  Verifying  : 1:net-snmp-utils-5.7.2-28.el7.x86_64                                                                              6/6 
+
+Installed:
+  net-snmp.x86_64 1:5.7.2-32.el7                                                                                                     
+
+Dependency Installed:
+  net-snmp-agent-libs.x86_64 1:5.7.2-32.el7                                                                                          
+
+Dependency Updated:
+  net-snmp-libs.x86_64 1:5.7.2-32.el7                              net-snmp-utils.x86_64 1:5.7.2-32.el7                             
+
+Complete!
+Note: Forwarding request to 'systemctl enable snmpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/snmpd.service to /usr/lib/systemd/system/snmpd.service.
+Redirecting to /bin/systemctl start  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-apache
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-cups
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-iostat
+cron iostat-cron
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-processes+
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-TCMon
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-vmstat
+cron vmstat-cron
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+snmpd Install/Configuration for cacti-hugepages
+Redirecting to /bin/systemctl restart  snmpd.service
+########################################
+Nagios nrpe Install/Configuration
+Note: Forwarding request to 'systemctl enable nrpe.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/nrpe.service to /usr/lib/systemd/system/nrpe.service.
+Redirecting to /bin/systemctl start  nrpe.service
+########################################
+Apache Install/Configuration
+Note: Forwarding request to 'systemctl enable httpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+Redirecting to /bin/systemctl restart  httpd.service
+HealthShare
+########################################
+HSAP Install for schl : DR : INTEGRATION (SCHLDR2016INTEGRATION) below /trak/schlPRD/int
+Found Installer: /trak/schlPRD/int/db/temp/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlPRD/int/hs" as it exists
+NOTE - ./do_HSAP2015_Install.sh not creating "/trak/schlPRD/int/db" as it exists
+NOTE - no WIJ directory found
+installing Cache now
+Installing with CSP
+spawn ./cinstall
+
+Your system type is 'Red Hat Enterprise Linux (x64)'.
+
+Currently defined instances:
+
+
+Enter instance name: SCHLDR2016INTEGRATION
+Do you want to create HealthShare instance 'SCHLDR2016INTEGRATION' <Yes>? 
+Enter a destination directory for the new instance.
+Directory: /trak/schlPRD/int/hs
+ccontrol(open registry): No such file or directory
+
+----------------------------------------------------
+NOTE: Users should not attempt to access HealthShare while
+      the installation is in progress.
+----------------------------------------------------
+
+
+Disk blocks required  = 3755292
+Disk blocks available = 52337312
+
+How restrictive do you want the initial Security settings to be?
+"Normal" is less restrictive, "Locked Down" is the most secure.
+    1) Normal
+    2) Locked Down
+Initial Security settings <1>? 1
+
+What user should be the owner of this instance? cachesys
+A Cache account will also be created for user cachesys.
+
+Install will create the following HealthShare accounts for you: 
+_SYSTEM, Admin, SuperUser, cachesys and CSPSystem. 
+Please enter the common password for _SYSTEM, Admin, SuperUser and cachesys: 
+Re-enter the password to confirm it: 
+
+Please enter the password for CSPSystem: 
+Re-enter the password to confirm it: 
+
+What group should be allowed to start and stop
+  this instance? cachemgr
+
+Do you want to configure additional security options <No>? y
+
+What is the effective group for HealthShare processes <cacheusr>? cachegrp
+
+What is the effective user for the Cache SuperServer
+  and its jobs <cacheusr>? cacheusr
+
+Do you want to load the Manager utility source code <Yes>? 
+
+Enter the SuperServer port number <1972>: 
+
+Enter the WebServer port number <57772>: 
+
+Do you want to configure the CSP Gateway to use an existing web server <No>? y
+
+Specify the WebServer type. Choose "None" if you want to configure
+your WebServer manually.
+    1) Apache
+    2) SunOne
+    3) None
+WebServer type <3>? 1
+
+Please enter location of Apache configuration file </etc/httpd/conf/httpd.conf>: /etc/httpd/conf.d/isccspgateway.conf
+
+Enter user name used by Apache server to run it's worker processes <apache>: 
+
+Please enter location of Apache executable file </usr/sbin/httpd>: 
+Apache version 2.4 is detected.
+
+Please enter destination directory for CSP Gateway files </opt/cspgateway>: 
+
+Do you want to create directory /opt/cspgateway <Yes>? 
+
+Cache did not detect a license key
+in directory /trak/schlPRD/int/hs/mgr.
+Do you want to enter a license key <No>? 
+
+Client component selection
+
+   [ ]    1) C++ binding
+   [ ]    2) C++ SDK
+   [ ]    3) Perl binding
+   [ ]    4) Python binding
+   [ ]    5) HealthShare engine link libraries (callin/callout)
+   [ ]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+
+Client component selection
+
+   [*]    1) C++ binding
+   [*]    2) C++ SDK
+   [*]    3) Perl binding
+   [*]    4) Python binding
+   [*]    5) HealthShare engine link libraries (callin/callout)
+   [*]    6) Light C++ binding
+          +) Select all
+
+Enter the number of each component you wish to install.
+Enter the number of an already selected component to deselect it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> +
+Selecting all...
+Selecting 1
+Selecting 2
+Selecting 3
+
+HealthShare component selection
+
+   [*]    1) Database and Integration Environment
+   [*]    2) Linkage Engine
+   [*]    3) HealthShare Core Components
+          +) Select all
+
+"*" indicated that a component is selected.
+Enter the number of an already selected component to deselect it.
+Enter the number of a deselected component to select it.
+Multiple selections can be separated by spaces.
+Enter a blank line to continue.
+> 
+
+Please review the installation options:
+------------------------------------------------------------------
+Instance name: SCHLDR2016INTEGRATION
+Destination directory: /trak/schlPRD/int/hs
+HealthShare version to install: 2015.2.0.664.3.17168
+Installation type: Custom
+Unicode support: Y
+Initial Security settings: Normal
+User who owns instance: cachesys
+Group allowed to start and stop instance: cachemgr
+Effective group for HealthShare processes: cachegrp
+Effective user for HealthShare SuperServer: cacheusr
+SuperServer port: 1972
+WebServer port: 57772
+JDBC Gateway port: 62972
+CSP Gateway: installed into /opt/cspgateway
+Apache web server will be configured for CSP Gateway
+Client components:
+   ODBC client
+   C++ binding
+   Perl binding
+   Python binding
+   HealthShare engine link libraries
+   Light C++ binding
+------------------------------------------------------------------
+
+Do you want to proceed with the installation <Yes>? 
+^@
+Starting installation...
+
+    Updating Apache configuration file ...
+    - /etc/httpd/conf.d/isccspgateway.conf
+
+    * You need to restart your Apache server before any
+      configuration changes will take effect. 
+
+Starting up HealthShare for loading...
+../bin/cinstall -s . -B -c c -C /trak/schlPRD/int/hs/cache.cpf*SCHLDR2016INTEGRATION -W 1 -g2 
+Starting Control Process
+Allocated 97MB shared memory: 2MB global buffers, 35MB routine buffers
+Cache startup successful.
+System locale setting is 'en_GB.UTF-8'
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+^^/trak/schlPRD/int/hs/mgr/>
+
+^^/trak/schlPRD/int/hs/mgr/>
+Start of Cache initialization
+
+Loading system routines
+
+
+Updating Cachetemp and Cache database
+
+Installing National Language support
+
+Loading system classes
+
+Updating Security database
+
+Loading system source code
+
+
+Building system indices
+
+Updating Audit database
+
+Updating Journal directory
+
+Updating User database
+
+Updating Ensemble databases
+Load started on 04/23/2018 13:50:04
+Loading file /tmp/cacheextract/dist/install/misc/hsutil.xml as xml
+Imported class: %ZHSLIB.Audit.Log
+Imported class: %ZHSLIB.Audit.LogParticipant
+Imported class: %ZHSLIB.Component
+Imported class: %ZHSLIB.HealthShareMgr
+Imported class: %ZHSLIB.Services.Client
+Imported class: %ZHSLIB.Services.NVPair
+Imported class: %ZHSLIB.Services.Server
+Imported class: %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Imported class: %ZHSLIB.Services.TaskUpdateRolesAndResources
+Imported class: %ZHSLIB.SessionEventUtil
+Imported class: %ZHSLIB.UserChangePassword
+Imported class: %ZHSLIB.UserLogin
+Imported class: %ZHSLIB.UsersAndRoles
+Imported routine: %ZHSLIB.INC
+Imported routine: %ZJRNPURGE.MAC, compiling 13 classes, using 2 worker jobs
+Compiling class %ZHSLIB.Audit.Log
+Compiling class %ZHSLIB.HealthShareMgr
+Compiling class %ZHSLIB.Services.Client
+Compiling class %ZHSLIB.Services.NVPair
+Compiling class %ZHSLIB.Services.Server
+Compiling class %ZHSLIB.Services.TaskCalculateUpdatedRAndR
+Compiling class %ZHSLIB.Services.TaskUpdateRolesAndResources
+Compiling class %ZHSLIB.SessionEventUtil
+Compiling class %ZHSLIB.UserChangePassword
+Compiling class %ZHSLIB.UserLogin
+Compiling class %ZHSLIB.UsersAndRoles
+Compiling class %ZHSLIB.Audit.LogParticipant
+Compiling table %ZHSLIB_Audit.Log
+Compiling table %ZHSLIB_Audit.LogParticipant
+Compiling routine %ZHSLIB.Audit.Log.1
+Compiling routine %ZHSLIB.HealthShareMgr.1
+Compiling routine %ZHSLIB.Services.Client.1
+Compiling routine %ZHSLIB.Services.NVPair.1
+Compiling routine %ZHSLIB.Services.Server.1
+Compiling routine %ZHSLIB.Services.TaskCalculateUpdatedRAndR.1
+Compiling routine %ZHSLIB.Services.TaskUpdateRolesAndResources.1
+Compiling routine %ZHSLIB.SessionEventUtil.1
+Compiling routine %ZHSLIB.UserChangePassword.1
+Compiling routine %ZHSLIB.UserLogin.1
+Compiling routine %ZHSLIB.UsersAndRoles.1
+Compiling routine %ZHSLIB.Audit.LogParticipant.1
+Compiling class %ZHSLIB.Component
+Compiling routine %ZHSLIB.Component.1
+Compiling class %ZHSLIB.Services.Client.GetNVPair
+Compiling class %ZHSLIB.Services.Server.GetNVPair
+Compiling routine %ZHSLIB.Services.Client.GetNVPair.1
+Compiling routine %ZHSLIB.Services.Server.GetNVPair.1
+Compiling routine : %ZJRNPURGE.MAC
+Load finished successfully.
+
+
+Scheduling inventory scan
+
+Cache initialization complete
+
+See the cboot.log file for a record of the installation.
+
+Starting up HealthShare...
+Once this completes, users may access HealthShare
+Starting SCHLDR2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Automatically configuring buffers
+Allocated 634MB shared memory: 256MB global buffers, 300MB routine buffers
+Creating a WIJ file to hold 31 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+License missing or unreadable.
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+1 alert(s) during startup. See cconsole.log for details.
+
+
+You can point your browser to http://schl16drintm.nhsh.scot.nhs.uk:57772/csp/sys/UtilHome.csp
+to access the management portal.
+
+Installation completed successfully
+Redirecting to /bin/systemctl restart  httpd.service
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/conffiles/ZSTU.xml","ck")
+
+Load started on 04/23/2018 13:50:48
+Loading file /trak/schlPRD/int/db/temp/isc_coding/trakautomation/conffiles/ZSTU.xml as xml
+Imported routine: ZSTU.MAC
+Compiling routine : ZSTU.MAC
+Load finished successfully.
+
+%SYS>
+Apr 23 2018 13:50:48 : INFO: /etc/init.d/isccache executing on "schl16drintm.nhsh.scot.nhs.uk": Starting Cache
+NOTE - Instance SCHLDR2016INTEGRATION has not been added to /etc/init.d/isccache to start at boot
+########################################
+Installing licenses...
+../installers/cache.key
+Installing license for /trak/schlPRD/int/hs/mgr
+########################################
+Configuring Environment SCHLDR2016INTEGRATION
+Environment Configuration for schl : DR (SCHLDR2016INTEGRATION)
+Pri Journal /trak/schlPRD/int/jrn/pri/
+Alt Journal /trak/schlPRD/int/jrn/alt/
+
+13:50:48 Shutting down Cache
+13:50:48 Notifying Clients
+13:50:48 No user shutdown routines to execute
+13:50:48 Stopping User Jobs
+13:50:48 Stopping Network Servers
+13:50:48 Withdrawing from License Domain
+13:50:48 Waiting for users to stop
+13:50:48 Stopping Client Networking
+13:50:48 Removing database locks
+13:50:48 Updating Journal File
+13:50:49 Waiting for database updates to complete
+13:50:49 Database updates complete
+13:50:49 Stopping System Jobs
+13:50:51 Shutdown complete
+Starting SCHLDR2016INTEGRATION
+using 'cache.cpf' configuration file
+
+Starting Control Process
+Allocated 12352MB shared memory: 10668MB global buffers, 1000MB routine buffers
+Creating a WIJ file to hold 49 megabytes of data
+This copy of Cache has been licensed for use exclusively by:
+ISC TrakCare Development
+Copyright (c) 1986-2017 by InterSystems Corporation
+Any other use is a violation of your license agreement
+
+########################################
+zCustom.CheckSNMP Install for schl : DR (SCHLDR2016INTEGRATION)
+/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml","ck")
+
+Load started on 04/23/2018 13:50:55
+Loading file /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml as xml
+Imported class: zCustom.CheckSNMP
+Compiling class zCustom.CheckSNMP
+Compiling routine zCustom.CheckSNMP.1
+Load finished successfully.
+
+%SYS>do ##class(zCustom.CheckSNMP).Setup()
+
+%SYS>set mon=##Class(Config.Monitor).Open()
+
+%SYS>set mon.SNMPEnabled=1
+
+%SYS>write mon.%Save()
+1
+%SYS>
+
+%SYS>
+########################################
+zCustom.SnapBackup Install for schl : DR (SCHLDR2016INTEGRATION)
+Found Class: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml
+Found Call-in: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup.sh
+Found snaplib: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/snaplib.sh
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>write ##class(Security.Users).Exists("cachebackup")
+0
+%SYS>d ##Class(Security.Users).Create("cachebackup","%ALL","","Cache Backup user","","","",0,1,"",1,"","","",1,1)
+
+%SYS>do ^SECURITY
+
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 12
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 2
+Allow Unauthenticated access? Yes => Yes
+Allow Operating System authentication? No => Yes
+Allow Delegated Authorization for O/S authentication? No => No
+Allow Password authentication? Yes => Yes
+Allow Delegated authentication? Yes => Yes
+Allow Kerberos authentication? Yes => Yes
+Allow Delegated Authorization for Kerberos authentication? No => No
+Allow LDAP authentication? No => No
+Use Login Cookies? No => No
+Allow Two-factor Time-based One-time Password authentication? No => No
+Allow Two-factor SMS authentication? No => No
+
+Confirm changes to authentication options? Yes => Yes
+Authentication options updated
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 3
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 1
+
+Service to edit? %Service_Terminal
+Enabled? Yes => Yes
+Allow Unauthenticated access? No => No
+Allow Operating System authentication? Yes => Yes
+Allow Password authentication? Yes => Yes
+Allow Kerberos authentication? No => No
+Allow Kerberos Credentials Cache authentication? No => No
+Confirm changes to service %Service_Terminal? Yes => Yes
+Service %Service_Terminal updated
+
+Service to edit? 
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 
+%SYS>do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml","ck")
+
+Load started on 04/23/2018 13:51:25
+Loading file /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml as xml
+Imported class: zCustom.SnapBackup
+Compiling class zCustom.SnapBackup
+Compiling routine zCustom.SnapBackup.1
+Load finished successfully.
+
+%SYS>
+########################################
+zCustom.TrakCareCustomTasks Install for schl : DR (SCHLDR2016INTEGRATION)
+Found Class: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.TrakCareCustomTasks/zCustom.TrakCareCustomTasks.xml
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "SCHL-DR"
+
+ZN "SCHL-DR"
+^
+<NAMESPACE>
+USER>zn "SCHL-DR" do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.TrakCareCustomTasks/zCustom.TrakCareCustomTasks.xml","fck") zn "SCHL-DR"
+
+ZN "SCHL-DR" DO $SYSTEM.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautom
+^
+ation/zCustom.TrakCareCustomTasks/zCustom.TrakCareCustomTasks.xml","fck") ZN "SC
+HL-DR"
+<NAMESPACE>
+USER>h
+^C]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[inter02@schl16drintm trakautomation]$ sudo ./MasterSCHLDR2016INT.shv./MasterSCHLDR2016INT.shi./MasterSCHLDR2016INT.sh ./MasterSCHLDR2016INT.sh
+[?1049h[?1h=[1;38r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[38;1H"./MasterSCHLDR2016INT.sh" 156L, 4063C[1;1H#!/bin/sh -e
+# This is an example master script using the tools created
+# It expects HSAP-*.tar.gz to be in the same directory
+export TMPDIR=/trak/iscbuild/tmp
+export SITE=schl
+export ENV=DR
+export VER=2016
+export TYPE=INTEGRATION
+MONITORIP=10.111.3.166
+#
+# Various overrides exist to allow customisation of behaviour
+# This section details those overrides
+#
+#
+# Add custom enironment names - used in functions.sh
+export EXTRAENVS=PLAY,SUPPORT,UPGRADE,DR
+#
+# Force a custom base path - used for non-standard paths. Expect hs*/ db/ web/ etc. below this
+export TRAKROOT=/trak/schlPRD/int
+#
+# Set custom Users/Groups TODO this is largely untested - use with due caution
+# Setting usersnames/groupnames to "!" disables them, but take care since it will break if they are actually needed
+export CACHEUSR=cacheusr
+export CACHEUSRID=2001
+export TRAKSMB=!
+export TRAKSMBID=3001
+export CACHEBACKUP=cachebackup
+export CACHEBACKUPID=2003
+export CACHESYSUSR=cachesys
+export CACHESYSUSRID=2002
+
+export CACHEGRP=cachegrp
+export CACHEGRPID=2001
+export CACHEMGR=cachemgr
+export CACHEMGRID=2002
+export TRAKCACHE=!
+export TRAKCACHEID=3002[1;1H[?12l[?25h[?25l[27m[m[H[2J[1;1Hexport TRAKCACHE=!
+export TRAKCACHEID=3002
+export TRAKPRINT=cupsAdministrator
+export TRAKPRINTID=2003
+
+# bring in functions and defaults - this must be first!
+. ./functions.sh
+checkvars
+
+# check for Package source
+#./do_PackageCheck.sh
+
+# check we are root
+./do_rootCheck.sh
+
+# check we have basic Perl available
+./do_PerlCheck.sh
+
+# pick up passwords if available (eg. test systems) else prompt
+if [ -f /tmp/testcredentials ]; then[21;9H# this should just be shell code exporting CACHEPASS and TRAKZIPPASS[22;9H. /tmp/testcredentials
+else[24;9Hecho[25;9H# read in password for Caché - this will be inherited by all Caché installs in this script[26;9Hgetpass "Caché Password to use" CACHEPASS
+fi
+export TRAKZIPPASS="not needed"
+
+# disable SELINUX
+#./do_SELINUXdisable.sh
+
+# set users/groups
+./do_Users.sh
+
+# stop messing about with Caché Terminal from wrong users
+./do_UserEnv.sh[1;1H[?12l[?25h[?25l[27m[m[H[2J[1;1H# stop messing about with Caché Terminal from wrong users
+./do_UserEnv.sh
+
+# Trak Directories
+./do_Trak_dirs.sh
+
+# SMR dirs - Scotland only
+./do_TrakSMR_dirs.sh
+
+# install standard utilities
+./do_Utilities.sh
+
+# snmpd
+./do_SNMP.sh $MONITORIP
+
+# cacti template config
+./do_cacti_snmp.sh cacti-apache
+./do_cacti_snmp.sh cacti-cups
+./do_cacti_snmp.sh cacti-iostat
+./do_cacti_snmp.sh cacti-processes+
+./do_cacti_snmp.sh cacti-TCMon
+./do_cacti_snmp.sh cacti-vmstat
+./do_cacti_snmp.sh cacti-hugepages
+
+# nagios
+# IMPORTANT - this is not on the RH DVD so will install RPMs from RPMForge
+# This is also not fully implimented (auto thershold calculation) so needs manually editing after install
+./do_nagios-nrpe.sh $MONITORIP DB,PRT,WEB TODO-licenses TODO-episodes
+
+# apache
+./do_apache.sh
+./do_apacheTune.sh
+
+# samba
+#./do_samba.sh WORKGROUP `hostname | cut -d. -f1` "Test Server" $SITE_UC
+
+# install HS[1;1H[?12l[?25h[?25l[27m[m[H[2J[2;1H# install HS
+echo HealthShare
+./do_HSAP2015_Install.sh $SITE $ENV $TYPE$VER
+
+# install license keys - without args does this for all instances found
+./do_Environment_key.sh
+
+# set HS config
+# Usage: ./do_Environment_config.sh
+# <Site Code> <Environment> <Type>[Version] <routine buffers in MiB> <global buffers in MiB> <lock table size in B> <gmheap in kiB>
+# https://www.gbmb.org/megabytes
+# 1000MB 10668MB 16MB 128MB
+./do_Environment_config.sh $SITE $ENV $TYPE$VER 1000 10668 16777216 131072
+
+# printing & preview
+#./do_CUPS.sh
+#./do_FOPConf.sh $SITE $ENV $TYPE$VER 128m 128m
+
+# do Trak install
+#./do_TrakVanillaT2016_Install.sh
+#./do_TrakCare2016_ApacheCSP.sh $TYPE
+
+# load in specific tools we need - NOTE: these will probably fail without licenses in place
+./do_zCustom.CheckSNMP_Install.sh $TYPE
+./do_zCustom.SnapBackup_Install.sh $TYPE
+
+# SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
+./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
+
+# Huge Pages configuration
+./do_hugePages.sh 6354
+
+# Fonts for barcodes
+./do_PMSFonts.sh
+
+# Security patch[1;1H[?12l[?25h
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[?25l[38;1H[1m-- INSERT --[29;1H[?12l[?25h[?25l[m#./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE#[?12l[?25h[38;1H[K[29;1H[?25l[?12l[?25h[?25l[38;1H:[?12l[?25hx[?25l"./MasterSCHLDR2016INT.sh" 156L, 4064C written
+[?1l>[?12l[?25h[?1049l]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[inter02@schl16drintm trakautomation]$ sudo vi ./MasterSCHLDR2016INT.sh[3P./MasterSCHLDR2016INT.sh
+
+Caché Password to use: 
+Confirm: 
+########################################
+User/Group Configuration exists
+########################################
+TrakCare Shell Environment Configuration exists
+########################################
+Trak Directories
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/hs" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/web" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int//pri" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int//alt" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/db" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/db/audit" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/db/log" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/store/temp" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/patches" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/patches-completed" as it exists
+NOTE - ./do_Trak_dirs.sh not creating "/trak/schlPRD/int/perforce" as it exists
+########################################
+Trak Permissions (basic)
+########################################
+Trak SMR Directories
+########################################
+Install Utilities
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Package util-linux-2.23.2-52.el7.x86_64 already installed and latest version
+Nothing to do
+########################################
+snmpd Configuration Exists
+########################################
+snmpd Configuration Exists for cacti-apache
+########################################
+snmpd Configuration Exists for cacti-cups
+########################################
+snmpd Configuration Exists for cacti-iostat
+########################################
+snmpd Configuration Exists for cacti-processes+
+########################################
+snmpd Configuration Exists for cacti-TCMon
+########################################
+snmpd Configuration Exists for cacti-vmstat
+########################################
+snmpd Configuration Exists for cacti-hugepages
+########################################
+Nagios nrpe Configuration Exists
+########################################
+Apache Configuration Exists
+HealthShare
+########################################
+./do_HSAP2015_Install.sh: NOTE - Skipping CSP as already installed - "/opt/cspgateway/bin/CSP.ini" exists
+HSAP Install for schl : DR : INTEGRATION (SCHLDR2016INTEGRATION) below /trak/schlPRD/int
+Found Installer: /trak/schlPRD/int/db/temp/isc_coding/installers/HSAP-2015.2.0.664.3.17168-hscore14.01-b1157.17168-lnxrhx64.tar.gz
+depends
+Instance already exists - skipping
+########################################
+Installing licenses...
+../installers/cache.key
+Installing license for /trak/schlPRD/int/hs/mgr
+########################################
+Configuring Environment SCHLDR2016INTEGRATION
+Environment Configuration for schl : DR (SCHLDR2016INTEGRATION)
+Already configured... skipping
+########################################
+zCustom.CheckSNMP Install for schl : DR (SCHLDR2016INTEGRATION)
+/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml","ck")
+
+Load started on 04/23/2018 13:56:29
+Loading file /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.CheckSNMP-20130812.xml as xml
+Imported class: zCustom.CheckSNMP
+Compiling class zCustom.CheckSNMP
+Compiling routine zCustom.CheckSNMP.1
+Load finished successfully.
+
+%SYS>do ##class(zCustom.CheckSNMP).Setup()
+Remove Existing ID=1000
+
+%SYS>set mon=##Class(Config.Monitor).Open()
+
+%SYS>set mon.SNMPEnabled=1
+
+%SYS>write mon.%Save()
+1
+%SYS>
+########################################
+zCustom.SnapBackup Install for schl : DR (SCHLDR2016INTEGRATION)
+Found Class: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml
+Found Call-in: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup.sh
+Found snaplib: /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/snaplib.sh
+spawn su - cacheusr -c csession SCHLDR2016INTEGRATION
+
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION
+
+Username: SuperUser
+Password: ***********
+USER>zn "%SYS"
+
+%SYS>write ##class(Security.Users).Exists("cachebackup")
+1
+%SYS>do ^SECURITY
+
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 12
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 2
+Allow Unauthenticated access? Yes => Yes
+Allow Operating System authentication? Yes => Yes
+Allow Delegated Authorization for O/S authentication? No => No
+Allow Password authentication? Yes => Yes
+Allow Delegated authentication? Yes => Yes
+Allow Kerberos authentication? Yes => Yes
+Allow Delegated Authorization for Kerberos authentication? No => No
+Allow LDAP authentication? No => No
+Use Login Cookies? No => No
+Allow Two-factor Time-based One-time Password authentication? No => No
+Allow Two-factor SMS authentication? No => No
+
+Confirm changes to authentication options? Yes => Yes
+Authentication options updated
+
+1) Edit system options
+2) Edit authentication options
+3) Edit LDAP options
+4) Display system options
+5) Export All Security settings
+6) Import All Security settings
+7) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 3
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 1
+
+Service to edit? %Service_Terminal
+Enabled? Yes => Yes
+Allow Unauthenticated access? No => No
+Allow Operating System authentication? Yes => Yes
+Allow Password authentication? Yes => Yes
+Allow Kerberos authentication? No => No
+Allow Kerberos Credentials Cache authentication? No => No
+Confirm changes to service %Service_Terminal? Yes => Yes
+Service %Service_Terminal updated
+
+Service to edit? 
+
+1) Edit service
+2) List services
+3) Detailed list services
+4) Export services
+5) Import services
+6) Exit
+
+Option? 
+
+1) User setup
+2) Role setup
+3) Service setup
+4) Resource setup
+5) Application setup
+6) Auditing setup
+7) Domain setup
+8) SSL configuration setup
+9) Mobile phone service provider setup
+10) OpenAM Identity Services setup
+11) Encryption key setup
+12) System parameter setup
+13) X509 User setup
+14) Exit
+
+Option? 
+%SYS>do $system.OBJ.Load("/trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml","ck")
+
+Load started on 04/23/2018 13:56:59
+Loading file /trak/schlPRD/int/db/temp/isc_coding/trakautomation/zCustom.SnapBackup/zCustom.SnapBackup-20131212.xml as xml
+Imported class: zCustom.SnapBackup
+Compiling class zCustom.SnapBackup
+Compiling routine zCustom.SnapBackup.1
+Load finished successfully.
+
+%SYS>
+########################################
+Huge Pages memory configuration
+Generating configuration
+########################################
+Install PMSFonts
+########################################
+Install February 2017 SV
+wtf
+here 1
+Archive:  /trak/schlPRD/int/hs/mgr/iscpatches/Feb17SV_Patch-2015.2.x-all.zip
+   creating: 2015.2.5_Feb17SV/
+  inflating: 2015.2.5_Feb17SV/Feb2017SV_Patch_Instructions_2015.2.x.pdf  
+  inflating: 2015.2.5_Feb17SV/syspatch_feb17sv.xml  
+here
+Node: schl16drintm.nhsh.scot.nhs.uk, Instance: SCHLDR2016INTEGRATION %SYS> %SYS> %SYS> %SYS> iscpatch: /trak/schlPRD/int/hs/mgr/iscpatches/2015.2.5_Feb17SV/syspatch_feb17sv.xml %SYS> Load started on 04/23/2018 13:57:01 Loading file /trak/schlPRD/int/hs/mgr/iscpatches/2015.2.5_Feb17SV/syspatch_feb17sv.xml as xml Imported object code: %SYS.PATCH Imported global: ^CacheTempPatch Load finished successfully. %SYS> Apply Patch Utility Patch: Feb17SV Description: February 2017 SV for 2015.2.0,2015.2.1,2015.2.2,2015.2.3,2015.2.4,2015.2.5 Created at: 2017-02-24 13:40:12 Created on $zv: Cache for Windows (x86-64) 2015.2.5 (Build 953_1) Backing up Original Files... %ZEN.Utils.cls Applying Patch... %ZEN.Utils.cls Successfully Applied! Please test the patch. If it fails, you can remove the patch by executing the following command: Do Restore^%SYS.PATCH(1) %SYS> %SYS> Patches Installed on this System Patch: Feb17SV Description: February 2017 SV for 2015.2.0,2015.2.1,2015.2.2,2015.2.3,2015.2.4,2015.2.5 Created (UTC): 2017-02-24 13:40:12 Created on: Cache for Windows (x86-64) 2015.2.5 (Build 953_1) Applied on (UTC): 2018-04-23 12:57:03 Applied by: cachesys to namespace: %SYS %SYS> %SYS>
+
+SUCCESS: Feb17SV successfully installed!
+########################################
+Setting Autostart....
+Setting Autostart for SCHLDR2016INTEGRATION
+########################################
+Install VCB and pre-freeze/post-thaw scripts in Linux VMs
+Test, as root, /usr/sbin/pre-freeze-script
+Test, as root, /usr/sbin/post-thaw-script
+########################################
+Install Java SUN jre
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+Examining jre/jre-8u161-linux-x64.rpm: jre1.8-1.8.0_161-fcs.x86_64
+Marking jre/jre-8u161-linux-x64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package jre1.8.x86_64 0:1.8.0_161-fcs will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================
+ Package                   Arch                      Version                           Repository                               Size
+=====================================================================================================================================
+Installing:
+ [1mjre1.8(B[m                    x86_64                    1.8.0_161-fcs                     /jre-8u161-linux-x64                    141 M
+
+Transaction Summary
+=====================================================================================================================================
+Install  1 Package
+
+Total size: 141 M
+Installed size: 141 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : jre1.8-1.8.0_161-fcs.x86_64 [                                                                                   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#                                                                                  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##                                                                                 ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###                                                                                ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [####                                                                               ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#####                                                                              ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [######                                                                             ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#######                                                                            ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [########                                                                           ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#########                                                                          ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##########                                                                         ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###########                                                                        ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [############                                                                       ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#############                                                                      ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##############                                                                     ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###############                                                                    ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################                                                                   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#################                                                                  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##################                                                                 ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###################                                                                ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [####################                                                               ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#####################                                                              ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [######################                                                             ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#######################                                                            ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [########################                                                           ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#########################                                                          ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##########################                                                         ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###########################                                                        ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [############################                                                       ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#############################                                                      ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##############################                                                     ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###############################                                                    ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################################                                                   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#################################                                                  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##################################                                                 ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###################################                                                ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [####################################                                               ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#####################################                                              ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [######################################                                             ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#######################################                                            ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [########################################                                           ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#########################################                                          ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##########################################                                         ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###########################################                                        ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [############################################                                       ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#############################################                                      ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##############################################                                     ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###############################################                                    ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################################################                                   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#################################################                                  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##################################################                                 ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###################################################                                ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [####################################################                               ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#####################################################                              ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [######################################################                             ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#######################################################                            ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [########################################################                           ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#########################################################                          ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##########################################################                         ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###########################################################                        ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [############################################################                       ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#############################################################                      ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##############################################################                     ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###############################################################                    ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################################################################                   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#################################################################                  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##################################################################                 ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###################################################################                ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [####################################################################               ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#####################################################################              ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [######################################################################             ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#######################################################################            ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [########################################################################           ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#########################################################################          ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##########################################################################         ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###########################################################################        ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [############################################################################       ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#############################################################################      ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [##############################################################################     ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [###############################################################################    ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################################################################################   ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [#################################################################################  ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64 [################################################################################## ] 1/1  Installing : jre1.8-1.8.0_161-fcs.x86_64                                                                                       1/1 
+Unpacking JAR files...
+	plugin.jar...
+	javaws.jar...
+	deploy.jar...
+	rt.jar...
+	jsse.jar...
+	charsets.jar...
+	localedata.jar...
+  Verifying  : jre1.8-1.8.0_161-fcs.x86_64                                                                                       1/1 
+
+Installed:
+  jre1.8.x86_64 0:1.8.0_161-fcs                                                                                                      
+
+Complete!
+
+Probably worth rebooting to ensure no memory fragmentation and test the config...
+]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[inter02@schl16drintm trakautomation]$ ccontrol lis[K[K[K[K[K[K[K[K[K[K[K[K^C
+]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[inter02@schl16drintm trakautomation]$ ^C
+]0;inter02@schl16drintm:/trak/iscbuild/trakautomation[inter02@schl16drintm trakautomation]$ exit
+
+Script done on Mon 23 Apr 2018 13:58:34 BST

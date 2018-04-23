@@ -25,9 +25,11 @@
 
 ### VBA helper script for snapshot
 
-echo "$(date "+%Y-%m-%d %H:%M:%S") post-snapshot running" >> /tmp/vmware_snapshot.log
 
-/etc/admin/CacheUtil/zCustom.SnapBackup.sh Thaw _ALL
+echo "$(date "+%Y-%m-%d %H:%M:%S") post-snapshot running" >> /var/log/vmware_snapshot.log 2>&1
+
+/etc/admin/CacheUtil/zCustom.SnapBackup.sh Thaw _ALL >> /var/log/vmware_snapshot.log 2>&1
 ret=$?
 
 exit $ret
+

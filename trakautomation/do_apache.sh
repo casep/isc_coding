@@ -60,9 +60,8 @@ config_RHEL() {
 	echo "		SetHandler server-status" >>$STCONF
 	echo "		Order deny,allow" >>$STCONF
 	echo "		Deny from all" >>$STCONF
-	echo "		Allow from 127.0.0.1" >>$STCONF
-	echo "		Allow from ::1" >>$STCONF
-	echo "      Allow from 10.111.1.114" >>$STCONF
+#	echo "		Allow from 127.0.0.1" >>$STCONF
+#	echo "		Allow from ::1" >>$STCONF
 	echo "		Allow from localhost" >>$STCONF
 	echo "	</Location>" >>$STCONF
 	echo "	ExtendedStatus On" >>$STCONF

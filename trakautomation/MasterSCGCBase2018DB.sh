@@ -139,6 +139,8 @@ echo HealthShare
 # VMware hooks
 ./do_VMwareHandlers.sh
 
+# Java SUN
+./do_Java.sh
 
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...

@@ -37,6 +37,8 @@ install_LINUX() {
 	cp -pr zCustom.SnapBackup /etc/admin/CacheUtil
 	ln -s /etc/admin/CacheUtil/pre-freeze-script /usr/sbin/
 	ln -s /etc/admin/CacheUtil/post-thaw-script /usr/sbin/
+	touch /var/log/vmware_snapshot.log
+	chmod 666 /var/log/vmware_snapshot.log
 	echo "Test, as root, /usr/sbin/pre-freeze-script"
 	echo "Test, as root, /usr/sbin/post-thaw-script"
 

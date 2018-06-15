@@ -92,6 +92,20 @@ install_RHEL_7_4() {
 
 }
 
+install_RHEL_7_5() {
+        if [ ! -x /usr/sbin/nrpe ]; then
+                yum install -y 'perl(Digest::HMAC)' 'perl(Digest::SHA1)' 'perl(Socket6)'
+                # install RPMForge RPMs for this
+                yum localinstall -y nagios-nrpe-RHEL7.5/*.rpm
+                usermod -G $CACHEGRP nagios
+        fi
+        if [ ! -d $INSTALLPATH ]; then
+                mkdir -p $INSTALLPATH
+                cp -i nagios-plugins/* $INSTALLPATH
+        fi
+
+}
+
 install_CentOS_7_3() {
 install_RHEL_7_3
 }

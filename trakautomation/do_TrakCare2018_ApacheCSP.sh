@@ -16,7 +16,6 @@ trakapacheconf_RHEL() {
 	CONFDIR=/etc/httpd/conf.d
 	CONF=$CONFDIR/t2018-$TRAKNS.conf
 	CONFPRT=$CONFDIR/t2018-EPS.conf
-#	echo $CONF
 }
 
 apacherestart_SLES() {
@@ -24,7 +23,7 @@ apacherestart_SLES() {
 	return 0
 }
 apacherestart_RHEL() {
-	[ -x /usr/sbin/httpd ] && service httpd restart
+	[ -x /usr/sbin/httpd ] && systemctl restart httpd
 	return 0
 }
 

@@ -84,18 +84,18 @@ export TRAKZIPPASS="not needed"
 ./do_SNMP.sh $MONITORIP
 
 # cacti template config
-./do_cacti_snmp.sh cacti-apache
-./do_cacti_snmp.sh cacti-cups
-./do_cacti_snmp.sh cacti-iostat
-./do_cacti_snmp.sh cacti-processes+
-./do_cacti_snmp.sh cacti-TCMon
-./do_cacti_snmp.sh cacti-vmstat
-./do_cacti_snmp.sh cacti-hugepages
+#./do_cacti_snmp.sh cacti-apache
+#./do_cacti_snmp.sh cacti-cups
+#./do_cacti_snmp.sh cacti-iostat
+#./do_cacti_snmp.sh cacti-processes+
+#./do_cacti_snmp.sh cacti-TCMon
+#./do_cacti_snmp.sh cacti-vmstat
+#./do_cacti_snmp.sh cacti-hugepages
 
 # nagios
 # IMPORTANT - this is not on the RH DVD so will install RPMs from RPMForge
 # This is also not fully implimented (auto thershold calculation) so needs manually editing after install
-./do_nagios-nrpe.sh $MONITORIP DB,PRT,WEB TODO-licenses TODO-episodes
+#./do_nagios-nrpe.sh $MONITORIP DB,PRT,WEB TODO-licenses TODO-episodes
 
 # apache
 ./do_apache.sh
@@ -106,7 +106,7 @@ export TRAKZIPPASS="not needed"
 
 # install HS
 echo HealthShare
-./do_HS2017_Install.sh $SITE $ENV $TYPE$VER
+./do_HSAP2017_Install.sh $SITE $ENV $TYPE$VER
 
 # install license keys - without args does this for all instances found
 ./do_Environment_key.sh

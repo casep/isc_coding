@@ -123,13 +123,25 @@ installCache() {
 	# create extract areay
 	olddir=`pwd`
 	mkdir -p /tmp/cacheextract
-	cd /tmp/cacheextract
 	# extract - this way of extracting a tarball is needed for AIX compatibility
-	gzip --decompress --stdout "$installer" | tar -xf -
+	#gzip --decompress --stdout "$installer" | tar -xf -
+	#FIX HERE FOR AIX
+	tar xzf "$installer" -C /tmp/cacheextract
+	cd /tmp/cacheextract/$(tar tzf $installer | head -1 | cut -d"/" -f1)
 	if [ $CSPONLY -ne 1 ]; then
 		# database install
 		if [ $CSP -eq 1 ]; then
 			echo "Installing with CSP"
+			echo "PWD"
+			echo $(pwd)
+			echo "$INST"
+			echo $INST
+			echo "$TRAKPATH"
+			echo $TRAKPATH
+			echo "$CACHEDIR"
+			echo $CACHEDIR
+			echo "osspecific"
+			echo $(osspecific cspconfig)
 			${olddir}/${expectprefix}_withcsp.expect $INST ${TRAKPATH}/$CACHEDIR `osspecific cspconfig`
 			# update CSP basics
 			setCSPbasics

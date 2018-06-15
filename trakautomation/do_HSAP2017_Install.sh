@@ -14,7 +14,7 @@ fi
 # find installer
 if [ -z "$HSVER" ]; then
 	# no specific version specified - use generic
-	installer=`locatefilestd "HSAP-2015*-hscore*-\`cacheos\`.tar.gz"`
+	installer=`locatefilestd "HSAP-2017*-hscore*-\`cacheos\`.tar.gz"`
 else
 	# got a specific version pattern to match
 	installer=`locatefilestd "HSAP-$HSVER*-\`cacheos\`.tar.gz"`

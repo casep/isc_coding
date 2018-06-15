@@ -15,7 +15,7 @@ expect "Re-enter the password to confirm it:" { sleep 2; send "$env(CACHEPASS)\r
 expect "What group should be allowed to start and stop" { send "$env(CACHEMGR)\r" }
 expect "Do you want to configure additional security options" { send "y\r" }
 expect "What is the effective group for HealthShare processes" { send "$env(CACHEGRP)\r" }
-expect "What is the effective user for the Cache SuperServer" { send "$env(CACHEUSR)\r" }
+expect "What is the effective user for the HealthShare SuperServer" { send "$env(CACHEUSR)\r" }
 expect "Do you want to load the Manager utility source code" { send "\r" }
 expect "Enter the SuperServer port number" { send "\r" }
 expect "Enter the WebServer port number" { send "\r" }

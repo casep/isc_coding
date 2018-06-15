@@ -18,10 +18,11 @@ expect "USER>" { send "set vars(\"TRAKDIR\") = \"[lindex $argv 4]\"\r" }
 expect "USER>" { send "set vars(\"WEBDIR\") = \"[lindex $argv 4]/web\"\r" }
 expect "USER>" { send "set vars(\"DBDIR\") = \"[lindex $argv 4]/db\"\r" }
 expect "USER>" { send "set vars(\"WEBURL\") = \"[lindex $argv 5]\"\r" }
-expect "USER>" { send "do install^tkutils(.vars)\r" }
+expect "USER>" { send "do setup^tkutils(.vars)\r" }
 expect "Do you want to continue : (Y/N) ?" { send "y\r" }
+#Do you want to create a namespace for TrakCare Analytics with the recommended settings and mappings:
+expect "[(N)No (Y)Yes (Default Y)] => " { send "n\r" }
 set timeout 3600
-#expect "Run conversion routines" { send "y\r" }
 expect "USER>" { send "h\r" }
 send_user "\n"
 

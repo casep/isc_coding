@@ -50,20 +50,17 @@ check_LINUX() {
 }
 
 install_LINUX() {
-	echo "wtf"
 	SVVERSION=$(/bin/ccontrol qlist $SVINSTNAME | /bin/awk -F"^" '{print $3}' | /bin/awk -F"." '{print $1"."$2}')
 	SVPTCHDIR=$(/bin/ccontrol qlist $SVINSTNAME | /bin/awk -F"^" '{print $2}')"/mgr/iscpatches"
 	
 	/bin/mkdir -p $SVPTCHDIR
 	/bin/chown cacheusr:cachegrp $SVPTCHDIR 
-	echo "here 1"
 	if [ -f "/trak/iscbuild/installers/Feb17SV_Patch-${SVVERSION}.x-all.zip" ]; then
 		/bin/cp "/trak/iscbuild/installers/Feb17SV_Patch-${SVVERSION}.x-all.zip" ${SVPTCHDIR}/
 		cd ${SVPTCHDIR}/
 		/bin/unzip ${SVPTCHDIR}/Feb17SV_Patch-${SVVERSION}.x-all.zip
 		/bin/rm -f ${SVPTCHDIR}/Feb17SV_Patch-${SVVERSION}.x-all.zip
 		SVPTCHFOLDER=$(/bin/ls ${SVPTCHDIR} | /bin/grep "${SVVERSION}.[0-9]_Feb17SV")
-		echo "here"
 		SVOUT=`/bin/sudo -u cachesys /bin/csession $SVINSTNAME -U %SYS << EOF
 zn "%SYS"
 w "",!

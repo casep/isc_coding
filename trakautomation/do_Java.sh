@@ -29,11 +29,13 @@
 check_LINUX() {
         javaBinary=/usr/java/latest/bin/java
         if [ -f $javaBinary ]; then return 0; fi
+	javaInstaller=../installers/jre-8*.rpm
+	if [ ! -f $javaInstaller ]; then return 0; fi
         return 1
 }
 
 install_LINUX() {
-	yum -y install jre/jre-8u161-linux-x64.rpm
+	yum -y install ../installers/jre-8*-linux-x64.rpm
 	alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200
 	alternatives --set java /usr/java/latest/bin/java
 }
@@ -42,7 +44,7 @@ install_LINUX() {
 echo "########################################"
 echo "Install Java SUN jre"
 if osspecific check; then
-	echo "Java SUN jre Exists"
+	echo "Java SUN jre Exists or missing installer"
 	exit 0
 else
 	osspecific install

@@ -40,6 +40,11 @@ install_LINUX() {
 	firewall-cmd --reload
 }
 
+# check for args
+if [ $# -ne 1 ]; then
+        echo "Usage: $0 port/protocol 1972/tcp 80/tcp 443/tcp 57772/tcp 2188/tcp 4001/udp" >&2
+        exit 1
+fi
 
 echo "########################################"
 echo "Updating firewall configuration"

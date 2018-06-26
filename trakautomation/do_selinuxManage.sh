@@ -42,9 +42,9 @@ install_LINUX() {
 	restorecon -v /opt/cspgateway/bin/CSP.log
 
 	semanage fcontext -a -t httpd_sys_rw_content_t "$TRAKPATH/web(/.*)?"
-	restorecon -Rv "$TRAKPATH/web/"
+	restorecon -Rv $TRAKPATH/web/
 	semanage fcontext -a -t httpd_sys_rw_content_t "$TRAKPATH/perforce(/.*)?"
-	restorecon -Rv /trak/scgcBASE/tc/perforce/
+	restorecon -Rv $TRAKPATH/perforce/
 	ccontrol qlist | cut -d"^" -f6 | while read superPort; do
 		semanage port -a -t http_port_t -p tcp $superPort
 	done

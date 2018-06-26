@@ -48,11 +48,11 @@ fi
 
 echo "########################################"
 echo "Updating firewall configuration"
-install_LINUX $@
+
 if osspecific check; then
 	echo "firewalld not running"
 	exit 0
 else
-	osspecific install
+	install_LINUX $@
 fi
 

@@ -145,6 +145,9 @@ echo HealthShare
 # Fix SELinux permissions
 ./do_selinuxManage.sh
 
+# ISCAgent
+./do_ISCAgent.sh
+
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...
 

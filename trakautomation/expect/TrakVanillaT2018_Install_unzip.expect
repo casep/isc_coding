@@ -1,8 +1,5 @@
 #!/usr/bin/expect -f
 # takes args: <zipfile>
 # expects environment variable $TRAKZIPPASS to be the password to use for the .zip
-spawn unzip [lindex $argv 0]
-expect "RP.xml password:" { sleep 2; send "$env(TRAKZIPPASS)\r" }
-interact
-
+spawn unzip [lindex $argv 0] -d /trak/iscbuild/tmp/trakextract/
 

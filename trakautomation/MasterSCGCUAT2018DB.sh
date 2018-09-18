@@ -120,15 +120,15 @@ echo HealthShare
 ./do_PMSFonts.sh
 
 # do Trak install
-#./do_TrakVanillaT2018_Install.sh
-#./do_TrakCare2018_ApacheCSP.sh $TYPE
+./do_TrakVanillaT2018_Install.sh
+./do_TrakCare2018_ApacheCSP.sh $TYPE
 
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
 ./do_zCustom.CheckSNMP_Install.sh $TYPE
 ./do_zCustom.SnapBackup_Install.sh $TYPE
 
 # SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
-#./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
+./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
 
 # Huge Pages configuration
 ./do_hugePages.sh 3072
@@ -144,6 +144,12 @@ echo HealthShare
 
 # Firewall configuration
 ./do_Firewall.sh 1972/tcp 80/tcp 443/tcp 57772/tcp 631/tcp 2188/tcp 4001/udp 
+
+# Fix SELinux permissions
+./do_selinuxManage.sh
+
+# ISCAgent
+./do_ISCAgent.sh
 
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...

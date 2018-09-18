@@ -85,12 +85,28 @@ cp expect/TrakVanillaT2018_Install_install.expect $TMPDIR/trakextract
 chmod 755 $TMPDIR/trakextract/TrakVanillaT2018_Install_install.expect
 olddir=`pwd`
 cd $TMPDIR/trakextract
-${olddir}/expect/TrakVanillaT2018_Install_unzip.expect $installer
+#${olddir}/expect/TrakVanillaT2018_Install_unzip.expect $installer
+unzip -q -o $installer -d $TMPDIR/trakextract/
 chown $CACHEUSR.$CACHEGRP $TMPDIR/trakextract -R
 
-$TMPDIR/trakextract/TrakVanillaT2018_Install_install.expect $INST $TMPDIR/trakextract $ENV $TRAKNS ${TRAKPATH} /trakcare
+#$TMPDIR/trakextract/TrakVanillaT2018_Install_install.expect $INST $TMPDIR/trakextract $ENV $TRAKNS ${TRAKPATH} /trakcare
+echo "
+do \$system.OBJ.Load(\"$TMPDIR/trakextract/tkutils.xml\",\"fc\")
+set vars(\"SRCDIR\") = \"$TMPDIR/trakextract\"
+set vars(\"ENV\") = \"$ENV\"
+set vars(\"NAMESPACE\") = \"$TRAKNS\"
+set vars(\"TRAKDIR\") = \"${TRAKPATH}\"
+set vars(\"WEBDIR\") = \"${TRAKPATH}/web\"
+set vars(\"DBDIR\") = \"${TRAKPATH}/db\"
+set vars(\"WEBURL\") = \"/trakcare\"
+set vars(\"CREATEANLTNAMESPACE\") = \"N\"
+do setup^tkutils(.vars)
+Y
+Y
+"| /sbin/runuser -l cachesys -c "ccontrol session $INST -U\"USER\""
+
 cd ${olddir}
-rm -r $TMPDIR/trakextract
+#rm -r $TMPDIR/trakextract
 
 # fix up database naming to UK convention
 ccontrol stop $INST quietly
@@ -107,7 +123,7 @@ mv $TRAKNS/ $SITE_UC
 cd ${olddir}
 
 # change config in Configuration Manager
-./expect/TrakVanillaT2018_Install_cleanup.expect $INST $TRAKNS $SITE_UC ${TRAKPATH}/web/custom/$SITE_UC/cdl
+#./expect/TrakVanillaT2018_Install_cleanup.expect $INST $TRAKNS $SITE_UC ${TRAKPATH}/web/custom/$SITE_UC/cdl
 
 # fix web/ permissions
 chown $CACHEUSR.$CACHEGRP ${TRAKPATH}/web -R

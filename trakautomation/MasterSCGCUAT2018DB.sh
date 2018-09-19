@@ -143,7 +143,7 @@ echo HealthShare
 ./do_Java.sh
 
 # Firewall configuration
-./do_Firewall.sh 1972/tcp 80/tcp 443/tcp 57772/tcp 631/tcp 2188/tcp 4001/udp 
+./do_Firewall.sh 1972/tcp 80/tcp 443/tcp 57772/tcp 631/tcp 2188/tcp 111/tcp 111/udp 2049/tcp 2049/udp 111/tcp 111/udp 4001/tcp 4001/udp
 
 # Fix SELinux permissions
 ./do_selinuxManage.sh

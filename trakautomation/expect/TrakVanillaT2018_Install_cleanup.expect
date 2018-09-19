@@ -1,0 +1,23 @@
+#!/usr/bin/expect -f
+# takes args: <Instance Name> <TrakCare Namespace> <SiteCode> <PathToReports>
+# expects environment variable $CACHEPASS to be the password to set on cache
+spawn su - $env(CACHEUSR) -c "csession [lindex $argv 0]"
+expect {
+	"Username:" {
+		send "SuperUser\r"
+		expect "Password:" { sleep 2; send "$env(CACHEPASS)\r" }
+		expect -re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
+	}
+	-re ".*>" { send "zn \"[lindex $argv 1]\"\r" }
+}
+# Site Code = ISC-TEST (should be $ORG_UC)
+expect "[lindex $argv 1]>" { send "write \$list(^websys.ConfigurationD(1),14),!\r" }
+expect "[lindex $argv 1]>" { send "set \$list(^websys.ConfigurationD(1),14)=\"[lindex $argv 2]\"\r" }
+# Path to XMLs = /trak/isc/TEST/tc2014/web/custom/ISC-TEST/cdl
+expect "[lindex $argv 1]>" { send "write \$list(^websys.ConfigurationD(1),42),!\r" }
+expect "[lindex $argv 1]>" { send "set \$list(^websys.ConfigurationD(1),42)=\"[lindex $argv 3]\"\r" }
+
+expect "USER>" { send "h\r" }
+send_user "\n"
+
+

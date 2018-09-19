@@ -29,11 +29,8 @@ apacherestart_RHEL() {
 	return 0
 }
 
-
-
 echo "########################################"
 INST=`instname $SITE $ENV $TYPE$VER`
-#INST=$(/bin/ccontrol qlist | grep $SITE | grep $ENV | grep $VER | cut -d"^" -f1)
 TRAKNS=`traknamespace $SITE $ENV`
 TRAKPATH=`trakpath $SITE $ENV $TYPE$VER`
 echo "Vanilla Trak $VER Install for $SITE : $ENV ($INST: $TRAKNS)"
@@ -45,10 +42,6 @@ fi
 # get cache password if needed
 if [ -z "$CACHEPASS" ]; then
 	getpass "Caché Password" CACHEPASS 1
-fi
-# get Trak zip password if needed
-if [ -z "$TRAKZIPPASS" ]; then
-	getpass "TrakCare .zip Password" TRAKZIPPASS 1
 fi
 # find installer
 installer=`locatefilestd $VER_*_R*_B*.zip`
@@ -106,57 +99,18 @@ Y
 "| /sbin/runuser -l cachesys -c "ccontrol session $INST -U\"USER\""
 
 cd ${olddir}
-#rm -r $TMPDIR/trakextract
-
-# fix up database naming to UK convention
-ccontrol stop $INST quietly
-SITE_UC=`echo $SITE | tr '[:lower:]' '[:upper:]'`
-sed -i "s/^$TRAKNS=$ENV-DATA,$ENV-APPSYS/$TRAKNS=$TRAKNS-DATA,$TRAKNS-APPSYS/" ${TRAKPATH}/hs/cache.cpf
-sed -i "s/^$ENV-/$TRAKNS-/" ${TRAKPATH}/hs/cache.cpf
-sed -i "s/\(Global_.*\|Routine_.*\|Package_.*\)=$ENV-/\1=$TRAKNS-/" ${TRAKPATH}/hs/cache.cpf
-ccontrol start $INST quietly
+rm -r $TMPDIR/trakextract
 
 # change web/ directory to use site code (and possibly create lc symlink)
 cd ${TRAKPATH}/web/custom/
 mv $TRAKNS/ $SITE_UC
-#ln -s $SITE_UC $SITE_LC
 cd ${olddir}
 
 # change config in Configuration Manager
-#./expect/TrakVanillaT2018_Install_cleanup.expect $INST $TRAKNS $SITE_UC ${TRAKPATH}/web/custom/$SITE_UC/cdl
+./expect/TrakVanillaT2018_Install_cleanup.expect $INST $TRAKNS $SITE_UC ${TRAKPATH}/web/custom/$SITE_UC/cdl
 
 # fix web/ permissions
 chown $CACHEUSR.$CACHEGRP ${TRAKPATH}/web -R
 find ${TRAKPATH}/web -type d -exec chmod 775 {} \;
 find ${TRAKPATH}/web -type f -exec chmod 664 {} \;
-
-## install the apache config
-#osspecific trakapacheconf
-##apacheconf=`osspecific trakapacheconf`
-#if [ -d $CONFDIR -a -f /opt/cspgateway/bin/CSP.ini ]; then
-#	apacheconf=$CONF
-#	cp conffiles/apache-t2018.conf $apacheconf
-#	chmod 644 $apacheconf
-#	# apply custom settings
-#	sed -i 's/TRAKWEBAPP/\/trakcare/g' $apacheconf
-#	sed -i "s/TRAKWEBDIR/`path2regexp ${TRAKPATH}/web`/g" $apacheconf
-#	# add in CSP config
-#	ini_update.pl /opt/cspgateway/bin/CSP.ini \
-#		'[APP_PATH:/trakcare]GZIP_Compression=Enabled' \
-#		'[APP_PATH:/trakcare]GZIP_Exclude_File_Types=jpeg gif ico png' \
-#		'[APP_PATH:/trakcare]Response_Size_Notification=Chunked Transfer Encoding and Content Length' \
-#		'[APP_PATH:/trakcare]KeepAlive=No Action' \
-#		'[APP_PATH:/trakcare]Non_Parsed_Headers=Enabled' \
-#		'[APP_PATH:/trakcare]Alternative_Servers=Disabled' \
-#		"[APP_PATH:/trakcare]Alternative_Server_0=1~~~~~~$INST" \
-#		"[APP_PATH:/trakcare]Default_Server=$INST" \
-#		'[APP_PATH_INDEX]/trakcare=Enabled'
-#else
-#	echo "Skipping Trak Config (no Apache and/or CSP)"
-#fi
-#osspecific apacherestart
-
-
-
-
 

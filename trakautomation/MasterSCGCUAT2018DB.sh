@@ -130,6 +130,9 @@ echo HealthShare
 # SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
 ./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE
 
+# Fix DB names. Instance will remain stoped 
+./do_TrakVanillaT2018_FixUKDBNames.sh
+
 # Huge Pages configuration
 ./do_hugePages.sh 3072
 

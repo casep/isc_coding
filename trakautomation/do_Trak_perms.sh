@@ -24,6 +24,9 @@ echo "########################################"
 echo "Trak Permissions (basic)"
 TRAKPATH=`trakpath $SITE $ENV $THISTYPE$VER`
 
+# New owner for db and how the 2018 installer is run
+chown $CACHESYSUSR.$CACHEGRP ${TRAKPATH}/db
+chmod 775 ${TRAKPATH}/db
 
 # setting sgid to encourage the correct group to be used
 chown $CACHEUSR.$CACHEGRP ${TRAKPATH}/web
@@ -31,7 +34,6 @@ chmod 2770 ${TRAKPATH}/web
 
 # setting sgid to encourage correct group - remaining perms from MarkB's Linux Install doc
 chown $CACHEUSR.$CACHEGRP ${TRAKPATH}/store/temp
-#chmod -R 1777 ${TRAKPATH}/store/traktemp
 chmod -R 2770 ${TRAKPATH}/store/temp
 
 

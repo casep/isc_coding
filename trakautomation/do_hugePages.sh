@@ -40,7 +40,7 @@ memoryAllocationCheck() {
 
 generateConfig() {
 	echo "# ISC TrakCare OS tuning" >> $CONF
-	echo "kernel.shmmax=64927825920" >> $CONF
+	echo "kernel.shmmax=649278259200" >> $CONF
 	echo "vm.nr_hugepages=$HUGEPAGES" >> $CONF
 	echo "vm.swappiness=5" >> $CONF
 	echo "vm.dirty_background_ratio=5" >> $CONF

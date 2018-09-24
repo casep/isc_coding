@@ -1,7 +1,7 @@
 #!/bin/sh -e
 # This is an example master script using the tools created
 # It expects HSAP-*.tar.gz to be in the same directory
-export TMPDIR=/trak/iscbuild/tmp
+export TMPDIR=/tmp
 export SITE=scgc
 export ENV=PRD
 export VER=2018
@@ -120,13 +120,13 @@ echo HealthShare
 ./do_FOPConf.sh $SITE $ENV $TYPE$VER 128m 128m
 ./do_PMSFonts.sh
 
-# do Trak install
-./do_TrakVanillaT2018_Install.sh
-./do_TrakCare2018_ApacheCSP.sh $TYPE
-
 # load in specific tools we need - NOTE: these will probably fail without licenses in place
 ./do_zCustom.CheckSNMP_Install.sh $TYPE
 ./do_zCustom.SnapBackup_Install.sh $TYPE
+
+# do Trak install
+./do_TrakVanillaT2018_Install.sh
+./do_TrakCare2018_ApacheCSP.sh $TYPE
 
 # SysAdminTasks (was TrakCareCustomTasks) / TCMon Stuff
 ./do_zCustom.TrakCareCustomTasks_Install.sh $TYPE

@@ -155,6 +155,12 @@ echo HealthShare
 # ISCAgent
 ./do_ISCAgent.sh
 
+# Patch GW
+./do_CSPGW2018Upg.sh
+
+# Patch adhoc
+./do_Patch18375.sh
+
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...
 

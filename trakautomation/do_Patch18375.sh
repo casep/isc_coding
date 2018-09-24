@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
-# do_CSPGW2018Upg.sh
+# do_Patch18375.sh
 #  
 #  Copyright 2018 Carlos "casep" Sepulveda <casep@fedoraproject.org>
 #  
@@ -31,6 +31,7 @@ checkInstaller() {
 }
 
 deployPatch() {
+echo "Patching"
 echo "zn \"%SYS\" d ^DATABASE
 2
 $(ccontrol qlist | cut -d"^" -f2)/mgr/cachelib
@@ -58,6 +59,7 @@ h"|su - cachesys -c "csession $(ccontrol qlist | cut -d"^" -f1)"
 }
 
 updateVersion() {
+	echo "Updating version id"
 	ccontrol update $(ccontrol qlist | cut -d"^" -f1) versionid=$(ccontrol qlist | cut -d"^" -f3)\_"18375"
 }
 

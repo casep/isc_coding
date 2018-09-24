@@ -83,8 +83,7 @@ unzip -q -o $installer -d $TMPDIR/trakextract/
 chown $CACHEUSR.$CACHEGRP $TMPDIR/trakextract -R
 
 #$TMPDIR/trakextract/TrakVanillaT2018_Install_install.expect $INST $TMPDIR/trakextract $ENV $TRAKNS ${TRAKPATH} /trakcare
-echo "
-do \$system.OBJ.Load(\"$TMPDIR/trakextract/tkutils.xml\",\"fc\")
+echo "do \$system.OBJ.Load(\"$TMPDIR/trakextract/tkutils.xml\",\"fc\")
 set vars(\"SRCDIR\") = \"$TMPDIR/trakextract\"
 set vars(\"ENV\") = \"$ENV\"
 set vars(\"NAMESPACE\") = \"$TRAKNS\"

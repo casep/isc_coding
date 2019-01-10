@@ -148,6 +148,9 @@ echo HealthShare
 # ISCAgent
 ./do_ISCAgent.sh
 
+# Firewall 
+./do_Firewall.sh 1972/tcp 80/tcp 443/tcp 57772/tcp 631/tcp 2188/tcp 4001/udp
+
 echo
 echo Probably worth rebooting to ensure no memory fragmentation and test the config...
 

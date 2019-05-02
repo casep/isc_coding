@@ -62,10 +62,10 @@ sanitycheck() {
 
 environmentdirs() {
 	mkdirifneeded ${TRAKPATH}/$CACHEDIR true
-	chown $CACHEUSR.$CACHEGRP $TRAKPATH/$CACHEDIR
+	chown $CACHESYSUSR.$CACHEGRP $TRAKPATH/$CACHEDIR
 	chmod 775 $TRAKPATH/$CACHEDIR
 	mkdirifneeded ${TRAKPATH}/db true
-	chown -R $CACHEUSR.$CACHEGRP $TRAKPATH/db
+	chown -R $CACHESYSUSR.$CACHEGRP $TRAKPATH/db
 	chmod -R 755 $TRAKPATH/db
 	# search primary journal locations
 	for dir in jrn/pri/ jrn/ db/jrn/pri/ db/jrn/ $CACHEDIR/jrn/pri; do
@@ -76,7 +76,7 @@ environmentdirs() {
 	if [ -z "$prijrndir" ]; then
 		echo "NOTE - no Primary Journal directory found"
 	else
-		chown -R $CACHEUSR.$CACHEGRP $prijrndir
+		chown -R $CACHESYSUSR.$CACHEGRP $prijrndir
 		chmod -R 770 $prijrndir
 	fi
 	# search alternate journal locations
@@ -88,7 +88,7 @@ environmentdirs() {
 	if [ -z "$altjrndir" ]; then
 		echo "NOTE - no Alternate Journal directory found"
 	else
-		chown -R $CACHEUSR.$CACHEGRP $altjrndir
+		chown -R $CACHESYSUSR.$CACHEGRP $altjrndir
 		chmod -R 770 $altjrndir
 	fi
 	# look for wij location(s)
@@ -122,12 +122,12 @@ installCache() {
 	expectprefix=$1
 	# create extract areay
 	olddir=`pwd`
-	mkdir -p /tmp/cacheextract
+	mkdir -p $TMPDIR/cacheextract
 	# extract - this way of extracting a tarball is needed for AIX compatibility
 	#gzip --decompress --stdout "$installer" | tar -xf -
 	#FIX HERE FOR AIX
-	tar xzf "$installer" -C /tmp/cacheextract
-	cd /tmp/cacheextract/$(tar tzf $installer | head -1 | cut -d"/" -f1)
+	tar xzf "$installer" -C $TMPDIR/cacheextract
+	cd $TMPDIR/cacheextract/$(tar tzf $installer | head -1 | cut -d"/" -f1)
 	if [ $CSPONLY -ne 1 ]; then
 		# database install
 		if [ $CSP -eq 1 ]; then
@@ -163,7 +163,7 @@ installCache() {
 	fi
 	cd ${olddir}
 	# cleanup
-	rm -r /tmp/cacheextract
+	rm -r $TMPDIR/cacheextract
 }
 
 

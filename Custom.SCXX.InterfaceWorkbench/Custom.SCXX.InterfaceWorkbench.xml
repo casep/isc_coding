@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.1.4 (Build 104_2_18179U)" ts="2019-03-30 11:44:45">
+<Class name="Custom.SCXX.InterfaceWorkbench">
+<Super>%RegisteredObject</Super>
+<TimeChanged>64679,46874.140673</TimeChanged>
+<TimeCreated>64664,39817.262069</TimeCreated>
+
+<Method name="StartAll">
+<Description>
+do ##class(Custom.SCXX.InterfaceWorkbench).StartAll()</Description>
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[
+	; loop through SSHL7 global
+	set Code="" 
+	for {
+		set Code=$order(^SSHL7(Code)) 
+		quit:Code=""
+		// extract interface workbench rowid for HL7 interface
+		set rowid=$order(^SST("INT",0,"Code",##Class(%Collation).AlphaUp(Code) ,""))
+		if rowid'="" {
+			//skip if interface description has "Not In Use" word
+			if $piece(^SST("INT",rowid),"^",2)'["Not In Use" {
+				&SQL(UPDATE SQLUser.SS_InterfaceMonitor SET INTMON_Active='Y' WHERE INTMON_Interface_DR->INT_Code = :Code)
+				job Start^HL7(Code)
+				//for jj=1:1:5 h 1
+			}
+		}
+	}
+quit
+]]></Implementation>
+</Method>
+
+<Method name="StopAll">
+<Description>
+do ##class(Custom.SCXX.InterfaceWorkbench).StopAll()</Description>
+<ClassMethod>1</ClassMethod>
+<ProcedureBlock>0</ProcedureBlock>
+<Implementation><![CDATA[
+	set code=""
+	for {
+		set code=$order(^SSHL7(code))
+		quit:code=""
+		set link=code
+		write "Stopping "_code,!
+		do StartStop^HL7("",+$h,1)
+	}
+	quit
+]]></Implementation>
+</Method>
+</Class>
+</Export>

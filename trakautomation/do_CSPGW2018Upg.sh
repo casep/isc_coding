@@ -26,6 +26,9 @@
 #  Upgrade to the latest version of the CSP gateway
 #  Assume the GW was previously configured, quick and dirty, mostly dirty
 
+installer=/trak/iscbuild/installers/CSPGateway-2018.1.2.609.0-lnxrhx64.tar.gz
+installerFolder=$(echo $installer | cut -d"." -f1,2,3,4,5)
+
 checkPreviousConfig() {
 	if [ -f /opt/cspgateway/bin/CSP.ini ]; then
 		return 1
@@ -34,7 +37,7 @@ checkPreviousConfig() {
 }
 
 checkInstaller() {
-	if [ ! -f /trak/iscbuild/installers/CSPGateway-2018.1.1.643.0-lnxrhx64.tar.gz ]; then
+	if [ ! -f $installer ]; then
 		return 1
 	fi
 	return 0
@@ -43,8 +46,8 @@ checkInstaller() {
 generateConfig() {
         systemctl stop httpd
         mv /opt/cspgateway /opt/cspgateway.prepatch
-        tar xzf /trak/iscbuild/installers/CSPGateway-2018.1.1.643.0-lnxrhx64.tar.gz -C /trak/iscbuild/installers/
-        cd /trak/iscbuild/installers/CSPGateway-2018.1.1.643.0-lnxrhx64/install/
+        tar xzf $installer -C /trak/iscbuild/installers/
+        cd $installerFolder/install/
         echo "3
 /opt/cspgateway
 Y

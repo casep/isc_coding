@@ -55,10 +55,10 @@ if [ $(id -u cachebackup) ]; then
         userdel -r cachebackup
 fi
 
-if [ $(grep "$CACHEGRP:" /etc/group) != $CACHEGRPID ]; then
+if [ $(grep "$CACHEGRP:" /etc/group | cut -d":" -f3) != $CACHEGRPID ]; then
         groupdel $CACHEGRP
 fi
-if [ $(grep "$CACHEMGR:" /etc/group) != $CACHEMGRID ]; then
+if [ $(grep "$CACHEMGR:" /etc/group | cut -d":" -f3) != $CACHEMGRID ]; then
         groupdel $CACHEMGR
 fi
 
@@ -70,7 +70,7 @@ checkvars
 ./do_PackageCheck.sh
 
 # Should be somewhere else...
-#yum -y install policycoreutils-python
+yum -y install policycoreutils-python hplip cups expect tcl net-snmp net-snmp-agent-libs perl-Data-Dumper perl-Digest-HMAC perl-Digest-SHA1 perl-Socket6 fping net-tools 
 
 # check we are root
 ./do_rootCheck.sh

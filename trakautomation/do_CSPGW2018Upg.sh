@@ -48,14 +48,11 @@ generateConfig() {
         mv /opt/cspgateway /opt/cspgateway.prepatch
         tar xzf $installer -C /trak/iscbuild/installers/
         cd $installerFolder/install/
-        echo "3
-/opt/cspgateway
-Y
+        echo "2
 localhost
 1972
 CACHE
 /opt/cspgateway/cache
-Y
 Y
 " | ./CSPinstall
         cp -pr /opt/cspgateway.prepatch/bin/CSP.ini /opt/cspgateway/bin/
@@ -69,7 +66,6 @@ Y
 	restorecon -v /opt/cspgateway/bin/CSP.log
         systemctl start httpd
 }
-
 
 echo "########################################"
 echo "Upgrade CSP gateway"

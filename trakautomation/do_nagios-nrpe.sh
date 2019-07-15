@@ -24,7 +24,7 @@ install_RHEL_6_3() {
 	if [ ! -x /usr/sbin/nrpe ]; then
 		yum install -y 'perl(Digest::HMAC)' 'perl(Digest::SHA1)' 'perl(Socket6)'
 		# install RPMForge RPMs for this
-		yum localinstall -y nagios-nrpe-RHEL6.3/*.rpm
+		yum localinstall -y ../installers/nagios-nrpe-RHEL6.3/*.rpm
 		usermod -G $CACHEGRP nagios
 	fi
 	if [ ! -d $INSTALLPATH ]; then
@@ -110,7 +110,7 @@ install_RHEL_7_6() {
         if [ ! -x /usr/sbin/nrpe ]; then
                 yum install -y 'perl(Digest::HMAC)' 'perl(Digest::SHA1)' 'perl(Socket6)'
                 # install RPMForge RPMs for this
-                yum localinstall -y nagios-nrpe-RHEL7.6/*.rpm
+                yum localinstall -y ../installers/nagios-nrpe-RHEL7/*.rpm
                 usermod -G $CACHEGRP nagios
         fi
         if [ ! -d $INSTALLPATH ]; then

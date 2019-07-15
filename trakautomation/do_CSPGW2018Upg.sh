@@ -49,10 +49,13 @@ generateConfig() {
         tar xzf $installer -C /trak/iscbuild/installers/
         cd $installerFolder/install/
         echo "2
+/opt/cspgateway
+Y
 localhost
 1972
 CACHE
 /opt/cspgateway/cache
+Y
 Y
 " | ./CSPinstall
         cp -pr /opt/cspgateway.prepatch/bin/CSP.ini /opt/cspgateway/bin/

@@ -39,20 +39,27 @@ export TRAKPRINT=cupsAdministrator
 export TRAKPRINTID=5006
 
 #fudge hosting
-if [ $(id -u cacheusr) ]; then
-	userdel -r cacheusr
+if [ $(id -u $CACHEUSR) != $CACHEUSRID ]; then
+	userdel -r $CACHEUSR
 fi
-if [ $(id -u cachesys) ]; then
-        userdel -r cachesys
+
+if [ $(id -u $CACHESYSUSR) != $CACHESYSUSRID ]; then
+        userdel -r $CACHESYSUSR
 fi
+
+if [ $(id -u $CACHEBACKUP) != $CACHEBACKUPID ]; then
+        userdel -r $CACHEBACKUP
+fi
+
 if [ $(id -u cachebackup) ]; then
         userdel -r cachebackup
 fi
-if [ $(grep "cachegrp:" /etc/group) ]; then
-        groupdel cachegrp
+
+if [ $(grep "$CACHEGRP:" /etc/group) != $CACHEGRPID ]; then
+        groupdel $CACHEGRP
 fi
-if [ $(grep "cachemgr:" /etc/group) ]; then
-        groupdel cachemgr
+if [ $(grep "$CACHEMGR:" /etc/group) != $CACHEMGRID ]; then
+        groupdel $CACHEMGR
 fi
 
 # bring in functions and defaults - this must be first!

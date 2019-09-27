@@ -24,7 +24,8 @@
 # Works on RedHat, I don't care about Suse
 # ToDo, list of ports/protocols should be a parameter
 
-. ./functions.sh
+TRAKAUTOMATIONDIR="`dirname \"$0\"`"
+. $TRAKAUTOMATIONDIR/functions.sh
 
 
 check_LINUX() {
@@ -49,7 +50,7 @@ fi
 echo "########################################"
 echo "Updating firewall configuration"
 
-if osspecific check; then
+if $(check_LINUX); then
 	echo "firewalld not running"
 	exit 0
 else

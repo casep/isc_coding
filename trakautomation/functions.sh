@@ -367,8 +367,8 @@ installdepends_SLES() {
 	zypper install --no-confirm "$1"
 }
 installdepends_RHEL() {
-	#yum install -y "$1"
-	echo "trying to install $1"	
+	yum install -y "$1"
+	#echo "trying to install $1"	
 }
 # $0 <executable to check> <package to install>
 installdepends() {
